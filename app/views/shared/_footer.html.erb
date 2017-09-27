@@ -1,0 +1,261 @@
+<div class="syftet-footer-profile clearfix">
+  <section class="news-letter-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 col-sm-5">
+          <div class="join-our-email-section">
+            <div class="join-text-wrapper">
+
+              <h3 class="kc_title newletter-left-option"><%= t(:join_our_email) %></h3>
+            </div>
+
+            <div class="kc-elm kc-css-483906 divider_line line-height-one">
+              <div class="divider_inner divider_line1">
+              </div>
+            </div>
+            <div class="text-block">
+              <p><%= t(:join_our_email_text) %></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-7 col-sm-7">
+          <div class="news-widget-form">
+            <form method="post">
+              <div class="form-fields">
+                <div class="input-group">
+                  <input id="mc4wp_email" class="form-control" name="EMAIL" required="required" type="email" placeholder="<%= t(:enter_your_email) %>...">
+
+                    <span class="clearfix pull-right">
+                      <input type="submit" value="<%= t(:subscribe) %> +" class="btn">
+                    </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="footer-information">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-sm-12">
+          <div class="row">
+            <div class="col-sm-4 col-sm-4">
+              <div class="about-company-social">
+                <div>
+                  <%= link_to root_path do %>
+                      <img src="http://venusdemo.com/wordpress/pi/wp-content/uploads/2017/06/logo-footer.png" class="logo" alt="logo">
+                  <% end %>
+                </div>
+                <div class="text-block">
+                  <p style="text-align: left;">
+                    <%= t(:footer_about_text) %>
+                  </p>
+                </div>
+                <div class="social-block">
+                  <a href="#" class="multi-icons-link multi-iconsfa-facebook">
+                    <i class="fa fa-facebook" style="color:#658cdd;"></i>
+                  </a>
+
+                  <a href="#" class="multi-icons-link multi-iconsfa-twitter">
+                    <i class="fa fa-twitter" style="color:#31bfe1;"></i>
+                  </a>
+
+                  <a href="#" class="multi-icons-link multi-iconsfa-google-plus">
+                    <i class="fa fa-google-plus" style="color:#cf3f12;"></i>
+                  </a>
+
+                  <a href="#" class="multi-icons-link multi-iconsfa-instagram">
+                    <i class="fa fa-instagram" style="color:#a86017;"></i>
+                  </a>
+
+                  <a href="#" class="multi-icons-link multi-iconsfa-pinterest">
+                    <i class="fa fa-pinterest" style="color:#c93232;"></i>
+                  </a>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-sm-4">
+              <div class="nav-block">
+                <div class="title-wrap ">
+                  <h3 class="title"><%= t(:information) %></h3>
+                </div>
+                <div class="footer-nav-wrapper">
+                  <div class="row">
+                    <div class="col-sm-6 col-sm-6">
+                      <div class="widget widget-nav-menu">
+                        <div class="menu-footer-1-container">
+                          <ul id="menu-footer-1" class="menu">
+                            <li>
+                              <a href="http://venusdemo.com/wordpress/pi/my-account/"><%= t(:my_account) %></a>
+                            </li>
+                            <li>
+                              <a href="http://venusdemo.com/wordpress/pi/my-account/view-order/"><%= t(:order_history) %></a>
+                            </li>
+                            <li>
+                              <a href="http://venusdemo.com/wordpress/pi/wishlist/"><%= t(:wishlist) %></a>
+                            </li>
+                            <li>
+                              <a href="#"><%= t(:special) %></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-sm-6">
+                      <div class="widget widget_nav_menu kc-elm kc-css-362269">
+                        <div class="menu-footer-2-container">
+                          <ul id="menu-footer-2" class="menu">
+                            <li>
+                              <a href="#"><%= t(:discount) %></a>
+                            </li>
+                            <li>
+                              <a href="#"><%= t(:return_policy) %></a>
+                            </li>
+                            <li>
+                              <a href="#"><%= t(:customer_service) %></a>
+                            </li>
+                            <li>
+                              <a href="#"><%= t(:term_and_condition) %></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-sm-4">
+              <div class="map-block">
+                <div style="height: 295px" class="kc-google-maps">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.4341708818383!2d-122.47530298446227!3d37.803298218290436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808586e6302615a1%3A0x86bd130251757c00!2sStorey+Ave%2C+San+Francisco%2C+CA+94129!5e0!3m2!1sen!2s!4v1463017176807" width="100%" height="295" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <aside id="popupnewsletter-2" class="widget-footer clearfix widget_popupnewsletter">
+      <div class="popupnewsletter">
+        <!--<button type="button" class="btn btn-primary btn-lg btn-flying-right" data-toggle="modal" data-target="#popupNewsletterModal">-->
+        <!--<i class="fa fa-envelope-o"></i>-->
+        <!--</button>-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="popupNewsletterModal" tabindex="-1" role="dialog" aria-labelledby="popupNewsletterModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background: url('http://venusdemo.com/wordpress/pi/wp-content/uploads/2017/07/bg_newletters.jpg') no-repeat 0 0 transparent">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span></button>
+              <div class="modal-body">
+                <div class="popupnewsletter-widget ">
+                  <div>
+                    <div class="pnew-head">
+                      <h3>
+                        <span>10% Off Your First Order</span>
+                      </h3>
+
+                      <p class="description">
+                        Sign up to our newsletter and get a welcome gift from us </p>
+                    </div>
+                    <script type="text/javascript">(function () {
+                        if (!window.mc4wp) {
+                            window.mc4wp = {
+                                listeners: [],
+                                forms: {
+                                    on: function (event, callback) {
+                                        window.mc4wp.listeners.push({
+                                            event: event,
+                                            callback: callback
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    })();
+                    </script>
+                    <!-- MailChimp for WordPress v4.1.6 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+                    <form id="mc4wp-form-2" class="mc4wp-form mc4wp-form-6363 mc4wp-form-basic" method="post" data-id="6363" data-name="Default sign-up form">
+                      <div class="mc4wp-form-fields">
+                        <div class="form-style-1">
+                          <div class="input-group">
+                            <input id="mc4wp_email" class="form-control" name="EMAIL" required="required" type="email" placeholder="Enter your email...">
+
+                            <span class="btn-primary btn"><input type="submit" value="Subscribe"></span>
+                          </div>
+                        </div>
+                        <div style="display: none;">
+                          <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off"></div>
+                        <input type="hidden" name="_mc4wp_timestamp" value="1506431676"><input type="hidden" name="_mc4wp_form_id" value="6363"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-2">
+                      </div>
+                      <div class="mc4wp-response"></div>
+                    </form>
+                    <!-- / MailChimp for WordPress Plugin -->                </div>
+                </div>
+                <div class="">
+                  <aside id="wpopal_socials_widget-2" class="widget clearfix widget_wpopal_socials_widget">
+                    <ul class="social list-unstyled list-inline bo-sicolor">
+                      <li>
+                        <a href="#" class="facebook">
+                          <i class="fa fa-facebook bo-social-facebook">&nbsp;</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="twitter">
+                          <i class="fa fa-twitter bo-social-twitter">&nbsp;</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="pinterest">
+                          <i class="fa fa-pinterest bo-social-pinterest">&nbsp;</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="google-plus">
+                          <i class="fa fa-google-plus bo-social-google-plus">&nbsp;</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="instagram">
+                          <i class="fa fa-instagram bo-social-instagram">&nbsp;</i>
+                        </a>
+                      </li>
+                    </ul>
+                  </aside>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+          jQuery(window).load(function () {
+              setTimeout(function () {
+                  var hiddenmodal = getCookie('hiddenmodal');
+                  if (hiddenmodal == "") {
+                      jQuery('#popupNewsletterModal').modal('show');
+                  }
+              }, 3000);
+          });
+          jQuery(document).ready(function ($) {
+              $('#popupNewsletterModal').on('hidden.bs.modal', function () {
+                  setCookie('hiddenmodal', 1, 30);
+              });
+          });
+      </script>
+    </aside>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+bn:
+  call_support: 'বিনামূল্যে কল করুন:'
+  free_shipping_text: "সমস্ত আদেশ বিনামূল্যে."
+  join_our_email: "আমাদের ইমেল যোগ দিন"
+  join_our_email_text: "আমরা কেবলমাত্র মাসে একবার ইমেল পাঠাই এবং শুধুমাত্র ভাল জিনিসগুলি সম্পর্কে।"
+  enter_your_email: "আপনার ইমেল লিখুন"
+  subscribe: "সদস্যতা"
+  copy_right_text: "কপিরাইট © 2017 - পিআই। সর্বস্বত্ব সংরক্ষিত. দ্বারা পরিচালিত www.syftet.com"
+  login: "লগইন"
+  registration: "নিবন্ধন"
+  my_account: "আমার অ্যাকাউন্ট"
+  checkout: "চেকআউট"
+  footer_about_text: "Pi হল একটি উত্তেজনাপূর্ণ ইউকে ভিত্তিক স্বাধীন গার্মেন্টস ব্র্যান্ড, যা ২01২ সালে NAHN দ্বারা প্রতিষ্ঠিত হয়। এটি চালু হওয়ার পর থেকেই পিআই অসাধারণ বৃদ্ধি পেয়েছে - এখন বিশ্বব্যাপী বিক্রি হচ্ছে"
+  information: 'তথ্য'
+  order_history: 'অর্ডার ইতিহাস'
+  wishlist: 'ইচ্ছেতালিকা'
+  special: 'বিশেষ'
+  discount: 'ডিসকাউন্ট'
+  return_policy: 'প্রত্যাবর্তন নীতিমালা'
+  customer_service: 'গ্রাহক সেবা'
+  term_and_condition: 'শর্তাবলী'
+  home: 'হোম'
+  products: 'পণ্যদ্রব্য'
+  page: 'পৃষ্ঠাগুলি'
+  new_arrival: 'নতুন আগমন'
+  about_us: 'আমাদের সম্পর্কে'
+  contact_us: 'যোগাযোগ করুন'
+  blog: 'ব্লগ'
+  no_product_on_cart: 'ব্যাগ ই  কোন পণ্য নাই'
+  hot: 'গরম'
+  new: 'নতুন'

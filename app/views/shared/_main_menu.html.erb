@@ -1,0 +1,308 @@
+<header class="site-header header-default" role="banner">
+
+  <div class="topbar-mobile hidden-lg hidden-md">
+    <div class="active-mobile pull-left">
+      <button data-toggle="offcanvas" class="btn-mobile-toggle btn-offcanvas btn-toggle-canvas offcanvas" type="button">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    <div class="topbar-inner pull-left">
+      <div class="active-mobile search-popup pull-left">
+        <span class="fa fa-search"></span>
+
+        <div class="active-content">
+          <form method="get" class="input-group search-category" action="http://venusdemo.com/wordpress/pi/">
+            <input name="s" maxlength="60" class="form-control search-category-input" type="text" size="20" placeholder="Search Products">
+
+            <div class="input-group-btn">
+              <label class="btn btn-link btn-search">
+                <span class="title-search hidden">Search</span>
+                <input type="submit" class="fa searchsubmit" value="">
+              </label>
+              <input type="hidden" name="post_type" value="product">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="active-mobile setting-popup pull-left">
+        <span class="fa fa-user"></span>
+
+        <div class="active-content">
+          <div class="menu-top-menu-header-container">
+            <ul id="menu-top-menu-header" class="menu-topbar">
+              <li id="menu-item-487" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-487">
+                <a href="http://venusdemo.com/wordpress/pi/my-account/">
+                  <%= t(:my_account) %>
+                </a>
+              </li>
+              <li id="menu-item-488" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-488">
+                <a href="http://venusdemo.com/wordpress/pi/checkout/">
+                  <%= t(:checkout) %>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="active-mobile pull-left cart-popup">
+        <span class="fa fa-shopping-cart"></span>
+
+        <div class="active-content">
+          <div class="widget_shopping_cart_content">
+            <div class="cart_list ">
+              <div class="empty"><%= t(:no_product_on_cart) %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <section class="header-main clearfix container">
+    <div class="container-fuild">
+      <div class="row">
+        <section class="respon-menu main-menu no-sticky">
+          <div class="col-lg-6 col-md-9 col-xs-12">
+            <div id="syftet-mainmenu" class="syftet-mainmenu">
+              <div class="inner navbar-mega-simple">
+                <nav data-duration="400" class="hidden-xs hidden-sm slide animate navbar navbar-mega" role="navigation">
+
+                  <div class="collapse navbar-collapse navbar-mega-collapse nopadding">
+                    <ul id="primary-menu" class="nav navbar-nav megamenu">
+                      <li class="menu-item">
+                        <%= link_to root_path do %>
+                            <i class="fa fa-home"></i> <%= t(:home) %>
+                        <% end %>
+                      </li>
+
+                      <li class="menu-item">
+                        <a href="#">
+                          <%= t(:discount) %>
+                          <span class="bubble-text-label label-hot"><%= t(:hot) %></span>
+                        </a>
+                      </li>
+
+                      <li class="menu-item">
+                        <a href="#">
+                          <%= t(:products) %>
+                        </a>
+                      </li>
+
+                      <li class="menu-item">
+                        <a href="#">
+                          <%= t(:new_arrival) %>
+                          <span class="bubble-text-label label-new"><%= t(:new) %></span>
+                        </a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          <%= t(:page) %> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="#" class="dropdown-toggle">
+                              <%= t(:about_us) %>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="dropdown-toggle">
+                              <%= t(:contact_us) %>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <%= t(:blog) %>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="respon-logo col-md-2 col-lg-1 col-xs-12">
+            <div id="opal-logo" class="logo logo-theme">
+              <a href="http://venusdemo.com/wordpress/pi/">
+                <img src="http://venusdemo.com/wordpress/pi/wp-content/themes/pi/images/logo.png" alt="Pi Store">
+              </a>
+            </div>
+          </div>
+
+          <div class="respon-link col-lg-5 col-md-3 col-xs-12 hidden-xs hidden-sm">
+            <div class="header-right clearfix">
+              <div class="opal-topcart pull-right">
+                <div id="cart" class="dropdown version-1 box-top btn">
+                  <a class="dropdown-toggle mini-cart box-wrap" data-toggle="dropdown" aria-expanded="true" role="button" aria-haspopup="true" data-delay="0" href="#" title="View your shopping cart">
+                    <span class="icon-basket icons">
+                      <i class="fa fa-shopping-cart"></i>
+                      <span class="mini-cart-items">0</span>
+                      <span class="woocommerce-Price-amount amount">
+                        <span class="woocommerce-Price-currencySymbol">$</span>
+                        0.0
+                      </span>
+                    </span>
+                  </a>
+
+                  <div class="dropdown-menu">
+                    <div class="widget_shopping_cart_content">
+                      <div class="cart_list ">
+                        <div class="empty"><%= t(:no_product_on_cart) %></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="syftet-btn-wishlist pull-right" href="http://venusdemo.com/wordpress/pi/wishlist/">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+              </a>
+
+              <div id="search-container" class="search-box-wrapper pull-right">
+                <div class="opal-dropdow-search dropdown">
+                  <a data-target=".bs-search-modal-lg" data-toggle="modal" class="search-focus btn dropdown-toggle dropdown-toggle-overlay">
+                    <i class="fa fa-search"></i>
+                  </a>
+
+                  <div class="modal fade bs-search-modal-lg active" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog modal-md">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button aria-label="Close" data-dismiss="modal" class="close btn btn-sm btn-primary pull-right" type="button">
+                            <span aria-hidden="true">x</span></button>
+                          <h4 id="gridSystemModalLabel" class="modal-title">ENTER YOUR KEYWORD</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="toggle-overlay-container">
+                            <div class="search-box">
+                              <form method="get" class="input-group search-category" action="http://venusdemo.com/wordpress/pi/">
+
+                                <input name="s" maxlength="60" class="form-control search-category-input" type="text" size="20" placeholder="Search Products">
+
+                                <div class="input-group-addon search-category-container">
+                                  <div class="select">
+                                    <select name="product_cat" class="dropdown_product_cat">
+                                      <option value="" selected="selected">Select a category</option>
+                                      <option class="level-0" value="backpach">Backpach&nbsp;(12)</option>
+                                      <option class="level-0" value="big-bags">Big Bags&nbsp;(2)</option>
+                                      <option class="level-1" value="bags-hot">&nbsp;&nbsp;&nbsp;Bags Hot&nbsp;(2)
+                                      </option>
+                                      <option class="level-1" value="dawson">&nbsp;&nbsp;&nbsp;Dawson&nbsp;(2)</option>
+                                      <option class="level-1" value="new-style">&nbsp;&nbsp;&nbsp;new Style&nbsp;(2)
+                                      </option>
+                                      <option class="level-0" value="handbags">Handbags&nbsp;(5)</option>
+                                      <option class="level-1" value="back-bags">&nbsp;&nbsp;&nbsp;back bags&nbsp;(4)
+                                      </option>
+                                      <option class="level-1" value="backbags-skins">&nbsp;&nbsp;&nbsp;backbags skins&nbsp;(3)</option>
+                                      <option class="level-1" value="collection-2016">&nbsp;&nbsp;&nbsp;collection 2016&nbsp;(4)</option>
+                                      <option class="level-1" value="travel">&nbsp;&nbsp;&nbsp;travel&nbsp;(4)</option>
+                                      <option class="level-0" value="hip-packs">Hip Packs&nbsp;(2)</option>
+                                      <option class="level-0" value="kids-school">kids &amp; School&nbsp;(15)</option>
+                                      <option class="level-0" value="men">Men&nbsp;(1)</option>
+                                      <option class="level-0" value="pouches">Pouches&nbsp;(2)</option>
+                                      <option class="level-0" value="spring-2016">spring 2016&nbsp;(9)</option>
+                                      <option class="level-0" value="women">Women&nbsp;(4)</option>
+                                    </select></div>
+                                </div>
+                                <div class="input-group-btn">
+                                  <label class="btn btn-link btn-search">
+                                    <span class="title-search hidden">Search</span>
+                                    <input type="submit" class="fa searchsubmit" value="">
+                                  </label>
+                                  <input type="hidden" name="post_type" value="product">
+                                </div>
+                              </form>
+                            </div>
+                            <div class="dropdown-toggle-button" data-target=".toggle-overlay-container"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</header>
+
+<div id="syftet-off-canvas" class="opal-off-canvas sidebar-offcanvas hidden-lg hidden-md">
+  <div class="opal-off-canvas-body">
+    <div class="offcanvas-head bg-primary">
+      <button type="button" class="btn btn-offcanvas btn-toggle-canvas btn-default" data-toggle="offcanvas">
+        <i class="fa fa-close"></i>
+      </button>
+      <span>Menu</span>
+    </div>
+    <nav class="navbar navbar-offcanvas navbar-static" role="navigation">
+      <div class="navbar-collapse navbar-offcanvas-collapse">
+        <ul id="main-menu-offcanvas" class="nav navbar-nav">
+          <li class="menu-item">
+            <%= link_to root_path do %>
+                <i class="fa fa-home"></i> <%= t(:home) %>
+            <% end %>
+          </li>
+
+          <li class="menu-item">
+            <a href="#">
+              <%= t(:discount) %>
+            </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="#">
+              <%= t(:products) %>
+            </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="#">
+              <%= t(:new_arrival) %>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= t(:page) %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <%= t(:about_us) %>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-toggle">
+                  <%= t(:contact_us) %>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <%= t(:blog) %>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.btn-toggle-canvas').click(function () {
+            $('#page').find('.syftet-page-inner').toggleClass('active');
+        });
+    });
+</script>
