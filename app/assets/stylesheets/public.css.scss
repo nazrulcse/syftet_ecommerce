@@ -26,3 +26,103 @@
     }
   }
 }
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none !important;
+  }
+  &:focus {
+    text-decoration: none !important;
+  }
+}
+
+.reset-margin {
+  margin: 0 !important;
+}
+
+.slider-image-fluid,
+.single-image-fluid {
+  width: 100%;
+}
+
+.effect-v3 {
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+
+  &:before {
+    bottom: 20px;
+    content: "";
+    left: 20px;
+    opacity: 0;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    -webkit-transition: opacity .35s ease 0s, transform .35s ease 0s;
+    -o-transition: opacity .35s ease 0s, transform .35s ease 0s;
+    transition: opacity .35s ease 0s, transform .35s ease 0s;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    -o-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+
+  &:after {
+    bottom: 20px;
+    content: "";
+    left: 20px;
+    opacity: 0;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    -webkit-transition: opacity .35s ease 0s, transform .35s ease 0s;
+    -o-transition: opacity .35s ease 0s, transform .35s ease 0s;
+    transition: opacity .35s ease 0s, transform .35s ease 0s;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    -webkit-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -o-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .5);
+    &:before {
+      opacity: 1;
+      filter: alpha(opacity=100);
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+}
+
+* {
+  outline: none !important;
+}
+
+.public-title {
+  color: #363a42;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  letter-spacing: 3.2px;
+  margin-top: 0;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}

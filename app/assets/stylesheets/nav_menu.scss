@@ -207,6 +207,15 @@
       font-size: 18px;
       position: relative;
     }
+
+    .dropdown-menu {
+      .widget_shopping_cart_content {
+        padding: 40px;
+      }
+      left: inherit;
+      right: 0;
+      min-width: 300px;
+    }
   }
 }
 
