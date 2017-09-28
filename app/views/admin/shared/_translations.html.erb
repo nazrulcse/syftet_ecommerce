@@ -1,0 +1,48 @@
+<script>
+  Spree.translations = <%==
+  { :date_picker    => t(:js_format,
+                              :scope => 'date_picker',
+                              :default => 'yy/mm/dd'),
+    :abbr_day_names           => I18n.t(:abbr_day_names, :scope => :date),
+    :add                      => t(:add),
+    :are_you_sure_delete      => t(:are_you_sure_delete),
+    :bill_address             => t(:bill_address),
+    :choose_a_customer        => t(:choose_a_customer),
+    :confirm_delete           => t(:confirm_delete),
+    :cut                      => t(:cut),
+    :destroy                  => t(:destroy, :scope => :actions),
+    :edit                     => t(:edit,    :scope => :actions),
+    :save                     => t(:save,    :scope => :actions),
+    :cancel                   => t(:cancel,  :scope => :actions),
+    :first_day                => t(:first_day,
+                                         :scope => 'date_picker',
+                                         :default => 0).to_i,
+    :find_a_taxon             => t(:find_a_taxon),
+    :item_stock_placeholder   => t(:choose_location),
+    :loading                  => t(:loading),
+    :month_names              => I18n.t(:month_names, :scope => :date).instance_eval {|o|
+                                     o.try(:reject, &:blank?) || o},
+    :more                     => t(:more),
+    :name                     => t(:name),
+    :next                     => t(:next),
+    :no_results               => t(:no_results),
+    :option_type_placeholder  => t(:option_type_placeholder),
+    :paste                    => t(:paste),
+    :previous                 => t(:previous),
+    :remove                   => t(:remove),
+    :rename                   => t(:rename),
+    :searching                => t(:searching),
+    :sku                      => t(:sku),
+    :type_to_search           => t(:type_to_search),
+    :taxon_placeholder        => t(:taxon_placeholder),
+    :variant_placeholder      => t(:variant_placeholder),
+    :value                    => t(:value),
+    :currency_separator       => I18n.t('number.currency.format.separator'),
+
+  }.to_json
+%>
+</script>
+
+<% if I18n.locale != :en %>
+  <%#= javascript_include_tag "select2_locale_#{I18n.locale}" %>
+<% end %>
