@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
-  <head data-hook="admin_inside_head">
-    <%= render partial: 'admin/shared/head' %>
-  </head>
+<head data-hook="admin_inside_head">
+  <%= render partial: 'admin/shared/head' %>
+</head>
 
-  <body class="admin">
+<body class="admin">
+
+<%#-------------------------------------------------%>
+<%# Loading progress bars                           %>
+<%#-------------------------------------------------%>
+<div id="progress">
+  <div class="alert alert-info alert-progress">
+    <div class="spinner"><%= t(:loading) %>...</div>
+    <div class="progress-message"><%= t(:loading) %>...</div>
+  </div>
+</div>
+
+<%#-------------------------------------------------%>
+<%# Header navbar                                   %>
+<%#-------------------------------------------------%>
+<%= render partial: 'admin/shared/header' %>
+
+<%#-------------------------------------------------%>
+<%# Main content                                    %>
+<%#-------------------------------------------------%>
+<div id="wrapper" class="container-fluid <%= wrapper_classes %>">
+  <div class="row">
 
     <%#-------------------------------------------------%>
-    <%# Loading progress bars                           %>
+    <%# Sidebar                                         %>
     <%#-------------------------------------------------%>
-    <div id="progress">
-      <div class="alert alert-info alert-progress">
-        <div class="spinner"><%= t(:loading) %>...</div>
-        <div class="progress-message"><%= t(:loading) %>...</div>
-      </div>
+    <div class="col-sm-3 col-md-2 hidden-xs sidebar" id="main-sidebar" data-hook="admin_tabs">
+      <%= render partial: 'admin/shared/main_menu' %>
     </div>
 
     <%#-------------------------------------------------%>
-    <%# Header navbar                                   %>
+    <%# Content                                         %>
     <%#-------------------------------------------------%>
-    <%= render partial: 'admin/shared/header' %>
+    <div class="<%= main_part_classes %> main" id="main-part">
 
-    <%#-------------------------------------------------%>
-    <%# Main content                                    %>
-    <%#-------------------------------------------------%>
-    <div id="wrapper" class="container-fluid <%= wrapper_classes %>">
+      <%#-------------------------------------------------%>
+      <%# Content header (page title/actions)             %>
+      <%#-------------------------------------------------%>
+      <%= render partial: 'admin/shared/content_header' %>
+
       <div class="row">
+        <%#-------------------------------------------------%>
+        <%# Alerts                                          %>
+        <%#-------------------------------------------------%>
+        <%= flash_alert(flash) %>
 
         <%#-------------------------------------------------%>
-        <%# Sidebar                                         %>
+        <%# Main content                                    %>
         <%#-------------------------------------------------%>
-        <div class="col-sm-3 col-md-2 hidden-xs sidebar" id="main-sidebar" data-hook="admin_tabs">
-          <%= render partial: 'admin/shared/main_menu' %>
+        <div class="<%= content_for?(:sidebar) ? 'with-sidebar col-md-9 col-sm-8' : 'col-sm-12' %>" id="content" data-hook>
+          <%= render partial: 'spree/admin/shared/table_filter' if content_for?(:table_filter) %>
+          <%= yield %>
         </div>
 
         <%#-------------------------------------------------%>
-        <%# Content                                         %>
+        <%# Inner aside                                     %>
         <%#-------------------------------------------------%>
-        <div class="<%= main_part_classes %> main" id="main-part">
-
-          <%#-------------------------------------------------%>
-          <%# Content header (page title/actions)             %>
-          <%#-------------------------------------------------%>
-          <%= render partial: 'spree/admin/shared/content_header' %>
-
-          <div class="row">
-            <%#-------------------------------------------------%>
-            <%# Alerts                                          %>
-            <%#-------------------------------------------------%>
-            <%= flash_alert(flash) %>
-
-            <%#-------------------------------------------------%>
-            <%# Main content                                    %>
-            <%#-------------------------------------------------%>
-            <div class="<%= content_for?(:sidebar) ? 'with-sidebar col-md-9 col-sm-8' : 'col-sm-12'  %>" id="content" data-hook>
-              <%= render partial: 'spree/admin/shared/table_filter' if content_for?(:table_filter)%>
-              <%= yield %>
+        <% if content_for?(:sidebar) %>
+            <div class="col-md-3 col-sm-4">
+              <%= render partial: 'spree/admin/shared/sidebar' %>
             </div>
-
-            <%#-------------------------------------------------%>
-            <%# Inner aside                                     %>
-            <%#-------------------------------------------------%>
-            <% if content_for?(:sidebar) %>
-              <div class="col-md-3 col-sm-4">
-                <%= render partial: 'spree/admin/shared/sidebar' %>
-              </div>
-            <% end %>
-          </div>
-
-
-        </div>
+        <% end %>
       </div>
-    </div>
 
-    <%#-------------------------------------------------%>
-    <%# Insert footer scripts here                      %>
-    <%#-------------------------------------------------%>
-    <div data-hook="admin_footer_scripts"></div>
-  </body>
+
+    </div>
+  </div>
+</div>
+
+<%#-------------------------------------------------%>
+<%# Insert footer scripts here                      %>
+<%#-------------------------------------------------%>
+<div data-hook="admin_footer_scripts"></div>
+</body>
 </html>

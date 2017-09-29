@@ -2,7 +2,7 @@ module Admin
   module BaseHelper
     def flash_alert flash
       if flash.present?
-        close_button = button_tag(class: 'close', 'data-dismiss' => 'alert', 'aria-label' => Spree.t(:close)) do
+        close_button = button_tag(class: 'close', 'data-dismiss' => 'alert', 'aria-label' => t(:close)) do
           content_tag('span', '&times;'.html_safe, 'aria-hidden' => true)
         end
         message = flash[:error] || flash[:notice] || flash[:success]

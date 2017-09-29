@@ -1,13 +1,13 @@
 <table class="table sortable" id='listing_taxonomies' data-hook data-sortable-link="<%= update_positions_admin_taxonomies_url %>">
   <thead>
-    <tr data-hook="taxonomies_header">
-      <th class="no-border"></th>
-      <th><%= Spree.t(:name) %></th>
-      <th class="actions"></th>
-    </tr>
+  <tr data-hook="taxonomies_header">
+    <th class="no-border"></th>
+    <th><%= t(:name) %></th>
+    <th class="actions"></th>
+  </tr>
   </thead>
   <tbody>
-    <% @taxonomies.each do |taxonomy| %>
+  <% @taxonomies.each do |taxonomy| %>
       <tr id="<%= spree_dom_id taxonomy %>" data-hook="taxonomies_row">
         <td class="move-handle">
           <span class="icon icon-sort handle"></span>
@@ -18,6 +18,6 @@
           <%= link_to_delete taxonomy, no_text: true %>
         </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>

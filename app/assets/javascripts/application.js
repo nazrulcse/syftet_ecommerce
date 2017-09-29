@@ -13,4 +13,6 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+//= require cable
+//= require slick.min
+//= require jquery.cookie

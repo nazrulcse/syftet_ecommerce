@@ -51,15 +51,88 @@
 
 .we-love-landing {
   margin-bottom: 89px;
+  .wrapper {
+    background: #3A3A45;
+  }
+  .call-to-action {
+    text-align: center;
+    padding: 0 80px 0 80px;
+    .cta-desc {
+      h2 {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 61px;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        position: relative;
+        padding-bottom: 26px;
+        &:after {
+          position: absolute;
+          content: "";
+          left: 0;
+          background-image: image-url('line-loolbook.png');
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          background-repeat: no-repeat;
+          background-position: bottom;
+        }
+      }
+      .cta-text {
+        color: #dadfe9;
+        font-size: 12px;
+        line-height: 2.3em;
+        margin-top: 50px;
+        margin-bottom: 54px;
+      }
+    }
+    .cta-button a {
+      font-size: 12px;
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .4em;
+      background-color: transparent;
+      border-bottom: 2px solid #fff;
+      padding: 0 0 2px;
+      position: relative;
+    }
+  }
 }
 
 .new-arrival {
-  margin-bottom: 89px;
+  margin-bottom: 75px;
 }
 
 .from-our-blog {
+  margin-bottom: 60px;
   .blog-post {
     .content-blog {
+      .title-post {
+        font-size: 16px;
+        line-height: 21px;
+        margin: 0;
+        padding-top: 25px;
+        padding-bottom: 10px;
+        font-weight: 500;
+        text-transform: capitalize;
+        text-align: center;
+        a {
+          color: #363a42;
+          &:hover {
+            color: #fcc030;
+          }
+        }
+      }
+
+      .entry-content {
+        font-size: 12px;
+        color: #707070;
+        padding: 26px 25px 0;
+        line-height: 1.9em;
+      }
+
       .bottom-blog {
         .blog-meta {
           color: #999;

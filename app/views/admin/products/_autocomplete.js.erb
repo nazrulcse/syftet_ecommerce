@@ -6,15 +6,15 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" data-hook="taxon_product_dropdown">
-        <li><a href="javascript:;" class="edit-product js-edit-product"><%= Spree.t(:edit) %></a></li>
-        <li><a href="javascript:;" class="delete-product js-delete-product"><%= Spree.t(:delete_from_taxon) %></a></li>
+        <li><a href="javascript:;" class="edit-product js-edit-product"><%= t(:edit) %></a></li>
+        <li><a href="javascript:;" class="delete-product js-delete-product"><%= t(:delete_from_taxon) %></a></li>
       </ul>
     </div>
     <div class='image'>
       {{#if product.image }}
         <img src='{{product.image}}' alt='{{ product.name }}' class='thumbnail' />
       {{ else }}
-        <img src='<%= image_path("noimage/small.png") %>' alt='{{product.name }}' class='thumbnail' />
+        <img src='<%#= image_path("noimage/small.png") %>' alt='{{product.name }}' class='thumbnail' />
       {{/if}}
     </div>
     <div class="product-info">

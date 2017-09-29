@@ -34,6 +34,14 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'ransack'
+gem 'kaminari'
+gem 'responders'
+gem 'stringex'
+gem 'friendly_id', '~> 5.1.0'
+gem 'select2-rails', '~> 3.5.9.1'
+gem 'jquery-ui-rails'
+
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

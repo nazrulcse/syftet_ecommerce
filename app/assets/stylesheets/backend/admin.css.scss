@@ -16,8 +16,11 @@
 @import 'components/progress';
 @import 'components/spinner';
 @import 'sections/account';
-@import 'plugins/select2';
 @import 'plugins/jquery_ui';
 @import 'plugins/js_tree';
 @import 'shared/base';
 @import 'shared/forms';
+@import "select2";
+@import "plugins/select2";
+@import "jquery-ui/autocomplete";
+@import "jquery-ui/datepicker";

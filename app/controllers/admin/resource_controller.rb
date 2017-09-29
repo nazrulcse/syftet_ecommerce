@@ -1,5 +1,5 @@
-class Spree::Admin::ResourceController < Spree::Admin::BaseController
-  include Spree::Backend::Callbacks
+class Admin::ResourceController < Admin::BaseController
+  include Backend::Callbacks
 
   helper_method :new_object_url, :edit_object_url, :object_url, :collection_url
   before_action :load_resource, except: :update_positions
@@ -12,7 +12,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
     respond_with(@object) do |format|
       format.html { render :layout => !request.xhr? }
       if request.xhr?
-        format.js   { render :layout => false }
+        format.js { render :layout => false }
       end
     end
   end
@@ -21,7 +21,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
     respond_with(@object) do |format|
       format.html { render :layout => !request.xhr? }
       if request.xhr?
-        format.js   { render :layout => false }
+        format.js { render :layout => false }
       end
     end
   end
@@ -54,7 +54,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
       flash[:success] = flash_message_for(@object, :successfully_created)
       respond_with(@object) do |format|
         format.html { redirect_to location_after_save }
-        format.js   { render :layout => false }
+        format.js { render :layout => false }
       end
     else
       invoke_callbacks(:create, :fails)
@@ -89,7 +89,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
 
     respond_with(@object) do |format|
       format.html { redirect_to location_after_destroy }
-      format.js   { render_js_for_destroy }
+      format.js { render_js_for_destroy }
     end
   end
 
@@ -120,7 +120,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
     if parent_data
       parent_model_name = parent_data[:model_name]
     end
-    @resource = Spree::Admin::Resource.new controller_path, controller_name, parent_model_name, object_name
+    @resource = Admin::Resource.new controller_path, controller_name, parent_model_name, object_name
   end
 
   def load_resource
@@ -130,7 +130,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
       # call authorize! a third time (called twice already in Admin::BaseController)
       # this time we pass the actual instance so fine-grained abilities can control
       # access to individual records, not just entire models.
-      authorize! action, @object
+      #authorize! action, @object # TODO: need to enabled this
 
       instance_variable_set("@#{resource.object_name}", @object)
     else
@@ -203,35 +203,35 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
 
   def new_object_url(options = {})
     if parent_data.present?
-      spree.new_polymorphic_url([:admin, parent, model_class], options)
+      new_polymorphic_url([:admin, parent, model_class], options)
     else
-      spree.new_polymorphic_url([:admin, model_class], options)
+      new_polymorphic_url([:admin, model_class], options)
     end
   end
 
   def edit_object_url(object, options = {})
     if parent_data.present?
-      spree.send "edit_admin_#{resource.model_name}_#{resource.object_name}_url",
-                 parent, object, options
+      send "edit_admin_#{resource.model_name}_#{resource.object_name}_url",
+           parent, object, options
     else
-      spree.send "edit_admin_#{resource.object_name}_url", object, options
+      send "edit_admin_#{resource.object_name}_url", object, options
     end
   end
 
   def object_url(object = nil, options = {})
     target = object ? object : @object
     if parent_data.present?
-      spree.send "admin_#{resource.model_name}_#{resource.object_name}_url", parent, target, options
+      send "admin_#{resource.model_name}_#{resource.object_name}_url", parent, target, options
     else
-      spree.send "admin_#{resource.object_name}_url", target, options
+      send "admin_#{resource.object_name}_url", target, options
     end
   end
 
   def collection_url(options = {})
     if parent_data.present?
-      spree.polymorphic_url([:admin, parent, model_class], options)
+      polymorphic_url([:admin, parent, model_class], options)
     else
-      spree.polymorphic_url([:admin, model_class], options)
+      polymorphic_url([:admin, model_class], options)
     end
   end
 

@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= Spree.t(:taxons) %>
+    <%= t(:taxons) %>
 <% end %>
 
 <div class="taxon-products-view">
@@ -9,5 +9,5 @@
 
   <ul id="taxon_products" class="taxon"></ul>
 
-  <%= render :partial => "spree/admin/products/autocomplete", :formats => :js %>
+  <%= render :partial => "admin/products/autocomplete", :formats => :js %>
 </div>
