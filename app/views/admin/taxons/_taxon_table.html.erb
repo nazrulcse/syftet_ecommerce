@@ -1,23 +1,30 @@
 <table class="table table-condensed table-bordered">
   <thead>
-    <tr data-hook="taxons_header">
-      <th><%= Spree.t(:name) %></th>
-      <th><%= Spree.t(:path) %></th>
-      <th></th>
-    </tr>
+  <tr data-hook="taxons_header">
+    <th><%= t(:name) %></th>
+    <th><%= t(:path) %></th>
+    <th></th>
+  </tr>
   </thead>
   <tbody>
-    <% taxons.each do |taxon| %>
+  <% taxons.each do |taxon| %>
       <tr id="<%= spree_dom_id(taxon) %>" data-hook="taxons_row">
         <td><%= taxon.name %></td>
-        <td><%= taxon_path taxon %></td>
-        <td class="actions">
-          <%= link_to_delete taxon, :url => remove_admin_product_taxon_url(@product, taxon), :name => icon('delete') + ' ' + Spree.t(:remove) %>
+        <td><%#= taxon_path taxon %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to 'Child Taxon', new_admin_taxonomy_taxon_path(taxon.taxonomy_id, parent_id: taxon.id) %>
+          <%= link_to_edit_url edit_admin_taxonomy_taxon_path(taxon.taxonomy_id, taxon.id), no_text: true %>
+          <%= link_to_delete taxon.id, no_text: true %>
         </td>
+        <!--<td class="actions">-->
+        <%#= link_to_delete taxon, :url => remove_admin_product_taxon_url(@product, taxon), :name => icon('delete') + ' ' + t(:remove) %>
+        <!--</td>-->
       </tr>
-    <% end %>
-    <% if taxons.empty? %>
-      <tr data-hook="taxons_none"><td colspan="3"><%= Spree.t(:none) %>.</td></tr>
-    <% end %>
+  <% end %>
+  <% if taxons.empty? %>
+      <tr data-hook="taxons_none">
+        <td colspan="3"><%= t(:none) %>.</td>
+      </tr>
+  <% end %>
   </tbody>
 </table>

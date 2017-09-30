@@ -3,6 +3,9 @@
   <tr data-hook="taxonomies_header">
     <th class="no-border"></th>
     <th><%= t(:name) %></th>
+    <th><%= t(:meta_title) %></th>
+    <th><%= t(:meta_description) %></th>
+    <th><%= t(:meta_key) %></th>
     <th class="actions"></th>
   </tr>
   </thead>
@@ -13,6 +16,9 @@
           <span class="icon icon-sort handle"></span>
         </td>
         <td><%= taxonomy.name %></td>
+        <td><%= taxonomy.meta_title %></td>
+        <td><%= taxonomy.meta_description %></td>
+        <td><%= taxonomy.meta_key %></td>
         <td class="actions actions-2 text-right">
           <%= link_to_edit taxonomy.id, no_text: true %>
           <%= link_to_delete taxonomy, no_text: true %>

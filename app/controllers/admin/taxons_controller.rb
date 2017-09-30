@@ -1,7 +1,7 @@
 module Admin
   class TaxonsController < Admin::BaseController
 
-    before_action :load_taxonomy, only: [:create, :edit, :update]
+    before_action :load_taxonomy, only: [:create, :edit, :update, :new]
     before_action :load_taxon, only: [:edit, :update]
     respond_to :html, :json, :js
 
@@ -18,10 +18,11 @@ module Admin
     end
 
     def create
-      @taxon = @taxonomy.taxons.build(params[:taxon])
+      @taxon = @taxonomy.taxons.build(taxon_params)
       if @taxon.save
         respond_with(@taxon) do |format|
           format.json { render json: @taxon.to_json }
+          format.html { redirect_to edit_admin_taxon_path(@taxon) }
         end
       else
         flash[:error] = Spree.t('errors.messages.could_not_create_taxon')
@@ -29,6 +30,10 @@ module Admin
           format.html { redirect_to @taxonomy ? edit_admin_taxonomy_url(@taxonomy) : admin_taxonomies_url }
         end
       end
+    end
+
+    def new
+      @taxon = @taxonomy.taxons.build(parent_id: params[:parent_id])
     end
 
     def edit
@@ -69,10 +74,17 @@ module Admin
       respond_with(@taxon) { |format| format.json { render json: '' } }
     end
 
+    def search
+      taxons = Taxon.all
+      respond_to do |format|
+        format.json { render json: {taxons: taxons.to_json} }
+      end
+    end
+
     private
 
     def taxon_params
-      params.require(:taxon).permit(permitted_taxon_attributes)
+      params.require(:taxon).permit!
     end
 
     def load_taxon
@@ -91,7 +103,7 @@ module Admin
     end
 
     def set_parent(parent_id)
-      if parent_id
+      if parent_id.present?
         @taxon.parent = Taxon.find(parent_id.to_i)
       end
     end

@@ -6,9 +6,12 @@ class Taxon < Base
   friendly_id :permalink, slug_column: :permalink, use: :slugged
   before_create :set_permalink
 
+  # acts_as_nested_set dependent: :destroy
+
   belongs_to :taxonomy, class_name: 'Taxonomy', inverse_of: :taxons
   has_many :classifications, -> { order(:position) }, dependent: :delete_all, inverse_of: :taxon
   has_many :products, through: :classifications
+  has_one :parent, class_name: self, foreign_key: :parent_id
 
   validates :name, presence: true
 
@@ -55,5 +58,24 @@ class Taxon < Base
       name += "#{ancestor.name} -> "
     end
     ancestor_chain + "#{name}"
+  end
+
+  # awesome_nested_set sorts by :lft and :rgt. This call re-inserts the child
+  # node so that its resulting position matches the observable 0-indexed position.
+  # ** Note ** no :position column needed - a_n_s doesn't handle the reordering if
+  #  you bring your own :order_column.
+  #
+  #  See #3390 for background.
+  def child_index=(idx)
+    move_to_child_with_index(parent, idx.to_i) unless self.new_record?
+  end
+
+  private
+
+  def touch_ancestors_and_taxonomy
+    # Touches all ancestors at once to avoid recursive taxonomy touch, and reduce queries.
+    ancestors.update_all(updated_at: Time.current)
+    # Have taxonomy touch happen in #touch_ancestors_and_taxonomy rather than association option in order for imports to override.
+    taxonomy.try!(:touch)
   end
 end

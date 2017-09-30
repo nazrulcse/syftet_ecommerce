@@ -1,4 +1,4 @@
-<%= render partial: 'js_head' %>
+<%#= render partial: 'js_head' %>
 
 <% content_for :page_title do %>
     <%= link_to t(:taxonomies), admin_taxonomies_url %> /
@@ -7,26 +7,13 @@
 
 <div id="ajax_error" class="errorExplanation" style="display:none;"></div>
 
+<% content_for :page_actions do %>
+    <%= button_link_to t(:new_taxon), new_admin_taxonomy_taxon_path(@taxonomy), class: "btn-success", icon: 'add', id: 'admin_new_taxonomy_link' %>
+<% end %>
+
 <%= form_for [:admin, @taxonomy] do |f| %>
     <fieldset>
       <%= render partial: 'form', locals: {f: f} %>
-      <div class="form-group">
-        <%= label_tag nil, t(:tree) %>
-        <script>
-            taxonomy_taxons_path = "<%= root_path(@taxonomy) %>";
-            admin_taxonomy_taxons_path = "<%= admin_taxonomy_taxons_path(@taxonomy) %>";
-            jstree_theme_path = "<%= stylesheet_path("jquery.jstree/themes/spree/style.css") %>";
-        </script>
-        <div id="taxonomy_tree" class="tree">
-          <div class="alert alert-warning">
-            <%= t(:loading_tree) %>
-          </div>
-        </div>
-      </div>
-
-      <div class="alert alert-info">
-        <%= t(:taxonomy_tree_instruction) %>
-      </div>
 
       <div class="form-actions">
         <%= button t('actions.update'), 'ok', 'submit', {class: 'btn-success'} %>
@@ -35,3 +22,7 @@
       </div>
     </fieldset>
 <% end %>
+
+<h3> <%= t(:taxon) %> Lists </h3>
+
+<%= render 'admin/taxons/taxon_table', taxons: @taxonomy.taxons %>
