@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class RolesController < ResourceController
-    end
+module Admin
+  class RolesController < ResourceController
   end
 end

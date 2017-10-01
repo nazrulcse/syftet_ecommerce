@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  variant_id: 1
+  amount: 1.5
+  currency: MyString
+  deleted_at: 2017-10-01 12:36:03
+  agent_price: 1.5
+
+two:
+  variant_id: 1
+  amount: 1.5
+  currency: MyString
+  deleted_at: 2017-10-01 12:36:03
+  agent_price: 1.5

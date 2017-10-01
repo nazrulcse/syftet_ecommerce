@@ -1,18 +1,18 @@
 <% content_for :page_title do %>
-  <%= plural_resource_name(Spree::StockLocation) %>
+  <%= plural_resource_name(StockLocation) %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:new_stock_location), new_object_url, { :class => "btn-success", :icon => 'add', :id => 'admin_new_stock_location' } %>
-<% end if can? :create, Spree::StockLocation %>
+  <%= button_link_to t(:new_stock_location), new_object_url, { :class => "btn-success", :icon => 'add', :id => 'admin_new_stock_location' } %>
+<% end if can? :create, StockLocation %>
 
 <% if @stock_locations.any? %>
   <table class="table" id='listing_stock_locations' data-hook>
     <thead>
       <tr data-hook="stock_locations_header">
-        <th><%= Spree.t(:name) %></th>
-        <th><%= Spree.t(:state) %></th>
-        <th><%= Spree.t(:stock_movements) %></th>
+        <th><%= t(:name) %></th>
+        <th><%= t(:state) %></th>
+        <th><%= t(:stock_movements) %></th>
         <th class="actions"></th>
       </tr>
     </thead>
@@ -23,8 +23,8 @@
       %>
         <tr id="<%= spree_dom_id stock_location %>" data-hook="stock_location_row">
           <td><%= display_name(stock_location) %></td>
-          <td><span class="state <%= state(stock_location) %>"><%= Spree.t(state(stock_location)) %></span></td>
-          <td><%= link_to Spree.t(:stock_movements), admin_stock_location_stock_movements_path(stock_location.id) %> </td>
+          <td><span class="state <%= state(stock_location) %>"><%= t(state(stock_location)) %></span></td>
+          <td><%= link_to t(:stock_movements), admin_stock_location_stock_movements_path(stock_location.id) %> </td>
           <td class="actions actions-2 text-center">
             <%= link_to_edit(stock_location, :no_text => true) if can? :create, stock_location %>
             <%= link_to_delete(stock_location, :no_text => true) if can? :create, stock_location %>
@@ -35,7 +35,7 @@
   </table>
 <% else %>
   <div class="alert alert-info no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::StockLocation)) %>,
-    <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, Spree::StockLocation %>!
+    <%= t(:no_resource_found, resource: plural_resource_name(StockLocation)) %>,
+    <%= link_to(t(:add_one), new_object_url) if can? :create, StockLocation %>!
   </div>
 <% end %>

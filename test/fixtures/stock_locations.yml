@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  default: false
+  address1: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  country: MyString
+  phone: MyString
+  active: false
+  backorderable_default: false
+  propagate_all_variants: false
+  admin_name: MyString
+
+two:
+  name: MyString
+  default: false
+  address1: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  country: MyString
+  phone: MyString
+  active: false
+  backorderable_default: false
+  propagate_all_variants: false
+  admin_name: MyString

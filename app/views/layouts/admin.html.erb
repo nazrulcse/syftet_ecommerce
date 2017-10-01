@@ -54,7 +54,7 @@
         <%# Main content                                    %>
         <%#-------------------------------------------------%>
         <div class="<%= content_for?(:sidebar) ? 'with-sidebar col-md-9 col-sm-8' : 'col-sm-12' %>" id="content" data-hook>
-          <%= render partial: 'spree/admin/shared/table_filter' if content_for?(:table_filter) %>
+          <%= render partial: 'admin/shared/table_filter' if content_for?(:table_filter) %>
           <%= yield %>
         </div>
 
@@ -63,7 +63,7 @@
         <%#-------------------------------------------------%>
         <% if content_for?(:sidebar) %>
             <div class="col-md-3 col-sm-4">
-              <%= render partial: 'spree/admin/shared/sidebar' %>
+              <%= render partial: 'admin/shared/sidebar' %>
             </div>
         <% end %>
       </div>

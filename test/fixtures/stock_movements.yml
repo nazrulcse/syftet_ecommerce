@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stock_item_id: 1
+  quantity: 1
+  action: MyString
+  originator_id: 1
+  originator_type: MyString
+
+two:
+  stock_item_id: 1
+  quantity: 1
+  action: MyString
+  originator_id: 1
+  originator_type: MyString

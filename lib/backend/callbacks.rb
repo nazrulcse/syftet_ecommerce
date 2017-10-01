@@ -1,3 +1,4 @@
+require 'backend/action_callbacks'
 module Backend
   module Callbacks
     extend ActiveSupport::Concern
@@ -26,7 +27,7 @@ module Backend
 
       def custom_callback(action)
         @callbacks ||= {}
-        @callbacks[action] ||= Spree::ActionCallbacks.new
+        @callbacks[action] ||= ActionCallbacks.new
       end
     end
 

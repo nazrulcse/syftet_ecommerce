@@ -11,6 +11,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( backend/admin.css )
 Rails.application.config.assets.precompile += %w( jquery.jstree/themes/spree/style.css )
 Rails.application.config.assets.precompile += %w( backend.js )
+Rails.application.config.assets.precompile += %w( noimage/mini.png )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

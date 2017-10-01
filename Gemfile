@@ -42,6 +42,8 @@ gem 'select2-rails', '~> 3.5.9.1'
 gem 'jquery-ui-rails'
 gem 'acts_as_list', '0.7.5'
 gem 'awesome_nested_set'
+gem "paranoia" #, github: "rubysherpas/paranoia", branch: "rails5"
+gem 'paperclip'
 
 gem 'devise'
 

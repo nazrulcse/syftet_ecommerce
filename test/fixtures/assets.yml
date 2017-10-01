@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  viewable_id: 1
+  viewable_type: MyString
+  attachment_width: 1
+  attachment_height: 1
+  attachment_file_size: 1
+  position: 1
+  attachment_contant: MyString
+  attachment_file_name: MyString
+  asset_type: MyString
+  attachment_updated_at: 2017-10-01 20:38:10
+  alt: MyString
+
+two:
+  viewable_id: 1
+  viewable_type: MyString
+  attachment_width: 1
+  attachment_height: 1
+  attachment_file_size: 1
+  position: 1
+  attachment_contant: MyString
+  attachment_file_name: MyString
+  asset_type: MyString
+  attachment_updated_at: 2017-10-01 20:38:10
+  alt: MyString

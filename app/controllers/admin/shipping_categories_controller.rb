@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class ShippingCategoriesController < ResourceController
-    end
+module Admin
+  class ShippingCategoriesController < ResourceController
   end
 end

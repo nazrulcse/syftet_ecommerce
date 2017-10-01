@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  display_on: MyString
+  deleted_at: 2017-10-01 19:13:07
+  admin_name: MyString
+
+two:
+  name: MyString
+  display_on: MyString
+  deleted_at: 2017-10-01 19:13:07
+  admin_name: MyString

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transfer_type: MyString
+  reference: MyString
+  source_location_id: 1
+  destination_location_id: 1
+  number: MyString
+
+two:
+  transfer_type: MyString
+  reference: MyString
+  source_location_id: 1
+  destination_location_id: 1
+  number: MyString

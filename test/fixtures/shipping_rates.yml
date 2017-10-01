@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipment_id: 1
+  shipping_method_id: 1
+  selected: false
+  cost: 1.5
+
+two:
+  shipment_id: 1
+  shipping_method_id: 1
+  selected: false
+  cost: 1.5

@@ -4,7 +4,7 @@
       {{#if variant.image }}
         <img src='{{variant.image}}' class="thumbnail no-marginb" />
       {{ else }}
-        <img src='<%= image_path("noimage/mini.png") %>' class="thumbnail no-marginb" />
+        <img src='<%#= asset_path("noimage/mini.png") %>' class="thumbnail no-marginb" />
       {{/if}}
     </figure>
 
@@ -15,7 +15,7 @@
           <strong>{{this.option_type_presentation}}:</strong> {{this.presentation}}<br/>
         {{/each}}
       {{/if}}
-      <strong><%= Spree.t(:sku) %>:</strong> {{variant.sku}}
+      <strong><%= t(:sku) %>:</strong> {{variant.sku}}
     </div>
   </div>
 </script>
