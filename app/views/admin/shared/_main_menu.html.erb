@@ -28,11 +28,11 @@
 </ul>
 <%# end %>
 
-<%# if Spree.user_class && can?(:admin, Spree.user_class) %>
-<ul class="nav nav-sidebar">
-  <%#= tab *Spree::BackendConfiguration::USER_TABS, url: spree.admin_users_path, icon: 'user' %>
-</ul>
-<%# end %>
+<% if can?(:admin, User) %>
+    <ul class="nav nav-sidebar">
+      <%= tab *BackendConfiguration::USER_TABS, url: admin_users_path, icon: 'user' %>
+    </ul>
+<% end %>
 
 <%# if can? :admin, current_store %>
 <ul class="nav nav-sidebar">

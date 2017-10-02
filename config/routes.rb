@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+                       sessions: 'users/sessions',
+                       registrations: 'users/registrations',
+                   }
+  as :user do
+    get 'login', to: 'users/sessions#new', as: :user_login
+    delete 'logout', to: 'devise/sessions#destroy', as: :user_logout
+    get 'registration', to: 'users/registrations#new', as: :account_registration
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
+
+  get '/c/*id', to: 'taxons#show', as: :categories
+  get '/products', to: 'products#index', as: :products
 
   namespace :admin do
     get '/search/users', to: "search#users", as: :search_users

@@ -25,7 +25,9 @@
           <div class="menu-top-menu-header-container">
             <ul id="main-topmenu">
               <li class="menu-item ">
-                <a href="http://venusdemo.com/wordpress/pi/my-account/"><%= t(:my_account) %></a>
+                <%= link_to account_registration_path do %>
+                    <%= t(:my_account) %>
+                <% end %>
               </li>
               <li class="menu-item">
                 <a href="http://venusdemo.com/wordpress/pi/checkout/"><%= t(:checkout) %></a>
@@ -36,19 +38,27 @@
         <div class="top-account pull-right hidden-xs hidden-sm">
 
           <ul class="list-style">
-
-            <li>
-              <a href="#" data-toggle="modal" data-target="#modalLoginForm" class="syftet-user-login">
-                <span class="fa fa-user"></span>
-                <%= t(:login) %>
-              </a>
-            </li>
-            <li>
-              <a href="http://venusdemo.com/wordpress/pi/my-account/" class="syftet-user-register">
-                <span class="fa fa-pencil"></span>
-                <%= t(:registration) %>
-              </a>
-            </li>
+            <% if current_user.present? %>
+                <li>
+                  <%= link_to user_logout_path do %>
+                      <i class="fa fa-sign-out" aria-hidden="true"></i>
+                      <%= t(:logout) %>
+                  <% end %>
+                </li>
+            <% else %>
+                <li>
+                  <a href="#" data-toggle="modal" data-target="#modalLoginForm" class="syftet-user-login">
+                    <span class="fa fa-user"></span>
+                    <%= t(:login) %>
+                  </a>
+                </li>
+                <li>
+                  <%= link_to account_registration_path, class: 'syftet-user-register' do %>
+                      <span class="fa fa-pencil"></span>
+                      <%= t(:registration) %>
+                  <% end %>
+                </li>
+            <% end %>
           </ul>
 
         </div>
@@ -57,3 +67,4 @@
     </div>
   </div>
 </section>
+<%= render 'users/login_modal' %>

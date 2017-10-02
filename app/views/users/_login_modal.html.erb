@@ -1,0 +1,92 @@
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="modalLoginForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="inner">
+          <button type="button" class="close btn btn-sm btn-primary pull-right" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+          <div class="text-center">
+            <%= link_to root_path, style: 'display: inline-block;' do %>
+                <img class="img-responsive center-image" src="http://venusdemo.com/wordpress/pi/wp-content/themes/pi/images/logo.png" alt="">
+            <% end %>
+          </div>
+
+          <div id="opalloginform" class="form-wrapper">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'login-form', remote: true) do |f| %>
+
+                <p class="lead">Hello, Welcome Back!</p>
+
+                <div class="form-group">
+                  <%= f.email_field :email, autofocus: true, class: 'required form-control reset-border-radius', placeholder: 'Username' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.password_field :password, autocomplete: "off", class: 'password required form-control reset-border-radius', placeholder: 'Password' %>
+                </div>
+
+                <div class="form-group">
+                  <label for="user_remember_me">
+                    <%= f.check_box :remember_me %>
+                    Remember Me
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <%= f.submit 'Log In', class: 'btn btn-primary reset-border-radius' %>
+                  <input type="button" class="btn btn-default btn-cancel reset-border-radius" name="cancel" value="Cancel">
+                </div>
+                <p>
+                  <a href="#opallostpasswordform" class="toggle-links link-forgot-password" title="Forgot Password">
+                    Lost Your Password?
+                  </a>
+                </p>
+            <% end %>
+          </div>
+
+          <div id="opallostpasswordform" class="form-wrapper hidden">
+            <form name="lostpasswordform" id="lostpasswordform" class="lostpassword-form" action="http://venusdemo.com/wordpress/pi/wp-login.php?action=lostpassword" method="post">
+
+              <p class="lead">Reset Password</p>
+
+              <div class="lostpassword-fields">
+                <p class="form-group">
+                  <label>Username or E-mail:<br>
+                    <input type="text" name="user_login" class="user_login form-control reset-border-radius" value="" size="20" tabindex="10"></label>
+                </p>
+                <input type="hidden" id="security" name="security" value="917b36a15c"><input type="hidden" name="_wp_http_referer" value="/wordpress/pi/">
+
+                <p class="submit">
+                  <input type="submit" class="btn btn-primary reset-border-radius" name="wp-submit" value="Get New Password" tabindex="100">
+                  <input type="button" class="btn btn-default btn-cancel reset-border-radius" value="Cancel" tabindex="101">
+                </p>
+
+                <p class="nav">
+
+                </p>
+              </div>
+              <div class="lostpassword-link">
+                <a href="#opalloginform" class="toggle-links link-back-login">Back To Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.toggle-links').click(function () {
+            target = $(this).attr('href');
+            $(this).parents('.form-wrapper').addClass('hidden');
+            $(target).removeClass('hidden');
+            return false;
+        });
+        $('.btn-cancel').click(function () {
+            return false;
+        });
+    });
+</script>

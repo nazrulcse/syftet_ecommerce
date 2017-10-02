@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Syftet</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+  <%= render 'shared/header' %>
+</head>
+
+<body>
+<div id="page">
+  <div class="syftet-page-inner row-offcanvas row-offcanvas-left">
+    <div class="top-nav">
+      <div class="container">
+        <%= render 'shared/top_nav' %>
+      </div>
+    </div>
+    <%= render 'shared/main_menu' %>
+    <div class="container">
+      <div class="col-sm-3">
+        <%= yield :sidebar %>
+      </div>
+      <div class="col-sm-9">
+        <%= yield %>
+      </div>
+    </div>
+    <footer id="syftet-footer" class="syftet-footer" role="contentinfo">
+      <%= render 'shared/footer' %>
+      <%= render 'shared/public_footer' %>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

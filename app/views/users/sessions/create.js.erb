@@ -1,0 +1,13 @@
+form = $('#new_user');
+if (<%= @error.empty? %>) {
+    window.location.href = "<%= @sing_in_path %>"
+}
+else {
+    message = form.find('.alert');
+    if (message.length > 0) {
+        message.html('<%= @error %>. Please try again!!!');
+    }
+    else {
+        form.prepend('<div class="alert alert-danger"> <%= @error %>. Please try again!!!</div>')
+    }
+}

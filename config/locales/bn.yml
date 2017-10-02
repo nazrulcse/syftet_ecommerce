@@ -31,3 +31,5 @@ bn:
   new: 'নতুন'
   find_a_taxon: 'Find a taxon'
   configurations: 'Confirgurations'
+  logout: 'প্রস্থান'
+  administration: 'অ্যাডমিন'

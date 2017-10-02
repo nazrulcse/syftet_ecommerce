@@ -61,3 +61,5 @@ en:
   no_product_on_cart: 'No products in the cart.'
   hot: 'Hot'
   new: 'New'
+  logout: 'Logout'
+  administration: 'Administration'

@@ -1,6 +1,28 @@
 class User < ApplicationRecord
+  include UserMethods
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  users_table_name = User.table_name
+  roles_table_name = Role.table_name
+
+  scope :admin, -> { includes(:spree_roles).where("#{roles_table_name}.name" => "admin") }
+
+  def self.admin_created?
+    User.admin.count > 0
+  end
+
+  def admin?
+    has_spree_role?('admin')
+  end
+
+  def send_welcome_email
+    Spree::UserMailer.welcome(self).deliver_now
+  end
+
+  def generate_syftet_api_key!
+
+  end
 end
