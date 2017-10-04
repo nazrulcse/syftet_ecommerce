@@ -26,4 +26,6 @@
  *= require ion.rangeSlider.css
  *= require rating
  *= require review_rating
+ *= require public/custom_design.scss
+ *= require uility.css.erb
  */

@@ -15,6 +15,17 @@ Rails.application.routes.draw do
   get '/products', to: 'products#index', as: :products
   get '/products/*id', to: 'products#show', as: :show_product
 
+  get '/frequently-asked-question', to: 'public#faq', as: :faq
+  get '/coupon-code', to: 'public#coupon', as: :coupon
+  get '/free-domestic-shipping-both-ways', to: 'public#domestic', as: :domestic
+  match '/dedicated-customer-support', to: 'public#contact_us', via: [:get, :post], as: :contact_us
+  get '/free-shipping-worldwide', to: 'public#international', as: :international
+  get '/safe_shopping_guarantee', to: 'public#safe_shopping_guarantee', as: :safe_shopping_guarantee
+  get '/secure_shopping', to: 'public#secure_shopping', as: :secure_shopping
+  get '/about_us', to: 'public#about_us', as: :about_us
+  get '/privacy_policy', to: 'public#privacy_policy', as: :privacy_policy
+  get '/term_condition', to: 'public#term_condition', as: :term_condition
+
   namespace :admin do
     get '/search/users', to: "search#users", as: :search_users
     get '/search/products', to: "search#products", as: :search_products

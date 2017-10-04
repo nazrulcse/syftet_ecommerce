@@ -1,0 +1,124 @@
+<main class="main public-wrapper">
+  <div class="section">
+    <div class="container">
+      <div class="page-title uppercase text-center with-bb hidden-xs">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="chunk contact">
+        <div class="row">
+          <div class="col-sm-3">
+            <%= render 'public/cms_sidebar' %>
+          </div>
+          <div class="col-sm-5 chunk-right">
+            <h3 class="gothamNarrowBlack small margin-top-0"><i class="fa fa-envelope-o fa-2x va-sub"></i> Email Us</h3>
+
+            <div class="vspace10px"></div>
+            <p>
+              We look forward to helping you with your inquiry. We respond to email messages in the order that they are
+              received, and will respond to your email as quickly as possible.
+            </p>
+
+            <div class="vspace10px"></div>
+            <div class="contact-form">
+              <%= form_for @contact, url: contact_us_path, class: 'form-horizontal clearfix' do |f| %>
+                  <div class="col-sm-x12">
+                    <div class="form-group">
+                      <div class="input-wrap">
+                        <label for="" class="input-label">Full Name</label>
+                        <%= f.text_field :full_name, class: 'form-control required reset-border-radius' %>
+                        <span class="form-error"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-wrap">
+                        <label for="" class="input-label">Email Address</label>
+                        <%= f.email_field :email, class: 'form-control required email reset-border-radius' %>
+                        <span class="form-error"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-wrap">
+                        <label for="" class="input-label">Phone Number(Optional)</label>
+                        <%= f.text_field :phone, class: 'form-control optional reset-border-radius' %>
+                        <span class="form-error"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-wrap">
+                        <label class="input-label">Order Number (Optional)</label>
+                        <%= f.text_field :order_number, class: 'form-control optional reset-border-radius' %>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.select :inquiry_type, ['x', 'y'], {}, {class: 'form-control reset-border-radius'} %>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="form-group">
+                      <div class="input-wrap with-textarea">
+                        <label class="input-label">Message</label>
+                        <%= f.text_area :message, class: 'form-control required reset-border-radius' %>
+                        <span class="form-error"></span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="common-btn uppercase">Submit</button>
+                    </div>
+                  </div>
+              <% end %>
+              <a href="<%= root_path %>" class="text-red">Go to the Homepage</a>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="warehouse-locations">
+              <h3 class="gothamNarrowBlack small margin-top-0"><i class="fa fa-home fa-2x va-sub"></i>Our Warehouse
+                location</h3>
+
+              <div class="vspace10px"></div>
+
+              <div class="address-wrapper">
+                <div class="address-first-title">Head Quarter</div>
+                <div class="address">#120, Las Vegas, NV 89148, USA</div>
+                <div class="phone"><i class="fa fa-phone"></i> (+1) 855 642 1165 </div>
+              </div>
+              <div class="address-wrapper">
+                <div class="address-title">Sub Location(s)</div>
+                <div class="address">1705 Oak Street, New Jersey, 08701</div>
+                <div class="address">9733 Richmond Ave #106, Houston, TX 77042</div>
+                <div class="address">904 21st Ave, Honolulu, HI 96816</div>
+              </div>
+              <div class="address-wrapper">
+                <div class="address-title">UK/EU Location(s)</div>
+                <div class="address">1 Liliput Road, Northhampton, NN4 7DT, <b>UK</b></div>
+                <div class="address">Giesebrechtstraße 19, 13629 Berlin, <b>Germany</b></div>
+                <div class="address">La Pineliere, 59800 Saint-Martin-le-Bouillant, <b>France</b></div>
+                <div class="address">Via Pievano Rolando, 5, 33053 Empoli FI, <b>Italy</b></div>
+                <div class="address">Calle Altos de la Marquesa XI, 32, 03170 Rojales, Alicante, <b>Spain</b></div>
+                <div class="phone"><i class="fa fa-phone"></i> (+44) 5603 676483 </div>
+              </div>
+              <div class="address-wrapper">
+                <div class="address-title">Australia Location(s)</div>
+                <div class="address">3a Rosulyn Street, Dubbo, NSW 2830</div>
+                <div class="phone"><i class="fa fa-phone"></i> (+61) 2 8310 4859 </div>
+              </div>
+              <div class="address-wrapper">
+                <div class="address-title">Canada Location(s)</div>
+                <div class="address">103 Atlantic Ave #300, Toronto, ON M6K 1Y2, Canada</div>
+              </div>
+              <div class="address-wrapper">
+                <div class="address-title">Dubai Location(s)</div>
+                <div class="address">Oxford Tower - <b>Dubai - United Arab Emirates</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<%= render 'public/contact_validation_script' %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  full_name: MyString
+  email: MyString
+  phone: MyString
+  order_number: MyString
+  inquery_type: MyString
+  messate: MyText
+
+two:
+  full_name: MyString
+  email: MyString
+  phone: MyString
+  order_number: MyString
+  inquery_type: MyString
+  messate: MyText
