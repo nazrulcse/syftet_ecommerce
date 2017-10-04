@@ -16,9 +16,6 @@ module UserMethods
     has_many :orders, foreign_key: :user_id, class_name: "Order"
     has_many :store_credits, foreign_key: :user_id, class_name: 'StoreCredit'
 
-    belongs_to :ship_address, class_name: 'Address'
-    belongs_to :bill_address, class_name: 'Address'
-
     self.whitelisted_ransackable_associations = %w[bill_address ship_address]
     self.whitelisted_ransackable_attributes = %w[id email]
   end

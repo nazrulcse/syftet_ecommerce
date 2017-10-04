@@ -25,7 +25,7 @@
           <div class="menu-top-menu-header-container">
             <ul id="main-topmenu">
               <li class="menu-item ">
-                <%= link_to account_registration_path do %>
+                <%= link_to current_user.present? ? my_account_path : account_registration_path do %>
                     <%= t(:my_account) %>
                 <% end %>
               </li>
@@ -40,7 +40,7 @@
           <ul class="list-style">
             <% if current_user.present? %>
                 <li>
-                  <%= link_to user_logout_path do %>
+                  <%= link_to user_logout_path, method: :delete do %>
                       <i class="fa fa-sign-out" aria-hidden="true"></i>
                       <%= t(:logout) %>
                   <% end %>

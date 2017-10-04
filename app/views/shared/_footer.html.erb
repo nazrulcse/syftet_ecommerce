@@ -91,10 +91,10 @@
                         <div class="menu-footer-1-container">
                           <ul id="menu-footer-1" class="menu">
                             <li>
-                              <a href="http://venusdemo.com/wordpress/pi/my-account/"><%= t(:my_account) %></a>
+                              <a href="/my_account"><%= t(:my_account) %></a>
                             </li>
                             <li>
-                              <a href="http://venusdemo.com/wordpress/pi/my-account/view-order/"><%= t(:order_history) %></a>
+                              <a href="/my_account#order-history"><%= t(:order_history) %></a>
                             </li>
                             <li>
                               <a href="http://venusdemo.com/wordpress/pi/wishlist/"><%= t(:wishlist) %></a>
@@ -111,16 +111,16 @@
                         <div class="menu-footer-2-container">
                           <ul id="menu-footer-2" class="menu">
                             <li>
-                              <a href="#"><%= t(:discount) %></a>
+                              <%= link_to t(:discount), coupon_path %>
                             </li>
                             <li>
                               <a href="#"><%= t(:return_policy) %></a>
                             </li>
                             <li>
-                              <a href="#"><%= t(:customer_service) %></a>
+                              <%= link_to t(:customer_service), contact_us_path %>
                             </li>
                             <li>
-                              <a href="#"><%= t(:term_and_condition) %></a>
+                              <%= link_to t(:term_and_condition), term_condition_path %>
                             </li>
                           </ul>
                         </div>

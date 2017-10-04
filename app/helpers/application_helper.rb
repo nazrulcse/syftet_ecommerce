@@ -97,8 +97,8 @@ module ApplicationHelper
     image.present? && image.attachment.present? ? image.attachment.url(:big) : "#{image.attachment.url}"
   end
 
-  def get_active_class(x, y)
-    false
+  def get_active_class(action, menu_action)
+    action == menu_action ? 'active' : ''
   end
 
 end

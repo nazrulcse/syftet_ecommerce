@@ -1,0 +1,82 @@
+<div class="col-sm-12">
+  <h1>My Account</h1>
+</div>
+
+<div data-hook="account_summary" class="account-summary well">
+  <dl id="user-info">
+    <dt>Email</dt>
+    <dd><%= current_user.email %> (<a href="/account/edit">Edit</a>)</dd>
+  </dl>
+</div>
+
+<div data-hook="account_my_orders" class="account-my-orders">
+
+  <h3>My Orders</h3>
+  <table class="table table-striped order-summary">
+    <thead class="active">
+    <tr>
+      <th class="order-number"> Order</th>
+      <th class="order-date">Date</th>
+      <th class="order-status">Status</th>
+      <th class="order-total">Order Total</th>
+      <th class="order-shipment-state">Shipment State</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="order-number"><a href="http://localhost:3000/orders/BR-4316-672534525">BR-4316-672534525</a></td>
+      <td class="order-date">2017-07-04</td>
+      <td class="order-status">
+        Approved
+      </td>
+      <td class="text-primary order-total">
+        <span class="mark-text"> BDT 0.0 </span>
+      </td>
+      <td class="order-shipment-state">
+        <a href="/order/90/shipped_track_now">Shipped Track now</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="order-number"><a href="http://localhost:3000/orders/BR-8991-513337793">BR-8991-513337793</a></td>
+      <td class="order-date">2017-05-30</td>
+      <td class="order-status">
+        Approved
+      </td>
+      <td class="text-primary order-total">
+        <span class="mark-text"> BDT 0.0 </span>
+      </td>
+      <td class="order-shipment-state">
+        <a href="/order/20/shipped_track_now">Shipped Track now</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="order-number"><a href="http://localhost:3000/orders/BR-4533-162541039">BR-4533-162541039</a></td>
+      <td class="order-date">2017-05-23</td>
+      <td class="order-status">
+        Processing
+      </td>
+      <td class="text-primary order-total">
+        <span class="mark-text"> BDT 0.0 </span>
+      </td>
+      <td class="order-shipment-state">
+        Processing
+      </td>
+    </tr>
+    <tr>
+      <td class="order-number"><a href="http://localhost:3000/orders/BR-3449-184537183">BR-3449-184537183</a></td>
+      <td class="order-date">2017-05-23</td>
+      <td class="order-status">
+        Processing
+      </td>
+      <td class="text-primary order-total">
+        <span class="mark-text"> BDT 0.0 </span>
+      </td>
+      <td class="order-shipment-state">
+        Processing
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+
+</div>

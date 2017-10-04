@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/about_us', to: 'public#about_us', as: :about_us
   get '/privacy_policy', to: 'public#privacy_policy', as: :privacy_policy
   get '/term_condition', to: 'public#term_condition', as: :term_condition
+  get '/my_account', to: 'users#my_account'
 
   namespace :admin do
     get '/search/users', to: "search#users", as: :search_users
