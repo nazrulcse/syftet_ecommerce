@@ -8,7 +8,7 @@ module UserMethods
 
   included do
     has_many :role_users, class_name: 'RoleUser', foreign_key: :user_id, dependent: :destroy
-    has_many :spree_roles, through: :role_users, class_name: 'Role', source: :role
+    has_many :roles, through: :role_users, class_name: 'Role', source: :role
 
     has_many :promotion_rule_users, class_name: 'PromotionRuleUser', foreign_key: :user_id, dependent: :destroy
     has_many :promotion_rules, through: :promotion_rule_users, class_name: 'PromotionRule'

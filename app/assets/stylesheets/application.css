@@ -20,4 +20,10 @@
  *= require search
  *= require slick
  *= require auth
+ *= require breadcrumb
+ *= require product_page
+ *= require ion.rangeSlider.skinNice
+ *= require ion.rangeSlider.css
+ *= require rating
+ *= require review_rating
  */

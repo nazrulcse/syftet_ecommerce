@@ -107,14 +107,12 @@
       font-size: 10px;
       display: inline-block;
       float: none;
-      font-family: star;
-      height: 1em;
       line-height: 1;
       overflow: hidden;
       position: relative;
-      width: 6.5em;
       letter-spacing: 2px;
       vertical-align: middle;
+      padding: 5px 0;
     }
 
     .price {
@@ -157,6 +155,130 @@
       img {
         height: auto;
         width: 100%;
+      }
+    }
+  }
+}
+
+.single-product-summary {
+  .product-title {
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 35px;
+    color: #363a42;
+    clear: none;
+    margin-top: 0;
+    padding: 0;
+  }
+  .stock {
+    padding-top: 5px;
+    font-size: 14px;
+    &.in-stock {
+      color: #77a464;
+    }
+  }
+  .price {
+    line-height: 40px;
+    padding: 10px 0;
+    display: flex;
+    color: #fcc030;
+    font-size: 30px;
+    opacity: 1;
+    ins {
+      font-weight: 700;
+      text-decoration: none;
+    }
+    del {
+      opacity: 1 !important;
+      line-height: 35px;
+      span {
+        margin-left: 7px;
+        font-size: 16px;
+        text-decoration: line-through;
+        color: #aaa;
+      }
+    }
+  }
+
+  .short-description {
+    color: #999;
+    padding: 15px 0;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+  }
+
+  .variations {
+    .color-label {
+      font-weight: 600;
+      color: #999;
+      display: block;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.add-to-cart-select-quantity {
+  margin: 15px 0;
+  label {
+    color: #999999;
+  }
+  .quantity-number {
+    display: inline-block;
+    margin-left: 20px;
+    border: solid 1px #cccccc;
+    .add-action {
+      padding: 7px 10px;
+      display: inline-block;
+      cursor: pointer;
+      &:hover {
+        background: #CCCCCC;
+      }
+    }
+    .qty {
+      border: none;
+      text-align: center;
+      max-width: 100px;
+    }
+  }
+}
+
+.color-section {
+  width: 100%;
+  span {
+    display: inline-block;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .color-section-ul-style {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    li {
+      float: left;
+      padding-right: 15px;
+      label {
+        cursor: pointer;
+        position: relative;
+      }
+      input[type='radio'] {
+        display: none;
+      }
+      input[type='radio']:checked + label {
+        &:after {
+          content: "\f00c";
+          position: absolute;
+          top: 20%;
+          left: 25%;
+          color: #ffffff;
+          font-family: FontAwesome;
+        }
+      }
+      span {
+        display: block;
+        height: 32px;
+        width: 33px;
       }
     }
   }

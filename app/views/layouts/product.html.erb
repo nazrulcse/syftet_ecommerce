@@ -18,13 +18,10 @@
       </div>
     </div>
     <%= render 'shared/main_menu' %>
+    <%= yield :breadcrumb %>
     <div class="container">
-      <div class="col-sm-3">
-        <%= yield :sidebar %>
-      </div>
-      <div class="col-sm-9">
-        <%= yield %>
-      </div>
+      <%= yield :sidebar %>
+      <%= yield %>
     </div>
     <footer id="syftet-footer" class="syftet-footer" role="contentinfo">
       <%= render 'shared/footer' %>

@@ -25,11 +25,11 @@ module Admin
       @variants = @product.variants.map do |variant|
         [variant.sku_and_options_text, variant.id]
       end
-      @variants.insert(0, [Spree.t(:all), @product.master.id])
+      @variants.insert(0, [t(:all), @product.master.id])
     end
 
     def set_viewable
-      @image.viewable_type = 'Spree::Variant'
+      @image.viewable_type = 'Variant'
       @image.viewable_id = params[:image][:viewable_id]
     end
 

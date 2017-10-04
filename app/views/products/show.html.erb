@@ -1,48 +1,138 @@
-<% @body_id = 'product-details' %>
+<% content_for :breadcrumb do %>
+    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb('Products') %>
+<% end %>
 
-<% cache cache_key_for_product do %>
-  <div data-hook="product_show" class="row" itemscope itemtype="https://schema.org/Product">
-    <div class="col-md-4 col-sm-5" data-hook="product_left_part">
-      <div data-hook="product_left_part_wrap">
-        <div id="product-images" data-hook="product_images">
-          <div id="main-image" class="panel panel-default" data-hook>
-            <div class="panel-body text-center">
-              <%= render :partial => 'image' %>
+<div class="container">
+  <div class="row mt20">
+    <div class="col-sm-6 col-md-6 clearfix data-parent">
+      <div class="row clearfix">
+        <div class="clearfix" id="product-thumb-image">
+          <div class="product-gallery-wrapper">
+            <div id="product-gallery" class="product-thumb-wrapper">
+              <% get_additional_images(@product).each do |image| %>
+                  <div class="selection">
+                    <a href="#" class="addtional-image" data-image="<%= image.attachment.url(:small) %>" data-zoom-image="<%= image.attachment.url(:big) %>">
+                      <%= image_tag image.attachment.url(:small), class: "img-fluid" %>
+                    </a>
+                    <!--<img class='hidden' src="<%#= image.zoomable_image_link.present? ? image.zoomable_image_link : "#{image.image_link}?op_sharpen=1&fit=fit,1&$filterlrg$&wid=1200&hei=1467" %>" onerror="zoom_image_load_failed(this);"/>-->
+                  </div>
+              <% end %>
             </div>
           </div>
-          <div id="thumbnails" data-hook>
-            <%= render :partial => 'thumbnails' %>
+          <div class="product-big-image-wrapper">
+            <div class="product-details-image text-xs-center">
+              <% product_image = get_image_object(@product) %>
+              <img src="<%= get_image_link(@product, product_image) %>" data-zoom-image="<%= get_zoom_image_link(product_image) %>" alt="product image" id="product-zoom" class="img-fluid d-inline-block">
+              <span class="zoom-init-image"></span>
+            </div>
           </div>
-        </div>
-
-        <div data-hook="product_properties">
-          <%= render :partial => 'properties' %>
-        </div>
-
-        <div data-hook="promotions">
-          <%= render :partial => 'promotions' %>
         </div>
       </div>
     </div>
 
-    <div class="col-md-8 col-sm-7" data-hook="product_right_part">
-      <div data-hook="product_right_part_wrap">
-        <div id="product-description" data-hook="product_description">
-          <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
-
-          <div class="well" itemprop="description" data-hook="description">
-            <%= product_description(@product) %>
-          </div>
-
-          <div id="cart-form" data-hook="cart_form">
-            <%= render :partial => 'cart_form' %>
-          </div>
-        </div>
-
-        <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
-          <%= render :partial => 'taxons' %>
-        </div>
-      </div>
+    <div class="col-sm-6 col-md-6">
+      <%= render 'products/details' %>
     </div>
   </div>
-<% end %>
+
+  <div class="review-ratting">
+    <%= render 'products/review_ratting' %>
+  </div>
+
+  <div class="product-details-customer-widget product-lists">
+    <%= render 'products/related_product' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).on('ready', function () {
+        $('.product-thumb-wrapper').children(":first").find('a').addClass('product-active');
+        $(".list-of-recomanded-product").slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            dots: false,
+            responsive: [
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: false
+                    }
+                }
+            ]
+        });
+
+        $(".list-of-recomanded-product-hor").slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            dots: false,
+            vertical: true,
+            responsive: [
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: false,
+                        vertical: false
+                    }
+                }
+            ]
+        });
+    });
+
+    $('.size-selection').click(function () {
+        var size = $(this).data("size_value");
+        $('#size').val(size)
+    });
+
+    $('.member-size-selection').click(function () {
+        var size = $(this).data("size_value");
+        $(this).parents('.product-table-container').find('#size').val(size);
+    });
+
+    $('.select_member_varient').click(function () {
+        var varient = $(this).data("variant");
+        $(this).parents('.product-table-container').find('#variant_id').val(varient);
+    });
+
+    $(function () {
+        $('.add-to-cart-button-cl').click(function () {
+            var obj = $(this).parents('.product-btn');
+            obj.css('position', 'relative');
+            obj.find('.alert-error').addClass('custom-alert-place');
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function (e) {
+        $('#product-thumb-image').stick_in_parent({
+            parent: '.data-parent',
+            offset_top: 20
+        });
+
+        setTimeout(function () {
+            $("#product-gallery").slick({
+                infinite: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                dots: false,
+                vertical: true
+            });
+        }, 100);
+    });
+
+    function zoom_image_load_failed(element) {
+        jelement = $(element);
+        anchor = jelement.prev();
+        console.log(anchor);
+        original_image = anchor.attr('data-image');
+        anchor.attr('data-zoom-image', original_image);
+    }
+</script>

@@ -1,76 +1,188 @@
-<%= form_for :order, url: populate_orders_path do |f| %>
-  <div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-    <% if @product.variants_and_option_values(current_currency).any? %>
-      <div id="product-variants" class="col-md-6">
-        <h3 class="product-section-title"><%= Spree.t(:variants) %></h3>
-        <ul class="list-group">
-          <% @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
-            <li>
-              <%= radio_button_tag "variant_id", variant.id, index == 0,
-                  'data-price' => variant.price_in(current_currency).money, 
-                  'data-in-stock' => variant.can_supply?
-              %>
-              <%= label_tag "variant_id_#{ variant.id }" do %>
-                <span class="variant-description">
-                  <%= variant_options variant %>
-                </span>
-                <% if variant_price variant %>
-                  <span class="price diff"><%= variant_price variant %></span>
-                <% end %>
-                <% unless variant.can_supply? %>
-                  <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
-                <% end %>
-              <% end %>
-            </li>
-          <% end%>
-        </ul>
-      </div>
-    <% else %>
+<%= form_for :order, url: '#', remote: true, :html => {id: "order-populate"} do |f| %>
+    <div id="inside-product-cart-form" data-hook="inside_product_cart_form">
       <%= hidden_field_tag "variant_id", @product.master.id %>
-    <% end %>
+      <%= hidden_field_tag "size" %>
 
-    <% if @product.price_in(current_currency) && !@product.price.nil? %>
-      <div data-hook="product_price" class="col-md-5">
-        <div id="product-price">
-          <h6 class="product-section-title"><%= Spree.t(:price) %></h6>
-          <div>
-            <span class="lead price selling" itemprop="price">
-              <%= display_price(@product) %>
-            </span>
-            <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
-          </div>
+      <div class="variations">
+        <% all_variant = get_all_variant(@product) %>
+        <% if all_variant.present? %>
+            <div class="color-section">
+              <label class="color-label"> Color: </label>
 
-          <% if @product.master.can_supply? %>
-            <link itemprop="availability" href="https://schema.org/InStock" />
-          <% elsif @product.variants.empty? %>
-            <br />
-            <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
-          <% end %>
-        </div>
-
-        <% if @product.can_supply? %>
-          <div class="add-to-cart">
-            <br />
-            <div class="input-group">
-              <%= number_field_tag :quantity, 1, class: 'title form-control', min: 1 %>
-              <span class="input-group-btn">
-                <%= button_tag class: 'btn btn-success', id: 'add-to-cart-button', type: :submit do %>
-                  <%= Spree.t(:add_to_cart) %>
+              <ul class="color-section-ul-style clearfix">
+                <% all_variant.each do |v| %>
+                    <li>
+                      <input type="radio" class="select_varient" id="radio_<%= v.id %>" data-color-name="<%= v.color %>" data-color-price="<%= get_varient_price(v) %>" name="variant_id" value="<%= v.id %>"/>
+                      <label for="radio_<%= v.id %>">
+                        <span class="color_image" style="<%= variant_color_image_option(v.color_image) %>"> </span>
+                      </label>
+                    </li>
                 <% end %>
-              </span>
+              </ul>
             </div>
-          </div>
         <% end %>
+
+        <%# if @product.product_sizes.present? %>
+        <!--<div class="flexible flex-items-xs-between" style="width: 100%">-->
+        <!--<label class="color-label">Size:</label>-->
+        <!--</div>-->
+        <%# end %>
+
+        <!--<div class="size-wrapper" style="padding-left: 15px;">-->
+        <!--<div class="rowx mt5">-->
+        <!--<ul class="common-ul-style product-size clearfix">-->
+        <% if false && @product.product_sizes.present? %>
+            <% @product.product_sizes.each do |size| %>
+                <% if size.applicable %>
+                    <li class="">
+                      <a class="size-selection" href="#" data-size_value="<%= size.short_name %>"><%= size.short_name %> </a>
+                    </li>
+                <% else %>
+                    <li style="display: block; border-bottom: 1px solid #ccc; margin-bottom: 10px; width: 100%;">
+                      <%= size.short_name %>
+                    </li>
+                <% end %>
+            <% end %>
+        <% end %>
+        <!--</ul>-->
+        <!--</div>-->
+        <!--</div>-->
       </div>
-    <% else %>
-      <div id="product-price">
-        <br />
-        <div>
-          <span class="price selling" itemprop="price">
-            <%= Spree.t('product_not_available_in_this_currency') %>
-          </span>
+
+      <div class="add-to-cart-select-quantity">
+        <label> Quantity: </label>
+
+        <div class="quantity-number">
+          <span class="add-down add-action" data-step='-1'>-</span>
+          <%= text_field_tag :quantity, 1, title: 'Quantity', class: 'input-text qty' %>
+          <span class="add-up add-action" data-step='1'>+</span>
         </div>
+        <%#= select_tag :quantity, options_for_select(AppSetting::PRODUCT_QUANTITY.collect { |qut, item| [item, qut] }), {id: 'counter', class: 'form-control'} %>
+        <!--<input id="counter" name="quantity" type="number" min="1" value="1">-->
       </div>
-    <% end %>
-  </div>
+
+      <% if check_country('BD') %>
+          <div data-hook="product_price">
+            <% if true #@product.can_supply?                                                   %>
+                <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
+                    ADD TO CART
+                <% end %>
+                <a href="#" class="btn">
+                  <i class="fa fa-heart-o"></i>
+                </a>
+                <a href="#" class="btn">
+                  <i class="fa fa-refresh"></i>
+                </a>
+            <% end %>
+          </div>
+      <% else %>
+          <div class="alert alert-danger">
+            <%= t('product_not_available_in_this_currency') %>
+          </div>
+      <% end %>
+    </div>
 <% end %>
+<%#= render 'spree/shared/service_unavailable_modal' %>
+
+<script type="text/javascript">
+    var quantity_field = $('#quantity');
+    $(function () {
+        var assets = {};
+        <% @product.variants.each do |v| %>
+        var vid = '<%= v.id %>';
+        assets[vid] = {};
+        <% v.images.order(:id).each_with_index do |as, indx| %>
+        assets[vid][<%= indx %>] = {
+            image: '<%= as.attachment %>',
+            zoom_image: '<%#= generate_zoom_image(as); %>'
+        };
+        <%end%>
+        <%end%>
+
+        $('.quantity-number .add-action').click(function () {
+            step = $(this).attr('data-step');
+            updateQuantity(step);
+        });
+
+        quantity_field.keyup(function () {
+            updateQuantity(0);
+        });
+
+        $(document).off('click', '.select_varient').on('click', '.select_varient', function () {
+            id = $(this).val();
+            var color_name = $(this).attr('data-color-name');
+            var product_price = $(this).attr('data-color-price');
+            $('.color-name').html("Color:    " + color_name);
+            $('.current-price').html("Now " + product_price);
+            $("#product-gallery").html('').removeClass("slick-initialized slick-slider slick-vertical");
+            $('.zoomContainer').remove();
+            $.each(assets[id], function (indx, img) {
+                $("#product-gallery").append(tiny_item(img));
+            });
+
+            $("#product-zoom").elevateZoom({
+                zoomType: "inner",
+                responsive: !0,
+                gallery: "product-gallery",
+                cursor: "default",
+                galleryActiveClass: "product-active",
+                loadingIcon: "<%#= image_url('ajax-loader.gif') %>"
+            });
+
+            setTimeout(function () {
+                $("#product-gallery .selection:first-child").find('a').addClass('product-active').trigger('click');
+            }, 100);
+
+            attached_slider();
+
+            if ($(".alert").text() == 'Please select color') {
+                $(".alert").addClass('hidden');
+            }
+        });
+
+        $('#order-populate').submit(function () {
+//            $('#service-unavailable').modal();
+//            return false;
+            if ($('.select_varient').length >= 1 && !$('.select_varient').is(':checked')) {
+                popupMessage('Please select color', 'alert-danger');
+                return false
+            }
+
+            if ($('.size-selection').length >= 1 && $('#size').val() == '') {
+                popupMessage('Please select size', 'alert-danger');
+                return false
+            }
+        });
+    });
+
+    function tiny_item(images) {
+        html = "<div class='selection'> <a href='#' data-image='" + images.image + "' data-zoom-image='" + images.zoom_image + "' class=''>";
+        html += "<img alt='' class='img-fluid' src='" + images.image + "'>";
+        html += "</a> </div>";
+        return html;
+    }
+
+    function attached_slider() {
+        setTimeout(function () {
+            $("#product-gallery").slick({
+                infinite: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                dots: false,
+                vertical: true
+            });
+        }, 100);
+    }
+
+    function updateQuantity(value) {
+        current_quantity = quantity_field.val();
+        new_quantity = parseInt(current_quantity) + parseInt(value);
+        if (isNaN(new_quantity)) {
+            new_quantity = 1
+        }
+        else {
+            new_quantity = new_quantity <= 0 ? 1 : new_quantity;
+        }
+        quantity_field.val(new_quantity)
+    }
+</script>

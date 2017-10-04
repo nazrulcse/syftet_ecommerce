@@ -30,6 +30,12 @@ bn:
   hot: 'গরম'
   new: 'নতুন'
   find_a_taxon: 'Find a taxon'
-  configurations: 'Confirgurations'
+  configurations: 'কনফিগারেশন'
   logout: 'প্রস্থান'
   administration: 'অ্যাডমিন'
+  view_more: "আরো দেখুন"
+  featured_products: "বৈশিষ্ট্যযুক্ত পণ্য"
+  what_say_people: 'ব্যবহারকারী কি বলে?'
+  from_our_blog: 'আমাদের ব্লগ থেকে'
+  search_catalog: "অনুসন্ধান ক্যাটালগ"
+  categories: 'বিভাগ'

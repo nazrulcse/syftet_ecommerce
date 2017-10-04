@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/c/*id', to: 'taxons#show', as: :categories
   get '/products', to: 'products#index', as: :products
+  get '/products/*id', to: 'products#show', as: :show_product
 
   namespace :admin do
     get '/search/users', to: "search#users", as: :search_users

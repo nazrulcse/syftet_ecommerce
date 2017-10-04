@@ -14,6 +14,7 @@ module Syftet
     config.i18n.default_locale = :'bn'
 
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('lib/syftet/localized_number.rb')
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

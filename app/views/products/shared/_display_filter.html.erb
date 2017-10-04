@@ -1,0 +1,72 @@
+<div class="products-top-wrap">
+  <form class="display-mode" method="get">
+    <button title="Grid" class="btn " value="grid" name="display" type="submit">
+      <i class="fa fa-th"></i>
+    </button>
+    <button title="List" class="btn active" value="list" name="display" type="submit">
+      <i class="fa fa-list"></i>
+    </button>
+    <input type="hidden" name="swoof" value="1">
+    <input type="hidden" name="column" value="2">
+    <input type="hidden" name="per_page" value="6">
+    <input type="hidden" name="min_price" value="17">
+    <input type="hidden" name="max_price" value="605">
+    <input type="hidden" name="pa_size" value="l">
+  </form>
+
+
+  <form method="get">
+    <select name="product_per_page" onchange="this.form.submit()" class="custom-select">
+      <option value="3">
+        3 products per page
+      </option>
+      <option value="6">
+        6 products per page
+      </option>
+      <option value="9">
+        9 products per page
+      </option>
+      <option value="12" selected="selected">
+        12 products per page
+      </option>
+      <option value="15">
+        15 products per page
+      </option>
+      <option value="-1">
+        All products
+      </option>
+    </select>
+  </form>
+
+  <form method="get" class="woocommerce-fillter">
+    <select name="product_type" onchange="this.form.submit()" class="custom-select">
+      <option value="recent_products" selected="selected">
+        Latest Products
+      </option>
+      <option value="sale_products">
+        Sale Products
+      </option>
+      <option value="featured_products">
+        Featured Products
+      </option>
+      <option value="best_selling_products">
+        Best Selling Products
+      </option>
+      <option value="top_rate">
+        Top Rate
+      </option>
+    </select>
+    <input type="hidden" name="swoof" value="1"><input type="hidden" name="display" value="list"><input type="hidden" name="column" value="2"><input type="hidden" name="per_page" value="6"><input type="hidden" name="min_price" value="17"><input type="hidden" name="max_price" value="605"><input type="hidden" name="pa_size" value="l">
+  </form>
+  <form class="woocommerce-ordering" method="get">
+    <select name="orderby" class="custom-select">
+      <option value="menu_order" selected="selected">Default sorting</option>
+      <option value="popularity">Sort by popularity</option>
+      <option value="rating">Sort by average rating</option>
+      <option value="date">Sort by newness</option>
+      <option value="price">Sort by price: low to high</option>
+      <option value="price-desc">Sort by price: high to low</option>
+    </select>
+    <input type="hidden" name="swoof" value="1"><input type="hidden" name="display" value="list"><input type="hidden" name="column" value="2"><input type="hidden" name="per_page" value="6"><input type="hidden" name="min_price" value="17"><input type="hidden" name="max_price" value="605"><input type="hidden" name="pa_size" value="l">
+  </form>
+</div>

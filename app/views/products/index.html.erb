@@ -1,27 +1,41 @@
+<% content_for :breadcrumb do %>
+    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb('Products') %>
+<% end %>
+<%= render 'products/shared/display_filter' %>
 <% if "products" == params[:controller] && @taxon || !@taxonomies.empty? %>
     <% content_for :sidebar do %>
-        <div data-hook="homepage_sidebar_navigation">
-          <% if "spree/products" == params[:controller] && @taxon %>
+        <div class="col-md-3">
+          <% if "products" == params[:controller] && @taxon %>
               <%= render :partial => 'shared/filters' %>
           <% else %>
-              <%= render :partial => 'shared/taxonomies' %>
+              <%= render :partial => 'products/shared/categories' %>
+              <%= render :partial => 'products/shared/catalog' %>
           <% end %>
         </div>
     <% end %>
 <% end %>
 
-<% if params[:keywords] %>
-    <div data-hook="search_results">
-      <% if @products.empty? %>
-          <h6 class="search-results-title"><%= Spree.t(:no_products_found) %></h6>
-      <% else %>
-          <%= render :partial => 'spree/shared/products', :locals => {:products => @products, :taxon => @taxon} %>
-      <% end %>
-    </div>
-<% else %>
-    <div data-hook="homepage_products">
-      <%# cache(cache_key_for_products) do %>
-      <%#= render :partial => 'spree/shared/products', :locals => {:products => @products, :taxon => @taxon} %>
-      <%# end %>
-    </div>
-<% end %>
+<div class="col-md-9">
+  <% if params[:keywords] %>
+      <div data-hook="search_results">
+        <% if @products.empty? %>
+            <h6 class="search-results-title"><%= Spree.t(:no_products_found) %></h6>
+        <% else %>
+            <%= render :partial => 'spree/shared/products', :locals => {:products => @products, :taxon => @taxon} %>
+        <% end %>
+      </div>
+  <% else %>
+      <div data-hook="homepage_products" class="product-lists clearfix">
+        <%# cache(cache_key_for_products) do %>
+        <%#= render :partial => 'spree/shared/products', :locals => {:products => @products, :taxon => @taxon} %>
+        <%# end %>
+        <div class="row">
+          <% 12.times.each do |i| %>
+              <div class="product-wrapper product col-sm-6 col-md-4">
+                <%= render 'home/product' %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>

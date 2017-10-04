@@ -1,0 +1,49 @@
+<div class="product-detail single-product-summary clearfix">
+  <div class="product-details-wrapper pdetail">
+    <!--<h2 class="p-title gothamHTFBook"><%#= @product.brand.name if @product.brand.present? %></h2>-->
+
+    <h1 class="product-title"><%= raw format_general_name(@product.name) %></h1>
+
+    <div class="single-product-rating">
+      <div class="rating" style="display: inline-block; padding: 10px 0;">
+        <div class="star-rating" data-rating="5">
+          ******
+        </div>
+      </div>
+      <span>
+        <a href="#"> - 1 review </a>
+      </span>
+    </div>
+
+    <p class="stock in-stock">In Stock</p>
+
+    <p class="price">
+      <ins>
+        <span class="price-amount amount">
+          <span class="price-currency-symbol">$</span>
+          490.0
+        </span>
+      </ins>
+      <del>
+        <span class="price-amount amount">
+          <span class="price-currency-symbol">$</span>
+          520.0
+        </span>
+      </del>
+    </p>
+
+    <div class="short-description">
+      <p>
+        But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
+        will give you a complete account of the system, and expound the actual teachings of the great explorer of the
+        truth
+      </p>
+    </div>
+
+    <p style="margin-top: 10px; font-weight: bold; color: #999;">
+      Web ID: #<%= @product.id %>
+    </p>
+
+    <%= render 'products/cart_form' %>
+  </div>
+</div>

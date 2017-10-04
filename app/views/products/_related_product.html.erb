@@ -1,0 +1,16 @@
+<div class="widget related-products products-collection owl-carousel-play woocommerce" id="postcarousel-950818756" data-ride="carousel">
+  <div class="background">
+    <div class="mask"></div>
+    <h3 class="widget-title public-title">
+      <span>Related Products</span>
+    </h3>
+
+    <div class="row clearfix">
+      <% 4.times.each do |i| %>
+          <div class=col-md-3>
+            <%= render 'home/product' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

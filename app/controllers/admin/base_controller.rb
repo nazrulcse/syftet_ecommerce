@@ -1,5 +1,7 @@
 module Admin
   class BaseController < ApplicationController
+    include StrongParameters
+
     helper 'admin/navigation'
     helper 'admin/tables'
     layout 'layouts/admin'

@@ -16,3 +16,9 @@
 //= require cable
 //= require slick.min
 //= require jquery.cookie
+//= require ion.rangeSlider.min
+//= require rating
+
+$(function () {
+    $('.star-rating').rateit();
+});

@@ -5,17 +5,20 @@
 
 <section class="featured-products">
   <h3 class="title">
-    Feature Products
+    <%= t(:featured_products) %>
   </h3>
 
   <div class="product-lists">
     <% 8.times.each do |i| %>
-        <%= render 'product' %>
+        <div class="product-wrapper product col-sm-6 col-md-3">
+          <%= render 'product' %>
+        </div>
     <% end %>
   </div>
   <div class="view-more-products">
-    <a class="btn-more" href="#" target="_self" title="" onclick="">
-      View more <i class="fa fa-plus"></i> </a>
+    <%= link_to products_path, class: 'btn-more' do %>
+        <%= t(:view_more) %> <i class="fa fa-plus"></i>
+    <% end %>
   </div>
 </section>
 
@@ -76,7 +79,9 @@
     <div class="col-sm-12">
       <div class="box-shadow-v1">
         <div class="title-wrap">
-          <h3 class="public-title">From Our Blog</h3>
+          <h3 class="public-title">
+            <%= t(:from_our_blog) %>
+          </h3>
         </div>
 
         <div class="blog-post" id="post-lists">

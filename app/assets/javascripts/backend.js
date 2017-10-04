@@ -49,6 +49,7 @@
 //= require backend/variant_autocomplete
 //= require backend/variant_management
 //= require backend/zone
+//= require backend/jscolor.min
 
 //Spree.routes.clear_cache = Spree.adminPathFor('general_settings/clear_cache')
 //Spree.routes.checkouts_api = Spree.pathFor('api/v1/checkouts')

@@ -35,7 +35,7 @@ module Admin
       end
 
       if @user.update_attributes(user_params)
-        flash.now[:success] = Spree.t(:account_updated)
+        flash.now[:success] = t(:account_updated)
       end
 
       render :edit
@@ -44,7 +44,7 @@ module Admin
     def addresses
       if request.put?
         if @user.update_attributes(user_params)
-          flash.now[:success] = Spree.t(:account_updated)
+          flash.now[:success] = t(:account_updated)
         end
 
         render :addresses
@@ -53,17 +53,17 @@ module Admin
 
     def orders
       params[:q] ||= {}
-      @search = Spree::Order.reverse_chronological.ransack(params[:q].merge(user_id_eq: @user.id))
-      @orders = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+      @search = Order.reverse_chronological.ransack(params[:q].merge(user_id_eq: @user.id))
+      @orders = @search.result.page(params[:page]).per(Config[:admin_products_per_page])
     end
 
     def items
       params[:q] ||= {}
-      @search = Spree::Order.includes(
+      @search = Order.includes(
           line_items: {
               variant: [:product, {option_values: :option_type}]
           }).ransack(params[:q].merge(user_id_eq: @user.id))
-      @orders = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+      @orders = @search.result.page(params[:page]).per(Config[:admin_products_per_page])
     end
 
     def generate_api_key
@@ -100,20 +100,20 @@ module Admin
                           .limit(params[:limit] || 100)
       else
         @search = @collection.ransack(params[:q])
-        @collection = @search.result.page(params[:page]).per(10) #Spree::Config[:admin_products_per_page]) TODO: Have to activate this
+        @collection = @search.result.page(params[:page]).per(10) #Config[:admin_products_per_page]) TODO: Have to activate this
       end
     end
 
     private
 
     def user_params
-      params.require(:user).permit! #(permitted_user_attributes |
-                                    #   [role_user_ids: [],
-                                     #   ship_address_attributes: permitted_address_attributes,
-                                      #  bill_address_attributes: permitted_address_attributes])
+      params.require(:user).permit(permitted_user_attributes |
+                                       [role_user_ids: [],
+                                        ship_address_attributes: permitted_address_attributes,
+                                        bill_address_attributes: permitted_address_attributes])
     end
 
-    # handling raise from Spree::Admin::ResourceController#destroy
+    # handling raise from Admin::ResourceController#destroy
     def user_destroy_with_orders_error
       invoke_callbacks(:destroy, :fails)
       render status: :forbidden, text: Spree.t(:error_user_destroy_with_orders)
@@ -135,7 +135,7 @@ module Admin
     end
 
     def sign_in_if_change_own_password
-      if try_spree_current_user == @user && @user.password.present?
+      if current_user == @user && @user.password.present?
         sign_in(@user, event: :authentication, bypass: true)
       end
     end

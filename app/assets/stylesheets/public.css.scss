@@ -136,3 +136,27 @@ a {
 .col-inner-container {
   height: 100%;
 }
+
+.custom-select {
+  display: block;
+  height: 36px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.62857;
+  color: #acacac;
+  background-color: #fff;
+  background-image: none;
+  border: none;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 7px 20px hsla(0, 0%, 96%, .17);
+  box-shadow: inset 0 7px 20px hsla(0, 0%, 96%, .17);
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.img-fluid {
+  display: block;
+  max-width: 100%;
+  height: auto
+}

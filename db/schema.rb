@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002131306) do
+ActiveRecord::Schema.define(version: 20171004042149) do
+
+  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "address1"
+    t.string "city"
+    t.string "zipcode"
+    t.string "phone"
+    t.string "state"
+    t.string "company"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "viewable_id"
@@ -26,6 +40,7 @@ ActiveRecord::Schema.define(version: 20171002131306) do
     t.string "alt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "attachment_content_type"
   end
 
   create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -38,6 +53,21 @@ ActiveRecord::Schema.define(version: 20171002131306) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "option_value_variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "variant_id"
+    t.integer "option_value_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "option_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "position"
+    t.string "name"
+    t.string "presentation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -210,6 +240,9 @@ ActiveRecord::Schema.define(version: 20171002131306) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "syftet_api_key"
+    t.integer "ship_address_id"
+    t.integer "bill_address_id"
+    t.string "user_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

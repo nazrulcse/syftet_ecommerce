@@ -42,7 +42,7 @@ class Variant < Base
 
   validate :check_price
 
-  validates :option_values, presence: true, unless: :is_master?
+  # validates :option_values, presence: true, unless: :is_master?
 
   with_options numericality: {greater_than_or_equal_to: 0, allow_nil: true} do
     validates :cost_price
@@ -224,14 +224,14 @@ class Variant < Base
   end
 
   def in_stock?
-    Rails.cache.fetch(in_stock_cache_key) do
-      total_on_hand > 0
-    end
+    # Rails.cache.fetch(in_stock_cache_key) do TODO: Need to activate this
+    #   total_on_hand > 0
+    # end
   end
 
-  delegate :total_on_hand, :can_supply?, :backorderable?, to: :quantifier
-
-  alias is_backorderable? backorderable?
+  #  delegate :total_on_hand, :can_supply?, :backorderable?, to: :quantifier
+  #
+  # alias is_backorderable? backorderable?
 
   # Shortcut method to determine if inventory tracking is enabled for this variant
   # This considers both variant tracking flag and site-wide inventory tracking settings
@@ -263,13 +263,13 @@ class Variant < Base
 
   def ensure_no_line_items
     if line_items.any?
-      errors.add(:base, Spree.t(:cannot_destroy_if_attached_to_line_items))
+      errors.add(:base, t(:cannot_destroy_if_attached_to_line_items))
       return false
     end
   end
 
   def quantifier
-    Stock::Quantifier.new(self)
+#    Stock::Quantifier.new(self) TODO: need to activate this
   end
 
   def set_master_out_of_stock

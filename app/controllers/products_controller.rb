@@ -1,5 +1,5 @@
 class ProductsController < StoreController
-  before_action :load_product, only: :show
+  # before_action :load_product, only: :show
   before_action :load_taxon, only: :index
 
   rescue_from ActiveRecord::RecordNotFound, :with => :page_not_found
@@ -16,15 +16,16 @@ class ProductsController < StoreController
   end
 
   def show
-    @title = accurate_title
-    @taxon = params[:taxon_id].present? ? Spree::Taxon.find(params[:taxon_id]) : @product.taxons.first
-    @recommend_products = @product.recommended_products
-    @ratting = rand(4.2..4.8)
-    @ratting = (@ratting * 100) / 5
-    unless @recommend_products.length > 0
-      @recommend_products = @product.get_recom_products
-    end
-    redirect_if_legacy_path
+    # @title = accurate_title
+    # @taxon = params[:taxon_id].present? ? Spree::Taxon.find(params[:taxon_id]) : @product.taxons.first
+    # @recommend_products = @product.recommended_products
+    # @ratting = rand(4.2..4.8)
+    # @ratting = (@ratting * 100) / 5
+    # unless @recommend_products.length > 0
+    #   @recommend_products = @product.get_recom_products
+    # end
+    # redirect_if_legacy_path
+    @product = Product.last
   end
 
   def keyword_search
