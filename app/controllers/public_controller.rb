@@ -87,6 +87,13 @@ class PublicController < ApplicationController
     render layout: 'product'
   end
 
+  def cart
+    render layout: 'product'
+  end
+
+  def checkout
+    render layout: 'product'
+  end
 
   private
 

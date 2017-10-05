@@ -41,6 +41,28 @@
   border-collapse: separate;
   text-align: left;
 }
+/* Borderless Custom Table */
+.custom-table {
+  thead {
+    tr {
+      th, td {
+        border: inherit;
+        vertical-align: middle;
+        padding: 15px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        border: inherit;
+        vertical-align: middle;
+        padding: 15px;
+      }
+    }
+  }
+}
 
 .wishlist_table tr th.product-remove {
   vertical-align: middle;
@@ -65,18 +87,19 @@
   border-radius: 100%;
   color: red;
   display: block;
-  font-size: 1.5em;
+  font-size: 16px;
   font-weight: 700;
+  height: 20px;
   line-height: 1;
   text-align: center;
   text-decoration: none;
+  vertical-align: middle;
   width: 20px;
-  height: 20px;
   &:hover {
-    background-color: #999;
-    color: #ffffff;
-    text-decoration: none;
-  }
+        background-color: #999;
+        color: #ffffff;
+        text-decoration: none;
+      }
 }
 
 .woocommerce #content table.wishlist_table.cart a.remove {
@@ -121,9 +144,4 @@
 }
 .woocommerce .cart .button, .woocommerce .cart input.button {
   float: none;
-}
-
-/* Bootstrap customization */
-.breadcrumb {
-  background-color: inherit !important;
 }

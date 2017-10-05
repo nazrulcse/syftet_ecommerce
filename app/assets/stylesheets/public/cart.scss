@@ -1,0 +1,107 @@
+#add_payment_method .wc-proceed-to-checkout, .woocommerce-cart .wc-proceed-to-checkout, .woocommerce-checkout .wc-proceed-to-checkout {
+  padding: 1em 0;
+}
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button {
+  background-color: #ebe9eb;
+  background-image: none;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: none;
+  color: #515151;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 100%;
+  font-weight: 700;
+  left: auto;
+  line-height: 1;
+  margin: 0;
+  overflow: visible;
+  padding: 0.618em 1em;
+  position: relative;
+  text-decoration: none;
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt {
+  background-color: #ffcd56;
+  border-color: #ffc53d;
+  border-radius: 20px;
+  color: #fff;
+  display: block;
+  padding: 12px 0;
+  text-align: center;
+  text-transform: uppercase;
+  &:hover {
+    background-color: #ffbe23;
+    border-color: #feb300;
+    color: #fff;
+  }
+}
+
+.cart_totals {
+  background: #fafafa none repeat scroll 0 0;
+  float: none;
+  padding: 20px;
+  width: 100%;
+}
+
+.custom-cart-actions {
+  border-top: 1px solid #ebebeb;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 30px;
+  label {display: none}
+  .coupon {
+    display: flex;
+    .input-text {
+      border-radius: 20px 0 0 20px;
+      font-size: 12px;
+      font-weight: 300;
+      height: 42px;
+      margin: 0;
+      outline: medium none;
+      padding: 15px 20px;
+      text-transform: capitalize;
+      border: 1px solid #e8e8e8;
+    }
+    input.button {
+      background-color: #262626;
+      border-color: #262626;
+      border-radius: 0 20px 20px 0;
+      font-size: 12px;
+      font-weight: 500;
+      height: 42px;
+      padding: 12px 15px;
+      &:hover {
+        background-color: #ffbe23;
+        border-color: #feb300;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.woocommerce #respond input#submit, .woocommerce button.button, .woocommerce input.button {
+  background-color: #ffcd56;
+  border-color: #ffc53d;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 0 25px;
+}
+
+.woocommerce-cart.woocommerce-page .entry-content-page {
+  padding-bottom: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.woocommerce-cart .woocommerce table.shop_table td {
+  padding: 15px 12px;
+}
