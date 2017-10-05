@@ -83,6 +83,11 @@ class PublicController < ApplicationController
 
   end
 
+  def wishlist
+    render layout: 'product'
+  end
+
+
   private
 
   def contact_us_params

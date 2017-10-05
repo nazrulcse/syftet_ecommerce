@@ -7,9 +7,9 @@
     <div class="wrap-add-whishlist clearfix">
       <div class="yith-add-to-wishlist">
         <div class="yith-wcwl-add-button show" style="display:block">
-          <a title="Add to wishlist" href="/wordpress/pi/?add_to_wishlist=11943" rel="nofollow" class="add_to_wishlist">
-            <i class="fa fa-heart-o"></i>
-          </a>
+          <%= link_to wishlist_path, title: 'Add to wishlist', class: 'add_to_wishlist' do %>
+              <i class="fa fa-heart-o"></i>
+          <% end %>
           <img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/yith-woocommerce-wishlist/assets/images/wpspin_light.gif" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden">
         </div>
         <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">

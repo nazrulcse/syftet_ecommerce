@@ -1733,41 +1733,6 @@ form {
   }
 }
 
-// Bootstrap Default BreadCrumbs css Edits
-.breadcrumb {
-  color: #000;
-  margin: 0;
-  padding: 15px 0 15px;
-  border-bottom: 1px solid #bfbfbf;
-  border-radius: 0;
-  a {
-    text-decoration: underline;
-  }
-  & .active {
-    color: inherit;
-  }
-}
-
-.breadcrumb > li + li:before {
-  content: '\003e';
-  color: #000;
-}
-
-@media all and (max-width: 992px) {
-  .breadcrumb li {
-    font-size: 10px;
-  }
-}
-
-@media all and (max-width: 767px) {
-  .breadcrumb {
-    border-bottom: 0;
-    padding: 0 0 15px;
-  }
-}
-
-// Product Listing Page Css
-
 // Product Filter Css
 .filters {
   font-size: 14px;
