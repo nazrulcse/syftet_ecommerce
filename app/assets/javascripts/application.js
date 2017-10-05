@@ -18,6 +18,7 @@
 //= require jquery.cookie
 //= require ion.rangeSlider.min
 //= require rating
+//= require jquery.elevatezoom.min
 
 $(function () {
     $('.star-rating').rateit();

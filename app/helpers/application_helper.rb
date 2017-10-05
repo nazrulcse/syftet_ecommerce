@@ -94,11 +94,17 @@ module ApplicationHelper
   end
 
   def get_zoom_image_link(image)
-    image.present? && image.attachment.present? ? image.attachment.url(:big) : "#{image.attachment.url}"
+    image.present? && image.attachment.present? ? image.attachment.url(:large) : "#{image.attachment.url}"
   end
 
   def get_active_class(action, menu_action)
     action == menu_action ? 'active' : ''
+  end
+
+  def wishlist_link(product)
+    link_to product_wishlists_path(product), remote: true, method: :post do
+      raw '<i class="fa fa-heart-o"></i>'
+    end
   end
 
 end
