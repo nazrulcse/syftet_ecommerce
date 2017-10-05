@@ -63,7 +63,7 @@
 
       <% if check_country('BD') %>
           <div data-hook="product_price">
-            <% if true #@product.can_supply?                                                   %>
+            <% if true #@product.can_supply?                                                    %>
                 <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
                     ADD TO CART
                 <% end %>
@@ -94,7 +94,7 @@
         <% v.images.order(:id).each_with_index do |as, indx| %>
         assets[vid][<%= indx %>] = {
             image: '<%= as.attachment %>',
-            zoom_image: '<%#= generate_zoom_image(as); %>'
+            zoom_image: '<%= as.attachment.url(:large); %>'
         };
         <%end%>
         <%end%>
@@ -153,10 +153,19 @@
                 return false
             }
         });
+
+        $("#product-zoom").elevateZoom({
+            zoomType: "inner",
+            responsive: !0,
+            gallery: "product-gallery",
+            cursor: "default",
+            galleryActiveClass: "product-active",
+            loadingIcon: "<%#= image_url('ajax-loader.gif') %>"
+        });
     });
 
     function tiny_item(images) {
-        html = "<div class='selection'> <a href='#' data-image='" + images.image + "' data-zoom-image='" + images.zoom_image + "' class=''>";
+        html = "<div class='selection'> <a href='#' data-image='" + images.image + "' data-zoom-image='" + images.zoom_image + "' class='addtional-image'>";
         html += "<img alt='' class='img-fluid' src='" + images.image + "'>";
         html += "</a> </div>";
         return html;

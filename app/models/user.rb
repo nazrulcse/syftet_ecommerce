@@ -9,6 +9,8 @@ class User < ApplicationRecord
   belongs_to :ship_address, class_name: 'Address', optional: true
   belongs_to :bill_address, class_name: 'Address', optional: true
 
+  has_many :wishlists
+
   users_table_name = User.table_name
   roles_table_name = Role.table_name
 

@@ -5,25 +5,8 @@
     </a>
 
     <div class="wrap-add-whishlist clearfix">
-      <div class="yith-add-to-wishlist">
-        <div class="yith-wcwl-add-button show" style="display:block">
-          <%= link_to wishlist_path, title: 'Add to wishlist', class: 'add_to_wishlist' do %>
-              <i class="fa fa-heart-o"></i>
-          <% end %>
-          <img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/yith-woocommerce-wishlist/assets/images/wpspin_light.gif" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden">
-        </div>
-        <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
-          <span class="feedback">Product added!</span>
-          <a href="http://venusdemo.com/wordpress/pi/wishlist/" rel="nofollow">
-            <i class="fa fa-heart-o"></i><span>Add To Wishlist</span> </a>
-        </div>
-        <div class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
-          <span class="feedback">The product is already in the wishlist!</span>
-          <a href="#" rel="nofollow">
-            <i class="fa fa-heart-o"></i><span>Add To Wishlist</span> </a>
-        </div>
-        <div style="clear:both"></div>
-        <div class="yith-wcwl-wishlistaddresponse"></div>
+      <div class="add-to-wishlist">
+        <%= raw wishlist_link(1) %>
       </div>
     </div>
 

@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/c/*id', to: 'taxons#show', as: :categories
-  get '/products', to: 'products#index', as: :products
-  get '/products/*id', to: 'products#show', as: :show_product
+  # get '/products', to: 'products#index', as: :products
+  # get '/products/*id', to: 'products#show', as: :show_product
 
   get '/frequently-asked-question', to: 'public#faq', as: :faq
   get '/coupon-code', to: 'public#coupon', as: :coupon
@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   get '/wishlist', to: 'public#wishlist'
   get '/cart', to: 'public#cart'
   get '/checkout', to: 'public#checkout'
+
+  resources :products do
+    resources :wishlists, only: [:index, :create, :delete]
+  end
 
   namespace :admin do
     get '/search/users', to: "search#users", as: :search_users
