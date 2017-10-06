@@ -164,9 +164,10 @@
                   </div>
                 </div>
               </div>
-              <a class="syftet-btn-wishlist pull-right" href="http://venusdemo.com/wordpress/pi/wishlist/">
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
-              </a>
+
+              <%= link_to wishlists_path, class: 'syftet-btn-wishlist pull-right' do %>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <% end %>
 
               <div id="search-container" class="search-box-wrapper pull-right">
                 <div class="opal-dropdow-search dropdown">

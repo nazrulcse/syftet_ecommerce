@@ -25,6 +25,9 @@ class Users::SessionsController < Devise::SessionsController
       format.js {
         render layout: false
       }
+      format.html {
+        redirect_to after_sign_in_path_for(resource)
+      }
     end
   end
 

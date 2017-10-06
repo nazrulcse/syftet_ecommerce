@@ -28,8 +28,11 @@ Rails.application.routes.draw do
   get '/my_account', to: 'users#my_account'
   get '/wishlist', to: 'public#wishlist'
 
+
+  resources :wishlists, only: [:index]
   resources :products do
-    resources :wishlists, only: [:index, :create, :delete]
+    resources :wishlists, only: [:create, :delete]
+    get :quickview
   end
 
   namespace :admin do
