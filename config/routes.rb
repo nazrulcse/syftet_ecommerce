@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get '/term_condition', to: 'public#term_condition', as: :term_condition
   get '/my_account', to: 'users#my_account'
   get '/wishlist', to: 'public#wishlist'
+  get '/cart', to: 'public#cart'
+  get '/checkout', to: 'public#checkout'
 
 
   resources :wishlists, only: [:index]

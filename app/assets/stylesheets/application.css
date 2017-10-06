@@ -29,4 +29,6 @@
  *= require public/custom_design.scss
  *= require uility.css.erb
  *= require public/wishlist
+ *= require public/cart
+ *= require public/checkout
  */
