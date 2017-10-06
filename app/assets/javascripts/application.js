@@ -19,7 +19,22 @@
 //= require ion.rangeSlider.min
 //= require rating
 //= require jquery.elevatezoom.min
-
-$(function () {
-    $('.star-rating').rateit();
+$(document).on('turbolinks:load', function () {
+    $(function () {
+        var quickview_modal = $('#quickview-modal');
+        $('.star-rating').rateit();
+        $('.quickview').click(function (e) {
+            $.ajax({
+                url: $(this).attr('data-action'),
+                type: 'get',
+                dataType: 'script',
+                beforeSend: function () {
+                    quickview_modal.find('.modal-body').html("<i class='fa fa-spinner' aria-hidden='true'></i>");
+                },
+                error: function () {
+                    quickview_modal.find('.modal-body').html('Error');
+                }
+            })
+        });
+    });
 });

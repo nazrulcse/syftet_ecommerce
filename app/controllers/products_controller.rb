@@ -28,6 +28,13 @@ class ProductsController < StoreController
     @product = Product.last
   end
 
+  def quickview
+    @product = Product.last
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   def keyword_search
     term = params[:keyword]
     search = Spree::Product.solr_search do |s|

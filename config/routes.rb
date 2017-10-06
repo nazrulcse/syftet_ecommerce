@@ -30,8 +30,11 @@ Rails.application.routes.draw do
   get '/cart', to: 'public#cart'
   get '/checkout', to: 'public#checkout'
 
+
+  resources :wishlists, only: [:index]
   resources :products do
-    resources :wishlists, only: [:index, :create, :delete]
+    resources :wishlists, only: [:create, :delete]
+    get :quickview
   end
 
   namespace :admin do
