@@ -162,7 +162,7 @@
           <div class="respon-link col-lg-5 col-md-3 col-xs-12 hidden-xs hidden-sm">
             <div class="header-right clearfix">
               <div class="opal-topcart pull-right">
-                <div id="cart" class="dropdown version-1 box-top">
+                <div id="cart" class="custom-cart dropdown version-1 box-top">
                   <a class="dropdown-toggle mini-cart box-wrap" data-toggle="dropdown" aria-expanded="true" role="button" aria-haspopup="true" data-delay="0" href="#" title="View your shopping cart">
                     <span class="icon-basket icons">
                       <i class="fa fa-shopping-cart"></i>
@@ -176,7 +176,51 @@
 
                   <%= link_to '', class: 'dropdown-toggle' %>
                   <div class="dropdown-menu custom-dropdown-content">
-                    <%= t(:no_product_on_cart) %>
+
+                    <div class="cart-item">
+                      <ul class="clearfix mb20">
+                        <li class="item-img-width">
+                          <%= image_tag 'logo.png', width: 50 %>
+                        </li>
+                        <li class="item-text-width">
+                          <p>Minster Gamberretto</p>
+                          <span>2*580.0</span>
+                        </li>
+                        <li class="item-cross-width">
+                          <a>x</a>
+                        </li>
+                      </ul>
+
+                      <ul class="clearfix mb20">
+                        <li class="item-img-width">
+                          <%= image_tag 'logo.png', width: 50 %>
+                        </li>
+                        <li class="item-text-width">
+                          <p>Minster Gamberretto</p>
+                          <span>2*580.0</span>
+                        </li>
+                        <li class="item-cross-width">
+                          <a>x</a>
+                        </li>
+                      </ul>
+
+                      <ul class="clearfix mb20">
+                        <li class="item-img-width">
+                          <%= image_tag 'logo.png', width: 50 %>
+                        </li>
+                        <li class="item-text-width">
+                          <p>Minster Gamberretto</p>
+                          <span>2*580.0</span>
+                        </li>
+                        <li class="item-cross-width">
+                          <a>x</a>
+                        </li>
+                      </ul>
+
+                    </div>
+
+
+                    <%#= t(:no_product_on_cart) %>
                   </div>
                 </div>
               </div>
