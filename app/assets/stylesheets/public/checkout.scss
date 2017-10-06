@@ -40,6 +40,8 @@
 
 .billing-form {
   input, textarea, select {
+    border-radius: 0;
+    border-color: #ddd;
     color: #acacac;
     display: block;
     font-size: 14px;
@@ -47,6 +49,9 @@
     line-height: 1.62857;
     padding: 6px 12px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  }
+  .form-control {
+    box-shadow: none ;
   }
   input::-moz-placeholder, input::-moz-placeholder, input::-moz-placeholder, textarea::-moz-placeholder,
   select::-moz-placeholder {
