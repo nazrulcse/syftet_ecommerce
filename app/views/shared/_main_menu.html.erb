@@ -174,12 +174,9 @@
                     </span>
                   </a>
 
-                  <div class="dropdown-menu">
-                    <div class="widget_shopping_cart_content">
-                      <div class="cart_list ">
-                        <div class="empty"><%= t(:no_product_on_cart) %></div>
-                      </div>
-                    </div>
+                  <%= link_to '', class: 'dropdown-toggle' %>
+                  <div class="dropdown-menu custom-dropdown-content">
+                    <%= t(:no_product_on_cart) %>
                   </div>
                 </div>
               </div>
@@ -327,5 +324,8 @@
         $('.btn-toggle-canvas').click(function () {
             $('#page').find('.syftet-page-inner').toggleClass('active');
         });
+
+        //Cart Dropdown
+//        $(".dropdown-toggle").dropdown();
     });
 </script>
