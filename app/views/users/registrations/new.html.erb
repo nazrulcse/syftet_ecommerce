@@ -1,6 +1,6 @@
 <hr/>
 <%= devise_error_messages! %>
-<div class="col-lg-12">
+<div class="col-sm-12">
   <div class="row">
     <div class="col-sm-6">
       <div class="signup-wrapper row">
@@ -9,12 +9,12 @@
 
             <div class="form-group">
               <%= f.label :email %><br/>
-              <%= f.email_field :email, autofocus: true, class: 'required form-control reset-border-radius' %>
+              <%= f.email_field :email, autofocus: true, class: 'required custom-form-control form-control reset-border-radius' %>
             </div>
 
             <div class="form-group">
               <%= f.label :user_type, 'I am a' %><br/>
-              <%= f.select :user_type, options_for_select(AppSettings::USER_TYPE.collect { |key, value| [value, key] }), {}, {class: 'required form-control reset-border-radius'} %>
+              <%= f.select :user_type, options_for_select(AppSettings::USER_TYPE.collect { |key, value| [value, key] }), {}, {class: 'required custom-form-control form-control reset-border-radius'} %>
             </div>
 
             <div class="form-group">
@@ -22,16 +22,16 @@
               <% if @minimum_password_length %>
                   <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br/>
-              <%= f.password_field :password, autocomplete: "off", class: 'required form-control reset-border-radius' %>
+              <%= f.password_field :password, autocomplete: "off", class: 'required custom-form-control form-control reset-border-radius' %>
             </div>
 
             <div class="form-group">
               <%= f.label :password_confirmation %><br/>
-              <%= f.password_field :password_confirmation, autocomplete: "off", class: 'required form-control reset-border-radius' %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: 'required custom-form-control form-control reset-border-radius' %>
             </div>
 
             <div class="actions">
-              <%= f.submit "Sign up", class: 'btn btn-primary reset-border-radius' %>
+              <%= f.submit "Sign up", class: 'btn-yellow' %>
             </div>
         <% end %>
       </div>
@@ -43,11 +43,11 @@
             <p class="lead">Hello, Welcome Back!</p>
 
             <div class="form-group">
-              <%= f.email_field :email, autofocus: true, class: 'required form-control reset-border-radius', placeholder: 'Username' %>
+              <%= f.email_field :email, autofocus: true, class: 'required custom-form-control form-control reset-border-radius', placeholder: 'Username' %>
             </div>
 
             <div class="form-group">
-              <%= f.password_field :password, autocomplete: "off", class: 'password required form-control reset-border-radius', placeholder: 'Password' %>
+              <%= f.password_field :password, autocomplete: "off", class: 'password required custom-form-control form-control reset-border-radius', placeholder: 'Password' %>
             </div>
 
             <div class="form-group">
@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group">
-              <%= f.submit 'Log In', class: 'btn btn-primary reset-border-radius' %>
+              <%= f.submit 'Log In', class: 'btn-yellow' %>
             </div>
         <% end %>
       </div>
