@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
                        registrations: 'users/registrations',
+                       passwords: 'users/passwords'
                    }
   as :user do
     get 'login', to: 'users/sessions#new', as: :user_login

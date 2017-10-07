@@ -160,3 +160,17 @@ a {
   max-width: 100%;
   height: auto
 }
+
+/* Button design */
+.btn-yellow {
+  padding: 8px 20px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #ffcd56;
+  border-color: #ffcd56;
+  //border-radius: 2px;
+  &:hover {
+    background-color: #ffbe23;
+    border-color: #ffbe23;
+  }
+}
