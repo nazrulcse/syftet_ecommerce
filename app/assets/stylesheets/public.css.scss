@@ -160,3 +160,68 @@ a {
   max-width: 100%;
   height: auto
 }
+
+/* Button design */
+.btn-yellow {
+  padding: 8px 20px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #ffcd56;
+  border-color: #ffcd56;
+  //border-radius: 2px;
+  &:hover {
+    background-color: #ffbe23;
+    border-color: #ffbe23;
+  }
+}
+
+.btn-black {
+  padding: 8px 20px;
+  color: #ffcd56;
+  font-weight: bold;
+  background-color: #000;
+  border-color: #000;
+  //border-radius: 2px;
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.btn-cross {
+  font-size: 18px;
+  font-weight: bold;
+  color: #999999 !important;
+  cursor: pointer;
+  &:hover {
+    color: #ffcd56 !important;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.others-link {
+  a {
+    color: #333 !important;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: #fcc030 !important;
+      text-decoration: none;
+    }
+  }
+}
+
+/* Form design */
+.custom-form-control {
+  color: #e1e1e1 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e1e1e1 !important;
+  border-radius: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+.custom-form-control:focus {
+  border-color: #fcc030 !important;
+  outline: 0 !important;
+}

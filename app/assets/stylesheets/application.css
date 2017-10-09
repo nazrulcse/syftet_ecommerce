@@ -31,4 +31,5 @@
  *= require public/wishlist
  *= require public/cart
  *= require public/checkout
+ *= require sign_in
  */

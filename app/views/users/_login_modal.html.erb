@@ -1,12 +1,14 @@
+
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="modalLoginForm">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content reset-border-radius">
 
-      <div class="modal-body">
-        <div class="inner">
-          <button type="button" class="close btn btn-sm btn-primary pull-right" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">x</span>
-          </button>
+      <div class="modal-body p25">
+        <div class="inner clearfix">
+          <%= link_to '', class: 'btn-cross pull-right', 'data-dismiss' => 'modal' do %>
+          x
+          <% end %>
+
           <div class="text-center">
             <%= link_to root_path, style: 'display: inline-block;' do %>
                 <img class="img-responsive center-image" src="http://venusdemo.com/wordpress/pi/wp-content/themes/pi/images/logo.png" alt="">
@@ -19,11 +21,11 @@
                 <p class="lead">Hello, Welcome Back!</p>
 
                 <div class="form-group">
-                  <%= f.email_field :email, autofocus: true, class: 'required form-control reset-border-radius', placeholder: 'Username' %>
+                  <%= f.email_field :email, autofocus: true, class: 'required custom-form-control form-control', placeholder: 'Username' %>
                 </div>
 
                 <div class="form-group">
-                  <%= f.password_field :password, autocomplete: "off", class: 'password required form-control reset-border-radius', placeholder: 'Password' %>
+                  <%= f.password_field :password, autocomplete: "off", class: 'password required custom-form-control form-control', placeholder: 'Password' %>
                 </div>
 
                 <div class="form-group">
@@ -34,39 +36,35 @@
                 </div>
 
                 <div class="form-group">
-                  <%= f.submit 'Log In', class: 'btn btn-primary reset-border-radius' %>
-                  <input type="button" class="btn btn-default btn-cancel reset-border-radius" name="cancel" value="Cancel">
+                  <%= f.submit 'Log In', class: 'btn-yellow' %>
+
+                  <input type="button" class="btn-black btn-cancel" name="cancel" value="Cancel" data-dismiss="modal">
                 </div>
-                <p>
+                <div class="form-group others-link">
                   <a href="#opallostpasswordform" class="toggle-links link-forgot-password" title="Forgot Password">
                     Lost Your Password?
                   </a>
-                </p>
+                </div>
             <% end %>
           </div>
 
           <div id="opallostpasswordform" class="form-wrapper hidden">
-            <form name="lostpasswordform" id="lostpasswordform" class="lostpassword-form" action="http://venusdemo.com/wordpress/pi/wp-login.php?action=lostpassword" method="post">
+            <form name="lostpasswordform" id="lostpasswordform" class="lostpassword-form" method="post">
 
               <p class="lead">Reset Password</p>
 
               <div class="lostpassword-fields">
-                <p class="form-group">
-                  <label>Username or E-mail:<br>
-                    <input type="text" name="user_login" class="user_login form-control reset-border-radius" value="" size="20" tabindex="10"></label>
-                </p>
-                <input type="hidden" id="security" name="security" value="917b36a15c"><input type="hidden" name="_wp_http_referer" value="/wordpress/pi/">
+                <div class="form-group">
+                  <label>Email</label>
+                    <input type="text" name="user_login" class="user_login custom-form-control form-control ">
+                </div>
 
-                <p class="submit">
-                  <input type="submit" class="btn btn-primary reset-border-radius" name="wp-submit" value="Get New Password" tabindex="100">
-                  <input type="button" class="btn btn-default btn-cancel reset-border-radius" value="Cancel" tabindex="101">
-                </p>
-
-                <p class="nav">
-
-                </p>
+                <div class="form-group">
+                  <input type="submit" class="btn-yellow" name="wp-submit" value="Get New Password">
+                  <input type="button" class="btn-black" value="Cancel" data-dismiss="modal">
+                </div>
               </div>
-              <div class="lostpassword-link">
+              <div class="lostpassword-link others-link">
                 <a href="#opalloginform" class="toggle-links link-back-login">Back To Login</a>
               </div>
             </form>
@@ -85,8 +83,6 @@
             $(target).removeClass('hidden');
             return false;
         });
-        $('.btn-cancel').click(function () {
-            return false;
-        });
     });
 </script>
+
