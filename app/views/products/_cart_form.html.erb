@@ -63,13 +63,13 @@
 
       <% if check_country('BD') %>
           <div data-hook="product_price">
-            <% if true #@product.can_supply?                                                    %>
+            <% if true #@product.can_supply?                                                     %>
                 <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
                     ADD TO CART
                 <% end %>
-                <a href="#" class="btn">
-                  <i class="fa fa-heart-o"></i>
-                </a>
+                <span class="ml10">
+                  <%= raw wishlist_link(@product.id) %>
+                </span>
                 <a href="#" class="btn">
                   <i class="fa fa-refresh"></i>
                 </a>

@@ -90,7 +90,7 @@ module ApplicationHelper
   end
 
   def get_image_link(product, image)
-    image.present? && image.attachment.present? ? image.attachment.url : small_image(product)
+    image.present? && image.attachment.present? ? image.attachment.url(:product) : small_image(product)
   end
 
   def get_zoom_image_link(image)
@@ -101,9 +101,32 @@ module ApplicationHelper
     action == menu_action ? 'active' : ''
   end
 
+  def product_preview_image(product)
+    if product.master_images.present?
+      image = product.master_images.last
+      image_tag(image.attachment.url(:product), class: 'image-hover product-image')
+    else
+      ''
+    end
+  end
+
+  def product_thumb_image(product)
+    if product.master_images.present?
+      image = product.master_images.last
+      image_tag(image.attachment.url, class: 'single-image-fluid')
+    else
+      ''
+    end
+  end
+
   def wishlist_link(product)
-    link_to product_wishlists_path(product), remote: true, method: :post do
-      raw '<i class="fa fa-heart-o"></i>'
+    wishlist = current_user.wishlists.find_by_product_id(product)
+    if wishlist.present?
+      raw "<i class='fa fa-heart' style='color: #fcc030;' title='added to wishlist'></i>"
+    else
+      link_to product_wishlists_path(product), remote: true, method: :post do
+        raw '<i class="fa fa-heart-o"></i>'
+      end
     end
   end
 

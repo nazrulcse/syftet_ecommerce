@@ -2,11 +2,13 @@
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-6">
-        <img src="http://venusdemo.com/wordpress/pi/wp-content/uploads/2017/03/30.jpg" class="single-image-fluid" alt="">
+        <%= product_thumb_image(@product) %>
       </div>
       <div class="col-sm-6">
         <div class="product-details-wrapper pdetail">
-          <h1 class="product-title">Brigitte Bordeux</h1>
+          <h1 class="product-title">
+            <%= @product.name %>
+          </h1>
 
           <div class="product-rating">
             <div class="rating" style="display: inline-block; padding: 10px 0;">
@@ -24,28 +26,29 @@
 
           <p class="price">
             <ins>
-              <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>40.0</span>
+              <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>
+                <%= @product.price %>
+              </span>
             </ins>
           </p>
 
           <div class="short-description">
             <p>
-              In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do
-              what we like best, every pleasure is to be welcomed and every pain avoided.
+              <%= @product.description %>
             </p>
           </div>
 
           <div class="cart" style="margin: 15px 0">
             <div class="add-cart">
-              <a title="Add to cart" href="/products/1" class="btn btn-warning btn-large" style="color: #ffffff;">
-                <i class="icon-bag"></i><span class="title-cart">Select options</span>
-              </a>
+              <%= link_to product_path(@product), title: 'add to cart', class: 'btn btn-warning btn-large', style: 'color: #ffffff;' do %>
+                  <i class="icon-bag"></i><span class="title-cart">Select options</span>
+              <% end %>
             </div>
           </div>
 
           <div class="product-meta">
             <p class="sku-wrapper">
-              SKU: <span class="sku">N/A</span>
+              SKU: <span class="sku"><%= @product.sku || 'N/A' %></span>
             </p>
 
             <p class="posted_in">

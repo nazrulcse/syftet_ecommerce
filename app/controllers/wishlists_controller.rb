@@ -6,8 +6,9 @@ class WishlistsController < ApplicationController
     @status = wishlist.save
   end
 
-  def delete
-
+  def destroy
+    wishlist = current_user.wishlists.find_by_id(params[:id])
+    wishlist.destroy
   end
 
   def index

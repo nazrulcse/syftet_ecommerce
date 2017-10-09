@@ -66,6 +66,7 @@ product_search = ''; //adminPathFor('search/products');
 taxons_search = '/admin/taxons/search'; //Syftet.pathFor('api/v1/taxons');
 user_search = ''; //Spree.adminPathFor('search/users')
 api_key = 'dfsdfdsfd';
+Syftet.routes.taxons_search = '/admin/taxons/search';
 //Spree.routes.variants_api = Spree.pathFor('api/v1/variants')
 //
 //Spree.routes.edit_product = function(product_id) {

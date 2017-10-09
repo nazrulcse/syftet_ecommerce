@@ -187,13 +187,13 @@
     <%# if can? :modify, ProductOptionType %>
     <%#= f.hidden_field :option_type_ids, value: @product.option_type_ids.join(',') %>
     <%# elsif @product.option_types.any? %>
-    <ul class="text_list">
-      <%# @product.option_types.each do |type| %>
-      <li><%#= type.presentation %> (<%#= type.name %>)</li>
-      <%# end %>
-    </ul>
+    <!--<ul class="text_list">-->
+    <%# @product.option_types.each do |type| %>
+    <!--<li><%#= type.presentation %> (<%#= type.name %>)</li>-->
+    <%# end %>
+    <!--</ul>-->
     <%# else %>
-    <div class="alert alert-info"><%#= t(:no_resource_found, resource: :option_types) %></div>
+    <!--<div class="alert alert-info"><%#= t(:no_resource_found, resource: :option_types) %></div>-->
     <%# end %>
 
     <%# end %>

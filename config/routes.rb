@@ -27,14 +27,13 @@ Rails.application.routes.draw do
   get '/privacy_policy', to: 'public#privacy_policy', as: :privacy_policy
   get '/term_condition', to: 'public#term_condition', as: :term_condition
   get '/my_account', to: 'users#my_account'
-  get '/wishlist', to: 'public#wishlist'
   get '/cart', to: 'public#cart'
   get '/checkout', to: 'public#checkout'
 
 
-  resources :wishlists, only: [:index]
+  resources :wishlists, only: [:index, :destroy]
   resources :products do
-    resources :wishlists, only: [:create, :delete]
+    resources :wishlists, only: [:create]
     get :quickview
   end
 
