@@ -1,4 +1,4 @@
-<%= form_for :order, url: '#', remote: true, :html => {id: "order-populate"} do |f| %>
+<%= form_for :order, url: populate_orders_path, remote: true, :html => {id: "order-populate"} do |f| %>
     <div id="inside-product-cart-form" data-hook="inside_product_cart_form">
       <%= hidden_field_tag "variant_id", @product.master.id %>
       <%= hidden_field_tag "size" %>
@@ -63,7 +63,7 @@
 
       <% if check_country('BD') %>
           <div data-hook="product_price">
-            <% if true #@product.can_supply?                                                     %>
+            <% if true #@product.can_supply?                                                      %>
                 <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
                     ADD TO CART
                 <% end %>

@@ -1,0 +1,39 @@
+class CreateOrders < ActiveRecord::Migration[5.1]
+  def change
+    create_table :orders do |t|
+      t.string :number
+      t.numeric :item_total
+      t.numeric :total
+      t.string :state
+      t.numeric :adjustment_total
+      t.integer :user_id
+      t.datetime :completed_at
+      t.integer :bill_address_id
+      t.integer :ship_address_id
+      t.numeric :payment_total
+      t.string :shipment_state
+      t.string :payment_state
+      t.string :email
+      t.string :currency
+      t.string :last_ip_address
+      t.string :created_by_id
+      t.numeric :shipment_total
+      t.numeric :promo_total
+      t.string :chanel
+      t.integer :item_count
+      t.integer :approver_id
+      t.datetime :approved_at
+      t.boolean :confirmation_delivered
+      t.boolean :considered_risky
+      t.string :guest_token
+      t.datetime :canceled_at
+      t.integer :canceler_id
+      t.integer :store_id
+      t.integer :state_loc_version
+      t.date :shipment_date
+      t.integer :shipment_progress
+      t.datetime :shipped_at
+      t.timestamps
+    end
+  end
+end

@@ -45,6 +45,8 @@ gem 'awesome_nested_set'
 gem "paranoia" #, github: "rubysherpas/paranoia", branch: "rails5"
 gem 'paperclip'
 gem 'ancestry'
+gem 'truncate_html'
+gem 'state_machine'
 
 gem 'devise'
 

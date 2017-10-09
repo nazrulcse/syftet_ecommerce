@@ -21,7 +21,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <%= f.label :variants_including_master_sku_cont, t(:sku) %>
-                <%#= f.text_field :variants_including_master_sku_cont, :size => 15, class: "form-control" %>
+                <%= f.text_field :variants_including_master_sku_cont, :size => 15, class: "form-control" %>
               </div>
             </div>
             <div class="col-md-12">
@@ -56,6 +56,7 @@
       <tr data-hook="admin_products_index_headers">
         <th><%= t(:sku) %></th>
         <th><%= t(:status) %></th>
+        <th><%= t(:is_featured) %></th>
 
         <th colspan="2"><%= sort_link @search, :name, t(:name), {default_order: "desc"}, {title: 'admin_products_listing_name_title'} %></th>
         <th class="text-center">
@@ -69,9 +70,13 @@
           <tr <%== "style='color: red;'" if product.deleted? %> id="<%= spree_dom_id product %>" data-hook="admin_products_index_rows" class="<%= cycle('odd', 'even') %>">
             <td class="sku"><%= product.sku rescue '' %></td>
             <td class="status"><%= available_status(product) %> </td>
-            <td class="image"><%#= mini_image product %></td>
+            <td class="status"><%= product.is_featured ? 'Yes' : 'No' %> </td>
+            <td class="image"><%= mini_image product %></td>
             <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
-            <td class="text-center"><%= product.display_price.to_html rescue '' %></td>
+            <td class="text-center">
+              <%#= product.display_price.to_html rescue '' %> <!-- TODO: have to check display price method -->
+              <%= product.price %>
+            </td>
             <td class="actions actions-3 text-right" data-hook="admin_products_index_row_actions">
               <%= link_to_edit product, no_text: true, class: 'edit' if can?(:edit, product) && !product.deleted? %>
               <%= link_to_clone product, no_text: true, class: 'clone' if can?(:clone, product) %>

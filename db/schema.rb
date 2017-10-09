@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009063958) do
+ActiveRecord::Schema.define(version: 20171009134801) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -66,6 +66,27 @@ ActiveRecord::Schema.define(version: 20171009063958) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "variant_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.float "price", limit: 24
+    t.float "cost_price", limit: 24
+    t.string "currency"
+    t.decimal "adjustment_total", precision: 10
+    t.decimal "promo_total", precision: 10
+    t.string "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "newsletter_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "email"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "option_value_variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "variant_id"
     t.integer "option_value_id"
@@ -77,6 +98,43 @@ ActiveRecord::Schema.define(version: 20171009063958) do
     t.integer "position"
     t.string "name"
     t.string "presentation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "number"
+    t.decimal "item_total", precision: 10
+    t.decimal "total", precision: 10
+    t.string "state"
+    t.decimal "adjustment_total", precision: 10
+    t.integer "user_id"
+    t.datetime "completed_at"
+    t.integer "bill_address_id"
+    t.integer "ship_address_id"
+    t.decimal "payment_total", precision: 10
+    t.string "shipment_state"
+    t.string "payment_state"
+    t.string "email"
+    t.string "currency"
+    t.string "last_ip_address"
+    t.string "created_by_id"
+    t.decimal "shipment_total", precision: 10
+    t.decimal "promo_total", precision: 10
+    t.string "chanel"
+    t.integer "item_count"
+    t.integer "approver_id"
+    t.datetime "approved_at"
+    t.boolean "confirmation_delivered"
+    t.boolean "considered_risky"
+    t.string "guest_token"
+    t.datetime "canceled_at"
+    t.integer "canceler_id"
+    t.integer "store_id"
+    t.integer "state_loc_version"
+    t.date "shipment_date"
+    t.integer "shipment_progress"
+    t.datetime "shipped_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -110,6 +168,7 @@ ActiveRecord::Schema.define(version: 20171009063958) do
     t.datetime "discontinue_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_featured", default: false
   end
 
   create_table "products_taxons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -209,6 +268,20 @@ ActiveRecord::Schema.define(version: 20171009063958) do
     t.integer "source_location_id"
     t.integer "destination_location_id"
     t.string "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "url"
+    t.text "meta_description"
+    t.string "meta_keywords"
+    t.string "seo_title"
+    t.string "mail_from_address"
+    t.string "default_currency"
+    t.string "code"
+    t.boolean "default"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

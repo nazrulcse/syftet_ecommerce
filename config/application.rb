@@ -11,7 +11,7 @@ module Syftet
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
-    config.i18n.default_locale = :'bn'
+    config.i18n.default_locale = :'en'
 
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('lib/syftet/localized_number.rb')

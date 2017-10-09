@@ -22,10 +22,10 @@
             </div>
           </div>
 
-          <div class="product-slider product-lists">
-            <% 7.times.each do |i| %>
+          <div class="product-slider product-lists clearfix">
+            <% @new_arrivals.each do |product| %>
                 <div class="col-sm-3">
-                  <%= render 'product' %>
+                  <%= render 'products/product', product: product %>
                 </div>
             <% end %>
           </div>

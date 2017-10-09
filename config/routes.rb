@@ -29,12 +29,17 @@ Rails.application.routes.draw do
   get '/my_account', to: 'users#my_account'
   get '/cart', to: 'public#cart'
   get '/checkout', to: 'public#checkout'
+  post '/email_subscription', to: 'public#subscribe'
 
 
   resources :wishlists, only: [:index, :destroy]
   resources :products do
     resources :wishlists, only: [:create]
     get :quickview
+  end
+
+  resources :orders, except: [:index, :new, :create, :destroy] do
+    post :populate, on: :collection
   end
 
   namespace :admin do

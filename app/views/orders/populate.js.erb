@@ -1,0 +1,13 @@
+<%# if @error %>
+popupMessage("<%#= raw @error.to_s %>", 'alert-danger');
+<%#else%>
+popupMessage("Item has been added to cart", 'alert-success');
+$("#shopping-cart-doopdown").html("<%#= escape_javascript(render 'shared/shopping_cart_items').html_safe %>");
+if ($('.cart-items-count').length > 0) {
+    $(".cart-items-count").html("<%#= line_item_count %>");
+}
+else {
+    $('.shopping-cart .cart-icon').append("<span class='cart-items-count'><%#= line_item_count %></span>");
+}
+$('.estimated-total-amount').html("<%#= price_with_currency(simple_current_order.total) %>");
+<%#end%>

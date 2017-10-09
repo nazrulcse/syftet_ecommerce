@@ -31,6 +31,14 @@
             <%= f.error_message_on :description %>
         <% end %>
       </div>
+
+      <div data-hook="admin_product_form_slug">
+        <%= f.field_container :is_featured, class: ['form-group'] do %>
+            <%= f.label :is_featured, class: 'middle-align' %>
+            <%= f.check_box :is_featured %>
+            <%= f.error_message_on :is_featured %>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-md-4" data-hook="admin_product_form_right">

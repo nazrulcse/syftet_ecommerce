@@ -6,7 +6,7 @@ module Preferences
     end
 
     def store
-      Spree::Preferences::Store.instance
+      Preferences::Store.instance
     end
 
     def fetch key, &block

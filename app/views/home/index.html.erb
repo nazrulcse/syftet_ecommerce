@@ -4,14 +4,14 @@
 <%= render 'top_category_promo' %>
 
 <section class="featured-products">
-  <h3 class="title">
+  <h3 class="title public-title">
     <%= t(:featured_products) %>
   </h3>
 
-  <div class="product-lists">
-    <% 8.times.each do |i| %>
+  <div class="product-lists clearfix">
+    <% @featured_products.each do |product| %>
         <div class="product-wrapper product col-sm-6 col-md-3">
-          <%= render 'product' %>
+          <%= render 'products/product', product: product %>
         </div>
     <% end %>
   </div>
@@ -21,7 +21,6 @@
     <% end %>
   </div>
 </section>
-
 <section class="row featured-banner">
   <div class="hidden-xs">
     <div class="col-sm-12">

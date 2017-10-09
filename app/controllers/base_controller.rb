@@ -6,7 +6,8 @@ class BaseController < ApplicationController
   # include Spree::Core::ControllerHelpers::RespondWith
   # include Spree::Core::ControllerHelpers::Common
   # include Spree::Core::ControllerHelpers::Search
-  # include Spree::Core::ControllerHelpers::Store
+  include Core::ControllerHelpers::StoreHelper
+  include Core::ControllerHelpers::OrderHelper
   # include Core::ControllerHelpers::StrongParameters
 
   respond_to :html

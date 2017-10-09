@@ -101,6 +101,14 @@ module ApplicationHelper
     action == menu_action ? 'active' : ''
   end
 
+  def mini_image(variant, size = 50)
+    image_url = 'assets/not_available.png'
+    if variant.present?
+      image_url = variant.images.present? ? variant.images.order(:id).first.attachment.url(:small) : ''
+    end
+    image_tag(image_url, style: "width: #{50}px")
+  end
+
   def product_preview_image(product)
     if product.master_images.present?
       image = product.master_images.last
@@ -120,7 +128,7 @@ module ApplicationHelper
   end
 
   def wishlist_link(product)
-    wishlist = current_user.wishlists.find_by_product_id(product)
+    wishlist = current_user.present? ? current_user.wishlists.find_by_product_id(product) : nil
     if wishlist.present?
       raw "<i class='fa fa-heart' style='color: #fcc030;' title='added to wishlist'></i>"
     else
@@ -130,4 +138,9 @@ module ApplicationHelper
     end
   end
 
+  # Order
+
+  def line_item_count
+    current_order.present? ? current_order.line_items.count : 0
+  end
 end

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  variant_id: 1
+  order_id: 1
+  quantity: 1.5
+  proce: 1.5
+  cost_price: 1.5
+  currency: MyString
+  adjustment_total: 
+  promo_total: 
+  size: MyString
+
+two:
+  variant_id: 1
+  order_id: 1
+  quantity: 1.5
+  proce: 1.5
+  cost_price: 1.5
+  currency: MyString
+  adjustment_total: 
+  promo_total: 
+  size: MyString

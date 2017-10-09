@@ -38,3 +38,21 @@ $(document).on('turbolinks:load', function () {
         });
     });
 });
+
+function popupMessage(message, klass) {
+    notificationTop = "+" + ($(document).scrollTop() + 60);
+    $('#notification').removeClass().addClass('alert ' + klass);
+    $('#flash-msg-text').html(message);
+    $('#notification').show().animate({
+        top: notificationTop
+    }, 200);
+    $('#notice-close').click(function () {
+        $('#notification').hide();
+        return true;
+    });
+    setTimeout(function () {
+        $('#notification').hide().animate({
+            top: "-60"
+        }, 500);
+    }, 4000);
+}

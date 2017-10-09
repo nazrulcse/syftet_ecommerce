@@ -131,6 +131,16 @@ a {
   width: 100%;
   text-align: center;
   margin-bottom: 30px;
+  padding-bottom: 6px;
+  &:before {
+    content: "";
+    position: absolute;
+    background: image-url('line_title.png') no-repeat;
+    width: 100%;
+    bottom: 0;
+    height: 100%;
+    background-position: 0 100%;
+  }
 }
 
 .col-inner-container {
@@ -221,6 +231,7 @@ a {
   background-image: none !important;
   box-shadow: none !important;
 }
+
 .custom-form-control:focus {
   border-color: #fcc030 !important;
   outline: 0 !important;

@@ -13,13 +13,13 @@ class LineItem < Base
   has_many :inventory_units, inverse_of: :line_item
 
   before_validation :copy_price
-  before_validation :copy_tax_category
+  # before_validation :copy_tax_category
 
   validates :variant, presence: true
-  validates :quantity, numericality: {only_integer: true, message: Spree.t('validation.must_be_int')}
+  validates :quantity, numericality: {only_integer: true, message: I18n.t('validation.must_be_int')}
   validates :price, numericality: true
 
-  validates_with Stock::AvailabilityValidator
+  # validates_with Stock::AvailabilityValidator TODO: Need to activate this
   validate :ensure_proper_currency
 
   before_destroy :update_inventory
@@ -28,7 +28,7 @@ class LineItem < Base
   after_save :update_inventory
   after_save :update_adjustments
 
-  after_create :update_tax_charge
+  # after_create :update_tax_charge
 
   delegate :name, :description, :sku, :should_track_inventory?, :product, to: :variant
   delegate :tax_zone, to: :order
@@ -76,7 +76,7 @@ class LineItem < Base
   alias_method :discounted_amount, :taxable_amount
 
   def final_amount
-    amount + adjustment_total
+    amount + 0 # adjustment_total TODO: need to active
   end
 
   alias total final_amount
@@ -125,7 +125,7 @@ class LineItem < Base
 
   def update_inventory
     if (changed? || target_shipment.present?) && order.has_checkout_step?("delivery")
-      OrderInventory.new(order, self).verify(target_shipment)
+      # OrderInventory.new(order, self).verify(target_shipment) # TODO: need to activate this
     end
   end
 
@@ -141,11 +141,11 @@ class LineItem < Base
   end
 
   def recalculate_adjustments
-    Adjustable::AdjustmentsUpdater.update(self)
+    # Adjustable::AdjustmentsUpdater.update(self) TODO: Need to activate this
   end
 
   def update_tax_charge
-    TaxRate.adjust(order, [self])
+    # TaxRate.adjust(order, [self])
   end
 
   def ensure_proper_currency

@@ -1,4 +1,6 @@
-class PublicController < ApplicationController
+require 'mail'
+
+class PublicController < BaseController
   def contact_us
     @title = "Huge Selection of Shoes, Clothes, Bags & More. 24/7 Customer Service at BrandCruz!"
     @keywords = "Women's Shoes, Sale, Men's Shoes, Log In, Shipping and Returns"
@@ -33,6 +35,22 @@ class PublicController < ApplicationController
     @title = "Brandcruz: Search and find the latest in fashion | Shipping Worldwide"
     @keywords = "Shoes, Dress, New to Sale, Designers,"
     @description = "FREE RETURNS & FREE 3-DAY SHIPPING WORLDWIDE -Women’s, Men’s Dresses, Handbags, Shoes, Jeans, Tops and more."
+  end
+
+  def subscribe
+    email = params[:email]
+    begin
+      Mail::Address.new(email)
+      newsletter = NewsletterSubscription.find_or_initialize_by(email: email)
+      unless newsletter.save
+        @message = newsletter.errors.first
+      end
+    rescue => ex
+      @message = "Email address not valid: #{ex.message}"
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   def privacy_policy

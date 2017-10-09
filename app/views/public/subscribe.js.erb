@@ -1,0 +1,6 @@
+<% if @message.present? %>
+alert("<%= @message %>");
+<%else%>
+alert('Successfully added to our email list');
+$('#newsletter_subscription_email').val('');
+<%end%>

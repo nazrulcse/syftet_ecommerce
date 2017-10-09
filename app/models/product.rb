@@ -123,6 +123,14 @@ class Product < Base
     variants.any?
   end
 
+  def self.featured_products
+    where(is_featured: true)
+  end
+
+  def self.new_arrivals
+    where("created_at >= ?", 15.days.ago)
+  end
+
   def tax_category
 #    super || TaxCategory.find_by(is_default: true) TODO: Need to enabled tax
   end

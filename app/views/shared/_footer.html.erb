@@ -21,17 +21,18 @@
 
         <div class="col-sm-7 col-sm-7">
           <div class="news-widget-form">
-            <form method="post">
-              <div class="form-fields">
-                <div class="input-group">
-                  <input id="mc4wp_email" class="form-control" name="EMAIL" required="required" type="email" placeholder="<%= t(:enter_your_email) %>...">
+            <%= form_for NewsletterSubscription.new, url: email_subscription_path, remote: true do |f| %>
+                <div class="form-fields">
+                  <div class="input-group">
+                    <%= f.email_field :email, class: 'form-control', placeholder: "#{t(:enter_your_email)}..." %>
+                    <!--<input id="subscription-email" class="form-control" name="EMAIL" required="required" type="email" placeholder="<%= %>...">-->
 
                     <span class="clearfix pull-right">
                       <input type="submit" value="<%= t(:subscribe) %> +" class="btn">
                     </span>
+                  </div>
                 </div>
-              </div>
-            </form>
+            <% end %>
           </div>
         </div>
       </div>
