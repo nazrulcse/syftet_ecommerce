@@ -6,6 +6,12 @@
         <%= f.error_message_on :email %>
     <% end %>
 
+    <%= f.field_container :user_type, class: ['form-group'] do %>
+        <%= f.label :email, t(:user_type) %>
+        <%= f.select :user_type, options_for_select(AppSettings::USER_TYPE.collect { |key, value| [value, key] }, f.object.user_type), {}, {class: 'form-control'} %>
+        <%= f.error_message_on :user_type %>
+    <% end %>
+
     <div data-hook="admin_user_form_roles" class="form-group">
       <strong><%= t(:roles) %></strong>
       <%= f.collection_check_boxes :role_ids, Role.all, :id, :name do |role_form| %>

@@ -135,7 +135,7 @@ module Admin
     end
 
     def spree_dom_id(record)
-      dom_id(record, 'spree')
+      dom_id(record, 'syftet')
     end
 
     I18N_PLURAL_MANY_COUNT = 2.1

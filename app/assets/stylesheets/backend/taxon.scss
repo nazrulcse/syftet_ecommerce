@@ -1,0 +1,25 @@
+.taxon-actions {
+  a {
+    font-size: 13px;
+    margin-left: 5px;
+    &.add {
+      color: #7DB942;
+    }
+    &.edit {
+      color: #fcc030;
+    }
+    &.delete {
+      color: #F55753;
+    }
+  }
+}
+
+.taxons-table {
+  ul {
+    list-style: none;
+    padding-top: 5px;
+    li {
+      padding: 3px 0;
+    }
+  }
+}

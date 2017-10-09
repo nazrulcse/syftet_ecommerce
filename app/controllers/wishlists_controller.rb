@@ -11,6 +11,6 @@ class WishlistsController < ApplicationController
   end
 
   def index
-
+    @wishlists = current_user.wishlists
   end
 end

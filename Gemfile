@@ -44,6 +44,7 @@ gem 'acts_as_list', '0.7.5'
 gem 'awesome_nested_set'
 gem "paranoia" #, github: "rubysherpas/paranoia", branch: "rails5"
 gem 'paperclip'
+gem 'ancestry'
 
 gem 'devise'
 

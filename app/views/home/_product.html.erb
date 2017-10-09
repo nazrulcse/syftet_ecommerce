@@ -1,26 +1,26 @@
 <div class="product-block">
   <figure>
-    <a title="Brigitte Bordeux" href="#" class="product-image">
+    <a title="<%= product.name %>" href="#" class="product-image">
       <img src="http://venusdemo.com/wordpress/pi/wp-content/uploads/2017/03/30.jpg" class="image-hover" alt="">
     </a>
 
     <div class="wrap-add-whishlist clearfix">
       <div class="add-to-wishlist">
-        <%= raw wishlist_link(1) %>
+        <%= raw wishlist_link(product) %>
       </div>
     </div>
 
     <div class="button-action clearfix">
       <div class="button-groups">
         <div class="add-cart">
-          <a title="Add to cart" href="http://venusdemo.com/wordpress/pi/product/brigitte-bordeux/" class="button add_to_cart_button">
+          <a title="Add to cart" href="<%= product_path(product) %>" class="button add_to_cart_button">
             <i class="fa fa-bag"></i>
             <span class="title-cart">Select options</span>
           </a>
         </div>
         <div class="wrap-acction-group">
           <div class="quick-view hidden-xs hidden-sm">
-            <a title="Quick view" href="#" data-action="/products/1/quickview" class="quickview" data-toggle="modal" data-target="#quickview-modal">
+            <a title="Quick view" href="#" data-action="<%= product_quickview_path(product) %>" class="quickview" data-toggle="modal" data-target="#quickview-modal">
               <i class="fa fa-eye" title="Quick view"> </i>
             </a>
           </div>
@@ -37,7 +37,7 @@
 
   <div class="meta">
     <h3 class="name">
-      <a href="/products/test-products">Brigitte Bordeux</a>
+      <%= link_to product.name, product_path(product) %>
     </h3>
 
     <div class="caption">
@@ -48,7 +48,8 @@
       </div>
         <span class="price">
             <span class="amount">
-              <span>$</span>40.0
+              <span>$</span>
+              <%= product.price %>
             </span>
         </span>
     </div>

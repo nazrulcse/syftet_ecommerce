@@ -23,7 +23,7 @@
         <% if @products.empty? %>
             <h6 class="search-results-title"><%= Spree.t(:no_products_found) %></h6>
         <% else %>
-            <%= render :partial => 'spree/shared/products', :locals => {:products => @products, :taxon => @taxon} %>
+            <%= render :partial => 'shared/products', :locals => {:products => @products, :taxon => @taxon} %>
         <% end %>
       </div>
   <% else %>
@@ -32,9 +32,9 @@
         <%#= render :partial => 'spree/shared/products', :locals => {:products => @products, :taxon => @taxon} %>
         <%# end %>
         <div class="row">
-          <% 12.times.each do |i| %>
+          <% @products.each do |product| %>
               <div class="product-wrapper product col-sm-6 col-md-4">
-                <%= render 'home/product' %>
+                <%= render 'home/product', product: product %>
               </div>
           <% end %>
         </div>

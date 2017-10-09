@@ -6,12 +6,11 @@ class Taxon < Base
   friendly_id :permalink, slug_column: :permalink, use: :slugged
   before_create :set_permalink
 
-  # acts_as_nested_set dependent: :destroy
+  acts_as_nested_set dependent: :destroy
 
   belongs_to :taxonomy, class_name: 'Taxonomy', inverse_of: :taxons
   has_many :classifications, -> { order(:position) }, dependent: :delete_all, inverse_of: :taxon
   has_many :products, through: :classifications
-  has_one :parent, class_name: self, foreign_key: :parent_id
 
   validates :name, presence: true
 

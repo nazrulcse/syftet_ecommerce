@@ -9,20 +9,20 @@ module Admin
 
     end
 
-    def search
-      if params[:ids]
-        @taxons = Spree::Taxon.where(id: params[:ids].split(','))
-      else
-        @taxons = Spree::Taxon.limit(20).ransack(name_cont: params[:q]).result
-      end
-    end
+    # def search
+    #   if params[:ids]
+    #     @taxons = Spree::Taxon.where(id: params[:ids].split(','))
+    #   else
+    #     @taxons = Spree::Taxon.limit(20).ransack(name_cont: params[:q]).result
+    #   end
+    # end
 
     def create
       @taxon = @taxonomy.taxons.build(taxon_params)
-      if @taxon.save
+      if @taxon.save!
         respond_with(@taxon) do |format|
           format.json { render json: @taxon.to_json }
-          format.html { redirect_to edit_admin_taxon_path(@taxon) }
+          format.html { redirect_to edit_admin_taxonomy_taxon_path(@taxonomy.id, @taxon.id) }
         end
       else
         flash[:error] = Spree.t('errors.messages.could_not_create_taxon')
@@ -43,7 +43,7 @@ module Admin
     def update
       parent_id = params[:taxon][:parent_id]
       set_position
-      set_parent(parent_id)
+      set_parent(parent_id) if parent_id
 
       @taxon.save!
 
@@ -71,13 +71,16 @@ module Admin
     def destroy
       @taxon = Taxon.find(params[:id])
       @taxon.destroy
-      respond_with(@taxon) { |format| format.json { render json: '' } }
+      respond_with(@taxon) { |format|
+        format.json { render json: '' }
+        format.js {}
+      }
     end
 
     def search
       taxons = Taxon.all
       respond_to do |format|
-        format.json { render json: {taxons: taxons.to_json} }
+        format.json { render json: {taxons: taxons.collect { |taxon| {label: taxon.name, id: taxon.id} }} }
       end
     end
 

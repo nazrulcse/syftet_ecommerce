@@ -42,7 +42,7 @@
   <div class="form-group <%= "#{type}-row" %>">
     <%= f.label :country_id, t(:country) %>
     <span id="<%= s_or_b %>country">
-      <%= f.text_field :country %>
+      <%= f.text_field :country, class: 'form-control' %>
     </span>
   </div>
 

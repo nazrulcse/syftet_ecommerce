@@ -42,6 +42,8 @@ GEM
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ancestry (3.0.1)
+      activerecord (>= 3.2.0)
     arel (8.0.0)
     autoprefixer-rails (6.7.7.1)
       execjs
@@ -243,6 +245,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list (= 0.7.5)
+  ancestry
   awesome_nested_set
   bootstrap-sass (~> 3.3.6)
   byebug

@@ -11,7 +11,7 @@ class ProductsController < StoreController
   def index
     # @searcher = build_searcher(params.merge(include_images: true))
     # @products = @searcher.retrieve_products
-    @products = [] #@products.includes(:possible_promotions) if @products.respond_to?(:includes)
+    @products = Product.all.includes(:variants) #@products.includes(:possible_promotions) if @products.respond_to?(:includes)
     @taxonomies = Taxonomy.all
   end
 
