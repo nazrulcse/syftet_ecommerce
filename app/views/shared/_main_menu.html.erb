@@ -130,19 +130,6 @@
                           </li>
                         </ul>
                       </li>
-
-                      <!--<li class="menu-item">-->
-                      <!--<%#= link_to cart_path do %>-->
-                      <!--Cart-->
-                      <!--<%# end %>-->
-                      <!--</li>-->
-
-                      <li class="menu-item">
-                        <%= link_to checkout_path do %>
-                            Checkout
-                        <% end %>
-                      </li>
-
                     </ul>
                   </div>
                 </nav>
@@ -168,38 +155,13 @@
                       <span class="icon-basket icons">
                       <i class="fa fa-shopping-cart"></i>
                       <span class="mini-cart-items"><%= line_item_count %></span>
-                      <span class="woocommerce-Price-amount amount">
-                        <span class="woocommerce-Price-currencySymbol">$</span>
-                        0.0
+                      <span class="price-amount amount mini-cart-total">
+                         <%= amount_with_currency(current_order.total) if current_order %>
                       </span>
                     </span>
                   <% end %>
-                  <div class="dropdown-menu custom-dropdown-content">
-
-                    <div class="cart-item">
-                      <% if current_order.present? %>
-                          <% current_order.line_items.each do |line_item| %>
-                              <ul class="clearfix mb20">
-                                <li class="item-img-width">
-                                  <%= mini_image(line_item.product) %>
-                                </li>
-                                <li class="item-text-width">
-                                  <p>
-                                    <%= link_to line_item.product.name, product_path(line_item.product) %>
-                                  </p>
-                                  <span> <%= line_item.total %> </span>
-                                </li>
-                                <li class="item-cross-width">
-                                  <a>x</a>
-                                </li>
-                              </ul>
-                          <% end %>
-                      <% else %>
-                          <%= t(:no_product_on_cart) %>
-                      <% end %>
-                    </div>
-
-
+                  <div class="dropdown-menu custom-dropdown-content" id="shopping-cart-doopdown">
+                    <%= render 'shared/cart_items' %>
                   </div>
 
                 </div>

@@ -2,23 +2,23 @@ class CreateOrders < ActiveRecord::Migration[5.1]
   def change
     create_table :orders do |t|
       t.string :number
-      t.numeric :item_total
-      t.numeric :total
+      t.numeric :item_total, default: 0
+      t.numeric :total, default: 0
       t.string :state
-      t.numeric :adjustment_total
+      t.numeric :adjustment_total, default: 0
       t.integer :user_id
       t.datetime :completed_at
       t.integer :bill_address_id
       t.integer :ship_address_id
-      t.numeric :payment_total
+      t.numeric :payment_total, default: 0
       t.string :shipment_state
       t.string :payment_state
       t.string :email
       t.string :currency
       t.string :last_ip_address
       t.string :created_by_id
-      t.numeric :shipment_total
-      t.numeric :promo_total
+      t.numeric :shipment_total, default: 0
+      t.numeric :promo_total, default: 0
       t.string :chanel
       t.integer :item_count
       t.integer :approver_id
@@ -31,7 +31,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.integer :store_id
       t.integer :state_loc_version
       t.date :shipment_date
-      t.integer :shipment_progress
+      t.integer :shipment_progress, default: 0
       t.datetime :shipped_at
       t.timestamps
     end

@@ -47,12 +47,12 @@ module Admin
       begin
         # TODO: why is @product.destroy raising ActiveRecord::RecordNotDestroyed instead of failing with false result
         if @product.destroy
-          flash[:success] = Spree.t('notice_messages.product_deleted')
+          flash[:success] = t('notice_messages.product_deleted')
         else
-          flash[:error] = Spree.t('notice_messages.product_not_deleted')
+          flash[:error] = t('notice_messages.product_not_deleted')
         end
       rescue ActiveRecord::RecordNotDestroyed => e
-        flash[:error] = Spree.t('notice_messages.product_not_deleted')
+        flash[:error] = t('notice_messages.product_not_deleted')
       end
 
       respond_with(@product) do |format|
@@ -65,9 +65,9 @@ module Admin
       @new = @product.duplicate
 
       if @new.save
-        flash[:success] = Spree.t('notice_messages.product_cloned')
+        flash[:success] = t('notice_messages.product_cloned')
       else
-        flash[:error] = Spree.t('notice_messages.product_not_cloned')
+        flash[:error] = t('notice_messages.product_not_cloned')
       end
 
       redirect_to edit_admin_product_url(@new)
@@ -76,9 +76,9 @@ module Admin
     def stock
       @variants = @product.variants.includes(*variant_stock_includes)
       @variants = [@product.master] if @variants.empty?
-      @stock_locations = StockLocation.accessible_by(current_ability, :read)
+      @stock_locations = StockLocation.all #.accessible_by(current_ability, :read) TODO: Need to activate ability
       if @stock_locations.empty?
-        flash[:error] = Spree.t(:stock_management_requires_a_stock_location)
+        flash[:error] = t(:stock_management_requires_a_stock_location)
         redirect_to admin_stock_locations_path
       end
     end

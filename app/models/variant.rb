@@ -236,7 +236,7 @@ class Variant < Base
   # Shortcut method to determine if inventory tracking is enabled for this variant
   # This considers both variant tracking flag and site-wide inventory tracking settings
   def should_track_inventory?
-    self.track_inventory? && Config.track_inventory_levels
+    self.track_inventory? #&& Config.track_inventory_levels TODO: Need to check this
   end
 
   def track_inventory

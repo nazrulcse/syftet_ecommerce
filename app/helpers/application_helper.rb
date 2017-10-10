@@ -143,4 +143,9 @@ module ApplicationHelper
   def line_item_count
     current_order.present? ? current_order.line_items.count : 0
   end
+
+  def amount_with_currency(amount, currency='$')
+    "#{currency}#{amount}"
+  end
+
 end
