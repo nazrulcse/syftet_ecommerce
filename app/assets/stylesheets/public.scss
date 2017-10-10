@@ -13,3 +13,14 @@
 .product-image {
   background: #F5F5F5;
 }
+
+/* Bootstrap form-control box-shadow customization */
+
+.contact-form {
+  .input-wrap {
+    input.form-control:focus, .form-control:active, .form-control:hover {
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+    }
+  }
+}

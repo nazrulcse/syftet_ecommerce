@@ -20,7 +20,7 @@
 
             <div class="vspace10px"></div>
             <div class="contact-form">
-              <%= form_for @contact_us, class: 'form-horizontal clearfix' do |f| %>
+              <%= form_for(@contact, html: {class: 'form-vertical', role: 'form'}) do |f| %>
                   <div class="col-sm-x12">
                     <div class="form-group">
                       <div class="input-wrap">
@@ -67,7 +67,6 @@
                     </div>
                     <div class="form-group">
                       <%= f.submit 'Submit', class: 'btn-yellow' %>
-                      <!--<button type="submit" class="common-btn uppercase">Submit</button>-->
                     </div>
                   </div>
               <% end %>

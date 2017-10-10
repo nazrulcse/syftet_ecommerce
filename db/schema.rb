@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20171010092242) do
     t.string "attachment_content_type"
   end
 
-  create_table "contact_us", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "full_name"
     t.string "email"
     t.string "phone"

@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   post '/email_subscription', to: 'public#subscribe'
   get '/checkout', to: 'orders#edit', as: :cart_checkout
 
+  resources :contacts, only: [:new, :create]
+
   resources :carts
 
   resources :wishlists, only: [:index, :destroy]

@@ -4,7 +4,7 @@
 #
 # Todo - integrate with ActiveRecord::Dirty to make sure changes to delegate object are noticed
 # Should do
-# class User < Spree::Base; delegate_belongs_to :contact, :firstname; end
+# class User < Spree::Base; delegate_belongs_to :contacts, :firstname; end
 # class Contact < Spree::Base; end
 # u = User.first
 # u.changed? # => false
@@ -27,9 +27,9 @@ module DelegateBelongsTo
     # Creates methods for accessing and setting attributes on an association.  Uses same
     # default list of attributes as delegates_to_association.
     # @todo Integrate this with ActiveRecord::Dirty, so if you set a property through one of these setters and then call save on this object, it will save the associated object automatically.
-    # delegate_belongs_to :contact
-    # delegate_belongs_to :contact, [:defaults]  ## same as above, and useless
-    # delegate_belongs_to :contact, [:defaults, :address, :fullname], :class_name => 'VCard'
+    # delegate_belongs_to :contacts
+    # delegate_belongs_to :contacts, [:defaults]  ## same as above, and useless
+    # delegate_belongs_to :contacts, [:defaults, :address, :fullname], :class_name => 'VCard'
     ##
     def delegate_belongs_to(association, *attrs)
       opts = attrs.extract_options!
@@ -61,7 +61,7 @@ module DelegateBelongsTo
       end
 
       ##
-      # initialize_association :belongs_to, :contact
+      # initialize_association :belongs_to, :contacts
       def initialize_association(type, association, opts={})
         raise 'Illegal or unimplemented association type.' unless [:belongs_to].include?(type.to_s.to_sym)
         send type, association, opts if reflect_on_association(association).nil?

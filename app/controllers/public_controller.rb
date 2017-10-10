@@ -2,21 +2,7 @@ require 'mail'
 
 class PublicController < BaseController
   def contact_us
-    @title = "Huge Selection of Shoes, Clothes, Bags & More. 24/7 Customer Service at BrandCruz!"
-    @keywords = "Women's Shoes, Sale, Men's Shoes, Log In, Shipping and Returns"
-    @description = "Free shipping BOTH ways on online shoes, clothing, and more! 60-day return policy, over 1000 brands, 24/7 friendly customer service."
-    if request.get?
-      @contact = ContactUs.new
-    else
-      @contact = ContactUs.new(contact_us_params)
-      if @contact.save
-        flash[:success] = 'Your contact request has been successfully submitted'
-        redirect_to contact_us_path
-      else
-        flash[:success] = 'Please input required fields'
-        render :contact_us
-      end
-    end
+    @contact_us = Contact.new
   end
 
   def about_us
@@ -116,6 +102,6 @@ class PublicController < BaseController
   private
 
   def contact_us_params
-    params.require(:contact_us).permit!
+    params.require(:contacts).permit!
   end
 end
