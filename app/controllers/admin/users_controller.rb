@@ -54,7 +54,7 @@ module Admin
     def orders
       params[:q] ||= {}
       @search = Order.reverse_chronological.ransack(params[:q].merge(user_id_eq: @user.id))
-      @orders = @search.result.page(params[:page]).per(Config[:admin_products_per_page])
+      @orders = @search.result.page(params[:page]).per(Syftet.config.admin_products_per_page)
     end
 
     def items
@@ -63,7 +63,7 @@ module Admin
           line_items: {
               variant: [:product, {option_values: :option_type}]
           }).ransack(params[:q].merge(user_id_eq: @user.id))
-      @orders = @search.result.page(params[:page]).per(Config[:admin_products_per_page])
+      @orders = @search.result.page(params[:page]).per(Syftet.config.admin_products_per_page)
     end
 
     def generate_api_key
@@ -100,7 +100,7 @@ module Admin
                           .limit(params[:limit] || 100)
       else
         @search = @collection.ransack(params[:q])
-        @collection = @search.result.page(params[:page]).per(10) #Config[:admin_products_per_page]) TODO: Have to activate this
+        @collection = @search.result.page(params[:page]).per(Syftet.config.admin_product_per_page)
       end
     end
 

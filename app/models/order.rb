@@ -213,7 +213,7 @@ class Order < Base
   end
 
   def currency
-    self[:currency] || Config[:currency]
+    self[:currency] || 'USD' #Config[:currency]
   end
 
   def shipping_discount
@@ -733,7 +733,7 @@ class Order < Base
   end
 
   def set_currency
-    self.currency = 'usd' #Config[:currency] if self[:currency].nil? TODO: Need to activate order
+    self.currency = Syftet.config.currency
   end
 
   def create_token

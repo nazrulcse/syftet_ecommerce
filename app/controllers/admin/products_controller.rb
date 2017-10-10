@@ -121,7 +121,7 @@ module Admin
           distinct_by_product_ids(params[:q][:s]).
           includes(product_includes).
           page(params[:page]).
-          per(params[:per_page] || 20) #Syftet::Config[:admin_products_per_page]) TODO: need to enabled config
+          per(params[:per_page] || Syftet.config.admin_product_per_page)
       @collection
     end
 

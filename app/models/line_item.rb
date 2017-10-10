@@ -76,7 +76,7 @@ class LineItem < Base
   alias_method :discounted_amount, :taxable_amount
 
   def final_amount
-    amount + 0 # adjustment_total TODO: need to active
+    amount + adjustment_total
   end
 
   alias total final_amount

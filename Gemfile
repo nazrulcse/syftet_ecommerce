@@ -47,6 +47,7 @@ gem 'paperclip'
 gem 'ancestry'
 gem 'truncate_html'
 gem 'state_machine'
+gem 'money'
 
 gem 'devise'
 
