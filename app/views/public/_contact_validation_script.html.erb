@@ -63,7 +63,7 @@
             return emailReg.test(email);
         }
 
-        $('button[type="submit"]').click(function (e) {
+        $('input[type="submit"]').click(function (e) {
             $('.input-wrap .form-control.required').each(function () {
                 $(this).blur();
             });
