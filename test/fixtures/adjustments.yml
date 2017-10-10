@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source_id: 1
+  source_type: MyString
+  adjustable_id: 1
+  adjustable_type: MyString
+  amount: 
+  label: MyString
+  mandatory: false
+  eligible: false
+  state: MyString
+  order_id: 1
+  included: false
+
+two:
+  source_id: 1
+  source_type: MyString
+  adjustable_id: 1
+  adjustable_type: MyString
+  amount: 
+  label: MyString
+  mandatory: false
+  eligible: false
+  state: MyString
+  order_id: 1
+  included: false

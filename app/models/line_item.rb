@@ -124,9 +124,9 @@ class LineItem < Base
   end
 
   def update_inventory
-    if (changed? || target_shipment.present?) && order.has_checkout_step?("delivery")
-      # OrderInventory.new(order, self).verify(target_shipment) # TODO: need to activate this
-    end
+    #if (changed? || target_shipment.present?) && order.has_checkout_step?("delivery")
+    # OrderInventory.new(order, self).verify(target_shipment) # TODO: need to activate this
+    #end
   end
 
   def destroy_inventory_units

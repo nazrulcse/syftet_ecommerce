@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tracking: MyString
+  number: MyString
+  cost: 
+  shipped_at: 2017-10-10 10:05:11
+  order_id: 1
+  address_id: 1
+  state: MyString
+  stock_location_id: 1
+  adjustment_total: 
+  additional_tax_total: 
+  promo_total: 
+  included_tax_total: 
+  pre_tax_amount: 
+  taxable_adjustment_total: 
+  non_taxable_adjustment_total: 
+
+two:
+  tracking: MyString
+  number: MyString
+  cost: 
+  shipped_at: 2017-10-10 10:05:11
+  order_id: 1
+  address_id: 1
+  state: MyString
+  stock_location_id: 1
+  adjustment_total: 
+  additional_tax_total: 
+  promo_total: 
+  included_tax_total: 
+  pre_tax_amount: 
+  taxable_adjustment_total: 
+  non_taxable_adjustment_total: 

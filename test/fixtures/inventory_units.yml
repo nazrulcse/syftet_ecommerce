@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  state: MyString
+  variant_id: 1
+  order_id: 1
+  shipment_id: 1
+  pending: false
+  line_item_id: 1
+
+two:
+  state: MyString
+  variant_id: 1
+  order_id: 1
+  shipment_id: 1
+  pending: false
+  line_item_id: 1

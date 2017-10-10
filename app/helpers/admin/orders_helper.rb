@@ -6,13 +6,13 @@
         links = []
         events.sort.each do |event|
           if order.send("can_#{event}?")
-            label = Spree.t(event, scope: 'admin.order.events', default: Spree.t(event))
+            label = t(event, scope: 'admin.order.events', default: t(event))
             links << button_link_to(
               label.capitalize,
               [event, :admin, order],
               method: :put,
               icon: "#{event}",
-              data: { confirm: Spree.t(:order_sure_want_to, event: label) }
+              data: { confirm: t(:order_sure_want_to, event: label) }
             )
           end
         end

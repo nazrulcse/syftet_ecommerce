@@ -151,7 +151,7 @@ class Order < Base
   with_options presence: true do
     validates :number, length: {maximum: 32, allow_blank: true}, uniqueness: {allow_blank: true}
     validates :email, length: {maximum: 254, allow_blank: true}, if: :require_email
-    validates :item_count, numericality: {greater_than_or_equal_to: 0, less_than: 2**31, only_integer: true, allow_blank: true}
+    validates :item_count, numericality: {greater_than_or_equal_to: 0, less_than: 2**31, only_integer: true}, allow_blank: true
   end
   validates :payment_state, inclusion: {in: PAYMENT_STATES, allow_blank: true}
   validates :shipment_state, inclusion: {in: SHIPMENT_STATES, allow_blank: true}
@@ -184,7 +184,7 @@ class Order < Base
   end
 
   # shows completed orders first, by their completed_at date, then uncompleted orders by their created_at
-  scope :reverse_chronological, -> { order('spree_orders.completed_at IS NULL', completed_at: :desc, created_at: :desc) }
+  scope :reverse_chronological, -> { order('orders.completed_at IS NULL', completed_at: :desc, created_at: :desc) }
 
   # Use this method in other gems that wish to register their own custom logic
   # that should be called after Order#update
@@ -584,9 +584,9 @@ class Order < Base
   end
 
   def set_shipments_cost
-    # shipments.each(&:update_amounts)
-    # updater.update_shipment_total
-    # persist_totals
+    shipments.each(&:update_amounts)
+    updater.update_shipment_total
+    persist_totals
   end
 
   def is_risky?
@@ -733,7 +733,7 @@ class Order < Base
   end
 
   def set_currency
-    self.currency = Config[:currency] if self[:currency].nil?
+    self.currency = 'usd' #Config[:currency] if self[:currency].nil? TODO: Need to activate order
   end
 
   def create_token

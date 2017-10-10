@@ -10,6 +10,8 @@ class OrdersController < StoreController
   before_action :verify_authentication, only: [:shipped_track]
   skip_before_action :verify_authenticity_token, only: [:populate]
 
+  layout 'product'
+
   def show
     @order = Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by_number!(params[:id])
   end
@@ -44,11 +46,11 @@ class OrdersController < StoreController
         find_or_initialize_by(guest_token: cookies.signed[:guest_token])
     associate_user
     return redirect_to root_path unless @order.line_items.length > 0
-    product = @order.line_items.first.product
-    @recommend_products = product.recommended_products
-    unless @recommend_products.length > 0
-      @recommend_products = product.get_recom_products
-    end
+    # product = @order.line_items.first.product
+    # # @recommend_products = product.recommended_products
+    # # unless @recommend_products.length > 0
+    # #   @recommend_products = product.get_recom_products
+    # # end
     @title = "Your Shipping Bag – Brandcruz.com Secure Shopping"
     @keywords = "brandcruz, Brand Cruz, Brandcruz.com"
     @description = "Shop for shopping cart cover at Brandcruz.com. Free Shipping. Free Returns. All the time."
@@ -87,7 +89,7 @@ class OrdersController < StoreController
           end
         end
       end
-      format.js {render layout: false}
+      format.js { render layout: false }
     end
   end
 

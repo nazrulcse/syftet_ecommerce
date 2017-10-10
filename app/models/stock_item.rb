@@ -33,13 +33,13 @@ class StockItem < Base
 
   def adjust_count_on_hand(value)
     self.with_lock do
-      set_count_on_hand(count_on_hand + value)
+      set_count_on_hand((count_on_hand || 0) + value)
     end
   end
 
   def set_count_on_hand(value)
     self.count_on_hand = value
-    process_backorders(count_on_hand - count_on_hand_was)
+    process_backorders(count_on_hand - (count_on_hand_was || 0))
 
     self.save!
   end
@@ -81,7 +81,8 @@ class StockItem < Base
     # the variant_id changes from nil when a new stock location is added
     stock_changed = (count_on_hand_changed? && count_on_hand_change.any?(&:zero?)) || variant_id_changed?
 
-    if !Config.binary_inventory_cache || stock_changed
+    # if !Config.binary_inventory_cache || stock_changed TODO: Need to check this
+    if stock_changed
       variant.touch
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010095321) do
+ActiveRecord::Schema.define(version: 20171010092242) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -22,6 +22,22 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.string "state"
     t.string "company"
     t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "adjustments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "source_id"
+    t.string "source_type"
+    t.integer "adjustable_id"
+    t.string "adjustable_type"
+    t.decimal "amount", precision: 10, default: "0"
+    t.string "label"
+    t.boolean "mandatory"
+    t.boolean "eligible"
+    t.string "state"
+    t.integer "order_id"
+    t.boolean "included"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,18 +82,33 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "inventory_units", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "state"
+    t.integer "variant_id"
+    t.integer "order_id"
+    t.integer "shipment_id"
+    t.boolean "pending"
+    t.integer "line_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "variant_id"
     t.integer "order_id"
     t.integer "quantity"
-    t.float "price", limit: 24
-    t.float "cost_price", limit: 24
+    t.float "price", limit: 24, default: 0.0
+    t.float "cost_price", limit: 24, default: 0.0
     t.string "currency"
-    t.decimal "adjustment_total", precision: 10
-    t.decimal "promo_total", precision: 10
+    t.decimal "adjustment_total", precision: 10, default: "0"
+    t.decimal "promo_total", precision: 10, default: "0"
     t.string "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "included_tax_total", precision: 10, default: "0"
+    t.decimal "additional_tax_total", precision: 10, default: "0"
+    t.decimal "non_taxable_adjustment_total", precision: 10, default: "0"
+    t.decimal "taxable_adjustment_total", precision: 10, default: "0"
   end
 
   create_table "newsletter_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -102,25 +133,32 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "order_id"
+    t.integer "promotion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "number"
-    t.decimal "item_total", precision: 10
-    t.decimal "total", precision: 10
+    t.decimal "item_total", precision: 10, default: "0"
+    t.decimal "total", precision: 10, default: "0"
     t.string "state"
-    t.decimal "adjustment_total", precision: 10
+    t.decimal "adjustment_total", precision: 10, default: "0"
     t.integer "user_id"
     t.datetime "completed_at"
     t.integer "bill_address_id"
     t.integer "ship_address_id"
-    t.decimal "payment_total", precision: 10
+    t.decimal "payment_total", precision: 10, default: "0"
     t.string "shipment_state"
     t.string "payment_state"
     t.string "email"
     t.string "currency"
     t.string "last_ip_address"
     t.string "created_by_id"
-    t.decimal "shipment_total", precision: 10
-    t.decimal "promo_total", precision: 10
+    t.decimal "shipment_total", precision: 10, default: "0"
+    t.decimal "promo_total", precision: 10, default: "0"
     t.string "chanel"
     t.integer "item_count"
     t.integer "approver_id"
@@ -133,10 +171,12 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.integer "store_id"
     t.integer "state_loc_version"
     t.date "shipment_date"
-    t.integer "shipment_progress"
+    t.integer "shipment_progress", default: 0
     t.datetime "shipped_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "included_tax_total", precision: 10, default: "0"
+    t.decimal "additional_tax_total", precision: 10, default: "0"
   end
 
   create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -179,6 +219,22 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "promotions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "description"
+    t.datetime "expires_at"
+    t.datetime "starts_at"
+    t.string "name"
+    t.string "promotion_type"
+    t.integer "usage_limit"
+    t.string "match_policy"
+    t.string "code"
+    t.boolean "advertise"
+    t.string "path"
+    t.integer "promotion_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "role_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "role_id"
     t.integer "user_id"
@@ -188,6 +244,26 @@ ActiveRecord::Schema.define(version: 20171010095321) do
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shipments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "tracking"
+    t.string "number"
+    t.decimal "cost", precision: 10, default: "0"
+    t.datetime "shipped_at"
+    t.integer "order_id"
+    t.integer "address_id"
+    t.string "state"
+    t.integer "stock_location_id"
+    t.decimal "adjustment_total", precision: 10, default: "0"
+    t.decimal "additional_tax_total", precision: 10, default: "0"
+    t.decimal "promo_total", precision: 10, default: "0"
+    t.decimal "included_tax_total", precision: 10, default: "0"
+    t.decimal "pre_tax_amount", precision: 10, default: "0"
+    t.decimal "taxable_adjustment_total", precision: 10, default: "0"
+    t.decimal "non_taxable_adjustment_total", precision: 10, default: "0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -228,7 +304,7 @@ ActiveRecord::Schema.define(version: 20171010095321) do
   create_table "stock_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "stock_location_id"
     t.integer "variant_id"
-    t.integer "count_on_hand"
+    t.integer "count_on_hand", default: 0
     t.boolean "backorderable"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
@@ -351,6 +427,7 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.string "color_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "track_inventory", default: true
   end
 
   create_table "wishlists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

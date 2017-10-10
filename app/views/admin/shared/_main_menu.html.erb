@@ -1,8 +1,8 @@
-<%# if can? :admin, Spree::Order %>
-<ul class="nav nav-sidebar">
-  <%#= tab *Spree::BackendConfiguration::ORDER_TABS, icon: 'shopping-cart' %>
-</ul>
-<%# end %>
+<% if can? :admin, Order %>
+    <ul class="nav nav-sidebar">
+      <%= tab *BackendConfiguration::ORDER_TABS, icon: 'shopping-cart' %>
+    </ul>
+<% end %>
 
 <%# if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn) %>
 <ul class="nav nav-sidebar">
@@ -10,11 +10,11 @@
 </ul>
 <%# end %>
 
-<%# if can? :admin, Spree::Product %>
-<ul class="nav nav-sidebar">
-  <%= main_menu_tree t(:products), icon: "th-large", sub_menu: "product", url: "#sidebar-product" %>
-</ul>
-<%# end %>
+<% if can? :admin, Product %>
+    <ul class="nav nav-sidebar">
+      <%= main_menu_tree t(:products), icon: "th-large", sub_menu: "product", url: "#sidebar-product" %>
+    </ul>
+<% end %>
 
 <%# if can? :admin, Spree::Admin::ReportsController %>
 <ul class="nav nav-sidebar">
@@ -33,9 +33,9 @@
       <%= tab *BackendConfiguration::USER_TABS, url: admin_users_path, icon: 'user' %>
     </ul>
 <% end %>
-
-<%# if can? :admin, current_store %>
-<ul class="nav nav-sidebar">
-  <%= main_menu_tree t(:configurations), icon: "wrench", sub_menu: "configuration", url: "#sidebar-configuration" %>
-</ul>
-<%# end %>
+<!--current_store-->
+<% if can? :admin, nil %>
+    <ul class="nav nav-sidebar">
+      <%= main_menu_tree t(:configurations), icon: "wrench", sub_menu: "configuration", url: "#sidebar-configuration" %>
+    </ul>
+<% end %>

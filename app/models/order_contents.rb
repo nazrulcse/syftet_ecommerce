@@ -41,14 +41,13 @@ class OrderContents
   private
 
   def after_add_or_remove(line_item, options = {})
-    # TODO: Need to activate all of that
-    # persist_totals
-    # shipment = options[:shipment]
-    # shipment.present? ? shipment.update_amounts : order.ensure_updated_shipments
-    # PromotionHandler::Cart.new(order, line_item).activate
-    # Adjustable::AdjustmentsUpdater.update(line_item)
-    # TaxRate.adjust(order, [line_item]) if options[:line_item_created]
-    # persist_totals
+    persist_totals
+    shipment = options[:shipment]
+    shipment.present? ? shipment.update_amounts : order.ensure_updated_shipments
+    PromotionHandler::Cart.new(order, line_item).activate
+    Adjustable::AdjustmentsUpdater.update(line_item)
+    TaxRate.adjust(order, [line_item]) if options[:line_item_created]
+    persist_totals
     line_item
   end
 
@@ -67,12 +66,12 @@ class OrderContents
   end
 
   def order_updater
-    # @updater ||= OrderUpdater.new(order) TODO: need to activate this
+    @updater ||= OrderUpdater.new(order)
   end
 
   def persist_totals
-    # order_updater.update_item_count TODO: Need to activate this
-    # order_updater.update
+    order_updater.update_item_count
+    order_updater.update
   end
 
   def add_to_line_item(variant, quantity, options = {})

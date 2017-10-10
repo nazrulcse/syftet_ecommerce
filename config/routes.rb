@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/frequently-asked-question', to: 'public#faq', as: :faq
   get '/coupon-code', to: 'public#coupon', as: :coupon
   get '/free-domestic-shipping-both-ways', to: 'public#domestic', as: :domestic
-  # match '/dedicated-customer-support', to: 'public#contacts', via: [:get, :post], as: :contacts
+  match '/dedicated-customer-support', to: 'public#contact_us', via: [:get, :post], as: :contact_us
   get '/free-shipping-worldwide', to: 'public#international', as: :international
   get '/safe_shopping_guarantee', to: 'public#safe_shopping_guarantee', as: :safe_shopping_guarantee
   get '/secure_shopping', to: 'public#secure_shopping', as: :secure_shopping
@@ -28,11 +28,13 @@ Rails.application.routes.draw do
   get '/term_condition', to: 'public#term_condition', as: :term_condition
   get '/my_account', to: 'users#my_account'
   get '/cart', to: 'public#cart'
-  get '/checkout', to: 'public#checkout'
+  # get '/checkout', to: 'public#checkout'
   post '/email_subscription', to: 'public#subscribe'
+  get '/checkout', to: 'orders#edit', as: :cart_checkout
 
   resources :contacts, only: [:new, :create]
 
+  resources :carts
 
   resources :wishlists, only: [:index, :destroy]
   resources :products do

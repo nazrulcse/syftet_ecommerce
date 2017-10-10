@@ -2,46 +2,44 @@
     <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb('Products') %>
 <% end %>
 
-<div class="container">
-  <div class="row mt20">
-    <div class="col-sm-6 col-md-6 clearfix data-parent">
-      <div class="row clearfix">
-        <div class="clearfix" id="product-thumb-image">
-          <div class="product-gallery-wrapper">
-            <div id="product-gallery" class="product-thumb-wrapper">
-              <% get_additional_images(@product).each do |image| %>
-                  <div class="selection">
-                    <a href="#" class="addtional-image" data-image="<%= image.attachment.url(:small) %>" data-zoom-image="<%= image.attachment.url(:big) %>">
-                      <%= image_tag image.attachment.url(:small), class: "img-fluid" %>
-                    </a>
-                    <!--<img class='hidden' src="<%#= image.zoomable_image_link.present? ? image.zoomable_image_link : "#{image.image_link}?op_sharpen=1&fit=fit,1&$filterlrg$&wid=1200&hei=1467" %>" onerror="zoom_image_load_failed(this);"/>-->
-                  </div>
-              <% end %>
-            </div>
+<div class="mt20">
+  <div class="col-sm-6 col-md-6 clearfix data-parent">
+    <div class="clearfix">
+      <div class="clearfix" id="product-thumb-image">
+        <div class="product-gallery-wrapper">
+          <div id="product-gallery" class="product-thumb-wrapper">
+            <% get_additional_images(@product).each do |image| %>
+                <div class="selection">
+                  <a href="#" class="addtional-image" data-image="<%= image.attachment.url(:small) %>" data-zoom-image="<%= image.attachment.url(:big) %>">
+                    <%= image_tag image.attachment.url(:small), class: "img-fluid" %>
+                  </a>
+                  <!--<img class='hidden' src="<%#= image.zoomable_image_link.present? ? image.zoomable_image_link : "#{image.image_link}?op_sharpen=1&fit=fit,1&$filterlrg$&wid=1200&hei=1467" %>" onerror="zoom_image_load_failed(this);"/>-->
+                </div>
+            <% end %>
           </div>
-          <div class="product-big-image-wrapper">
-            <div class="product-details-image text-xs-center">
-              <% product_image = get_image_object(@product) %>
-              <img src="<%= get_image_link(@product, product_image) %>" data-zoom-image="<%= get_zoom_image_link(product_image) %>" alt="product image" id="product-zoom" class="img-fluid d-inline-block">
-              <span class="zoom-init-image"></span>
-            </div>
+        </div>
+        <div class="product-big-image-wrapper">
+          <div class="product-details-image text-xs-center">
+            <% product_image = get_image_object(@product) %>
+            <img src="<%= get_image_link(@product, product_image) %>" data-zoom-image="<%= get_zoom_image_link(product_image) %>" alt="product image" id="product-zoom" class="img-fluid d-inline-block">
+            <span class="zoom-init-image"></span>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="col-sm-6 col-md-6">
-      <%= render 'products/details' %>
-    </div>
   </div>
 
-  <div class="review-ratting">
-    <%= render 'products/review_ratting' %>
+  <div class="col-sm-6 col-md-6">
+    <%= render 'products/details' %>
   </div>
+</div>
 
-  <div class="product-details-customer-widget product-lists">
-    <%= render 'products/related_product' %>
-  </div>
+<div class="review-ratting">
+  <%= render 'products/review_ratting' %>
+</div>
+
+<div class="product-details-customer-widget product-lists">
+  <%= render 'products/related_product' %>
 </div>
 
 <script type="text/javascript">

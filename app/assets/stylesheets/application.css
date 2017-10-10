@@ -32,6 +32,7 @@
  *= require public/cart
  *= require public/checkout
  *= require sign_in
+ *= require cart_checkout
  */
 
 #notification {
