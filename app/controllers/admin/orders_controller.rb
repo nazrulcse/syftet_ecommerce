@@ -7,7 +7,7 @@ module Admin
 
     def index
       params[:q] ||= {}
-      # params[:q][:completed_at_not_null] ||= '1' if true #Config[:show_only_complete_orders_by_default] TODO: need to activate config
+      params[:q][:completed_at_not_null] ||= '1' if Syftet.config.show_only_complete_orders_by_default
       @show_only_completed = params[:q][:completed_at_not_null] == '1'
       # params[:q][:s] ||= @show_only_completed ? 'completed_at desc' : 'created_at desc'
       # params[:q][:completed_at_not_null] = '' unless @show_only_completed
@@ -41,7 +41,7 @@ module Admin
       # see https://github.com/spree/spree/pull/3919
       @orders = @search.result(distinct: true).
           page(params[:page]).
-          per(params[:per_page] || 10) #Config[:orders_per_page]) TODO: Need to actve config
+          per(params[:per_page] || Syftet.config.orders_per_page)
 
       # Restore dates
       params[:q][:created_at_gt] = created_at_gt

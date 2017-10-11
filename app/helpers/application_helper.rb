@@ -138,6 +138,24 @@ module ApplicationHelper
     end
   end
 
+  def categories(product)
+    tags = []
+    product.taxons.each do |taxon|
+      tags.push("<span> #{link_to taxon.name, categories_path(taxon)} </span>")
+    end
+    tags.join(' | ')
+  end
+
+  def color_filters(taxon = nil)
+    if taxon
+      product_ids = taxon.products.map(&:id)
+      variants = Variant.joins(:product).where(product_id: product_ids)
+    else
+      variants = Variant.all.limit(10)
+    end
+    variants.map(&:color_image).compact
+  end
+
   # Order
 
   def line_item_count

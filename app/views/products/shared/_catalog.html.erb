@@ -4,84 +4,32 @@
       <%= t(:search_catalog) %>
     </h3>
 
-
-    <div class="woof woof_sid woof_sid_widget" data-sid="widget" data-shortcode="woof sid='widget' price_filter='3' redirect='' ajax_redraw='0' " data-redirect="" data-autosubmit="1" data-ajax-redraw="0">
-
+    <div class="widget-filter-wrapper">
       <div class="woof_redraw_zone">
+        <div class="price-slider">
+          <input class="range-slider hidden" value=''>
+        </div>
 
+        <div class="container-inner-filter">
+          <h4>Color</h4>
 
-        <div data-css-class="woof_price3_search_container" class="woof_price3_search_container woof_container">
-          <div class="woof_container_overlay_item"></div>
-          <div class="woof_container_inner">
-            <input class="range-slider hidden" value=''>
+          <div class="widget-block-html-items color-section clearfix">
+            <ul class="color-section-ul-style">
+              <% color_filters(@taxon).each do |color| %>
+                  <li>
+                    <%= radio_button_tag :color, color %>
+                    <label for="color_<%= color %>">
+                      <span style="background:#<%= color %>"></span>
+                    </label>
+                    <a href="javascript:void(0);" style="display: none;" class="clear-color-filter">
+                      <i class="fa fa-times-circle"></i>
+                    </a>
+                  </li>
+              <% end %>
+            </ul>
           </div>
         </div>
 
-        <div data-css-class="woof_container_pa_color" class="woof_container woof_container_color woof_container_pa_color woof_container_1 woof_container_color">
-          <div class="woof_container_overlay_item"></div>
-          <div class="woof_container_inner woof_container_inner_color">
-            <h4>Color</h4>
-
-            <div class="widget-block-html-items">
-
-
-              <ul class="widget-list-radio">
-                <li>
-                  <input type="radio" id="woof_21_59d335a7e3f52" class="woof_radio_term woof_radio_term_21" data-slug="black" data-term-id="21" name="pa_color" value="21"><label class="woof_radio_label " for="woof_21_59d335a7e3f52">Black<span class="woof_radio_count">(4)</span></label>
-
-                  <a href="#" name="pa_color" data-term-id="21" style="display: none;" class="woof_radio_term_reset   woof_radio_term_reset_21"><img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/woocommerce-products-filter/img/delete.png" height="12" width="12" alt=""></a>
-
-                  <input type="hidden" value="Black" data-anchor="woof_n_pa_color_black">
-
-                </li>
-                <li>
-                  <input type="radio" id="woof_23_59d335a7e3fb5" class="woof_radio_term woof_radio_term_23" data-slug="blue" data-term-id="23" name="pa_color" value="23"><label class="woof_radio_label " for="woof_23_59d335a7e3fb5">Blue<span class="woof_radio_count">(4)</span></label>
-
-                  <a href="#" name="pa_color" data-term-id="23" style="display: none;" class="woof_radio_term_reset   woof_radio_term_reset_23"><img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/woocommerce-products-filter/img/delete.png" height="12" width="12" alt=""></a>
-
-                  <input type="hidden" value="Blue" data-anchor="woof_n_pa_color_blue">
-
-                </li>
-                <li>
-                  <input type="radio" id="woof_22_59d335a7e400e" class="woof_radio_term woof_radio_term_22" data-slug="green" data-term-id="22" name="pa_color" value="22"><label class="woof_radio_label " for="woof_22_59d335a7e400e">Green<span class="woof_radio_count">(4)</span></label>
-
-                  <a href="#" name="pa_color" data-term-id="22" style="display: none;" class="woof_radio_term_reset   woof_radio_term_reset_22"><img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/woocommerce-products-filter/img/delete.png" height="12" width="12" alt=""></a>
-
-                  <input type="hidden" value="Green" data-anchor="woof_n_pa_color_green">
-
-                </li>
-                <li>
-                  <input type="radio" id="woof_46_59d335a7e4066" class="woof_radio_term woof_radio_term_46" data-slug="orange" data-term-id="46" name="pa_color" value="46"><label class="woof_radio_label " for="woof_46_59d335a7e4066">Orange<span class="woof_radio_count">(3)</span></label>
-
-                  <a href="#" name="pa_color" data-term-id="46" style="display: none;" class="woof_radio_term_reset   woof_radio_term_reset_46"><img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/woocommerce-products-filter/img/delete.png" height="12" width="12" alt=""></a>
-
-                  <input type="hidden" value="Orange" data-anchor="woof_n_pa_color_orange">
-
-                </li>
-                <li>
-                  <input type="radio" id="woof_44_59d335a7e40bd" class="woof_radio_term woof_radio_term_44" data-slug="red" data-term-id="44" name="pa_color" value="44"><label class="woof_radio_label " for="woof_44_59d335a7e40bd">Red<span class="woof_radio_count">(3)</span></label>
-
-                  <a href="#" name="pa_color" data-term-id="44" style="display: none;" class="woof_radio_term_reset   woof_radio_term_reset_44"><img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/woocommerce-products-filter/img/delete.png" height="12" width="12" alt=""></a>
-
-                  <input type="hidden" value="Red" data-anchor="woof_n_pa_color_red">
-
-                </li>
-                <li>
-                  <input type="radio" id="woof_45_59d335a7e4113" class="woof_radio_term woof_radio_term_45" data-slug="yellow" data-term-id="45" name="pa_color" value="45"><label class="woof_radio_label " for="woof_45_59d335a7e4113">Yellow<span class="woof_radio_count">(3)</span></label>
-
-                  <a href="#" name="pa_color" data-term-id="45" style="display: none;" class="woof_radio_term_reset   woof_radio_term_reset_45"><img src="http://venusdemo.com/wordpress/pi/wp-content/plugins/woocommerce-products-filter/img/delete.png" height="12" width="12" alt=""></a>
-
-                  <input type="hidden" value="Yellow" data-anchor="woof_n_pa_color_yellow">
-
-                </li>
-              </ul>
-
-            </div>
-
-            <input type="hidden" name="woof_t_pa_color" value="Product Color"><!-- for red button search nav panel -->
-
-          </div>
-        </div>
         <div data-css-class="woof_container_pa_size" class="woof_container woof_container_checkbox woof_container_pa_size woof_container_2 woof_container_size">
           <div class="woof_container_overlay_item"></div>
           <div class="woof_container_inner woof_container_inner_size">
@@ -121,34 +69,58 @@
 
           </div>
         </div>
-
-
         <div class="woof_submit_search_form_container">
-
-
-          <button style="float: right;" class="button woof_reset_search_form" data-link="">Reset</button>
-
-
+          <a style="float: right;" href="<%= @taxon.present? ? categories_path(@taxon) : products_path %>" class="btn btn-warning reset-border-radius" data-link="">Reset</a>
         </div>
-
       </div>
-
     </div>
-
-
   </div>
 </aside>
 
 <script type="text/javascript">
     $(function () {
+        data_query = $.query;
         $(".range-slider").ionRangeSlider({
             type: "double",
             grid: true,
             min: 0,
             max: 1000,
-            from: 0,
-            to: 1000,
-            prefix: "$"
+            from: <%= params[:min] || 0 %>,
+            to: <%= params[:max] || 1000 %>,
+            prefix: "$",
+            onFinish: function (data) {
+                new_url = data_query.SET('min', data.from).SET('max', data.to);
+                loadProducts(new_url);
+            }
+        });
+
+        $('.color-section-ul-style label').click(function () {
+            color = $(this).parent().find("input[type='radio']").val();
+            if (typeof color != undefined) {
+                new_url = data_query.SET('color', color);
+                loadProducts(new_url);
+            }
+        });
+
+        $('.clear-color-filter').click(function () {
+            $('.color-section-ul-style').find("input[type='radio']").prop('checked', false);
+            new_url = data_query.REMOVE('color');
+            loadProducts(new_url);
         });
     });
+
+    function loadProducts(url) {
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'script',
+            error: function (e) {
+                console.log(e);
+                popupMessage('Unable to load product!', 'alert alert-error');
+            },
+            success: function () {
+                window.history.pushState('', 'Products', url);
+            }
+        })
+    }
 </script>

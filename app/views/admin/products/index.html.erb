@@ -4,7 +4,7 @@
 
 <% content_for :page_actions do %>
     <%= button_link_to t(:new_product), new_object_url, {:class => "btn-success", :icon => 'add', :id => 'admin_new_product'} %>
-<% end %> <%# if can?(:create, Product) %> <!-- TODO: Have to activate cancan -->
+<% end if can?(:create, Product) %>
 
 <% content_for :table_filter do %>
     <div data-hook="admin_products_sidebar">
@@ -74,8 +74,7 @@
             <td class="image"><%= mini_image product %></td>
             <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
             <td class="text-center">
-              <%#= product.display_price.to_html rescue '' %> <!-- TODO: have to check display price method -->
-              <%= product.price %>
+              <%= product.display_price.format %>
             </td>
             <td class="actions actions-3 text-right" data-hook="admin_products_index_row_actions">
               <%= link_to_edit product, no_text: true, class: 'edit' if can?(:edit, product) && !product.deleted? %>

@@ -1,6 +1,6 @@
 module UserReporting
-  # extend DisplayMoney
-  # money_methods :lifetime_value, :average_order_value TODO: Need to activate this
+  extend DisplayMoney
+  money_methods :lifetime_value, :average_order_value
 
   def lifetime_value
     orders.complete.sum(:total)

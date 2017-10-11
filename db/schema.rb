@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010095321) do
+ActiveRecord::Schema.define(version: 20171011042851) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -150,15 +150,15 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.datetime "completed_at"
     t.integer "bill_address_id"
     t.integer "ship_address_id"
-    t.decimal "payment_total", precision: 10
+    t.decimal "payment_total", precision: 10, default: "0"
     t.string "shipment_state"
     t.string "payment_state"
     t.string "email"
     t.string "currency"
     t.string "last_ip_address"
     t.string "created_by_id"
-    t.decimal "shipment_total", precision: 10
-    t.decimal "promo_total", precision: 10
+    t.decimal "shipment_total", precision: 10, default: "0"
+    t.decimal "promo_total", precision: 10, default: "0"
     t.string "chanel"
     t.integer "item_count"
     t.integer "approver_id"
@@ -231,6 +231,18 @@ ActiveRecord::Schema.define(version: 20171010095321) do
     t.boolean "advertise"
     t.string "path"
     t.integer "promotion_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.integer "rating"
+    t.text "text"
+    t.integer "product_id"
+    t.integer "user_id"
+    t.string "email"
+    t.boolean "is_approved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

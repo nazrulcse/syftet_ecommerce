@@ -12,14 +12,11 @@
 
           <div class="product-rating">
             <div class="rating" style="display: inline-block; padding: 10px 0;">
-              <div class="star-rating quickview-rating" data-rating="3">
+              <div class="star-rating quickview-rating" data-rating="<%= average_rating(@product) %>">
                 ******
               </div>
             </div>
-
-            <a href="#reviews" class="woocommerce-review-link" rel="nofollow"> -
-              <span class="count">0</span> reviews
-            </a>
+            - <span class="count review-link-color"> <%= pluralize(@product.reviews.count, 'review') %> </span>
           </div>
 
           <p class="stock in-stock">In Stock</p>
@@ -52,9 +49,7 @@
             </p>
 
             <p class="posted_in">
-              Categories: <a href="http://venusdemo.com/wordpress/pi/product-category/kids-school/" rel="tag">kids &amp;
-              School</a>, <a href="http://venusdemo.com/wordpress/pi/product-category/spring-2016/" rel="tag">spring
-              2016</a>
+              CATEGORIES: <%= raw categories(@product) %>
             </p>
           </div>
         </div>

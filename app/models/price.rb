@@ -15,8 +15,8 @@ class Price < Base
                        less_than_or_equal_to: MAXIMUM_AMOUNT
                    }
 
-#  extend DisplayMoney
-#  money_methods :amount, :price
+  extend DisplayMoney
+  money_methods :amount, :price
 
   self.whitelisted_ransackable_attributes = ['amount']
 

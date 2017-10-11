@@ -94,9 +94,9 @@ class OrdersController < StoreController
   end
 
   def shipped_track
-    @orders = try_spree_current_user.orders.complete.order('completed_at desc')
-    @order = Order.find_by_id(params[:id])
-    @trackes = @order.order_tracks.order('created_at desc').group_by { |track| track.created_at.strftime('%A, %d %b') }
+    @orders = Order.all #try_spree_current_user.orders.complete.order('completed_at desc')
+    @order = Order.find_by_id(params[:order_id]) || Order.last
+    @trackes = [] #@order.order_tracks.order('created_at desc').group_by { |track| track.created_at.strftime('%A, %d %b') }
   end
 
   def empty
@@ -191,7 +191,7 @@ class OrdersController < StoreController
   end
 
   def verify_authentication
-    unless try_spree_current_user
+    unless current_user
       redirect_to '/secure-user-signin-signup'
     end
   end

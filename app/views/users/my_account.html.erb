@@ -23,58 +23,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td class="order-number"><a href="http://localhost:3000/orders/BR-4316-672534525">BR-4316-672534525</a></td>
-      <td class="order-date">2017-07-04</td>
-      <td class="order-status">
-        Approved
-      </td>
-      <td class="text-primary order-total">
-        <span class="mark-text"> BDT 0.0 </span>
-      </td>
-      <td class="order-shipment-state">
-        <a href="/order/90/shipped_track_now">Shipped Track now</a>
-      </td>
-    </tr>
-    <tr>
-      <td class="order-number"><a href="http://localhost:3000/orders/BR-8991-513337793">BR-8991-513337793</a></td>
-      <td class="order-date">2017-05-30</td>
-      <td class="order-status">
-        Approved
-      </td>
-      <td class="text-primary order-total">
-        <span class="mark-text"> BDT 0.0 </span>
-      </td>
-      <td class="order-shipment-state">
-        <a href="/order/20/shipped_track_now">Shipped Track now</a>
-      </td>
-    </tr>
-    <tr>
-      <td class="order-number"><a href="http://localhost:3000/orders/BR-4533-162541039">BR-4533-162541039</a></td>
-      <td class="order-date">2017-05-23</td>
-      <td class="order-status">
-        Processing
-      </td>
-      <td class="text-primary order-total">
-        <span class="mark-text"> BDT 0.0 </span>
-      </td>
-      <td class="order-shipment-state">
-        Processing
-      </td>
-    </tr>
-    <tr>
-      <td class="order-number"><a href="http://localhost:3000/orders/BR-3449-184537183">BR-3449-184537183</a></td>
-      <td class="order-date">2017-05-23</td>
-      <td class="order-status">
-        Processing
-      </td>
-      <td class="text-primary order-total">
-        <span class="mark-text"> BDT 0.0 </span>
-      </td>
-      <td class="order-shipment-state">
-        Processing
-      </td>
-    </tr>
+    <%# current_user.orders.each do |order| %>
+    <% 3.times.each do |order| %>
+        <%= render 'users/order', order: order %>
+    <% end %>
     </tbody>
   </table>
   <br>

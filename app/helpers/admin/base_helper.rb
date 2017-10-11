@@ -145,7 +145,6 @@ module Admin
     end
 
     def order_time(time)
-      # [I18n.l(time.to_date), time.strftime("%l:%M %p")].join('') TODO: Add time format
       time.strftime("%l:%M %p")
     end
 

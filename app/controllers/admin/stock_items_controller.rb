@@ -36,7 +36,7 @@ module Admin
 
     private
     def stock_movement_params
-      params.require(:stock_movement).permit! #(permitted_stock_movement_attributes) TODO: Need to activate
+      params.require(:stock_movement).permit!
     end
 
     def stock_item

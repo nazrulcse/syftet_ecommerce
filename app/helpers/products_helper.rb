@@ -86,4 +86,14 @@ module ProductsHelper
       value.try(:cache_key) || value
     end
   end
+
+  def average_rating(product)
+    total_review = product.reviews.count
+    ratings = product.reviews.sum(:rating)
+    if total_review > 0
+      (ratings / total_review)
+    else
+      0
+    end
+  end
 end

@@ -1,5 +1,5 @@
-require 'syftet'
+require 'syftet/syftet'
 
-Syftet.config do |config|
-#  config.admin_products_per_page = 10
+Syftet.configure do |config|
+  config.currency = 'USD'
 end

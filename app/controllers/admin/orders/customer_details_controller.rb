@@ -10,12 +10,8 @@ module Admin
       end
 
       def edit
-        country_id = 1 # Address.default.country.id TODO No need country
         @order.build_bill_address if @order.bill_address.nil?
         @order.build_ship_address if @order.ship_address.nil?
-
-        # @order.bill_address.country_id = country_id if @order.bill_address.country.nil?
-        # @order.ship_address.country_id = country_id if @order.ship_address.country.nil?
       end
 
       def update

@@ -224,14 +224,14 @@ class Variant < Base
   end
 
   def in_stock?
-    # Rails.cache.fetch(in_stock_cache_key) do TODO: Need to activate this
-    #   total_on_hand > 0
-    # end
+    Rails.cache.fetch(in_stock_cache_key) do
+      total_on_hand > 0
+    end
   end
 
-  #  delegate :total_on_hand, :can_supply?, :backorderable?, to: :quantifier
-  #
-  # alias is_backorderable? backorderable?
+  delegate :total_on_hand, :can_supply?, :backorderable?, to: :quantifier
+
+  alias is_backorderable? backorderable?
 
   # Shortcut method to determine if inventory tracking is enabled for this variant
   # This considers both variant tracking flag and site-wide inventory tracking settings
@@ -269,7 +269,7 @@ class Variant < Base
   end
 
   def quantifier
-#    Stock::Quantifier.new(self) TODO: need to activate this
+    Stock::Quantifier.new(self)
   end
 
   def set_master_out_of_stock
@@ -292,7 +292,7 @@ class Variant < Base
   end
 
   def set_cost_currency
-    self.cost_currency = 'USD' #Config[:currency] if cost_currency.blank? TODO: Need to activate config
+    self.cost_currency = Syftet.config.currency
   end
 
   def create_stock_items
