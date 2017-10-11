@@ -6,12 +6,12 @@
 
     <div class="single-product-rating">
       <div class="rating" style="display: inline-block; padding: 10px 0;">
-        <div class="star-rating" data-rating="5">
+        <div class="star-rating" data-rating="<%= average_rating(@product) %>">
           ******
         </div>
       </div>
       <span>
-        <a href="#"> - 1 review </a>
+        <a data-toggle="tab" href="#tab-reviews"> - <%= pluralize(@product.reviews.count, 'review') %> </a>
       </span>
     </div>
 

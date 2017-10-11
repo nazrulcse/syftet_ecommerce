@@ -229,9 +229,9 @@ class Variant < Base
     end
   end
 
-  #  delegate :total_on_hand, :can_supply?, :backorderable?, to: :quantifier
-  #
-  # alias is_backorderable? backorderable?
+  delegate :total_on_hand, :can_supply?, :backorderable?, to: :quantifier
+
+  alias is_backorderable? backorderable?
 
   # Shortcut method to determine if inventory tracking is enabled for this variant
   # This considers both variant tracking flag and site-wide inventory tracking settings
@@ -269,7 +269,7 @@ class Variant < Base
   end
 
   def quantifier
-#    Stock::Quantifier.new(self) TODO: need to activate this
+    Stock::Quantifier.new(self)
   end
 
   def set_master_out_of_stock

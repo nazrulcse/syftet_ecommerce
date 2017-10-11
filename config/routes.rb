@@ -38,12 +38,14 @@ Rails.application.routes.draw do
 
   resources :wishlists, only: [:index, :destroy]
   resources :products do
+    post :review
     resources :wishlists, only: [:create]
     get :quickview
   end
 
   resources :orders, except: [:index, :new, :create, :destroy] do
     post :populate, on: :collection
+    get :shipped_track
   end
 
   namespace :admin do

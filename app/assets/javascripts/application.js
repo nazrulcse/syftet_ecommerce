@@ -19,11 +19,13 @@
 //= require ion.rangeSlider.min
 //= require rating
 //= require jquery.elevatezoom.min
+//= require query-object
+
 $(document).on('turbolinks:load', function () {
     $(function () {
         var quickview_modal = $('#quickview-modal');
         $('.star-rating').rateit();
-        $('.quickview').click(function (e) {
+        $(document).on('click', '.quickview', function (e) {
             $.ajax({
                 url: $(this).attr('data-action'),
                 type: 'get',

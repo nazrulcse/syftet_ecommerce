@@ -1,5 +1,5 @@
 <% content_for :breadcrumb do %>
-    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb('Products') %>
+    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb(@taxon.name) %>
 <% end %>
 
 <%= render 'products/shared/display_filter' %>
@@ -11,7 +11,7 @@
 <% end %>
 
 <div class="col-md-9">
-  <div data-hook="homepage_products" class="product-lists clearfix product-search-result">
+  <div class="product-lists clearfix product-search-result">
     <%= render 'products/shared/products', products: @products %>
   </div>
 </div>

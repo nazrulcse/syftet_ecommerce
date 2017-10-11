@@ -1,3 +1,4 @@
+require 'search'
 class ProductsController < StoreController
   # before_action :load_product, only: :show
   before_action :load_taxon, only: :index
@@ -11,8 +12,12 @@ class ProductsController < StoreController
   def index
     # @searcher = build_searcher(params.merge(include_images: true))
     # @products = @searcher.retrieve_products
-    @products = Product.all.includes(:variants) #@products.includes(:possible_promotions) if @products.respond_to?(:includes)
+    @products = Search.new(params).result
     @taxonomies = Taxonomy.all
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
   end
 
   def show
@@ -25,11 +30,13 @@ class ProductsController < StoreController
     #   @recommend_products = @product.get_recom_products
     # end
     # redirect_if_legacy_path
-    @product = Product.last
+    @product = Product.friendly.find(params[:id])
+    @rating_analysis = @product.reviews.group(:rating).count
+    @review = @product.reviews.build
   end
 
   def quickview
-    @product = Product.last
+    @product = Product.friendly.find(params[:product_id])
     respond_to do |format|
       format.js {}
     end
@@ -51,6 +58,17 @@ class ProductsController < StoreController
     @products = search.results
     @top_categories = get_filter_category(@products)
     @title = "Search result for ‘#{term}''"
+  end
+
+  def review
+    product = Product.find_by_id(params[:product_id])
+    review = product.reviews.build(review_params)
+    if review.save
+      flash[:success] = 'Review successfully submitted for admin approval'
+    else
+      flash[:error] = review.errors.first
+    end
+    redirect_to product_path(product)
   end
 
   private
@@ -106,6 +124,12 @@ class ProductsController < StoreController
       @taxon = Spree::Taxon.find_by_id(top_taxon[0])
       @taxon.taxonomy.top_categories.order(created_at: :asc).includes(:sub_taxons)
     end
+  end
+
+  private
+
+  def review_params
+    params.require(:review).permit!
   end
 
 end

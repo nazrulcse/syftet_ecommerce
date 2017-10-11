@@ -47,7 +47,8 @@ class Product < Base
            class_name: 'Promotion',
            source: :promotion
 
-  has_many :wishlist
+  has_many :wishlists
+  has_many :reviews
 
   # belongs_to :tax_category, class_name: 'TaxCategory'
   # belongs_to :shipping_category, class_name: 'ShippingCategory', inverse_of: :products

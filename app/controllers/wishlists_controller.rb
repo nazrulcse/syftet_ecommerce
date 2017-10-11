@@ -1,4 +1,4 @@
-class WishlistsController < ApplicationController
+class WishlistsController < BaseController
   before_action :authenticate_user!
 
   def create

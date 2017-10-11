@@ -177,61 +177,7 @@
                     <i class="fa fa-search"></i>
                   </a>
 
-                  <div class="modal fade bs-search-modal-lg active" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button aria-label="Close" data-dismiss="modal" class="close btn btn-sm btn-primary pull-right" type="button">
-                            <span aria-hidden="true">x</span></button>
-                          <h4 id="gridSystemModalLabel" class="modal-title">ENTER YOUR KEYWORD</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="toggle-overlay-container">
-                            <div class="search-box">
-                              <form method="get" class="input-group search-category" action="http://venusdemo.com/wordpress/pi/">
-
-                                <input name="s" maxlength="60" class="form-control search-category-input" type="text" size="20" placeholder="Search Products">
-
-                                <div class="input-group-addon search-category-container">
-                                  <div class="select">
-                                    <select name="product_cat" class="dropdown_product_cat">
-                                      <option value="" selected="selected">Select a category</option>
-                                      <option class="level-0" value="backpach">Backpach&nbsp;(12)</option>
-                                      <option class="level-0" value="big-bags">Big Bags&nbsp;(2)</option>
-                                      <option class="level-1" value="bags-hot">&nbsp;&nbsp;&nbsp;Bags Hot&nbsp;(2)
-                                      </option>
-                                      <option class="level-1" value="dawson">&nbsp;&nbsp;&nbsp;Dawson&nbsp;(2)</option>
-                                      <option class="level-1" value="new-style">&nbsp;&nbsp;&nbsp;new Style&nbsp;(2)
-                                      </option>
-                                      <option class="level-0" value="handbags">Handbags&nbsp;(5)</option>
-                                      <option class="level-1" value="back-bags">&nbsp;&nbsp;&nbsp;back bags&nbsp;(4)
-                                      </option>
-                                      <option class="level-1" value="backbags-skins">&nbsp;&nbsp;&nbsp;backbags skins&nbsp;(3)</option>
-                                      <option class="level-1" value="collection-2016">&nbsp;&nbsp;&nbsp;collection 2016&nbsp;(4)</option>
-                                      <option class="level-1" value="travel">&nbsp;&nbsp;&nbsp;travel&nbsp;(4)</option>
-                                      <option class="level-0" value="hip-packs">Hip Packs&nbsp;(2)</option>
-                                      <option class="level-0" value="kids-school">kids &amp; School&nbsp;(15)</option>
-                                      <option class="level-0" value="men">Men&nbsp;(1)</option>
-                                      <option class="level-0" value="pouches">Pouches&nbsp;(2)</option>
-                                      <option class="level-0" value="spring-2016">spring 2016&nbsp;(9)</option>
-                                      <option class="level-0" value="women">Women&nbsp;(4)</option>
-                                    </select></div>
-                                </div>
-                                <div class="input-group-btn">
-                                  <label class="btn btn-link btn-search">
-                                    <span class="title-search hidden">Search</span>
-                                    <input type="submit" class="fa searchsubmit" value="">
-                                  </label>
-                                  <input type="hidden" name="post_type" value="product">
-                                </div>
-                              </form>
-                            </div>
-                            <div class="dropdown-toggle-button" data-target=".toggle-overlay-container"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <%= render 'shared/search_modal' %>
                 </div>
               </div>
             </div>

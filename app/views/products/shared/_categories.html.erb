@@ -4,7 +4,7 @@
   </h3>
   <ul class="product-categories">
     <% Taxon.all.each do |taxon| %>
-        <li class="cat-item cat-item-<%= taxon.id %>">
+        <li class="cat-item cat-item-<%= taxon.id %> <%= @taxon.name == taxon.name ? 'active' : '' if @taxon.present? %>">
           <%= link_to taxon.name, categories_path(taxon.permalink) %>
         </li>
     <% end %>
