@@ -1,4 +1,3 @@
-module Spree
   module Stock
     class AvailabilityValidator < ActiveModel::Validator
       def validate(line_item)
@@ -27,4 +26,3 @@ module Spree
       end
     end
   end
-end

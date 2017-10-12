@@ -10,7 +10,7 @@ module Core
       end
 
       def current_currency
-        Spree::Config[:currency]
+        Config[:currency]
       end
 
       def current_store
@@ -28,9 +28,9 @@ module Core
       #
       # Be careful though to also patch the following parts of Spree accordingly:
       #
-      # * `Spree::VatPriceCalculation#gross_amount`
-      # * `Spree::LineItem#update_price`
-      # * `Spree::Stock::Estimator#taxation_options_for`
+      # * `VatPriceCalculation#gross_amount`
+      # * `LineItem#update_price`
+      # * `Stock::Estimator#taxation_options_for`
       # * Subclass the `DefaultTax` calculator
       #
       def current_price_options
@@ -42,7 +42,7 @@ module Core
       private
 
       def current_tax_zone
-        current_order.try(:tax_zone) || Spree::Zone.default_tax
+        # current_order.try(:tax_zone) || Zone.default_tax
       end
     end
   end

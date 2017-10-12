@@ -19,7 +19,7 @@ module Core
       generator_instance = self
 
       host.class_eval do
-        validates(:number, presence: true, uniqueness: {allow_blank: true})
+        validates(:number, presence: true, uniqueness: true)
 
         before_validation do |instance|
           instance.number ||= generator_method.call(host)

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  calculator_type: MyString
+  calculable_id: 1
+  calculable_type: MyString
+  preferences: MyText
+  deleted_at: 2017-10-12 18:48:30
+
+two:
+  calculator_type: MyString
+  calculable_id: 1
+  calculable_type: MyString
+  preferences: MyText
+  deleted_at: 2017-10-12 18:48:30

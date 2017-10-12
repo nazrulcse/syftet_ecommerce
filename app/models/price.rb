@@ -36,7 +36,8 @@ class Price < Base
   end
 
   def display_price_including_vat_for(price_options)
-    Money.new(price_including_vat_for(price_options), currency: currency)
+    # Money.new(price_including_vat_for(price_options), currency: currency) TODO: Not consider tax this time
+    Money.new(price, currency)
   end
 
 # Remove variant default_scope `deleted_at: nil`

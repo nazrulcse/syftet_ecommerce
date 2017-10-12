@@ -1,0 +1,28 @@
+<% content_for :breadcrumb do %>
+    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb('Checkout Address') %>
+<% end %>
+
+<%= form.fields_for :ship_address do |ship_form| %>
+    <div class="container">
+      <div class="clear"></div>
+      <div class="row">
+        <div class="col-md-6 clearfix">
+          <h1 class="public-title text-left mb15"> Your shipping address</h1>
+
+          <div class="checkout-form">
+            <div class="row">
+              <div class="col-md-12 shipping-address-form billing-form">
+                <%= render 'checkout/address_fields', form_builder: ship_form, address_type: 'Shipping' %>
+                <%= form.check_box :use_shipping, value: true, checked: true, class: 'hidden' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 clearfix">
+          <%= render 'orders/summary' %>
+          <%= submit_tag 'Save and Continue', :class => 'place-order-btn' %>
+        </div>
+      </div>
+    </div>
+<% end %>
+<%= render 'shared/form_validation_script' %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011042851) do
+ActiveRecord::Schema.define(version: 20171012124828) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20171011042851) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "attachment_content_type"
+  end
+
+  create_table "calculators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "calculator_type"
+    t.integer "calculable_id"
+    t.string "calculable_type"
+    t.text "preferences"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -169,7 +179,7 @@ ActiveRecord::Schema.define(version: 20171011042851) do
     t.datetime "canceled_at"
     t.integer "canceler_id"
     t.integer "store_id"
-    t.integer "state_loc_version"
+    t.integer "state_lock_version"
     t.date "shipment_date"
     t.integer "shipment_progress", default: 0
     t.datetime "shipped_at"
@@ -177,6 +187,7 @@ ActiveRecord::Schema.define(version: 20171011042851) do
     t.datetime "updated_at", null: false
     t.decimal "included_tax_total", precision: 10, default: "0"
     t.decimal "additional_tax_total", precision: 10, default: "0"
+    t.text "special_instructions"
   end
 
   create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -185,6 +196,15 @@ ActiveRecord::Schema.define(version: 20171011042851) do
     t.string "currency"
     t.datetime "deleted_at"
     t.float "agent_price", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_properties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "value"
+    t.integer "product_id"
+    t.integer "property_id"
+    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -231,6 +251,13 @@ ActiveRecord::Schema.define(version: 20171011042851) do
     t.boolean "advertise"
     t.string "path"
     t.integer "promotion_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "properties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "presentation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -309,6 +336,17 @@ ActiveRecord::Schema.define(version: 20171011042851) do
     t.integer "shipping_method_id"
     t.boolean "selected"
     t.float "cost", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "state_changes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "previous_state"
+    t.integer "stateful_id"
+    t.integer "user_id"
+    t.string "stateful_type"
+    t.string "next_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

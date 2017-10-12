@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  previous_state: MyString
+  stateful_id: 1
+  user_id: 1
+  stateful_type: MyString
+  next_state: MyString
+
+two:
+  name: MyString
+  previous_state: MyString
+  stateful_id: 1
+  user_id: 1
+  stateful_type: MyString
+  next_state: MyString

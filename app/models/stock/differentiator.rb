@@ -1,4 +1,3 @@
-module Spree
   module Stock
     class Differentiator
       attr_reader :missing, :packed, :required, :packages, :order
@@ -41,4 +40,3 @@ module Spree
       end
     end
   end
-end

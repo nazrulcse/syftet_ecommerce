@@ -3,7 +3,7 @@
     <%= event_links(order, events) %>
   <% end %>
   <% if can?(:resend, order) %>
-    <%= button_link_to Spree.t(:resend, scope: 'admin.order.events', default: Spree.t(:resend)),
+    <%= button_link_to t(:resend, scope: 'admin.order.events', default: t(:resend)),
           resend_admin_order_url(order),
           method: :post,
           icon: 'envelope'

@@ -18,8 +18,7 @@ module Admin
       options = {label: args.first.to_s}
 
       # Return if resource is found and user is not allowed to :admin
-      #return '' if klass = klass_for(options[:label]) and cannot?(:admin, klass) # TODO: have to enabled this and remove bellow line
-      return '' if klass = klass_for(options[:label]) and false
+      return '' if klass = klass_for(options[:label]) and cannot?(:admin, klass)
 
       if args.last.is_a?(Hash)
         options = options.merge(args.pop)

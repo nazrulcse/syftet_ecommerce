@@ -48,6 +48,8 @@ gem 'ancestry'
 gem 'truncate_html'
 gem 'state_machine'
 gem 'money'
+gem "cancan"
+gem 'monetize'
 
 gem 'devise'
 

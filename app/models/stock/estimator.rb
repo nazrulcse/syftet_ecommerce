@@ -1,4 +1,3 @@
-module Spree
   module Stock
     class Estimator
       include VatPriceCalculation
@@ -50,7 +49,7 @@ module Spree
 
       def first_tax_rate_for(tax_category)
         return unless @order.tax_zone && tax_category
-        Spree::TaxRate.for_tax_category(tax_category).
+        TaxRate.for_tax_category(tax_category).
           potential_rates_for_zone(@order.tax_zone).first
       end
 
@@ -67,4 +66,3 @@ module Spree
       end
     end
   end
-end

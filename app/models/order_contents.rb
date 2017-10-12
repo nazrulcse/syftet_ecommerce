@@ -46,7 +46,7 @@ class OrderContents
     shipment.present? ? shipment.update_amounts : order.ensure_updated_shipments
     PromotionHandler::Cart.new(order, line_item).activate
     Adjustable::AdjustmentsUpdater.update(line_item)
-    TaxRate.adjust(order, [line_item]) if options[:line_item_created]
+    # TaxRate.adjust(order, [line_item]) if options[:line_item_created] TODO: Not consider taxt this time
     persist_totals
     line_item
   end

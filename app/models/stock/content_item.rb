@@ -1,5 +1,4 @@
-module Spree
-  module Stock
+ module Stock
     class ContentItem
       attr_accessor :inventory_unit, :state
 
@@ -51,4 +50,3 @@ module Spree
       end
     end
   end
-end

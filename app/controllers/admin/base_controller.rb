@@ -9,6 +9,11 @@ module Admin
     before_action :authorize_admin
     before_action :generate_admin_api_key
 
+    rescue_from CanCan::AccessDenied do |exception|
+      flash[:error] = exception.message
+      redirect_to root_url
+    end
+
     protected
 
     def action
@@ -16,14 +21,13 @@ module Admin
     end
 
     def authorize_admin
-      # if respond_to?(:model_class, true) && model_class
-      #   record = model_class
-      # else
-      #   record = controller_name.to_sym
-      # end
-      # authorize! :admin, record
-      # authorize! action, record
-      true
+      if respond_to?(:model_class, true) && model_class
+        record = model_class
+      else
+        record = controller_name.to_sym
+      end
+      authorize! :admin, record
+      authorize! action, record
     end
 
     # Need to generate an API key for a user due to some backend actions

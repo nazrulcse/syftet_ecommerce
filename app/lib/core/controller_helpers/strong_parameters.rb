@@ -2,10 +2,10 @@ module Core
   module ControllerHelpers
     module StrongParameters
       def permitted_attributes
-        Spree::PermittedAttributes
+        PermittedAttributes
       end
 
-      delegate *Spree::PermittedAttributes::ATTRIBUTES,
+      delegate *PermittedAttributes::ATTRIBUTES,
                to: :permitted_attributes,
                prefix: :permitted
 
@@ -21,7 +21,7 @@ module Core
             ship_address_attributes: permitted_address_attributes,
             payments_attributes: permitted_payment_attributes,
             shipments_attributes: permitted_shipment_attributes
-        ]
+        ] + [:use_shipping]
       end
 
       def permitted_order_attributes

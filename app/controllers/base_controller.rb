@@ -8,7 +8,7 @@ class BaseController < ApplicationController
   # include Spree::Core::ControllerHelpers::Search
   include Core::ControllerHelpers::StoreHelper
   include Core::ControllerHelpers::OrderHelper
-  # include Core::ControllerHelpers::StrongParameters
+  include Core::ControllerHelpers::StrongParameters
 
   respond_to :html
 end

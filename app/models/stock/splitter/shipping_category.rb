@@ -1,4 +1,3 @@
-module Spree
   module Stock
     module Splitter
       class ShippingCategory < Spree::Stock::Splitter::Base
@@ -29,4 +28,3 @@ module Spree
       end
     end
   end
-end

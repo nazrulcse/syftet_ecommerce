@@ -31,7 +31,7 @@ class LineItem < Base
   # after_create :update_tax_charge
 
   delegate :name, :description, :sku, :should_track_inventory?, :product, to: :variant
-  delegate :tax_zone, to: :order
+  # delegate :tax_zone, to: :order TODO: Not consider tax this time
 
   attr_accessor :target_shipment
 
@@ -47,7 +47,7 @@ class LineItem < Base
   end
 
   def update_price
-    self.price = variant.price_including_vat_for(tax_zone: tax_zone)
+    # self.price = variant.price_including_vat_for(tax_zone: tax_zone) # TODO: Not consider vat this time
   end
 
   def copy_tax_category
@@ -124,9 +124,9 @@ class LineItem < Base
   end
 
   def update_inventory
-    #if (changed? || target_shipment.present?) && order.has_checkout_step?("delivery")
-    # OrderInventory.new(order, self).verify(target_shipment) # TODO: need to activate this
-    #end
+    if (changed? || target_shipment.present?) && order.has_checkout_step?("delivery")
+      OrderInventory.new(order, self).verify(target_shipment) # TODO: need to activate this
+    end
   end
 
   def destroy_inventory_units
@@ -141,7 +141,7 @@ class LineItem < Base
   end
 
   def recalculate_adjustments
-    # Adjustable::AdjustmentsUpdater.update(self) TODO: Need to activate this
+    Adjustable::AdjustmentsUpdater.update(self)
   end
 
   def update_tax_charge

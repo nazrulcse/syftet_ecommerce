@@ -15,13 +15,13 @@ module Admin
       end
 
       def update
-        if @order.update_attributes(order_params)
+        if @order.update_attributes!(order_params)
           @order.associate_user!(@user, @order.email.blank?) unless guest_checkout?
           @order.next unless @order.complete?
-          @order.refresh_shipment_rates(Spree::ShippingMethod::DISPLAY_ON_FRONT_AND_BACK_END)
+          @order.refresh_shipment_rates(ShippingMethod::DISPLAY_ON_FRONT_AND_BACK_END)
 
           if @order.errors.empty?
-            flash[:success] = Spree.t('customer_details_updated')
+            flash[:success] = t('customer_details_updated')
             redirect_to edit_admin_order_url(@order)
           else
             render action: :edit
@@ -36,7 +36,7 @@ module Admin
       def order_params
         params.require(:order).permit(
             :email,
-            :use_billing,
+            :use_shipping,
             bill_address_attributes: permitted_address_attributes,
             ship_address_attributes: permitted_address_attributes
         )
@@ -47,15 +47,15 @@ module Admin
       end
 
       def model_class
-        Spree::Order
+        Order
       end
 
       def load_user
-        @user = (Spree.user_class.find_by(id: params[:user_id]) ||
-            Spree.user_class.find_by(email: order_params[:email]))
+        @user = (User.find_by(id: params[:user_id]) ||
+            User.find_by(email: order_params[:email]))
 
         unless @user
-          flash.now[:error] = Spree.t(:user_not_found)
+          flash.now[:error] = t(:user_not_found)
           render :edit
         end
       end

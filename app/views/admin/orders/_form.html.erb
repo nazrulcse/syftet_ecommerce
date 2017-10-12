@@ -1,48 +1,48 @@
- <div data-hook="admin_order_form_fields">
+<div data-hook="admin_order_form_fields">
   <% if @line_item.try(:errors).present? %>
-    <%= render 'spree/admin/shared/error_messages', target: @line_item %>
+      <%= render 'spree/admin/shared/error_messages', target: @line_item %>
   <% end %>
 
-  <% if Spree::Order.checkout_step_names.include?(:delivery) %>
-    <%= render partial: "spree/admin/orders/shipment", collection: @order.shipments.order(:created_at), locals: {order: order} %>
+  <% if Order.checkout_step_names.include?(:delivery) %>
+      <%= render partial: "admin/orders/shipment", collection: @order.shipments.order(:created_at), locals: {order: order} %>
   <% else %>
-    <%= render "spree/admin/orders/line_items", order: order %>
+      <%= render "admin/orders/line_items", order: order %>
   <% end %>
 
-  <%= render "spree/admin/orders/adjustments",
-        adjustments: @order.line_item_adjustments,
-        order: order,
-        title: Spree.t(:line_item_adjustments)
+  <%= render "admin/orders/adjustments",
+             adjustments: @order.line_item_adjustments,
+             order: order,
+             title: t(:line_item_adjustments)
   %>
-  <%= render "spree/admin/orders/adjustments",
-        adjustments: @order.shipment_adjustments,
-        order: order,
-        title: Spree.t(:shipment_adjustments)
+  <%#= render "admin/orders/adjustments",
+             adjustments: @order.shipment_adjustments,
+             order: order,
+             title: t(:shipment_adjustments)
   %>
-  <%= render "spree/admin/orders/adjustments",
-        adjustments: @order.adjustments,
-        order: order,
-        title: Spree.t(:order_adjustments)
+  <%= render "admin/orders/adjustments",
+             adjustments: @order.adjustments,
+             order: order,
+             title: t(:order_adjustments)
   %>
 
 
   <%= javascript_tag do %>
-    var order_number = '<%= @order.number %>';
-    var shipments = [];
+      var order_number = '<%= @order.number %>';
+      var shipments = [];
 
-    <% @order.shipments.each do |shipment| %>
-      shipments.push(
-        <%== shipment.as_json(
-          root: false,
-          only: [
-            :id, :tracking, :number, :state, :stock_location_id
-          ], include: [
-            :inventory_units, :stock_location
-          ]).to_json
-        %>
-      );
-    <% end %>
+      <% @order.shipments.each do |shipment| %>
+          shipments.push(
+          <%== shipment.as_json(
+                       root: false,
+                       only: [
+                               :id, :tracking, :number, :state, :stock_location_id
+                       ], include: [
+                                          :inventory_units, :stock_location
+                                  ]).to_json
+          %>
+          );
+      <% end %>
 
-    <%= render partial: 'spree/admin/shared/update_order_state', handlers: [:js] %>
+      <%= render partial: 'admin/shared/update_order_state', handlers: [:js] %>
   <% end %>
 </div>

@@ -1,30 +1,29 @@
-
-  module Admin
-    module OrdersHelper
-      # Renders all the extension partials that may have been specified in the extensions
-      def event_links(order, events)
-        links = []
-        events.sort.each do |event|
-          if order.send("can_#{event}?")
-            label = t(event, scope: 'admin.order.events', default: t(event))
-            links << button_link_to(
+module Admin
+  module OrdersHelper
+    # Renders all the extension partials that may have been specified in the extensions
+    def event_links(order, events)
+      links = []
+      events.sort.each do |event|
+        if order.send("can_#{event}?")
+          label = t(event, scope: 'admin.order.events', default: t(event))
+          links << button_link_to(
               label.capitalize,
               [event, :admin, order],
               method: :put,
               icon: "#{event}",
-              data: { confirm: t(:order_sure_want_to, event: label) }
-            )
-          end
+              data: {confirm: t(:order_sure_want_to, event: label)}
+          )
         end
-        safe_join(links, '&nbsp;'.html_safe)
       end
+      safe_join(links, '&nbsp;'.html_safe)
+    end
 
-      def line_item_shipment_price(line_item, quantity)
-        Spree::Money.new(line_item.price * quantity, { currency: line_item.currency })
-      end
+    def line_item_shipment_price(line_item, quantity)
+      Money.new(line_item.price * quantity, line_item.currency)
+    end
 
-      def avs_response_code
-        {
+    def avs_response_code
+      {
           "A" => "Street address matches, but 5-digit and 9-digit postal code do not match.",
           "B" => "Street address matches, but postal code not verified.",
           "C" => "Street address and postal code do not match.",
@@ -51,18 +50,18 @@
           "X" => "Street address and 9-digit postal code match.",
           "Y" => "Street address and 5-digit postal code match.",
           "Z" => "Street address does not match, but 5-digit postal code matches."
-        }
-      end
+      }
+    end
 
-      def cvv_response_code
-        {
+    def cvv_response_code
+      {
           "M" => "CVV2 Match",
           "N" => "CVV2 No Match",
           "P" => "Not Processed",
           "S" => "Issuer indicates that CVV2 data should be present on the card, but the merchant has indicated data is not present on the card",
           "U" => "Issuer has not certified for CVV2 or Issuer has not provided Visa with the CVV2 encryption keys",
-          ""  => "Transaction failed because wrong CVV2 number was entered or no CVV2 number was entered"
-        }
-      end
+          "" => "Transaction failed because wrong CVV2 number was entered or no CVV2 number was entered"
+      }
     end
   end
+end

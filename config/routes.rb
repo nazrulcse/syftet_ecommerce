@@ -28,9 +28,14 @@ Rails.application.routes.draw do
   get '/term_condition', to: 'public#term_condition', as: :term_condition
   get '/my_account', to: 'users#my_account'
   get '/cart', to: 'public#cart'
-  # get '/checkout', to: 'public#checkout'
+  get '/p_checkout', to: 'public#checkout'
   post '/email_subscription', to: 'public#subscribe'
-  get '/checkout', to: 'orders#edit', as: :cart_checkout
+
+  get '/payment', to: 'checkout#edit', as: :checkout_payment
+  get '/delivery', to: 'checkout#edit', as: :checkout_delivery
+  patch '/checkout/update/:state', to: 'checkout#update', as: :update_checkout
+  get '/checkout/:state', to: 'checkout#edit', as: :checkout_state
+  get '/checkout', to: 'checkout#edit', as: :cart_checkout
 
   resources :contacts, only: [:new, :create]
 

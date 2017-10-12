@@ -84,3 +84,31 @@
     }
   }
 }
+
+.order-summary-wrap {
+  margin-bottom: 10px;
+  .order-table {
+    box-shadow: 0 -2px 5px 1px rgba(204, 204, 204, 0.75);
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-width: 365px;
+    min-width: 335px;
+    table {
+      width: 100%;
+      tbody {
+        tr {
+          font-size: 14px;
+          font-weight: normal;
+          .td-value {
+            //text-align: right;
+          }
+          td {
+            padding: 5px;
+            font-size: 12px;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+}

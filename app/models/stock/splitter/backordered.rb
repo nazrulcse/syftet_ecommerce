@@ -1,4 +1,3 @@
-module Spree
   module Stock
     module Splitter
       class Backordered < Spree::Stock::Splitter::Base
@@ -20,4 +19,3 @@ module Spree
       end
     end
   end
-end

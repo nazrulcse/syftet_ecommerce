@@ -52,7 +52,7 @@ class Order < Base
                   name: 'order',
                   user_id: order.user_id
               )
-              order.save
+              order.save!
             end
 
             event :cancel do
@@ -87,14 +87,14 @@ class Order < Base
               end
               after_transition to: :complete, do: :persist_user_credit_card
               before_transition to: :payment, do: :set_shipments_cost
-              before_transition to: :payment, do: :create_tax_charge!
+              # before_transition to: :payment, do: :create_tax_charge! TODO: Not consider tax this time
             end
 
             before_transition from: :cart, do: :ensure_line_items_present
 
             if states[:address]
               before_transition from: :address, do: :update_line_item_prices!
-              before_transition from: :address, do: :create_tax_charge!
+              # before_transition from: :address, do: :create_tax_charge! TODO: Not consider tax this time
               before_transition to: :address, do: :assign_default_addresses!
               before_transition from: :address, do: :persist_user_address!
             end

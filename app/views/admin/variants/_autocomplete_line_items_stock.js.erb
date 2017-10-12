@@ -1,12 +1,12 @@
 <script type='text/template' id='variant_line_items_autocomplete_stock_template'>
 
-  <label><%= Spree.t(:select_stock) %></label>
+  <label><%= t(:select_stock) %></label>
 
   <table class="stock-levels table table-bordered" data-hook="stock-levels">
     <thead>
-      <th><%= Spree.t(:name) %></th>
-      <th class="text-center"><%= Spree.t(:count_on_hand) %></th>
-      <th class="text-center"><%= Spree.t(:quantity) %></th>
+      <th><%= t(:name) %></th>
+      <th class="text-center"><%= t(:count_on_hand) %></th>
+      <th class="text-center"><%= t(:quantity) %></th>
       <th></th>
     </thead>
     <tbody>
@@ -19,23 +19,23 @@
               <input class="quantity form-control" id="variant_quantity" data-variant-id="{{variant.id}}" type="number" min="1" value="1">
             </td>
             <td class="actions actions-1 text-center">
-              <button class="btn btn-sm btn-success add_variant with-tip" data-variant-id="{{variant.id}}" title="<%= Spree.t(:add) %>" data-action="add">
+              <button class="btn btn-sm btn-success add_variant with-tip" data-variant-id="{{variant.id}}" title="<%= t(:add) %>" data-action="add">
                 <span class="icon icon-add"></span>
                 </button>
             </td>
           {{else}}
-            <td class="text-center"><%= Spree.t(:out_of_stock) %></td>
+            <td class="text-center"><%= t(:out_of_stock) %></td>
             <td class="text-center">0</td>
             <td></td>
             <td></td>
           {{/if}}
         {{else}}
-          <td class="text-center"><%= Spree.t(:doesnt_track_inventory) %></td>
+          <td class="text-center"><%= t(:doesnt_track_inventory) %></td>
           <td class="text-center">
             <input class="quantity form-control" id="variant_quantity" data-variant-id="{{variant.id}}" type="number" min="1" value="1">
           </td>
           <td class="actions actions-1 text-center">
-            <button class="btn btn-sm btn-success add_variant with-tip" data-variant-id="{{variant.id}}" title="<%= Spree.t(:add) %>" data-action="add">
+            <button class="btn btn-sm btn-success add_variant with-tip" data-variant-id="{{variant.id}}" title="<%= t(:add) %>" data-action="add">
               <span class="icon icon-add"></span>
             </button>
           </td>

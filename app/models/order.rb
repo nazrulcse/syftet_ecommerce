@@ -1,3 +1,4 @@
+require 'order/checkout'
 class Order < Base
   PAYMENT_STATES = %w(balance_due credit_owed failed paid void)
   SHIPMENT_STATES = %w(backorder canceled partial processing pending ready shipped delivered canceled refunded )
@@ -90,9 +91,9 @@ class Order < Base
   #   belongs_to :canceler, class_name: Spree.user_class.to_s
   # else
   belongs_to :user
-  belongs_to :created_by
-  belongs_to :approver
-  belongs_to :canceler
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :approver, class_name: 'User'
+  belongs_to :canceler, class_name: 'User'
   # end
 
   belongs_to :bill_address, foreign_key: :bill_address_id, class_name: 'Address'
@@ -255,7 +256,7 @@ class Order < Base
   # Returns the relevant zone (if any) to be used for taxation purposes.
   # Uses default tax zone unless there is a specific match
   def tax_zone
-    @tax_zone ||= Zone.match(tax_address) || Zone.default_tax
+    # @tax_zone ||= Zone.match(tax_address) || Zone.default_tax
   end
 
   # Returns the address for taxation based on configuration
@@ -481,13 +482,13 @@ class Order < Base
   end
 
   def ensure_line_items_are_in_stock
-    # if insufficient_stock_lines.present?
-    #   restart_checkout_flow
-    #   errors.add(:base, Spree.t(:insufficient_stock_lines_present))
-    #   false
-    # else
-    #   true
-    # end
+    if insufficient_stock_lines.present?
+      restart_checkout_flow
+      errors.add(:base, Spree.t(:insufficient_stock_lines_present))
+      false
+    else
+      true
+    end
   end
 
   def empty!
@@ -636,7 +637,7 @@ class Order < Base
   end
 
   def reload(options=nil)
-    remove_instance_variable(:@tax_zone) if defined?(@tax_zone)
+    # remove_instance_variable(:@tax_zone) if defined?(@tax_zone) TODO: Not consider taxt this time
     super
   end
 

@@ -328,8 +328,6 @@ class Product < Base
   # Fix for issue #5306
   def save_master
     if master_updated?
-      p master.valid?
-      p master.errors.inspect
       master.save!
       @nested_changes = true
     end

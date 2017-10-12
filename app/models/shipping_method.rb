@@ -1,6 +1,6 @@
 class ShippingMethod < Base
   acts_as_paranoid
-  # include CalculatedAdjustments
+  include CalculatedAdjustments
   DISPLAY = [:both, :front_end, :back_end]
 
   # Used for #refresh_rates
@@ -38,7 +38,9 @@ class ShippingMethod < Base
   end
 
   def self.calculators
-    spree_calculators.send(model_name_without_spree_namespace)
+    # spree_calculators.send(model_name_without_spree_namespace) TODO: Note had to overwrite code
+    #     .select { |c| c.to_s.constantize < ShippingCalculator }
+    spree_calculators[model_name_without_spree_namespace]
         .select { |c| c.to_s.constantize < ShippingCalculator }
   end
 

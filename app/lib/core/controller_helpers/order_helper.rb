@@ -38,7 +38,8 @@ module Core
           @current_order.user ||= current_user
           # See issue #3346 for reasons why this line is here
           @current_order.created_by ||= current_user
-          @current_order.save(validate: false)
+          @current_order.state ||= 'cart'
+          @current_order.save!
         end
 
         if @current_order
@@ -85,9 +86,7 @@ module Core
 
         # Find any incomplete orders for the guest_token
         incomplete_orders = Order.incomplete.includes(line_items: [variant: [:images, :option_values, :product]])
-        p incomplete_orders.inspect
         guest_token_order_params = current_order_params.except(:user_id)
-        p guest_token_order_params
         order = if with_adjustments
                   incomplete_orders.lock(options[:lock]).find_by(guest_token_order_params)
                 else

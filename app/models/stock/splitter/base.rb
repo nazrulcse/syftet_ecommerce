@@ -1,4 +1,4 @@
-module Spree
+
   module Stock
     module Splitter
       class Base
@@ -25,4 +25,3 @@ module Spree
       end
     end
   end
-end
