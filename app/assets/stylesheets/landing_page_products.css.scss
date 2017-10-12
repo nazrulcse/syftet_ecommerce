@@ -264,3 +264,11 @@
     }
   }
 }
+
+.custom-dropdown {
+  cursor: pointer;
+  .custom-drp-content {
+    padding: 30px;
+    min-width: 250px;
+  }
+}

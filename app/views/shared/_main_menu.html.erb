@@ -10,7 +10,7 @@
         <span class="fa fa-search"></span>
 
         <div class="active-content">
-          <form method="get" class="input-group search-category" action="http://venusdemo.com/wordpress/pi/">
+          <form method="get" class="input-group search-category">
             <input name="s" maxlength="60" class="form-control search-category-input" type="text" size="20" placeholder="Search Products">
 
             <div class="input-group-btn">
@@ -27,22 +27,7 @@
       <div class="active-mobile setting-popup pull-left">
         <span class="fa fa-user"></span>
 
-        <div class="active-content">
-          <div class="menu-top-menu-header-container">
-            <ul id="menu-top-menu-header" class="menu-topbar">
-              <li id="menu-item-487" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-487">
-                <a href="http://venusdemo.com/wordpress/pi/my-account/">
-                  <%= t(:my_account) %>
-                </a>
-              </li>
-              <li id="menu-item-488" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-488">
-                <a href="http://venusdemo.com/wordpress/pi/checkout/">
-                  <%= t(:checkout) %>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+
       </div>
 
       <div class="active-mobile pull-left cart-popup">
@@ -98,18 +83,19 @@
                         </a>
                       </li>
 
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <%= t(:page) %> <b class="caret"></b>
+                      <li class="dropdown custom-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                          <%= t(:page) %>
+                          <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu custom-drp-content">
                           <li>
-                            <a href="#" class="dropdown-toggle">
+                            <a href="#">
                               <%= t(:about_us) %>
                             </a>
                           </li>
                           <li>
-                            <a href="<%= new_contact_path %>" class="dropdown-toggle">
+                            <a href="<%= new_contact_path %>">
                               <%= t(:contact_us) %>
                             </a>
                           </li>

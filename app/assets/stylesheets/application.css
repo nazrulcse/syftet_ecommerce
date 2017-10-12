@@ -15,7 +15,6 @@
  *= require landing_page_products
  *= require nav_menu
  *= require product
- *= require public
  *= require responsive
  *= require search
  *= require slick
@@ -33,6 +32,7 @@
  *= require public/checkout
  *= require sign_in
  *= require cart_checkout
+ *= require public
  */
 
 #notification {
