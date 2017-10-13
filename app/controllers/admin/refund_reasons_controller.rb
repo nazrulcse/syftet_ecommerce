@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class RefundReasonsController < ResourceController
-    end
+module Admin
+  class RefundReasonsController < ResourceController
   end
 end

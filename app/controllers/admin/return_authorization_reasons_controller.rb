@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class ReturnAuthorizationReasonsController < ResourceController
-    end
+module Admin
+  class ReturnAuthorizationReasonsController < ResourceController
   end
 end

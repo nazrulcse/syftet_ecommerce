@@ -1,4 +1,4 @@
-require_dependency 'spree/calculator'
+require_dependency 'calculator'
 
 module Spree
   class Calculator::DefaultTax < Calculator

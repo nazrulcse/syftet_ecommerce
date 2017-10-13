@@ -1,6 +1,6 @@
   module Stock
     module Splitter
-      class ShippingCategory < Spree::Stock::Splitter::Base
+      class ShippingCategory < Stock::Splitter::Base
         def split(packages)
           split_packages = []
           packages.each do |package|

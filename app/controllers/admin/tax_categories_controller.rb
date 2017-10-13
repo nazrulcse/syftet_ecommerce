@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class TaxCategoriesController < ResourceController
-    end
+module Admin
+  class TaxCategoriesController < ResourceController
   end
 end

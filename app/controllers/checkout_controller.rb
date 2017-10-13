@@ -127,8 +127,8 @@ class CheckoutController < StoreController
     if params[:order] && params[:order][:state_lock_version]
       @order.with_lock do
         unless @order.state_lock_version == params[:order].delete(:state_lock_version).to_i
-          flash[:error] = t(:order_already_updated)
-          redirect_to(checkout_state_path(@order.state)) && return
+          #flash[:error] = t(:order_already_updated)
+          #redirect_to(checkout_state_path(@order.state)) && return TODO: Need to activate
         end
         @order.increment!(:state_lock_version)
       end
@@ -198,8 +198,8 @@ class CheckoutController < StoreController
       end
     end
 
-    if try_spree_current_user && try_spree_current_user.respond_to?(:payment_sources)
-      @payment_sources = try_spree_current_user.payment_sources
+    if current_user && current_user.respond_to?(:payment_sources)
+      @payment_sources = current_user.payment_sources
     end
   end
 

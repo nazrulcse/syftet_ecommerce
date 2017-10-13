@@ -78,9 +78,9 @@ class Address < Base
     {
         name: full_name,
         address1: address1,
-        address2: address2,
+        # address2: address2,
         city: city,
-        state: state_text,
+        state: state,
         zip: zipcode,
         country: country.try(:iso),
         phone: phone

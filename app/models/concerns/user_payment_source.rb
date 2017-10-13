@@ -9,7 +9,7 @@ module UserPaymentSource
     end
 
     def payment_sources
-      credit_cards.with_payment_profile
+      # credit_cards.with_payment_profile TODO: Need to activate
     end
 
     def drop_payment_source(source)

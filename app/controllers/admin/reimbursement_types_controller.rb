@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class ReimbursementTypesController < ResourceController
-    end
+module Admin
+  class ReimbursementTypesController < ResourceController
   end
 end

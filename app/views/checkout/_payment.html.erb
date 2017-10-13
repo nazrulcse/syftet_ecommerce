@@ -1,0 +1,187 @@
+<script type="text/javascript" asyc src='https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js'></script>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6 clearfix">
+      <form action="" role="form" method="post">
+        <div class="chose-payment-method border-bottom" style="margin-bottom: 20px; padding-bottom: 50px">
+          <h3> CHOOSE PAYMENT METHOD </h3>
+
+          <div class="payment-method-form">
+            <div class="payment-method-form-container">
+              <div class="form-group input-wrap">
+                <%= hidden_field_tag "[order][payments_attributes][amount]", @order.total, class: 'required form-control' %>
+              </div>
+              <div class="form-group input-wrap">
+                <label for="card-no">
+                  Card number <span class="card-type-supported"> </span>
+                </label>
+                <!--<%#= image_tag('ssl_cert.png', class: 'pull-right', width: '36px') %>-->
+                <%= text_field_tag "[order][payments_attributes][number]", populate_payment_data(params[:order], 'number'), class: 'required form-control mt10' %>
+                <span class="form-error"></span>
+              </div>
+
+              <div class="form-group input-wrap">
+                <label for="card-no">
+                  Name on Card
+                </label>
+                <%= text_field_tag "[order][payments_attributes][name]", populate_payment_data(params[:order], 'name'), class: 'form-control required' %>
+                <span class="form-error"></span>
+              </div>
+
+              <div class="form-group input-wrap">
+                <label for="expiration-date"> Expiration date </label>
+                <%= text_field_tag '[order][payments_attributes][expire]', populate_payment_data(params[:order], 'expire'), id: "expiration-date", class: "form-control required", placeholder: 'MM/YY' %>
+                <span class="form-error"></span>
+              </div>
+              <%= hidden_field_tag :failed_id, params[:failed_id] %>
+              <div class="form-group input-wrap">
+                <label for="security-code"> CVV </label>
+                <%= text_field_tag "[order][payments_attributes][cvv_response_code]", populate_payment_data(params[:order], 'cvv_response_code'), class: 'required form-control' %>
+                <span class="form-error"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="billing-address">
+          <div class="billing-address">
+            <h3> BILLING ADDRESS </h3>
+
+            <div class="radio-btn-shipping-address">
+              <div class="checkbox">
+                <label>
+                  <%= form.check_box :use_shipping, value: true, checked: true, id: "same-billing-address" %>
+                  <span> Use my shipping address </span>
+                  <%= form.fields_for :ship_address do |ship_form| %>
+                      <p>
+                        <%= ship_form.object.active_merchant_hash[:name] %>
+                        <%= ship_form.object.active_merchant_hash[:address1] %>
+                        <%= ship_form.object.active_merchant_hash[:city] + ', ' + ship_form.object.active_merchant_hash[:zip] %>
+                      </p>
+                  <% end %>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="billing-address-form">
+          <%= form.fields_for :bill_address do |ship_form| %>
+              <div id="custom-billing-address" class="billing-address-form-container collapse">
+                <%= render 'checkout/address_fields', form_builder: ship_form, address_type: 'Billing' %>
+              </div>
+          <% end %>
+        </div>
+
+        <div class="continue-btn clearfix">
+          <input type="submit" class="pull-md-right" value="CONTINUE">
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-6 clearfix">
+      <%= render 'orders/summary' %>
+      <div class="border-bottom" style="margin-bottom: 20px; padding-bottom: 50px">
+        <h1 class="public-title text-left mt10 mb10"> Shipping address </h1>
+        <%= form.fields_for :ship_address do |ship_form| %>
+            <p>
+              <%= ship_form.object.active_merchant_hash[:name] %> <br/>
+              <%= ship_form.object.active_merchant_hash[:address1] %> <br/>
+              <%= ship_form.object.active_merchant_hash[:city] + ', ' + ship_form.object.active_merchant_hash[:zip] %>
+              <br/>
+              <%= ship_form.object.active_merchant_hash[:phone] %>
+            </p>
+        <% end %>
+        <% if params[:failed_id].present? %>
+            <%= link_to 'EDIT', checkout_address_path(state: 'address', failed_id: params[:failed_id]), class: 'btn-edit' %>
+        <% else %>
+            <%= link_to 'EDIT', checkout_state_path(state: 'address'), class: 'btn-edit' %>
+        <% end %>
+        <h1 class="public-title text-left mt10 mb10"> Shipping method </h1>
+
+        <p>
+          Standard
+          3-6 business days
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/form_validation_script' %>
+
+<script type="text/javascript">
+    $(function () {
+        $('#same-billing-address').click(function () {
+            if ($(this).is(":checked")) {
+                $('#custom-billing-address').slideUp();
+            }
+            else {
+                $('#custom-billing-address').slideDown();
+            }
+        });
+        card = $('#_order_payments_attributes_number');
+        cvv = $('#_order_payments_attributes_cvv_response_code');
+        expire = $('#expiration-date');
+
+        card.payment('formatCardNumber');
+        cvv.payment('formatCardCVC');
+        expire.payment('formatCardExpiry');
+
+        $('input[type="submit"]').click(function (e) {
+            valid_card = $.payment.validateCardNumber(card.val());
+            valid_cvv = $.payment.validateCardCVC(cvv.val());
+            valid_expire = $.payment.cardExpiryVal(expire.val());
+
+            if (!valid_card) {
+                card.removeClass('valid');
+                card.parent().addClass('errored');
+                card.next().html("Your card number is invalid");
+            }
+
+            if (!valid_cvv) {
+                cvv.removeClass('valid');
+                cvv.parent().addClass('errored');
+                cvv.next().html("Your card cvc is invalid");
+            }
+
+            if (!valid_expire) {
+                expire.removeClass('valid');
+                expire.parent().addClass('errored');
+                expire.next().html("Your card expire is invalid");
+            }
+
+            if (valid_card && valid_cvv && valid_expire && check_valid_card_type(card)) {
+                console.log("Valid payment");
+            }
+            else {
+                console.log("Invalid payment credential");
+                firstErrorInput = $(".errored").find('.required').first();
+                if (firstErrorInput != '') {
+                    firstErrorInput.focus();
+                }
+                e.preventDefault();
+            }
+        });
+
+        card.keyup(function () {
+            check_valid_card_type($(this));
+        });
+
+        function check_valid_card_type(card) {
+            card_type = $.payment.cardType(card.val());
+            if (card_type == 'mastercard' || card_type == 'visa') {
+                $('.card-type-supported').html('');
+                return true;
+            }
+            else if (card_type != null) {
+                $('.card-type-supported').html("Only Master/Visa card accepting");
+                return false;
+            }
+            else {
+                $('.card-type-supported').html('');
+            }
+        }
+
+    });
+</script>

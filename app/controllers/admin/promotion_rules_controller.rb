@@ -1,5 +1,5 @@
-class Spree::Admin::PromotionRulesController < Spree::Admin::BaseController
-  helper 'spree/promotion_rules'
+class Admin::PromotionRulesController < Admin::BaseController
+  # helper 'promotion_rules' TODO: Need to active
 
   before_action :load_promotion, only: [:create, :destroy]
   before_action :validate_promotion_rule_type, only: :create
@@ -15,8 +15,8 @@ class Spree::Admin::PromotionRulesController < Spree::Admin::BaseController
       flash[:success] = Spree.t(:successfully_created, :resource => Spree.t(:promotion_rule))
     end
     respond_to do |format|
-      format.html { redirect_to spree.edit_admin_promotion_path(@promotion)}
-      format.js   { render :layout => false }
+      format.html { redirect_to spree.edit_admin_promotion_path(@promotion) }
+      format.js { render :layout => false }
     end
   end
 
@@ -26,8 +26,8 @@ class Spree::Admin::PromotionRulesController < Spree::Admin::BaseController
       flash[:success] = Spree.t(:successfully_removed, :resource => Spree.t(:promotion_rule))
     end
     respond_to do |format|
-      format.html { redirect_to spree.edit_admin_promotion_path(@promotion)}
-      format.js   { render :layout => false }
+      format.html { redirect_to spree.edit_admin_promotion_path(@promotion) }
+      format.js { render :layout => false }
     end
   end
 
@@ -42,8 +42,8 @@ class Spree::Admin::PromotionRulesController < Spree::Admin::BaseController
     if !valid_promotion_rule_types.include?(params[:promotion_rule][:type])
       flash[:error] = Spree.t(:invalid_promotion_rule)
       respond_to do |format|
-        format.html { redirect_to spree.edit_admin_promotion_path(@promotion)}
-        format.js   { render :layout => false }
+        format.html { redirect_to spree.edit_admin_promotion_path(@promotion) }
+        format.js { render :layout => false }
       end
     end
   end

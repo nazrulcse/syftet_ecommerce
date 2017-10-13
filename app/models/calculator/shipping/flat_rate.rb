@@ -6,7 +6,7 @@ module Calculator::Shipping
     preference :currency, :string, default: -> { Syftet.config.currency }
 
     def self.description
-      t(:shipping_flat_rate_per_order)
+      I18n.t(:shipping_flat_rate_per_order)
     end
 
     def compute_package(package)

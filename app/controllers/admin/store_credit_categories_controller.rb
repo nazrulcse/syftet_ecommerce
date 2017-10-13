@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class StoreCreditCategoriesController < ResourceController
-    end
+module Admin
+  class StoreCreditCategoriesController < ResourceController
   end
 end

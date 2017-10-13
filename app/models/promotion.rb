@@ -44,8 +44,8 @@ class Promotion < Base
   end
 
   def self.active
-    where('spree_promotions.starts_at IS NULL OR spree_promotions.starts_at < ?', Time.current).
-        where('spree_promotions.expires_at IS NULL OR spree_promotions.expires_at > ?', Time.current)
+    where('promotions.starts_at IS NULL OR promotions.starts_at < ?', Time.current).
+        where('promotions.expires_at IS NULL OR promotions.expires_at > ?', Time.current)
   end
 
   def self.order_activatable?(order)

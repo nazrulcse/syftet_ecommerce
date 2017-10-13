@@ -79,11 +79,11 @@ module Stock
       # across the entire set of inventory units to be shipped, which has been
       # taken care of by the Prioritizer
       contents.each { |content_item| content_item.inventory_unit.state = content_item.state.to_s }
-
-      Spree::Shipment.new(
-          stock_location: stock_location,
+      Shipment.new(
+          stock_location_id: stock_location.id,
           shipping_rates: shipping_rates,
-          inventory_units: contents.map(&:inventory_unit)
+          inventory_units: contents.map(&:inventory_unit),
+          state: 'pending'
       )
     end
 

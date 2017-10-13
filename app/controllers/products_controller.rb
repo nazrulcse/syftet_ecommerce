@@ -22,7 +22,7 @@ class ProductsController < StoreController
 
   def show
     # @title = accurate_title
-    # @taxon = params[:taxon_id].present? ? Spree::Taxon.find(params[:taxon_id]) : @product.taxons.first
+    # @taxon = params[:taxon_id].present? ? Taxon.find(params[:taxon_id]) : @product.taxons.first
     # @recommend_products = @product.recommended_products
     # @ratting = rand(4.2..4.8)
     # @ratting = (@ratting * 100) / 5
@@ -44,13 +44,13 @@ class ProductsController < StoreController
 
   def keyword_search
     term = params[:keyword]
-    search = Spree::Product.solr_search do |s|
+    search = Product.solr_search do |s|
       s.keywords params[:keyword]
       s.paginate :page => params[:page] || 1, :per_page => 30
     end
 
     if is_number?(term)
-      product = Spree::Product.find_by_id(term.to_i)
+      product = Product.find_by_id(term.to_i)
       if product.present?
         redirect_to "/p/#{product.slug}"
       end
@@ -91,7 +91,7 @@ class ProductsController < StoreController
   end
 
   def load_taxon
-    @taxon = Spree::Taxon.find(params[:taxon]) if params[:taxon].present?
+    @taxon = Taxon.find(params[:taxon]) if params[:taxon].present?
   end
 
   def redirect_if_legacy_path
@@ -121,7 +121,7 @@ class ProductsController < StoreController
     end
     if category.present?
       top_taxon = category.sort.reverse.first
-      @taxon = Spree::Taxon.find_by_id(top_taxon[0])
+      @taxon = Taxon.find_by_id(top_taxon[0])
       @taxon.taxonomy.top_categories.order(created_at: :asc).includes(:sub_taxons)
     end
   end

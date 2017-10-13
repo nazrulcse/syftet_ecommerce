@@ -137,9 +137,9 @@ class Variant < Base
   # Product may be created with deleted_at already set,
   # which would make AR's default finder return nil.
   # This is a stopgap for that little problem.
-  def product
-    Product.unscoped { super }
-  end
+  # def product
+  #   Product.unscoped { super } TODO: Need to activate this
+  # end
 
   def options=(options = {})
     options.each do |option|

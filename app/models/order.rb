@@ -545,6 +545,7 @@ class Order < Base
   def create_proposed_shipments
     all_adjustments.shipping.delete_all
     shipments.destroy_all
+    p self.shipments.inspect
     self.shipments = Stock::Coordinator.new(self).shipments
   end
 

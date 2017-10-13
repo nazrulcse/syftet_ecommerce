@@ -1,4 +1,3 @@
-module Spree
   module Admin
     class TaxRatesController < ResourceController
       before_action :load_data
@@ -12,4 +11,3 @@ module Spree
       end
     end
   end
-end

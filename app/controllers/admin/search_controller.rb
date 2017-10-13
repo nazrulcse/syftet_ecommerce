@@ -1,6 +1,5 @@
-module Spree
   module Admin
-    class SearchController < Spree::Admin::BaseController
+    class SearchController < Admin::BaseController
       respond_to :json
       layout false
 
@@ -37,5 +36,3 @@ module Spree
       end
     end
   end
-end
-

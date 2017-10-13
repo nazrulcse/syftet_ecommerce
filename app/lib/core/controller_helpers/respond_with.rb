@@ -1,4 +1,4 @@
-require 'responder'
+# require 'responder'
 
 module ActionController
   class Base

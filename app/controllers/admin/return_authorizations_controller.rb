@@ -1,7 +1,6 @@
-module Spree
   module Admin
     class ReturnAuthorizationsController < ResourceController
-      belongs_to 'spree/order', :find_by => :number
+      belongs_to 'order', :find_by => :number
 
       before_action :load_form_data, only: [:new, :edit]
       create.fails  :load_form_data
@@ -48,4 +47,3 @@ module Spree
       end
     end
   end
-end

@@ -22,8 +22,8 @@ module PromotionHandler
     private
 
     def promotions
-      Spree::Promotion.active.where(
-          id: Spree::Promotion::Actions::FreeShipping.pluck(:promotion_id),
+      Promotion.active.where(
+          id: Promotion::Actions::FreeShipping.pluck(:promotion_id),
           path: nil
       )
     end

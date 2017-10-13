@@ -51,7 +51,7 @@ class Product < Base
   has_many :reviews
 
   # belongs_to :tax_category, class_name: 'TaxCategory'
-  # belongs_to :shipping_category, class_name: 'ShippingCategory', inverse_of: :products
+  belongs_to :shipping_category, class_name: 'ShippingCategory', inverse_of: :products
 
   has_one :master,
           -> { where is_master: true },

@@ -1,8 +1,7 @@
-module Spree
   module Admin
     class StoreCreditError < StandardError; end
 
-    class StoreCreditsController < Spree::Admin::BaseController
+    class StoreCreditsController < Admin::BaseController
       before_action :load_user
       before_action :load_categories, only: [:new, :edit]
       before_action :load_store_credit, only: [:new, :edit, :update]
@@ -62,7 +61,7 @@ module Spree
 
       def permitted_store_credit_params
         params.require(:store_credit).permit(permitted_store_credit_attributes).
-          merge(currency: Spree::Config[:currency])
+          merge(currency: Config[:currency])
       end
 
       private
@@ -77,11 +76,11 @@ module Spree
       end
 
       def load_categories
-        @credit_categories = Spree::StoreCreditCategory.order(:name)
+        @credit_categories = StoreCreditCategory.order(:name)
       end
 
       def load_store_credit
-        @store_credit = Spree::StoreCredit.find_by_id(params[:id]) || Spree::StoreCredit.new
+        @store_credit = StoreCredit.find_by_id(params[:id]) || StoreCredit.new
       end
 
       def ensure_unused_store_credit
@@ -91,4 +90,3 @@ module Spree
       end
     end
   end
-end

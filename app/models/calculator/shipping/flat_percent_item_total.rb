@@ -2,11 +2,11 @@ require_dependency 'shipping_calculator'
 
 module Calculator::Shipping
   class FlatPercentItemTotal < ShippingCalculator
-    include Preferences::PreferableClassMethods
+    # include Preferences::PreferableClassMethods
     preference :flat_percent, :decimal, default: 0
 
     def self.description
-      t(:flat_percent)
+      I18n.t(:flat_percent)
     end
 
     def compute_package(package)

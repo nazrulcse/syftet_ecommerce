@@ -28,4 +28,4 @@ production:
   <<: *default
   username: root
   password: password
-  database: syftet_ecommerce_prod
+  database: syftet_ecommerce_dev

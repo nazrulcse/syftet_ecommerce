@@ -1,6 +1,4 @@
-module Spree
-  module Admin
-    class PromotionCategoriesController < ResourceController
-    end
+module Admin
+  class PromotionCategoriesController < ResourceController
   end
 end

@@ -1,7 +1,7 @@
 class ShippingRate < Base
   belongs_to :shipment, class_name: 'Shipment'
   belongs_to :shipping_method, class_name: 'ShippingMethod', inverse_of: :shipping_rates
-  belongs_to :tax_rate, class_name: 'TaxRate'
+  # belongs_to :tax_rate, class_name: 'TaxRate'
 
   delegate :order, :currency, to: :shipment
   delegate :name, to: :shipping_method
@@ -38,6 +38,7 @@ class ShippingRate < Base
   end
 
   def tax_rate
-    TaxRate.unscoped { super }
+    nil
+    # TaxRate.unscoped { super } TODO: Not consider tax this time
   end
 end

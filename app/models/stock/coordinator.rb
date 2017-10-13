@@ -9,7 +9,7 @@ module Stock
 
     def shipments
       packages.map do |package|
-        package.to_shipment.tap { |s| s.address = order.ship_address }
+        package.to_shipment.tap { |s| s.address_id = order.ship_address.id }
       end
     end
 
@@ -57,7 +57,11 @@ module Stock
 
     def splitters(stock_location)
       # extension point to return custom splitters for a location
-      Rails.application.config.spree.stock_splitters
+      # Rails.application.config.spree.stock_splitters
+      [
+          Stock::Splitter::ShippingCategory,
+          Stock::Splitter::Backordered
+      ]
     end
   end
 end

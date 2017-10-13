@@ -1,4 +1,4 @@
-module Spree
+
   module Admin
     class ReturnItemsController < ResourceController
       def location_after_save
@@ -6,4 +6,3 @@ module Spree
       end
     end
   end
-end

@@ -27,9 +27,11 @@ class ShippingMethod < Base
 
   def include?(address)
     return false unless address
-    zones.includes(:zone_members).any? do |zone|
-      zone.include?(address)
-    end
+    # zones.includes(:zone_members).any? do |zone|
+    #   zone.include?(address)
+    # end
+    # TODO: We are not considering zone this time, So return true all time
+    true
   end
 
   def build_tracking_url(tracking)
@@ -40,7 +42,7 @@ class ShippingMethod < Base
   def self.calculators
     # spree_calculators.send(model_name_without_spree_namespace) TODO: Note had to overwrite code
     #     .select { |c| c.to_s.constantize < ShippingCalculator }
-    spree_calculators[model_name_without_spree_namespace]
+    spree_calculators[model_name_without_spree_namespace.to_sym]
         .select { |c| c.to_s.constantize < ShippingCalculator }
   end
 

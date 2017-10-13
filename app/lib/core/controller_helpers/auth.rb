@@ -2,7 +2,7 @@ module Core
   module ControllerHelpers
     module Auth
       extend ActiveSupport::Concern
-      include Spree::Core::TokenGenerator
+      include Core::TokenGenerator
 
       included do
         before_action :set_guest_token
@@ -15,7 +15,7 @@ module Core
 
       # Needs to be overriden so that we use Spree's Ability rather than anyone else's.
       def current_ability
-        @current_ability ||= Spree::Ability.new(try_spree_current_user)
+        @current_ability ||= Ability.new(try_spree_current_user)
       end
 
       def redirect_back_or_default(default)

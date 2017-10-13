@@ -147,6 +147,14 @@ module ApplicationHelper
     variants.map(&:color_image).compact
   end
 
+  def populate_payment_data(param, field)
+    if param.present? && param[:payments_attributes].present?
+      param[:payments_attributes][field]
+    else
+      ''
+    end
+  end
+
   # Order
 
   def line_item_count
