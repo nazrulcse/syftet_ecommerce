@@ -252,7 +252,6 @@ a {
 
 /* Form design */
 .custom-form-control {
-  color: #e1e1e1 !important;
   background-color: #ffffff !important;
   border: 1px solid #e1e1e1 !important;
   border-radius: 0 !important;
@@ -265,7 +264,7 @@ a {
   outline: 0 !important;
 }
 
-.alert-error {
+.alert-error, .alert-alert {
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd1;

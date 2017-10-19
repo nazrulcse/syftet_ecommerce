@@ -1,5 +1,4 @@
 # require_dependency 'returns_calculator' TODO: Need to activate
-
 module Calculator::Returns
   class DefaultRefundAmount < ReturnsCalculator
 

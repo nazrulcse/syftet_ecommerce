@@ -38,6 +38,11 @@ $(document).on('turbolinks:load', function () {
                 }
             })
         });
+
+        $(document).on('click', '#notice-close', function () {
+            $('#notification').hide();
+            return false;
+        });
     });
 });
 
@@ -48,10 +53,7 @@ function popupMessage(message, klass) {
     $('#notification').show().animate({
         top: notificationTop
     }, 200);
-    $('#notice-close').click(function () {
-        $('#notification').hide();
-        return true;
-    });
+
     setTimeout(function () {
         $('#notification').hide().animate({
             top: "-60"

@@ -33,6 +33,7 @@
  *= require sign_in
  *= require cart_checkout
  *= require public
+ *= require scaffold
  */
 
 #notification {

@@ -7,7 +7,7 @@
         <td> Order subtotal</td>
         <td class="td-value">
           <b>
-            <%= amount_with_currency(@order.total) %>
+            <%= amount_with_currency(@order.amount) %>
           </b>
         </td>
       </tr>
@@ -20,7 +20,11 @@
       <tr>
         <td> Estimated shipping</td>
         <td class="td-value">
-          <b>Free</b>
+          <% if @order.shipments.present? %>
+              <b> <%= shipping_method(@order.shipments) %> </b>
+          <% else %>
+              <b>Free</b>
+          <% end %>
         </td>
       </tr>
       <tr>

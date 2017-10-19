@@ -11,7 +11,7 @@ module Admin
         if report_description_key.nil?
           report_description_key = "#{report_key}_description"
         end
-        @@available_reports[report_key] = {name: Spree.t(report_key), description: Spree.t(report_description_key)}
+        @@available_reports[report_key] = {name: I18n.t(report_key), description: I18n.t(report_description_key)}
       end
     end
 

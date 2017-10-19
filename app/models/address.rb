@@ -78,7 +78,6 @@ class Address < Base
     {
         name: full_name,
         address1: address1,
-        # address2: address2,
         city: city,
         state: state,
         zip: zipcode,

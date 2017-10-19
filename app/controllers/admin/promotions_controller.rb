@@ -24,7 +24,7 @@ module Admin
       @collection = @search.result(distinct: true).
           includes(promotion_includes).
           page(params[:page]).
-          per(params[:per_page] || Spree::Config[:promotions_per_page])
+          per(params[:per_page] || Syftet.config.promotions_per_page)
     end
 
     def promotion_includes

@@ -30,7 +30,7 @@
             <strong><%= t(:ship_total) %>:</strong>
           </td>
           <td id='ship_total'>
-            <%= @order.display_ship_total.to_html %>
+            <%= @order.display_ship_total.format %>
           </td>
         </tr>
       <% end %>

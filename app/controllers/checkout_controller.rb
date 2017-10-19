@@ -228,7 +228,7 @@ class CheckoutController < StoreController
     if current_user.present?
       @order.user_id == current_user.id
     else
-      authorize!(:edit, current_order, cookies.signed[:guest_token])
+      authorize!(:edit, current_order, cookies[:guest_token])
     end
   end
 

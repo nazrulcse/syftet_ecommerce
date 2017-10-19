@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'public#cart'
   get '/p_checkout', to: 'public#checkout'
   post '/email_subscription', to: 'public#subscribe'
+  get '/users', to: redirect('/registration')
 
   get '/payment', to: 'checkout#edit', as: :checkout_payment
   get '/delivery', to: 'checkout#edit', as: :checkout_delivery

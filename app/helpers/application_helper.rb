@@ -155,6 +155,13 @@ module ApplicationHelper
     end
   end
 
+  def shipping_method(shipments)
+    shipment = shipments.last
+    shipping_rate = shipment.shipping_rates.last
+    shipping_method = shipping_rate.shipping_method
+    shipping_method.name + "(#{amount_with_currency(shipping_rate.cost)})"
+  end
+
   # Order
 
   def line_item_count

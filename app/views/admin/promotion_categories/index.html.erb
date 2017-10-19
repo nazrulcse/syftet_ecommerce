@@ -1,16 +1,16 @@
 <% content_for :page_title do %>
-  <%= plural_resource_name(Spree::PromotionCategory) %>
+  <%= plural_resource_name(PromotionCategory) %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:new_promotion_category), new_object_url, :icon => 'add', :class => 'btn-success' %>
+  <%= button_link_to t(:new_promotion_category), new_object_url, :icon => 'add', :class => 'btn-success' %>
 <% end %>
 
 <% if @promotion_categories.any? %>
   <table class="table">
     <thead>
-      <th><%= Spree::PromotionCategory.human_attribute_name :name %></th>
-      <th><%= Spree::PromotionCategory.human_attribute_name :code %></th>
+      <th><%= PromotionCategory.human_attribute_name :name %></th>
+      <th><%= PromotionCategory.human_attribute_name :code %></th>
       <th></th>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
   </table>
 <% else %>
   <div class="alert alert-info no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::PromotionCategory)) %>,
-    <%= link_to Spree.t(:add_one), new_object_url %>!
+    <%= t(:no_resource_found, resource: plural_resource_name(PromotionCategory)) %>,
+    <%= link_to t(:add_one), new_object_url %>!
   </div>
 <% end %>

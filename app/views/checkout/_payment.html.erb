@@ -1,11 +1,15 @@
+<% content_for :breadcrumb do %>
+    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb('Payment', '', '', {'checkout' => '/checkout', 'Shipping Address' => '/checkout/address', 'Delivery' => '/checkout/delivery'}) %>
+<% end %>
+
 <script type="text/javascript" asyc src='https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js'></script>
 <div class="container">
   <div class="row">
 
     <div class="col-md-6 clearfix">
       <form action="" role="form" method="post">
-        <div class="chose-payment-method border-bottom" style="margin-bottom: 20px; padding-bottom: 50px">
-          <h3> CHOOSE PAYMENT METHOD </h3>
+        <div class="chose-payment-method border-bottom">
+          <h3 class="public-title text-left"> CHOOSE PAYMENT METHOD </h3>
 
           <div class="payment-method-form">
             <div class="payment-method-form-container">
@@ -43,38 +47,38 @@
             </div>
           </div>
         </div>
-        <div class="billing-address">
-          <div class="billing-address">
-            <h3> BILLING ADDRESS </h3>
+        <!--<div class="billing-address">-->
+        <!--<div class="billing-address">-->
+        <!--<h3> BILLING ADDRESS </h3>-->
 
-            <div class="radio-btn-shipping-address">
-              <div class="checkbox">
-                <label>
-                  <%= form.check_box :use_shipping, value: true, checked: true, id: "same-billing-address" %>
-                  <span> Use my shipping address </span>
-                  <%= form.fields_for :ship_address do |ship_form| %>
-                      <p>
-                        <%= ship_form.object.active_merchant_hash[:name] %>
-                        <%= ship_form.object.active_merchant_hash[:address1] %>
-                        <%= ship_form.object.active_merchant_hash[:city] + ', ' + ship_form.object.active_merchant_hash[:zip] %>
-                      </p>
-                  <% end %>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!--<div class="radio-btn-shipping-address">-->
+        <!--<div class="checkbox">-->
+        <!--<label>-->
+        <!--<%#= form.check_box :use_shipping, value: true, checked: true, id: "same-billing-address" %>-->
+        <!--<span> Use my shipping address </span>-->
+        <!--<%#= form.fields_for :ship_address do |ship_form| %>-->
+        <!--<p>-->
+        <!--<%#= ship_form.object.active_merchant_hash[:name] %>-->
+        <!--<%#= ship_form.object.active_merchant_hash[:address1] %>-->
+        <!--<%#= ship_form.object.active_merchant_hash[:city] + ', ' + ship_form.object.active_merchant_hash[:zip] %>-->
+        <!--</p>-->
+        <!--<%# end %>-->
+        <!--</label>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
 
-        <div class="billing-address-form">
-          <%= form.fields_for :bill_address do |ship_form| %>
-              <div id="custom-billing-address" class="billing-address-form-container collapse">
-                <%= render 'checkout/address_fields', form_builder: ship_form, address_type: 'Billing' %>
-              </div>
-          <% end %>
-        </div>
+        <!--<div class="billing-address-form">-->
+        <!--<%#= form.fields_for :bill_address do |ship_form| %>-->
+        <!--<div id="custom-billing-address" class="billing-address-form-container collapse">-->
+        <!--<%#= render 'checkout/address_fields', form_builder: ship_form, address_type: 'Billing' %>-->
+        <!--</div>-->
+        <!--<%# end %>-->
+        <!--</div>-->
 
         <div class="continue-btn clearfix">
-          <input type="submit" class="pull-md-right" value="CONTINUE">
+          <input type="submit" class="btn btn-success pull-right" value="Confirm & Place Order">
         </div>
       </form>
     </div>
@@ -83,25 +87,11 @@
       <%= render 'orders/summary' %>
       <div class="border-bottom" style="margin-bottom: 20px; padding-bottom: 50px">
         <h1 class="public-title text-left mt10 mb10"> Shipping address </h1>
-        <%= form.fields_for :ship_address do |ship_form| %>
-            <p>
-              <%= ship_form.object.active_merchant_hash[:name] %> <br/>
-              <%= ship_form.object.active_merchant_hash[:address1] %> <br/>
-              <%= ship_form.object.active_merchant_hash[:city] + ', ' + ship_form.object.active_merchant_hash[:zip] %>
-              <br/>
-              <%= ship_form.object.active_merchant_hash[:phone] %>
-            </p>
-        <% end %>
-        <% if params[:failed_id].present? %>
-            <%= link_to 'EDIT', checkout_address_path(state: 'address', failed_id: params[:failed_id]), class: 'btn-edit' %>
-        <% else %>
-            <%= link_to 'EDIT', checkout_state_path(state: 'address'), class: 'btn-edit' %>
-        <% end %>
+        <%= render 'checkout/shipping_address' %>
         <h1 class="public-title text-left mt10 mb10"> Shipping method </h1>
 
         <p>
-          Standard
-          3-6 business days
+          <%= shipping_method(@order.shipments) %>
         </p>
       </div>
     </div>

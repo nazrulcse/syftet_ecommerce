@@ -117,9 +117,9 @@ class OrdersController < StoreController
 
   def check_authorization
     order = Order.find_by_number(params[:id]) || current_order
-
+    p cookies[:guest_token]
     if order
-      authorize! :edit, order, cookies.signed[:guest_token]
+      authorize! :edit, order, cookies[:guest_token]
     else
       authorize! :create, Order
     end

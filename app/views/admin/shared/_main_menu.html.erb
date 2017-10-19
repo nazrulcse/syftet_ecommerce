@@ -6,7 +6,7 @@
 
 <%# if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn) %>
 <ul class="nav nav-sidebar">
-  <%#= main_menu_tree Spree.t(:returns), icon: "transfer", sub_menu: "returns", url: "#sidebar-returns" %>
+  <%= main_menu_tree t(:returns), icon: "transfer", sub_menu: "returns", url: "#sidebar-returns" %>
 </ul>
 <%# end %>
 
@@ -16,17 +16,17 @@
     </ul>
 <% end %>
 
-<%# if can? :admin, Spree::Admin::ReportsController %>
-<ul class="nav nav-sidebar">
-  <%#= tab *Spree::BackendConfiguration::REPORT_TABS, icon: 'file'  %>
-</ul>
-<%# end %>
+<% if can? :admin, Admin::ReportsController %>
+    <ul class="nav nav-sidebar">
+      <%= tab *BackendConfiguration::REPORT_TABS, icon: 'file' %>
+    </ul>
+<% end %>
 
-<%# if can? :admin, Spree::Promotion %>
-<ul class="nav nav-sidebar">
-  <%#= main_menu_tree Spree.t(:promotions), icon: "gift", sub_menu: "promotion", url: "#sidebar-promotions" %>
-</ul>
-<%# end %>
+<% if can? :admin, Promotion %>
+    <ul class="nav nav-sidebar">
+      <%= main_menu_tree t(:promotions), icon: "gift", sub_menu: "promotion", url: "#sidebar-promotions" %>
+    </ul>
+<% end %>
 
 <% if can?(:admin, User) %>
     <ul class="nav nav-sidebar">
