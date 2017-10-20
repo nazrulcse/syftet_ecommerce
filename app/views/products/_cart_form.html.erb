@@ -57,29 +57,21 @@
           <%= text_field_tag :quantity, 1, title: 'Quantity', class: 'input-text qty' %>
           <span class="add-up add-action" data-step='1'>+</span>
         </div>
-        <%#= select_tag :quantity, options_for_select(AppSetting::PRODUCT_QUANTITY.collect { |qut, item| [item, qut] }), {id: 'counter', class: 'form-control'} %>
-        <!--<input id="counter" name="quantity" type="number" min="1" value="1">-->
       </div>
 
-      <% if check_country('BD') %>
-          <div data-hook="product_price">
-            <% if true #@product.can_supply?                                                      %>
-                <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
-                    ADD TO CART
-                <% end %>
-                <span class="ml10">
+      <div data-hook="product_price">
+        <% if @product.can_supply? %>
+            <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
+                ADD TO CART
+            <% end %>
+            <span class="ml10">
                   <%= raw wishlist_link(@product.id) %>
                 </span>
-                <a href="#" class="btn">
-                  <i class="fa fa-refresh"></i>
-                </a>
-            <% end %>
-          </div>
-      <% else %>
-          <div class="alert alert-danger">
-            <%= t('product_not_available_in_this_currency') %>
-          </div>
-      <% end %>
+            <a href="#" class="btn">
+              <i class="fa fa-refresh"></i>
+            </a>
+        <% end %>
+      </div>
     </div>
 <% end %>
 <%#= render 'spree/shared/service_unavailable_modal' %>
@@ -124,7 +116,7 @@
                 zoomType: "inner",
                 responsive: !0,
                 gallery: "product-gallery",
-                cursor: "default",
+                cursor: "crosshair",
                 galleryActiveClass: "product-active",
                 loadingIcon: "<%#= image_url('ajax-loader.gif') %>"
             });
@@ -158,7 +150,7 @@
             zoomType: "inner",
             responsive: !0,
             gallery: "product-gallery",
-            cursor: "default",
+            cursor: "crosshair",
             galleryActiveClass: "product-active",
             loadingIcon: "<%#= image_url('ajax-loader.gif') %>"
         });

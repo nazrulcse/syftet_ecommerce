@@ -21,16 +21,12 @@
       <div class="cart-subtotal-wrapper">
         <strong>Subtotal:</strong>
           <span class="price-amount amount">
-            $<%= current_order.total %>
+            $<%= current_order.amount %>
           </span>
       </div>
       <div class="cart-checkout-wrapper clearfix text-center">
-        <a href="<%= carts_path %>" class="btn btn-default btn-view-cart reset-border-radius">
-          View Cart
-        </a>
-        <a href="#" class="btn btn-warning reset-border-radius">
-          Checkout
-        </a>
+        <%= link_to 'View Cart', carts_path, class: 'btn btn-default btn-view-cart reset-border-radius' %>
+        <%= link_to t(:checkout), cart_checkout_path, class: 'btn btn-warning reset-border-radius' %>
       </div>
   <% else %>
       <%= t(:no_product_on_cart) %>

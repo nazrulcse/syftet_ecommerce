@@ -25,7 +25,6 @@
                 <div class="form-fields">
                   <div class="input-group">
                     <%= f.email_field :email, class: 'form-control', placeholder: "#{t(:enter_your_email)}..." %>
-                    <!--<input id="subscription-email" class="form-control" name="EMAIL" required="required" type="email" placeholder="<%= %>...">-->
 
                     <span class="clearfix pull-right">
                       <input type="submit" value="<%= t(:subscribe) %> +" class="btn">
@@ -98,10 +97,10 @@
                               <a href="/my_account#order-history"><%= t(:order_history) %></a>
                             </li>
                             <li>
-                              <a href="http://venusdemo.com/wordpress/pi/wishlist/"><%= t(:wishlist) %></a>
+                              <a href="<%= wishlists_path %>"><%= t(:wishlist) %></a>
                             </li>
                             <li>
-                              <a href="#"><%= t(:special) %></a>
+                              <a href="<%= promotion_products_path('discount') %>"><%= t(:special) %></a>
                             </li>
                           </ul>
                         </div>
@@ -115,7 +114,7 @@
                               <%= link_to t(:discount), coupon_path %>
                             </li>
                             <li>
-                              <a href="#"><%= t(:return_policy) %></a>
+                              <a href="/free-domestic-shipping-both-ways"><%= t(:return_policy) %></a>
                             </li>
                             <li>
                               <%= link_to t(:customer_service), contacts_path %>

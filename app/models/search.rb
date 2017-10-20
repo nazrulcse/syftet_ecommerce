@@ -14,6 +14,14 @@ class Search
       result_object = Product.joins(:variants).joins(:prices)
     end
 
+    if terms['q'] == 'new'
+      result_object = result_object.where("products.created_at >= ?", 15.days.ago)
+    end
+
+    if terms['q'] == 'discount'
+
+    end
+
     if terms[:name]
       result_object = result_object.where("lower(name) like '%#{terms[:name]}%'")
     end
