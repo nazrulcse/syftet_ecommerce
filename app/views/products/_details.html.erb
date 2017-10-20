@@ -1,6 +1,5 @@
 <div class="product-detail single-product-summary clearfix">
-  <div class="product-details-wrapper pdetail">
-    <!--<h2 class="p-title gothamHTFBook"><%#= @product.brand.name if @product.brand.present? %></h2>-->
+  <div class="product-details-wrapper pdetail clearfix">
 
     <h1 class="product-title"><%= raw format_general_name(@product.name) %></h1>
 
@@ -15,13 +14,14 @@
       </span>
     </div>
 
-    <p class="stock in-stock">In Stock</p>
+    <p class="stock in-stock">
+      <%= raw @product.on_stock %>
+    </p>
 
     <p class="price">
       <ins>
         <span class="price-amount amount">
-          <span class="price-currency-symbol">$</span>
-          <%= @product.price %>
+          <%= amount_with_currency(@product.price) %>
         </span>
       </ins>
       <del>
@@ -34,9 +34,7 @@
 
     <div class="short-description">
       <p>
-        But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
-        will give you a complete account of the system, and expound the actual teachings of the great explorer of the
-        truth
+        <%= truncate(@product.description, length: 236) %>
       </p>
     </div>
 

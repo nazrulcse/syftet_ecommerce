@@ -102,6 +102,19 @@ footer {
           border-radius: 0;
         }
       }
+
+      ::-webkit-input-placeholder {
+        color: #eeeeee;
+      }
+      ::-moz-placeholder {
+        color: #eeeeee;
+      }
+      :-ms-input-placeholder {
+        color: #eeeeee;
+      }
+      :-moz-placeholder {
+        color: #eeeeee;
+      }
     }
   }
   .footer-information {

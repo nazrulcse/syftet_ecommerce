@@ -64,7 +64,7 @@
                       </li>
 
                       <li class="menu-item">
-                        <a href="#">
+                        <a href="<%= promotion_products_path('discount') %>">
                           <%= t(:discount) %>
                           <span class="bubble-text-label label-hot"><%= t(:hot) %></span>
                         </a>
@@ -77,7 +77,7 @@
                       </li>
 
                       <li class="menu-item">
-                        <a href="#">
+                        <a href="<%= promotion_products_path('new') %>">
                           <%= t(:new_arrival) %>
                           <span class="bubble-text-label label-new"><%= t(:new) %></span>
                         </a>
@@ -90,28 +90,20 @@
                         </a>
                         <ul class="dropdown-menu custom-drp-content">
                           <li>
-                            <a href="#">
-                              <%= t(:about_us) %>
-                            </a>
+                            <%= link_to t(:about_us), about_us_path %>
                           </li>
                           <li>
-                            <a href="<%= new_contact_path %>">
-                              <%= t(:contact_us) %>
-                            </a>
+                            <%= link_to 'Customer Support', new_contact_path %>
                           </li>
                           <li>
-                            <a href="/faq">
-                              <%= t(:faq) %>
-                            </a>
+                            <%= link_to 'Frequent Ask Question', faq_path %>
                           </li>
                           <li>
-                            <a href="#">
-                              <%= t(:blog) %>
-                            </a>
+                            <%= link_to 'Secure Shopping', secure_shopping_path %>
                           </li>
                           <li>
-                            <a href="#">
-                              <%= t(:blog) %>
+                            <a href="/blog">
+                              Our <%= t(:blog) %>
                             </a>
                           </li>
                         </ul>
@@ -142,7 +134,7 @@
                       <i class="fa fa-shopping-cart"></i>
                       <span class="mini-cart-items"><%= line_item_count %></span>
                       <span class="price-amount amount mini-cart-total">
-                         <%= amount_with_currency(current_order.total) if current_order %>
+                         <%= amount_with_currency(current_order.amount) if current_order %>
                       </span>
                     </span>
                   <% end %>

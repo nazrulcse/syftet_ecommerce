@@ -1,8 +1,9 @@
 class WishlistsController < BaseController
   before_action :authenticate_user!
+  layout 'product'
 
   def create
-    wishlist = current_user.wishlists.build(product_id: params[:product_id])
+    wishlist = current_user.wishlists.find_or_initialize_by(product_id: params[:product_id])
     @status = wishlist.save
   end
 

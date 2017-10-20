@@ -6,22 +6,20 @@
   </td>
   <td class="product-thumbnail">
     <a href="<%= product_path(wishlist.product) %>">
-      <img src="//venusdemo.com/wordpress/pi/wp-content/uploads/2017/03/30-85x95.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" height="95" width="85">
+      <%= mini_image(wishlist.product) %>
     </a>
   </td>
   <td class="product-name">
     <%= link_to wishlist.product.name, product_path(wishlist.product) %>
   </td>
   <td class="product-price">
-    <ins>
       <span class="price">
-        <span class="price-currencySymbol">$</span>
-        <%= wishlist.product.price %>
+        <%= amount_with_currency(wishlist.product.price) %>
       </span>
-    </ins>
   </td>
   <td class="product-stock-status">
-    <span class="wishlist-in-stock">In Stock</span></td>
+    <%= raw wishlist.product.on_stock %>
+  </td>
   <td class="product-add-to-cart">
     <div class="add-cart">
       <a title="Add to cart" rel="nofollow" href="<%= product_path(wishlist.product) %>" class="button product_type_variable add_to_cart_button btn btn-primary">

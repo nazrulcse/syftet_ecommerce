@@ -7,45 +7,96 @@
   <div class="row">
 
     <div class="col-md-6 clearfix">
+
       <form action="" role="form" method="post">
         <div class="chose-payment-method border-bottom">
-          <h3 class="public-title text-left"> CHOOSE PAYMENT METHOD </h3>
+          <h3 class="public-title text-left mb0"> CHOOSE PAYMENT OPTIONS </h3>
 
-          <div class="payment-method-form">
-            <div class="payment-method-form-container">
-              <div class="form-group input-wrap">
-                <%= hidden_field_tag "[order][payments_attributes][amount]", @order.total, class: 'required form-control' %>
-              </div>
-              <div class="form-group input-wrap">
-                <label for="card-no">
-                  Card number <span class="card-type-supported"> </span>
-                </label>
-                <!--<%#= image_tag('ssl_cert.png', class: 'pull-right', width: '36px') %>-->
-                <%= text_field_tag "[order][payments_attributes][number]", populate_payment_data(params[:order], 'number'), class: 'required form-control mt10' %>
-                <span class="form-error"></span>
+          <div class="tabs-wrapper">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a data-toggle="tab" href="#card">
+                  <i class="fa fa-credit-card"></i> SSL Commerz
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" href="#paypal">
+                  <i class="fa fa-paypal"></i> Paypal
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" href="#points">
+                  <i class="fa fa-bullseye"></i> Earning Points
+                </a>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <div id="card" class="tab-pane fade in active">
+                <h3>HOME</h3>
+
+                <p>Some content.</p>
               </div>
 
-              <div class="form-group input-wrap">
-                <label for="card-no">
-                  Name on Card
-                </label>
-                <%= text_field_tag "[order][payments_attributes][name]", populate_payment_data(params[:order], 'name'), class: 'form-control required' %>
-                <span class="form-error"></span>
+              <div id="paypal" class="tab-pane fade">
+                <h3>Menu 1</h3>
+
+                <p>Some content in menu 1.</p>
               </div>
 
-              <div class="form-group input-wrap">
-                <label for="expiration-date"> Expiration date </label>
-                <%= text_field_tag '[order][payments_attributes][expire]', populate_payment_data(params[:order], 'expire'), id: "expiration-date", class: "form-control required", placeholder: 'MM/YY' %>
-                <span class="form-error"></span>
-              </div>
-              <%= hidden_field_tag :failed_id, params[:failed_id] %>
-              <div class="form-group input-wrap">
-                <label for="security-code"> CVV </label>
-                <%= text_field_tag "[order][payments_attributes][cvv_response_code]", populate_payment_data(params[:order], 'cvv_response_code'), class: 'required form-control' %>
-                <span class="form-error"></span>
+              <div id="points" class="tab-pane fade">
+                <h3>Your available credit points #125 </h3>
+
+                <p>
+                  Required credit points #45
+                </p>
+
+                <p>
+                  Remaining points #60
+                </p>
+
+                <div class="continue-btn clearfix">
+                  <input type="submit" class="btn btn-success pull-right" value="Confirm & Place Order">
+                </div>
               </div>
             </div>
           </div>
+
+          <!--<div class="payment-method-form">-->
+          <!--<div class="payment-method-form-container">-->
+          <!--<div class="form-group input-wrap">-->
+          <!--<%#= hidden_field_tag "[order][payments_attributes][amount]", @order.total, class: 'required form-control' %>-->
+          <!--</div>-->
+          <!--<div class="form-group input-wrap">-->
+          <!--<label for="card-no">-->
+          <!--Card number <span class="card-type-supported"> </span>-->
+          <!--</label>-->
+          <!--&lt;!&ndash;<%#= image_tag('ssl_cert.png', class: 'pull-right', width: '36px') %>&ndash;&gt;-->
+          <!--<%#= text_field_tag "[order][payments_attributes][number]", populate_payment_data(params[:order], 'number'), class: 'required form-control mt10' %>-->
+          <!--<span class="form-error"></span>-->
+          <!--</div>-->
+
+          <!--<div class="form-group input-wrap">-->
+          <!--<label for="card-no">-->
+          <!--Name on Card-->
+          <!--</label>-->
+          <!--<%#= text_field_tag "[order][payments_attributes][name]", populate_payment_data(params[:order], 'name'), class: 'form-control required' %>-->
+          <!--<span class="form-error"></span>-->
+          <!--</div>-->
+
+          <!--<div class="form-group input-wrap">-->
+          <!--<label for="expiration-date"> Expiration date </label>-->
+          <!--<%#= text_field_tag '[order][payments_attributes][expire]', populate_payment_data(params[:order], 'expire'), id: "expiration-date", class: "form-control required", placeholder: 'MM/YY' %>-->
+          <!--<span class="form-error"></span>-->
+          <!--</div>-->
+          <!--<%#= hidden_field_tag :failed_id, params[:failed_id] %>-->
+          <!--<div class="form-group input-wrap">-->
+          <!--<label for="security-code"> CVV </label>-->
+          <!--<%#= text_field_tag "[order][payments_attributes][cvv_response_code]", populate_payment_data(params[:order], 'cvv_response_code'), class: 'required form-control' %>-->
+          <!--<span class="form-error"></span>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
         </div>
         <!--<div class="billing-address">-->
         <!--<div class="billing-address">-->
@@ -76,10 +127,6 @@
         <!--</div>-->
         <!--<%# end %>-->
         <!--</div>-->
-
-        <div class="continue-btn clearfix">
-          <input type="submit" class="btn btn-success pull-right" value="Confirm & Place Order">
-        </div>
       </form>
     </div>
 

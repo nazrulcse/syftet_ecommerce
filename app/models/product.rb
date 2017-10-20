@@ -240,6 +240,14 @@ class Product < Base
     end
   end
 
+  def on_stock
+    if total_on_hand > 0
+      "<span class='product-in-stock'> In Stock </span>"
+    else
+      "<span class='product-out-stock'> Out Of Stock </span>"
+    end
+  end
+
   # Master variant may be deleted (i.e. when the product is deleted)
   # which would make AR's default finder return nil.
   # This is a stopgap for that little problem.
@@ -260,7 +268,7 @@ class Product < Base
   end
 
   def any_variants_not_track_inventory?
-    return true unless Config.track_inventory_levels
+    return true unless true #Config.track_inventory_levels
     if variants_including_master.loaded?
       variants_including_master.any? { |v| !v.track_inventory? }
     else

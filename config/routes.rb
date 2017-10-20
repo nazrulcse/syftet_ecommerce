@@ -13,8 +13,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/c/*id', to: 'taxons#show', as: :categories
-  # get '/products', to: 'products#index', as: :products
-  # get '/products/*id', to: 'products#show', as: :show_product
+  get '/:q/products', to: 'products#index', as: :promotion_products
 
   get '/frequently-asked-question', to: 'public#faq', as: :faq
   get '/coupon-code', to: 'public#coupon', as: :coupon
