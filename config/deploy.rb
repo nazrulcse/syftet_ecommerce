@@ -12,6 +12,7 @@ set :repo_url, 'git@github.com:nazrulcse/syftet_ecommerce.git'
 
 # Default value for :scm is :git
 set :scm, :git
+set :rvm_ruby, '2.3.1'
 # set :ssh_options, {
 #                     :keys => '/home/nazrul/Desktop/shyftn/shyftn.pem'
 #                 }
