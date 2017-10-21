@@ -4,7 +4,7 @@ class Promotion
       attr_reader :user, :email
 
       def applicable?(promotable)
-        promotable.is_a?(Spree::Order)
+        promotable.is_a?(Order)
       end
 
       def eligible?(order, options = {})
@@ -28,7 +28,7 @@ class Promotion
       end
 
       def orders_by_email
-        Spree::Order.where(email: email).complete
+        Order.where(email: email).complete
       end
     end
   end

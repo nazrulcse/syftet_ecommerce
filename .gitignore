@@ -24,3 +24,4 @@ tmp/cache/*
 /yarn-error.log
 
 .byebug_history
+public/assets/

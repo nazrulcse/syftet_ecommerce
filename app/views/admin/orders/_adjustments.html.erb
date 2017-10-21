@@ -19,7 +19,7 @@
             </td>
             <td class="total">
               <span>
-                <%= Spree::Money.new(
+                <%= Money.new(
                   adjustments.sum(&:amount), 
                   currency: adjustments.first.order.try(:currency)
                 ) %>

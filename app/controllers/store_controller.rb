@@ -3,11 +3,11 @@ class StoreController < BaseController
   skip_before_action :set_current_order, only: :cart_link # Need to activate this
 
   def forbidden
-    render 'shared/forbidden', layout: Spree::Config[:layout], status: 403
+    render 'shared/forbidden', layout: Config[:layout], status: 403
   end
 
   def unauthorized
-    render 'shared/unauthorized', layout: Spree::Config[:layout], status: 401
+    render 'shared/unauthorized', layout: Config[:layout], status: 401
   end
 
   def cart_link
@@ -36,7 +36,7 @@ class StoreController < BaseController
   end
 
   def config_locale
-    # Spree::Frontend::Config[:locale]
+    # Frontend::Config[:locale]
     'en'
   end
 end

@@ -1,10 +1,10 @@
 <% content_for :page_title do %>
-  <%= plural_resource_name(Spree::Country) %>
+  <%= plural_resource_name(Country) %>
 <% end %>
 
 <% content_for :page_actions do %>
   <%= button_link_to Spree.t(:new_country), new_object_url, { :class => "btn-success", :icon => 'add', :id => 'admin_new_country' } %>
-<% end if can? :create, Spree::Country %>
+<% end if can? :create, Country %>
 
 <table class="table" id='listing_countries' data-hook>
   <thead>

@@ -1,7 +1,7 @@
 module BaseHelper
 
   def available_countries
-    checkout_zone = Zone.find_by(name: Spree::Config[:checkout_zone])
+    checkout_zone = Zone.find_by(name: Config[:checkout_zone])
 
     if checkout_zone && checkout_zone.kind == 'country'
       countries = checkout_zone.country_list
@@ -31,7 +31,7 @@ module BaseHelper
     end
   end
 
-  def logo(image_path=Spree::Config[:logo])
+  def logo(image_path=Config[:logo])
     link_to image_tag(image_path), spree.root_path
   end
 
@@ -44,7 +44,7 @@ module BaseHelper
       meta[:description] = object.meta_description if object[:meta_description].present?
     end
 
-    if meta[:description].blank? && object.kind_of?(Spree::Product)
+    if meta[:description].blank? && object.kind_of?(Product)
       meta[:description] = truncate(strip_tags(object.description), length: 160, separator: ' ')
     end
 
@@ -96,7 +96,7 @@ module BaseHelper
       options = options.first || {}
       options[:alt] ||= product.name
       if product.images.empty?
-        if !product.is_a?(Spree::Variant) && !product.variant_images.empty?
+        if !product.is_a?(Variant) && !product.variant_images.empty?
           create_product_image_tag(product.variant_images.first, product, options, style)
         else
           if product.is_a?(Variant) && !product.product.variant_images.empty?
@@ -114,7 +114,7 @@ module BaseHelper
   # Returns style of image or nil
   def image_style_from_method_name(method_name)
     if method_name.to_s.match(/_image$/) && style = method_name.to_s.sub(/_image$/, '')
-      possible_styles = Spree::Image.attachment_definitions[:attachment][:styles]
+      possible_styles = Image.attachment_definitions[:attachment][:styles]
       style if style.in? possible_styles.with_indifferent_access
     end
   end

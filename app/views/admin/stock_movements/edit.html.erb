@@ -1,9 +1,9 @@
 <% content_for :page_title do %>
-  <%= Spree.t(:editing_resource, resource: Spree::StockMovement.model_name.human) %>
+  <%= Spree.t(:editing_resource, resource: StockMovement.model_name.human) %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <%= back_to_list_button(Spree::StockMovement.model_name.human,
+  <%= back_to_list_button(StockMovement.model_name.human,
     admin_stock_location_stock_movements_path(stock_location)) %>
 <% end %>
 

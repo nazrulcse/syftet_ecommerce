@@ -1,13 +1,13 @@
 <%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :customer_returns } %>
 
 <% content_for :page_actions do %>
-  <% if @order.shipments.any?(&:shipped?) && can?(:create, Spree::CustomerReturn) %>
+  <% if @order.shipments.any?(&:shipped?) && can?(:create, CustomerReturn) %>
     <%= button_link_to Spree.t(:new_customer_return), spree.new_admin_order_customer_return_path(@order), icon: 'add', class: 'btn-success' %>
   <% end %>
 <% end %>
 
 <% content_for :page_title do %>
-  / <%= plural_resource_name(Spree::CustomerReturn) %>
+  / <%= plural_resource_name(CustomerReturn) %>
 <% end %>
 
 <% if @order.shipments.any?(&:shipped?) %>
@@ -45,8 +45,8 @@
     </table>
   <% else %>
     <div class="alert alert-info no-objects-found">
-      <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::CustomerReturn)) %>,
-      <%= link_to(Spree.t(:add_one), spree.new_admin_order_customer_return_path(@order)) if can?(:create, Spree::CustomerReturn) %>!
+      <%= Spree.t(:no_resource_found, resource: plural_resource_name(CustomerReturn)) %>,
+      <%= link_to(Spree.t(:add_one), spree.new_admin_order_customer_return_path(@order)) if can?(:create, CustomerReturn) %>!
     </div>
   <% end %>
 <% else %>

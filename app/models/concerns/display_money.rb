@@ -1,7 +1,7 @@
 module DisplayMoney
   ##
   # Takes a list of methods that the base object wants to be able to use
-  # to display with Spree::Money, and turns them into display_* methods.
+  # to display with Money, and turns them into display_* methods.
   # Intended to help clean up some of the presentational logic that exists
   # at the model layer.
   #
@@ -10,11 +10,11 @@ module DisplayMoney
   # Decorate a method, with the default option of using the base object's
   # currency
   #
-  #     extend Spree::DisplayMoney
+  #     extend DisplayMoney
   #     money_methods :tax_amount, :price
   #
   # Decorate a method, but with some additional options
-  #     extend Spree::DisplayMoney
+  #     extend DisplayMoney
   #     money_methods tax_amount: { currency: "CAD", no_cents: true }, :price
   def money_methods(*args)
     args.each do |money_method|

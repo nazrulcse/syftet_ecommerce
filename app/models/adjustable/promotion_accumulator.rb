@@ -63,7 +63,7 @@ module Adjustable
     end
 
     def item_adjustments
-      adjustments.select { |a| a.adjustable_type != 'Spree::Shipment' }
+      adjustments.select { |a| a.adjustable_type != 'Shipment' }
     end
 
     def where(array, opts = {})

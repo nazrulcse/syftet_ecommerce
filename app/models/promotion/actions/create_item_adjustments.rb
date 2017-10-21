@@ -1,8 +1,8 @@
 class Promotion
   module Actions
     class CreateItemAdjustments < PromotionAction
-      include Spree::CalculatedAdjustments
-      include Spree::AdjustmentSource
+      include CalculatedAdjustments
+      include AdjustmentSource
 
       before_validation -> { self.calculator ||= Calculator::PercentOnLineItem.new }
 

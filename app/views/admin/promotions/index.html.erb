@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= plural_resource_name(Spree::Promotion) %>
+  <%= plural_resource_name(Promotion) %>
 <% end %>
 
 <% content_for :page_actions do %>
@@ -76,7 +76,7 @@
   </table>
 <% else %>
   <div class="alert alert-info no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Promotion)) %>,
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Promotion)) %>,
     <%= link_to Spree.t(:add_one), new_object_url %>!
   </div>
 <% end %>

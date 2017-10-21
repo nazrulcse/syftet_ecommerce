@@ -5,7 +5,7 @@ module Admin
 
     helper_method :refund_reasons
 
-    # rescue_from Spree::Core::GatewayError, with: :spree_core_gateway_error, only: :create TODO: Need to active
+    # rescue_from Core::GatewayError, with: :spree_core_gateway_error, only: :create TODO: Need to active
 
     private
 

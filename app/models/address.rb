@@ -1,8 +1,8 @@
 class Address < Base
   # require 'twitter_cldr'
 
-  # belongs_to :country, class_name: "Spree::Country"
-  # belongs_to :state, class_name: "Spree::State"
+  # belongs_to :country, class_name: "Country"
+  # belongs_to :state, class_name: "State"
 
   has_many :shipments, inverse_of: :address
 
@@ -20,7 +20,7 @@ class Address < Base
   self.whitelisted_ransackable_attributes = %w[firstname lastname company]
 
   def self.build_default
-    #country = Spree::Country.find(Spree::Config[:default_country_id]) rescue Spree::Country.first
+    #country = Country.find(Config[:default_country_id]) rescue Country.first
     new #country: country)
   end
 
@@ -98,7 +98,7 @@ class Address < Base
   def state_validate
     # Skip state validation without country (also required)
     # or when disabled by preference
-    return if country.blank? || !Spree::Config[:address_requires_state]
+    return if country.blank? || !Config[:address_requires_state]
     return unless country.states_required
 
     # ensure associated state belongs to country

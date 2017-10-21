@@ -1,13 +1,19 @@
 <tr>
-  <td class="order-number"><a href="http://localhost:3000/orders/BR-4316-672534525">BR-4316-672534525</a></td>
-  <td class="order-date">2017-07-04</td>
+  <td class="order-number">
+    <%= link_to order.number, order_path(order.number) %>
+  </td>
+  <td class="order-date">
+    <%= order.created_at.strftime('%B %d, %Y') %>
+  </td>
   <td class="order-status">
     Approved
   </td>
   <td class="text-primary order-total">
-    <span class="mark-text"> BDT 0.0 </span>
+    <span class="mark-text">
+      <%= amount_with_currency(order.amount) %>
+    </span>
   </td>
   <td class="order-shipment-state">
-    <%= link_to 'Shipped Track now', order_shipped_track_path(10) %>
+    <%= link_to 'Shipped Track now', order_shipped_track_path(order.number) %>
   </td>
 </tr>

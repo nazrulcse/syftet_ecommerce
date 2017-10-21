@@ -203,10 +203,10 @@
       opacity: 1 !important;
       line-height: 35px;
       span {
-        margin-left: 7px;
-        font-size: 16px;
+        margin-left: 10px;
+        font-size: 25px;
         text-decoration: line-through;
-        color: #aaa;
+        color: #e65758;
       }
     }
   }
@@ -299,8 +299,12 @@
       }
       span {
         display: block;
-        height: 32px;
-        width: 33px;
+        min-height: 30px;
+        min-width: 30px;
+        padding: 7px;
+        text-align: center;
+        color: #000000;
+        text-shadow: 0 0 2px #ffffff;
       }
     }
   }

@@ -20,16 +20,11 @@
 
     <p class="price">
       <ins>
-        <span class="price-amount amount">
+        <span class="price-amount product-amount">
           <%= amount_with_currency(@product.price) %>
         </span>
       </ins>
-      <del>
-        <span class="price-amount amount">
-          <span class="price-currency-symbol">$</span>
-          520.0
-        </span>
-      </del>
+      <%= discount_price(@product) %>
     </p>
 
     <div class="short-description">

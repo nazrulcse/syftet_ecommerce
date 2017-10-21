@@ -13,7 +13,7 @@
       <%= error_message_on f.object, :lastname %>
   <% end %>
 
-  <%# if Spree::Config[:company] %>
+  <%# if Config[:company] %>
   <%= field_container f.object, :company, class: ["form-group", "#{type}-row"] do %>
       <%= f.label :company, t(:company) %>
       <%= f.text_field :company, class: 'form-control' %>

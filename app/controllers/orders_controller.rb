@@ -13,7 +13,7 @@ class OrdersController < StoreController
   layout 'product'
 
   def show
-    @order = Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by_number!(params[:id])
+    @order = Order.includes(line_items: [variant: [:option_values, :images, :product]]).find_by_number!(params[:id])
   end
 
   def update
@@ -95,7 +95,7 @@ class OrdersController < StoreController
 
   def shipped_track
     @orders = Order.all #try_spree_current_user.orders.complete.order('completed_at desc')
-    @order = Order.find_by_id(params[:order_id]) || Order.last
+    @order = Order.find_by_number(params[:order_id]) || Order.find_by_id(params[:order_id])
     @trackes = [] #@order.order_tracks.order('created_at desc').group_by { |track| track.created_at.strftime('%A, %d %b') }
   end
 

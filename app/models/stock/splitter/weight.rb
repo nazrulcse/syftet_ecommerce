@@ -1,6 +1,6 @@
 module Stock
   module Splitter
-    class Weight < Spree::Stock::Splitter::Base
+    class Weight < Stock::Splitter::Base
       attr_reader :packer, :next_splitter
 
       cattr_accessor :threshold do

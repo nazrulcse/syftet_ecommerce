@@ -63,12 +63,12 @@ class Product < Base
   # This scope selects products in taxon AND all its descendants
   # If you need products only within one taxon use
   #
-  #   Spree::Product.joins(:taxons).where(Taxon.table_name => { :id => taxon.id })
+  #   Product.joins(:taxons).where(Taxon.table_name => { :id => taxon.id })
   #
   # If you're using count on the result of this scope, you must use the
   # `:distinct` option as well:
   #
-  #   Spree::Product.in_taxon(taxon).count(:distinct => true)
+  #   Product.in_taxon(taxon).count(:distinct => true)
   #
   # This is so that the count query is distinct'd:
   #
@@ -86,7 +86,7 @@ class Product < Base
   # This scope selects products in all taxons AND all its descendants
   # If you need products only within one taxon use
   #
-  #   Spree::Product.taxons_id_eq([x,y])
+  #   Product.taxons_id_eq([x,y])
   add_search_scope :in_taxons do |*taxons|
     taxons = get_taxons(taxons)
     taxons.first ? prepare_taxon_conditions(taxons) : where(nil)

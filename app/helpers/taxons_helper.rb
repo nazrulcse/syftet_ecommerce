@@ -5,7 +5,7 @@ module TaxonsHelper
   def taxon_preview(taxon, max=4)
     products = taxon.active_products.select("spree_products.*, spree_products_taxons.position").limit(max)
     if (products.size < max)
-      products_arel = Spree::Product.arel_table
+      products_arel = Product.arel_table
       taxon.descendants.each do |taxon|
         to_get = max - products.length
         products += taxon.active_products.select("spree_products.*, spree_products_taxons.position").

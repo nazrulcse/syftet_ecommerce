@@ -5,7 +5,7 @@ module Admin
         iso = details[:iso_code]
         [iso, "#{details[:name]} (#{iso})"]
       end
-      options_from_collection_for_select(currencies, :first, :last, Spree::Config[:currency])
+      options_from_collection_for_select(currencies, :first, :last, Config[:currency])
     end
   end
 end

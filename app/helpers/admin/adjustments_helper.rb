@@ -3,11 +3,11 @@ module Admin
 
     def display_adjustable(adjustable)
       case adjustable
-        when Spree::LineItem
+        when LineItem
           display_line_item(adjustable)
-        when Spree::Shipment
+        when Shipment
           display_shipment(adjustable)
-        when Spree::Order
+        when Order
           display_order(adjustable)
       end
 

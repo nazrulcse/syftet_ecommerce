@@ -28,18 +28,18 @@
         unassociated_inventory_units = all_inventory_units - associated_inventory_units
 
         new_return_items = unassociated_inventory_units.map do |new_unit|
-          Spree::ReturnItem.new(inventory_unit: new_unit).tap(&:set_default_pre_tax_amount)
+          ReturnItem.new(inventory_unit: new_unit).tap(&:set_default_pre_tax_amount)
         end
 
         @form_return_items = (@return_authorization.return_items + new_return_items).sort_by(&:inventory_unit_id)
       end
 
       def load_reimbursement_types
-        @reimbursement_types = Spree::ReimbursementType.accessible_by(current_ability, :read).active
+        @reimbursement_types = ReimbursementType.accessible_by(current_ability, :read).active
       end
 
       def load_return_authorization_reasons
-        @reasons = Spree::ReturnAuthorizationReason.active
+        @reasons = ReturnAuthorizationReason.active
         # Only allow an inactive reason if it's already associated to the RMA
         if @return_authorization.reason && !@return_authorization.reason.active?
           @reasons << @return_authorization.reason

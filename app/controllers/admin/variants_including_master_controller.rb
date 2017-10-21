@@ -3,7 +3,7 @@ module Admin
     belongs_to "product", find_by: :slug
 
     def model_class
-      Spree::Variant
+      Variant
     end
 
     def object_name

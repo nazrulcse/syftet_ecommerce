@@ -19,7 +19,7 @@ class Search
     end
 
     if terms['q'] == 'discount'
-
+      result_object = result_object.where('products.promotionable = true')
     end
 
     if terms[:name]

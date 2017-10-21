@@ -23,8 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <%# current_user.orders.each do |order| %>
-    <% 3.times.each do |order| %>
+    <% @orders.each do |order| %>
         <%= render 'users/order', order: order %>
     <% end %>
     </tbody>

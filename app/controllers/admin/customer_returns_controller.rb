@@ -26,16 +26,16 @@ module Admin
     end
 
     def build_resource
-      Spree::CustomerReturn.new
+      CustomerReturn.new
     end
 
     def find_resource
-      Spree::CustomerReturn.accessible_by(current_ability, :read).find(params[:id])
+      CustomerReturn.accessible_by(current_ability, :read).find(params[:id])
     end
 
     def collection
       parent # trigger loading the order
-      @collection ||= Spree::ReturnItem
+      @collection ||= ReturnItem
                           .accessible_by(current_ability, :read)
                           .where(inventory_unit_id: @order.inventory_units.pluck(:id))
                           .map(&:customer_return).uniq.compact
@@ -56,7 +56,7 @@ module Admin
 
       @customer_return.return_items = return_items_params.map do |item_params|
         next unless item_params.delete('returned') == '1'
-        return_item = item_params[:id] ? Spree::ReturnItem.find(item_params[:id]) : Spree::ReturnItem.new
+        return_item = item_params[:id] ? ReturnItem.find(item_params[:id]) : ReturnItem.new
         return_item.attributes = item_params
         return_item
       end.compact

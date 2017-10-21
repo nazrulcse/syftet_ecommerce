@@ -4,8 +4,8 @@
 #
 # Todo - integrate with ActiveRecord::Dirty to make sure changes to delegate object are noticed
 # Should do
-# class User < Spree::Base; delegate_belongs_to :contacts, :firstname; end
-# class Contact < Spree::Base; end
+# class User < Base; delegate_belongs_to :contacts, :firstname; end
+# class Contact < Base; end
 # u = User.first
 # u.changed? # => false
 # u.firstname = 'Bobby'

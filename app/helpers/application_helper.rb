@@ -26,8 +26,8 @@ module ApplicationHelper
   end
 
   def get_additional_images(product)
-    variant = product.master # Spree::Variant.where(product_id: product.id, is_master: true).first
-    variant.images.order(:id) # Spree::Asset.where(viewable_id: variant.id).order(:id)
+    variant = product.master # Variant.where(product_id: product.id, is_master: true).first
+    variant.images.order(:id) # Asset.where(viewable_id: variant.id).order(:id)
   end
 
   def format_general_name(name)
@@ -43,12 +43,12 @@ module ApplicationHelper
   end
 
   def get_all_variant(product)
-    product.variants.includes(:prices) # Spree::Variant.where(product_id: product_id, is_master: false)
+    product.variants.includes(:prices) # Variant.where(product_id: product_id, is_master: false)
   end
 
   def get_varient_price(variant)
-    amount = variant.prices.first.amount # Spree::Price.where(variant_id: variant_id).first.amount
-    "#{map_currency}#{(amount * money_conversion_rate).round(2)}"
+    amount = variant.prices.first.amount # Price.where(variant_id: variant_id).first.amount
+    amount_with_currency(amount)
   end
 
   def money_conversion_rate
@@ -76,7 +76,7 @@ module ApplicationHelper
   end
 
   def get_image_object(product)
-    variant = product.master # Spree::Variant.where(product_id: product.id, is_master: true).first
+    variant = product.master # Variant.where(product_id: product.id, is_master: true).first
     variant.present? ? variant.images.order(:id).first : ''
   end
 
@@ -170,6 +170,22 @@ module ApplicationHelper
 
   def amount_with_currency(amount, currency='$')
     "#{currency}#{amount}"
+  end
+
+  def discount_price(object)
+    discount_amount = 0
+    if object.class.to_s == 'Product'
+      return unless object.promotionable
+      discount_amount = object.original_price
+    else
+      return unless object.product.promotionable
+      discount_amount = object.original_price
+    end
+    raw("<del>
+      <span class='price-amount discount-amount'>
+        #{amount_with_currency(discount_amount)}
+       </span>
+      </del>")
   end
 
 end

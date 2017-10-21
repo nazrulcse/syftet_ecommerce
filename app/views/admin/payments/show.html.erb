@@ -17,7 +17,7 @@
 
 <%= render partial: "spree/admin/payments/source_views/#{@payment.payment_method.method_type}",
            locals: {
-             payment: @payment.source.is_a?(Spree::Payment) ? @payment.source : @payment
+             payment: @payment.source.is_a?(Payment) ? @payment.source : @payment
            }
 %>
 

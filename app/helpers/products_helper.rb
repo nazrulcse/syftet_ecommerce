@@ -1,7 +1,7 @@
 module ProductsHelper
   # returns the formatted price for the specified variant as a full price or a difference depending on configuration
   def variant_price(variant)
-    if Spree::Config[:show_variant_full_price]
+    if Config[:show_variant_full_price]
       variant_full_price(variant)
     else
       variant_price_diff(variant)
@@ -14,7 +14,7 @@ module ProductsHelper
     product_amount = variant.product.amount_in(current_currency)
     return if variant_amount == product_amount || product_amount.nil?
     diff = variant.amount_in(current_currency) - product_amount
-    amount = Spree::Money.new(diff.abs, currency: current_currency).to_html
+    amount = Money.new(diff.abs, currency: current_currency).to_html
     label = diff > 0 ? :add : :subtract
     "(#{t(label)}: #{amount})".html_safe
   end
@@ -23,13 +23,13 @@ module ProductsHelper
   def variant_full_price(variant)
     product = variant.product
     unless product.variants.active(current_currency).all? { |v| v.price == product.price }
-      Spree::Money.new(variant.price, {currency: current_currency}).to_html
+      Money.new(variant.price, {currency: current_currency}).to_html
     end
   end
 
   # converts line breaks in product description into <p> tags (for html display purposes)
   def product_description(product)
-    description = if Spree::Config[:show_raw_product_description]
+    description = if Config[:show_raw_product_description]
                     product.description
                   else
                     product.description.to_s.gsub(/(.*?)\r?\n\r?\n/m, '<p>\1</p>')

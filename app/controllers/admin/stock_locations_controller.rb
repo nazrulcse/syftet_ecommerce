@@ -5,7 +5,7 @@ module Admin
     private
 
     def set_country
-      @stock_location.country = Spree::Country.default
+      @stock_location.country = Country.default
     rescue ActiveRecord::RecordNotFound
       flash[:error] = Spree.t(:stock_locations_need_a_default_country)
       redirect_to admin_stock_locations_path

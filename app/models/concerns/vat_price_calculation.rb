@@ -32,11 +32,11 @@ module VatPriceCalculation
   end
 
   def included_tax_amount(price_options)
-    Spree::TaxRate.included_tax_amount_for(price_options).to_f
+    TaxRate.included_tax_amount_for(price_options).to_f
   end
 
   def default_zone
-    @_default_zone ||= Spree::Zone.default_tax
+    @_default_zone ||= Zone.default_tax
   end
 
   def round_to_two_places(amount)

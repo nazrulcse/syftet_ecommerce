@@ -83,10 +83,10 @@ module Admin
     # this method generates the select_tag
     def per_page_dropdown
       # there is a config setting for admin_products_per_page, only for the orders page
-      if @products && per_page_default = Spree::Config.admin_products_per_page
+      if @products && per_page_default = Config.admin_products_per_page
         per_page_options = []
         5.times do |amount|
-          per_page_options << (amount + 1) * Spree::Config.admin_products_per_page
+          per_page_options << (amount + 1) * Config.admin_products_per_page
         end
       else
         per_page_default = 15
@@ -110,7 +110,7 @@ module Admin
     # finds class for a given symbol / string
     #
     # Example :
-    # :products returns Spree::Product
+    # :products returns Product
     # :my_products returns MyProduct if MyProduct is defined
     # :my_products returns My::Product if My::Product is defined
     # if cannot constantize it returns nil
@@ -118,7 +118,7 @@ module Admin
     def klass_for(name)
       model_name = name.to_s
 
-      ["Spree::#{model_name.classify}", model_name.classify, model_name.gsub('_', '/').classify].find do |t|
+      ["#{model_name.classify}", model_name.classify, model_name.gsub('_', '/').classify].find do |t|
         t.safe_constantize
       end.try(:safe_constantize)
     end

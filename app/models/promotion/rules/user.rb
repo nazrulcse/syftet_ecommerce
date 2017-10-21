@@ -1,15 +1,15 @@
 class Promotion
   module Rules
     class User < PromotionRule
-      belongs_to :user, class_name: "::#{Spree.user_class.to_s}"
+      belongs_to :user, class_name: "User"
 
-      has_many :promotion_rule_users, class_name: 'Spree::PromotionRuleUser',
+      has_many :promotion_rule_users, class_name: 'PromotionRuleUser',
                foreign_key: :promotion_rule_id,
                dependent: :destroy
-      has_many :users, through: :promotion_rule_users, class_name: "::#{Spree.user_class.to_s}"
+      has_many :users, through: :promotion_rule_users, class_name: "User"
 
       def applicable?(promotable)
-        promotable.is_a?(Spree::Order)
+        promotable.is_a?(Order)
       end
 
       def eligible?(order, options = {})

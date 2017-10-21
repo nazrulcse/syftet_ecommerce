@@ -4,9 +4,9 @@
 class Promotion
   module Rules
     class Product < PromotionRule
-      has_many :product_promotion_rules, class_name: 'Spree::ProductPromotionRule',
+      has_many :product_promotion_rules, class_name: 'ProductPromotionRule',
                foreign_key: :promotion_rule_id
-      has_many :products, through: :product_promotion_rules, class_name: 'Spree::Product'
+      has_many :products, through: :product_promotion_rules, class_name: 'Product'
 
       MATCH_POLICIES = %w(any all none)
       preference :match_policy, :string, default: MATCH_POLICIES.first
@@ -17,7 +17,7 @@ class Promotion
       end
 
       def applicable?(promotable)
-        promotable.is_a?(Spree::Order)
+        promotable.is_a?(Order)
       end
 
       def eligible?(order, options = {})

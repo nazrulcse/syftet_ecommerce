@@ -34,7 +34,7 @@ class Admin::PromotionRulesController < Admin::BaseController
   private
 
   def load_promotion
-    @promotion = Spree::Promotion.find(params[:promotion_id])
+    @promotion = Promotion.find(params[:promotion_id])
   end
 
   def validate_promotion_rule_type

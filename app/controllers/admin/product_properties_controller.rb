@@ -6,7 +6,7 @@ module Admin
 
     private
     def find_properties
-      @properties = Spree::Property.pluck(:name)
+      @properties = Property.pluck(:name)
     end
 
     def setup_property

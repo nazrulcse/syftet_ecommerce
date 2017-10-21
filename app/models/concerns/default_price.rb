@@ -14,7 +14,9 @@ module DefaultPrice
                         :price,
                         :price=,
                         :price_including_vat_for,
-                        :currency
+                        :currency,
+                        :agent_price,
+                        :original_price
 
     after_save :save_default_price
 

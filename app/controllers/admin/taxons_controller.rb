@@ -11,9 +11,9 @@ module Admin
 
     # def search
     #   if params[:ids]
-    #     @taxons = Spree::Taxon.where(id: params[:ids].split(','))
+    #     @taxons = Taxon.where(id: params[:ids].split(','))
     #   else
-    #     @taxons = Spree::Taxon.limit(20).ransack(name_cont: params[:q]).result
+    #     @taxons = Taxon.limit(20).ransack(name_cont: params[:q]).result
     #   end
     # end
 

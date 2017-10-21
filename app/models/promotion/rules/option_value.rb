@@ -6,7 +6,7 @@ class Promotion
       preference :eligible_values, :hash
 
       def applicable?(promotable)
-        promotable.is_a?(Spree::Order)
+        promotable.is_a?(Order)
       end
 
       def eligible?(promotable, _options = {})
@@ -32,7 +32,7 @@ class Promotion
              )]
       end
 
-      alias_method_chain :preferred_eligible_values, :numerification
+      # alias_method_chain :preferred_eligible_values, :numerification TODO: Need to activate this
 
       private
 

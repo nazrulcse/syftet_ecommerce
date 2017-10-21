@@ -3,7 +3,7 @@
 class PromotionAction < Base
   acts_as_paranoid
 
-  belongs_to :promotion, class_name: 'Spree::Promotion'
+  belongs_to :promotion, class_name: 'Promotion'
 
   scope :of_type, ->(t) { where(type: t) }
 

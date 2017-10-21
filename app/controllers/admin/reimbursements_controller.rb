@@ -4,7 +4,7 @@ module Admin
 
     before_action :load_simulated_refunds, only: :edit
 
-    # rescue_from Spree::Core::GatewayError, with: :spree_core_gateway_error, only: :perform TODO: Need to active
+    # rescue_from Core::GatewayError, with: :spree_core_gateway_error, only: :perform TODO: Need to active
 
     def perform
       @reimbursement.perform!

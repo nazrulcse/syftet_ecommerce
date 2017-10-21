@@ -47,6 +47,7 @@ class Variant < Base
   with_options numericality: {greater_than_or_equal_to: 0, allow_nil: true} do
     validates :cost_price
     validates :price
+    validates :agent_price
   end
   validates :sku, uniqueness: {conditions: -> { where(deleted_at: nil) }}, allow_blank: true
 
@@ -287,7 +288,7 @@ class Variant < Base
       self.price = product.master.price
     end
     if price.present? && currency.nil?
-      self.currency = Config[:currency]
+      self.currency = Syftet.config.currency
     end
   end
 

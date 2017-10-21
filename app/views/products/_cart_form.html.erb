@@ -12,41 +12,17 @@
               <ul class="color-section-ul-style clearfix">
                 <% all_variant.each do |v| %>
                     <li>
-                      <input type="radio" class="select_varient" id="radio_<%= v.id %>" data-color-name="<%= v.color %>" data-color-price="<%= get_varient_price(v) %>" name="variant_id" value="<%= v.id %>"/>
+                      <input type="radio" class="select_varient" id="radio_<%= v.id %>" data-color-name="<%= v.color %>" data-variant-price="<%= get_varient_price(v) %>" name="variant_id" value="<%= v.id %>"/>
                       <label for="radio_<%= v.id %>">
-                        <span class="color_image" style="<%= variant_color_image_option(v.color_image) %>"> </span>
+                        <span class="color_image" style="<%= variant_color_image_option(v.color_image) %>">
+                          <%= v.size %>
+                        </span>
                       </label>
                     </li>
                 <% end %>
               </ul>
             </div>
         <% end %>
-
-        <%# if @product.product_sizes.present? %>
-        <!--<div class="flexible flex-items-xs-between" style="width: 100%">-->
-        <!--<label class="color-label">Size:</label>-->
-        <!--</div>-->
-        <%# end %>
-
-        <!--<div class="size-wrapper" style="padding-left: 15px;">-->
-        <!--<div class="rowx mt5">-->
-        <!--<ul class="common-ul-style product-size clearfix">-->
-        <% if false && @product.product_sizes.present? %>
-            <% @product.product_sizes.each do |size| %>
-                <% if size.applicable %>
-                    <li class="">
-                      <a class="size-selection" href="#" data-size_value="<%= size.short_name %>"><%= size.short_name %> </a>
-                    </li>
-                <% else %>
-                    <li style="display: block; border-bottom: 1px solid #ccc; margin-bottom: 10px; width: 100%;">
-                      <%= size.short_name %>
-                    </li>
-                <% end %>
-            <% end %>
-        <% end %>
-        <!--</ul>-->
-        <!--</div>-->
-        <!--</div>-->
       </div>
 
       <div class="add-to-cart-select-quantity">
@@ -103,9 +79,9 @@
         $(document).off('click', '.select_varient').on('click', '.select_varient', function () {
             id = $(this).val();
             var color_name = $(this).attr('data-color-name');
-            var product_price = $(this).attr('data-color-price');
+            var product_price = $(this).attr('data-variant-price');
             $('.color-name').html("Color:    " + color_name);
-            $('.current-price').html("Now " + product_price);
+            $('.product-amount').html(product_price);
             $("#product-gallery").html('').removeClass("slick-initialized slick-slider slick-vertical");
             $('.zoomContainer').remove();
             $.each(assets[id], function (indx, img) {

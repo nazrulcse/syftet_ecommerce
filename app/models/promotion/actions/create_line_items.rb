@@ -51,7 +51,7 @@ class Promotion
 
       # Checks that there's enough stock to add the line item to the order
       def item_available?(item)
-        quantifier = Spree::Stock::Quantifier.new(item.variant)
+        quantifier = Stock::Quantifier.new(item.variant)
         quantifier.can_supply? item.quantity
       end
 

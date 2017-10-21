@@ -4,7 +4,7 @@
     </ul>
 <% end %>
 
-<%# if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn) %>
+<%# if can?(:admin, ReturnAuthorization) || can?(:admin, CustomerReturn) %>
 <ul class="nav nav-sidebar">
   <%= main_menu_tree t(:returns), icon: "transfer", sub_menu: "returns", url: "#sidebar-returns" %>
 </ul>

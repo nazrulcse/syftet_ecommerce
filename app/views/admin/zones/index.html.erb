@@ -4,7 +4,7 @@
 
 <% content_for :page_actions do %>
   <%= button_link_to Spree.t(:new_zone), new_object_url, :class => "btn-success", :icon => 'add', :id => 'admin_new_zone_link' %>
-<% end if can? :create, Spree::Zone %>
+<% end if can? :create, Zone %>
 
 <%= paginate @zones %>
 
@@ -36,8 +36,8 @@
   </table>
 <% else %>
   <div class="alert alert-info no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Zone)) %>,
-    <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, Spree::Zone %>!
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Zone)) %>,
+    <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, Zone %>!
   </div>
 <% end %>
 

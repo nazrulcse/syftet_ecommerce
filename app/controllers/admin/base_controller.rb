@@ -59,7 +59,7 @@ module Admin
     end
 
     def config_locale
-      Spree::Backend::Config[:locale]
+      Backend::Config[:locale]
     end
 
     def can_not_transition_without_customer_info

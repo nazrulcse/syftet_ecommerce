@@ -10,7 +10,7 @@ module Admin
     private
 
     def find_order_and_payment
-      @order = Spree::Order.friendly.find(params[:order_id])
+      @order = Order.friendly.find(params[:order_id])
       @payment = @order.payments.friendly.find(params[:payment_id])
     end
   end

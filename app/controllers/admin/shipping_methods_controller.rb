@@ -26,7 +26,7 @@ module Admin
 
     def set_zones
       return true if params["shipping_method"][:zones] == ""
-      @shipping_method.zones = Spree::Zone.where(:id => params["shipping_method"][:zones])
+      @shipping_method.zones = Zone.where(:id => params["shipping_method"][:zones])
       @shipping_method.save
       params[:shipping_method].delete(:zones)
     end
@@ -37,7 +37,7 @@ module Admin
 
     def load_data
       # @available_zones = Zone.order(:name)
-      # @tax_categories = Spree::TaxCategory.order(:name)
+      # @tax_categories = TaxCategory.order(:name)
       @calculators = ShippingMethod.calculators.sort_by(&:name)
     end
   end

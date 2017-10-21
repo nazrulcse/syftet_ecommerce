@@ -3,7 +3,7 @@
   <div class="section">
     <div class="container">
       <div class="page-title uppercase text-center with-bb hidden-xs">
-        <h2 class="public-title text-left mb0">Track package Order #<%#= @order.number %></h2>
+        <h2 class="public-title text-left mb0">Track package Order #<%= @order.number %></h2>
       </div>
       <div class="chunk track-package">
         <div class="row">
@@ -19,25 +19,25 @@
                       <%= link_to order.number, order_shipped_track_path(order.id), target: '_blank' %>
                     </li>
                 <% end %>
-                <!--<li><a href="">Account Dashboard</a></li>-->
-                <li><a href="">Account Information</a></li>
-                <li><a href="">Address Book</a></li>
-                <li class="active"><a href="">My Orders</a></li>
-                <!--<li><a href="">My Wish List</a></li>-->
+                <li>
+                  <hr/>
+                </li>
+                <li>
+                  <%= link_to 'My Orders', my_account_path %>
+                </li>
+                <li>
+                  <%= link_to 'My Wish List', wishlists_path %>
+                </li>
               </ul>
             </aside>
           </div>
           <div class="col-sm-9 chunk-right">
             <div class="page-title clearfix hidden-xs">
-              <a href="/account" class="pull-right link-with-decoration gothamNarrowBold">
-                Back To My Orders
-              </a>
+              <%= link_to 'Back To My Orders', my_account_path, class: 'pull-right link-with-decoration gothamNarrowBold' %>
             </div>
             <div class="page-title clearfix visible-xs gothamNarrowBold">
-              <h3 class="uppercase gothamNarrowBold">Track Package Order #<%#= @order.number %></h3>
-              <a href="/account" class="block gothamNarrowBold">
-                Back to My Order
-              </a>
+              <h3 class="uppercase gothamNarrowBold">Track Package Order #<%= @order.number %></h3>
+              <%= link_to 'Back to My Order', my_account_path %>
             </div>
 
             <div class="order-items clearfix">
@@ -60,7 +60,7 @@
                             <% end %>
                           </span>
                           <b>Web ID: </b> #<%= item.product.id %>
-                          <span class="block"><b>Size:</b> <%= item.size %></span>
+                          <span class="block"><b>Size:</b> <%= item.variant.size %></span>
                           <span class="block">
                             <b> Color: </b>
                             <span style="display: inline-block; width: 20px; height: 20px; vertical-align: middle; <%= variant_color_image_option(item.variant.color_image) %>"></span>
@@ -95,12 +95,8 @@
               </div>
               <div class="track-destination clearfix">
                 <div class="pull-right">
-                  <span><%#= @order.ship_address.name %></span>
-                  <span><%#= @order.ship_address.address1 %></span>
-                  <span><%#= @order.ship_address.city %>, <%#= @order.ship_address.state.name %>
-                    , <%#= @order.ship_address.zipcode %></span>
-                  <span><%#= @order.ship_address.country.name %></span>
-                  <span>T. <%#= @order.ship_address.phone %></span>
+                  <h3 class="public-title mb0"> Shipping Address </h3>
+                  <%= render 'checkout/shipping_address' %>
                 </div>
               </div>
             </div>

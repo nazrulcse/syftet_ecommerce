@@ -33,20 +33,20 @@
 <% end %>
 
 <fieldset data-hook="reimbursements">
-  <legend><%= plural_resource_name(Spree::Reimbursement) %></legend>
+  <legend><%= plural_resource_name(Reimbursement) %></legend>
   <% if @customer_return.reimbursements.any? %>
     <%= render partial: 'reimbursements_table', locals: {reimbursements: @customer_return.reimbursements} %>
   <% else %>
     <div class="alert alert-info no-objects-found">
-      <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Reimbursement)) %>
+      <%= Spree.t(:no_resource_found, resource: plural_resource_name(Reimbursement)) %>
     </div>
   <% end %>
 </fieldset>
 
-<% if !@customer_return.fully_reimbursed? && @pending_reimbursements.empty? && can?(:create, Spree::Reimbursement) %>
+<% if !@customer_return.fully_reimbursed? && @pending_reimbursements.empty? && can?(:create, Reimbursement) %>
   <fieldset data-hook="reimbursements" class="marginb">
     <% if @customer_return.completely_decided? %>
-      <%= form_for [:admin, @order, Spree::Reimbursement.new] do |f| %>
+      <%= form_for [:admin, @order, Reimbursement.new] do |f| %>
         <%= hidden_field_tag :build_from_customer_return_id, @customer_return.id %>
         <%= f.button class: 'btn btn-primary' do %>
           <%= Spree.t(:create_reimbursement) %>

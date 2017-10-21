@@ -13,7 +13,7 @@ class Promotion
       OPERATORS_MAX = ['lt', 'lte']
 
       def applicable?(promotable)
-        promotable.is_a?(Spree::Order)
+        promotable.is_a?(Order)
       end
 
       def eligible?(order, options = {})
@@ -30,11 +30,11 @@ class Promotion
 
       private
       def formatted_amount_min
-        Spree::Money.new(preferred_amount_min).to_s
+        Money.new(preferred_amount_min).to_s
       end
 
       def formatted_amount_max
-        Spree::Money.new(preferred_amount_max).to_s
+        Money.new(preferred_amount_max).to_s
       end
 
 
