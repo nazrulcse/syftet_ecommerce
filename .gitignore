@@ -25,3 +25,4 @@ tmp/cache/*
 
 .byebug_history
 public/assets/
+public/spree/
