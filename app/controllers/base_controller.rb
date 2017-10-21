@@ -3,7 +3,7 @@
 # TODO: Need to activate all
 class BaseController < ApplicationController
   # include Core::ControllerHelpers::Auth
-  # include Core::ControllerHelpers::RespondWith
+  include Core::ControllerHelpers::RespondWith
   # include Core::ControllerHelpers::Common
   # include Core::ControllerHelpers::Search
   include Core::ControllerHelpers::StoreHelper
