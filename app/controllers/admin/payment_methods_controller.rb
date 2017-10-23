@@ -12,7 +12,7 @@ module Admin
       invoke_callbacks(:create, :before)
       if @payment_method.save
         invoke_callbacks(:create, :after)
-        flash[:success] = Spree.t(:successfully_created, resource: Spree.t(:payment_method))
+        flash[:success] = t(:successfully_created, resource: t(:payment_method))
         redirect_to edit_admin_payment_method_path(@payment_method)
       else
         invoke_callbacks(:create, :fails)
@@ -41,7 +41,7 @@ module Admin
 
       if @payment_method.update_attributes(attributes)
         invoke_callbacks(:update, :after)
-        flash[:success] = Spree.t(:successfully_updated, resource: Spree.t(:payment_method))
+        flash[:success] = t(:successfully_updated, resource: t(:payment_method))
         redirect_to edit_admin_payment_method_path(@payment_method)
       else
         invoke_callbacks(:update, :fails)
@@ -52,13 +52,15 @@ module Admin
     private
 
     def load_data
-      @providers = Gateway.providers.sort { |p1, p2| p1.name <=> p2.name }
+      @providers = [PaymentMethod::Check,
+                    PaymentMethod::StoreCredit] #Gateway.providers.sort { |p1, p2| p1.name <=> p2.name }
     end
 
     def validate_payment_method_provider
-      valid_payment_methods = Rails.application.config.spree.payment_methods.map(&:to_s)
+      valid_payment_methods = ['PaymentMethod::Check',
+                               'PaymentMethod::StoreCredit']
       if !valid_payment_methods.include?(params[:payment_method][:type])
-        flash[:error] = Spree.t(:invalid_payment_provider)
+        flash[:error] = t(:invalid_payment_provider)
         redirect_to new_admin_payment_method_path
       end
     end

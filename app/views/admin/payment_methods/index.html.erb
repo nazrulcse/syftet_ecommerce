@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:new_payment_method), new_object_url, :class => "btn-success", :icon => 'add', :id => 'admin_new_payment_methods_link' %>
+  <%= button_link_to t(:new_payment_method), new_object_url, :class => "btn-success", :icon => 'add', :id => 'admin_new_payment_methods_link' %>
 <% end if can? :create, PaymentMethod %>
 
 <% if @payment_methods.any? %>
@@ -11,10 +11,10 @@
     <thead>
       <tr data-hook="admin_payment_methods_index_headers">
         <th></th>
-        <th><%= Spree.t(:name) %></th>
-        <th><%= Spree.t(:provider) %></th>
-        <th class="text-center"><%= Spree.t(:display) %></th>
-        <th class="text-center"><%= Spree.t(:active) %></th>
+        <th><%= t(:name) %></th>
+        <th><%= t(:provider) %></th>
+        <th class="text-center"><%= t(:display) %></th>
+        <th class="text-center"><%= t(:active) %></th>
         <th data-hook="admin_payment_methods_index_header_actions" class="actions"></th>
       </tr>
     </thead>
@@ -28,8 +28,8 @@
           </td>
           <td><%= method.name %></td>
           <td><%= method.type %></td>
-          <td class="text-center"><%= Spree.t(method.display_on) %></td>
-          <td class="text-center"><%= method.active ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
+          <td class="text-center"><%= t(method.display_on) %></td>
+          <td class="text-center"><%= method.active ? t(:say_yes) : t(:say_no) %></td>
           <td data-hook="admin_payment_methods_index_row_actions" class="actions actions-2 text-right">
             <%= link_to_edit(method, :no_text => true) if can? :edit, method %>
             <%= link_to_delete(method, :no_text => true) if can? :delete, method %>
@@ -40,7 +40,7 @@
   </table>
 <% else %>
   <div class="alert alert-info no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: plural_resource_name(PaymentMethod)) %>,
-    <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, PaymentMethod %>!
+    <%= t(:no_resource_found, resource: plural_resource_name(PaymentMethod)) %>,
+    <%= link_to(t(:add_one), new_object_url) if can? :create, PaymentMethod %>!
   </div>
 <% end %>

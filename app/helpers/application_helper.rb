@@ -138,13 +138,22 @@ module ApplicationHelper
   end
 
   def color_filters(taxon = nil)
+    variants = filter_variant(taxon)
+    variants.map(&:color_image).compact
+  end
+
+  def size_filters(taxon = nil)
+    variants = filter_variant(taxon)
+    variants.map(&:size).compact
+  end
+
+  def filter_variant(taxon)
     if taxon
       product_ids = taxon.products.map(&:id)
-      variants = Variant.joins(:product).where(product_id: product_ids)
+      Variant.joins(:product).where(product_id: product_ids)
     else
-      variants = Variant.all.limit(10)
+      Variant.all.limit(10)
     end
-    variants.map(&:color_image).compact
   end
 
   def populate_payment_data(param, field)

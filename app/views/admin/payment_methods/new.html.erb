@@ -1,13 +1,13 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:payment_methods), spree.admin_payment_methods_url %> /
-  <%= Spree.t(:new_payment_method) %>
+    <%= link_to t(:payment_methods), admin_payment_methods_url %> /
+    <%= t(:new_payment_method) %>
 <% end %>
 
-<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @payment_method } %>
+<%= render partial: 'admin/shared/error_messages', locals: {target: @payment_method} %>
 
 <%= form_for @payment_method, url: collection_url do |f| %>
-  <fieldset>
-    <%= render partial: 'form', locals: { f: f } %>
-    <%= render partial: 'spree/admin/shared/new_resource_links' %>
-  </fieldset>
+    <fieldset>
+      <%= render partial: 'form', locals: {f: f} %>
+      <%= render partial: 'admin/shared/new_resource_links' %>
+    </fieldset>
 <% end %>

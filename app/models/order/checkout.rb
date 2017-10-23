@@ -79,7 +79,7 @@ class Order < Base
             if states[:payment]
               before_transition to: :complete do |order|
                 if order.payment_required? && order.payments.valid.empty?
-                  order.errors.add(:base, Spree.t(:no_payment_found))
+                  order.errors.add(:base, I18n.t(:no_payment_found))
                   false
                 elsif order.payment_required?
                   order.process_payments!
@@ -230,7 +230,7 @@ class Order < Base
             if existing_card_id.present?
               credit_card = CreditCard.find existing_card_id
               if credit_card.user_id != user_id || credit_card.user_id.blank?
-                raise Core::GatewayError.new Spree.t(:invalid_credit_card)
+                raise Core::GatewayError.new t(:invalid_credit_card)
               end
 
               credit_card.verification_value = params[:cvc_confirm] if params[:cvc_confirm].present?

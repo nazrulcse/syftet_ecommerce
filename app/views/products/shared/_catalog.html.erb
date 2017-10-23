@@ -37,31 +37,12 @@
 
             <div class="widget-block-html-items">
               <ul class="widget-list-checkbox">
-                <li>
-                  <input type="checkbox" id="woof_49_59d335a7e473d" class="woof_checkbox_term woof_checkbox_term_49" data-tax="pa_size" name="l" data-term-id="49" value="49"><label class="woof_checkbox_label " for="woof_49_59d335a7e473d">L<span class="woof_checkbox_count">(3)</span></label>
-                  <input type="hidden" value="L" data-anchor="woof_n_pa_size_l">
-
-                </li>
-                <li>
-                  <input type="checkbox" id="woof_48_59d335a7e479b" class="woof_checkbox_term woof_checkbox_term_48" data-tax="pa_size" name="m" data-term-id="48" value="48"><label class="woof_checkbox_label " for="woof_48_59d335a7e479b">M<span class="woof_checkbox_count">(4)</span></label>
-                  <input type="hidden" value="M" data-anchor="woof_n_pa_size_m">
-
-                </li>
-                <li>
-                  <input type="checkbox" id="woof_47_59d335a7e47f4" class="woof_checkbox_term woof_checkbox_term_47" data-tax="pa_size" name="s" data-term-id="47" value="47"><label class="woof_checkbox_label " for="woof_47_59d335a7e47f4">S<span class="woof_checkbox_count">(4)</span></label>
-                  <input type="hidden" value="S" data-anchor="woof_n_pa_size_s">
-
-                </li>
-                <li>
-                  <input type="checkbox" id="woof_50_59d335a7e485c" class="woof_checkbox_term woof_checkbox_term_50" data-tax="pa_size" name="xl" data-term-id="50" value="50"><label class="woof_checkbox_label " for="woof_50_59d335a7e485c">XL<span class="woof_checkbox_count">(3)</span></label>
-                  <input type="hidden" value="XL" data-anchor="woof_n_pa_size_xl">
-
-                </li>
-                <li>
-                  <input type="checkbox" id="woof_51_59d335a7e48cd" class="woof_checkbox_term woof_checkbox_term_51" data-tax="pa_size" name="xxl" data-term-id="51" value="51"><label class="woof_checkbox_label " for="woof_51_59d335a7e48cd">XXL<span class="woof_checkbox_count">(3)</span></label>
-                  <input type="hidden" value="XXL" data-anchor="woof_n_pa_size_xxl">
-
-                </li>
+                <% size_filters(@taxon).each do |size| %>
+                    <li>
+                      <%= check_box_tag 'size[]', size, false, {id: "size-#{size}"} %>
+                      <label for="size-<%= size %>"> <%= size %> </label>
+                    </li>
+                <% end %>
               </ul>
             </div>
 
@@ -105,6 +86,12 @@
         $('.clear-color-filter').click(function () {
             $('.color-section-ul-style').find("input[type='radio']").prop('checked', false);
             new_url = data_query.REMOVE('color');
+            loadProducts(new_url);
+        });
+
+        $("input[name='size[]']").click(function () {
+            sizes = $("input[name='size[]']:checked").val();
+            new_url = data_query.SET('size', sizes);
             loadProducts(new_url);
         });
     });
