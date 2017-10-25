@@ -133,9 +133,11 @@
                       <span class="icon-basket icons">
                       <i class="fa fa-shopping-cart"></i>
                       <span class="mini-cart-items"><%= line_item_count %></span>
-                      <span class="price-amount amount mini-cart-total">
-                         <%= amount_with_currency(current_order.amount) if current_order %>
-                      </span>
+                        <% if current_order %>
+                          <span class="price-amount amount mini-cart-total">
+                            <%= amount_with_currency(current_order.amount) %>
+                          </span>
+                        <% end %>
                     </span>
                   <% end %>
                   <div class="dropdown-menu custom-dropdown-content" id="shopping-cart-doopdown">

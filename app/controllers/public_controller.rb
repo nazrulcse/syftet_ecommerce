@@ -11,7 +11,7 @@ class PublicController < BaseController
     @description = "Brandcruz.com customers always get FAST, FREE Shipping and returns with NO order minimums and FREE 60-Day Returns!"
   end
 
-  def domestic
+  def return_policy
     @title = "BrandCruz: Designer Apparel, Shoes, Handbags, & Beauty FREE SHIPPING"
     @keywords = "free shipping, coupon code, brand, cloth, shoes, women shoes"
     @description = "Free Shipping & Free Returns at Brandcruz.com. Shop the latest styles from top designers including Michael Kors, Tory Burch, Burberry, Christian Louboutin."

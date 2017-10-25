@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get '/frequently-asked-question', to: 'public#faq', as: :faq
   get '/coupon-code', to: 'public#coupon', as: :coupon
-  get '/free-domestic-shipping-both-ways', to: 'public#domestic', as: :domestic
+  get '/return-policy', to: 'public#return_policy', as: :return_policy
   match '/dedicated-customer-support', to: 'public#contact_us', via: [:get, :post], as: :contact_us
   get '/free-shipping-worldwide', to: 'public#international', as: :international
   get '/safe_shopping_guarantee', to: 'public#safe_shopping_guarantee', as: :safe_shopping_guarantee
