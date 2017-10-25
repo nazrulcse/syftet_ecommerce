@@ -1,0 +1,3 @@
+module ActiveMerchant::Billing
+
+end

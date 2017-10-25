@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  state: MyString
+  order_id: 1
+  memo: MyText
+  stock_location_id: 1
+  return_authorization_reason_id: 1
+
+two:
+  number: MyString
+  state: MyString
+  order_id: 1
+  memo: MyText
+  stock_location_id: 1
+  return_authorization_reason_id: 1

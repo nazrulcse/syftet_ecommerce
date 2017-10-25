@@ -223,26 +223,28 @@ class Order < Base
           run_callbacks :updating_from_params do
             # Set existing card after setting permitted parameters because
             # rails would slice parameters containg ruby objects, apparently
-            existing_card_id = @updating_params[:order] ? @updating_params[:order].delete(:existing_card) : nil
-
+            # existing_card_id = @updating_params[:order] ? @updating_params[:order].delete(:existing_card) : nil
+            update_params_payment_source
             attributes = @updating_params[:order] ? @updating_params[:order].permit(permitted_params).delete_if { |_k, v| v.nil? } : {}
 
-            if existing_card_id.present?
-              credit_card = CreditCard.find existing_card_id
-              if credit_card.user_id != user_id || credit_card.user_id.blank?
-                raise Core::GatewayError.new t(:invalid_credit_card)
-              end
+            # if existing_card_id.present?
+            #   credit_card = CreditCard.find existing_card_id
+            #   if credit_card.user_id != user_id || credit_card.user_id.blank?
+            #     raise Core::GatewayError.new t(:invalid_credit_card)
+            #   end
+            #
+            #   credit_card.verification_value = params[:cvc_confirm] if params[:cvc_confirm].present?
+            #
+            #   attributes[:payments_attributes].first[:source] = credit_card
+            #   attributes[:payments_attributes].first[:payment_method_id] = credit_card.payment_method_id
+            #   attributes[:payments_attributes].first.delete :source_attributes
+            # end
 
-              credit_card.verification_value = params[:cvc_confirm] if params[:cvc_confirm].present?
+            # if attributes[:payments_attributes]
+            #   attributes[:payments_attributes].first[:request_env] = request_env
+            # end
 
-              attributes[:payments_attributes].first[:source] = credit_card
-              attributes[:payments_attributes].first[:payment_method_id] = credit_card.payment_method_id
-              attributes[:payments_attributes].first.delete :source_attributes
-            end
-
-            if attributes[:payments_attributes]
-              attributes[:payments_attributes].first[:request_env] = request_env
-            end
+            p attributes
 
             success = update_attributes(attributes)
             set_shipments_cost if shipments.any?
@@ -280,9 +282,9 @@ class Order < Base
         end
 
         def persist_user_credit_card
-          if !temporary_credit_card && user_id && valid_credit_cards.present?
-            valid_credit_cards.first.update(user_id: user_id, default: true)
-          end
+          # if !temporary_credit_card && user_id && valid_credit_cards.present?
+          #   valid_credit_cards.first.update(user_id: user_id, default: true)
+          # end TODO: Need to check this
         end
 
         def assign_default_credit_card
@@ -312,20 +314,13 @@ class Order < Base
         #   }
         #
         def update_params_payment_source
-          if @updating_params[:payment_source].present?
-            source_params = @updating_params.
-                delete(:payment_source)[@updating_params[:order][:payments_attributes].
-                                            first[:payment_method_id].to_s]
-
-            if source_params
-              @updating_params[:order][:payments_attributes].first[:source_attributes] = source_params
-            end
-          end
-
-          if @updating_params[:order] && (@updating_params[:order][:payments_attributes] ||
-              @updating_params[:order][:existing_card])
+          p @updating_params
+          if @updating_params[:order] && (@updating_params[:order][:payments_attributes])
+            p "Here"
             @updating_params[:order][:payments_attributes] ||= [{}]
-            @updating_params[:order][:payments_attributes].first[:amount] = order_total_after_store_credit
+
+            @updating_params[:order][:payments_attributes]['0'][:amount] = total
+            @updating_params[:order][:payments_attributes]['0'][:state] = 'checkout'
           end
         end
       end

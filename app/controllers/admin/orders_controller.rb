@@ -78,7 +78,7 @@ module Admin
           redirect_to admin_order_customer_path(@order) and return
         end
       else
-        @order.errors.add(:line_items, Spree.t('errors.messages.blank')) if @order.line_items.empty?
+        @order.errors.add(:line_items, t('errors.messages.blank')) if @order.line_items.empty?
       end
 
       render action: :edit
@@ -86,25 +86,25 @@ module Admin
 
     def cancel
       @order.canceled_by(try_spree_current_user)
-      flash[:success] = Spree.t(:order_canceled)
+      flash[:success] = t(:order_canceled)
       redirect_to :back
     end
 
     def resume
       @order.resume!
-      flash[:success] = Spree.t(:order_resumed)
+      flash[:success] = t(:order_resumed)
       redirect_to :back
     end
 
     def approve
-      @order.approved_by(try_spree_current_user)
-      flash[:success] = Spree.t(:order_approved)
-      redirect_to :back
+      @order.approved_by(current_user)
+      flash[:success] = t(:order_approved)
+      redirect_to admin_orders_path(params[:id])
     end
 
     def resend
       OrderMailer.confirm_email(@order.id, true).deliver_later
-      flash[:success] = Spree.t(:order_email_resent)
+      flash[:success] = t(:order_email_resent)
 
       redirect_to :back
     end
@@ -112,7 +112,7 @@ module Admin
     def open_adjustments
       adjustments = @order.all_adjustments.closed
       adjustments.update_all(state: 'open')
-      flash[:success] = Spree.t(:all_adjustments_opened)
+      flash[:success] = t(:all_adjustments_opened)
 
       respond_with(@order) { |format| format.html { redirect_to :back } }
     end
@@ -120,7 +120,7 @@ module Admin
     def close_adjustments
       adjustments = @order.all_adjustments.open
       adjustments.update_all(state: 'closed')
-      flash[:success] = Spree.t(:all_adjustments_closed)
+      flash[:success] = t(:all_adjustments_closed)
 
       respond_with(@order) { |format| format.html { redirect_to :back } }
     end

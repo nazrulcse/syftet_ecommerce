@@ -28,7 +28,7 @@ class Payment < Base
     # a new pending payment record for the remaining amount to capture later.
     def capture!(amount = nil)
       return true if completed?
-      amount ||= money.money.cents
+      amount ||= money.cents
       started_processing!
       protect_from_connection_error do
         # Standard ActiveMerchant capture usage
@@ -38,7 +38,7 @@ class Payment < Base
             gateway_options
         )
         money = ::Money.new(amount, currency)
-        capture_events.create!(amount: money.to_f)
+        capture_events.create!(amount: amount.to_f)
         split_uncaptured_amount
         handle_response(response, :complete, :failure)
       end
@@ -142,13 +142,13 @@ class Payment < Base
     end
 
     def record_response(response)
-      log_entries.create!(:details => response.to_yaml)
+      # log_entries.create!(:details => response.to_yaml) TODO: Need to activate this
     end
 
     def protect_from_connection_error
       begin
         yield
-      rescue ActiveMerchant::ConnectionError => e
+      rescue Exception => e
         gateway_error(e)
       end
     end

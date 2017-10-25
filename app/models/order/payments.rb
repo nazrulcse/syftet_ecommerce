@@ -44,7 +44,7 @@ class Order < Base
         # Don't run if there is nothing to pay.
         return if payment_total >= total
         # Prevent orders from transitioning to complete without a successfully processed payment.
-        raise Core::GatewayError.new(Spree.t(:no_payment_found)) if unprocessed_payments.empty?
+        raise Core::GatewayError.new(t(:no_payment_found)) if unprocessed_payments.empty?
 
         unprocessed_payments.each do |payment|
           break if payment_total >= total
@@ -55,9 +55,9 @@ class Order < Base
             self.payment_total += payment.amount
           end
         end
-      rescue Core::GatewayError => e
-        result = !!Config[:allow_checkout_on_gateway_error]
-        errors.add(:base, e.message) and return result
+      # rescue Exception => e
+      #   result = false #!!Config[:allow_checkout_on_gateway_error]
+      #   errors.add(:base, e.message) and return result
       end
     end
   end

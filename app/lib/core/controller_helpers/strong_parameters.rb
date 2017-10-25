@@ -12,7 +12,7 @@ module Core
       def permitted_payment_attributes
         permitted_attributes.payment_attributes + [
             source_attributes: permitted_source_attributes
-        ]
+        ] + [:state]
       end
 
       def permitted_checkout_attributes

@@ -39,7 +39,7 @@ module Admin
           redirect_to admin_order_payments_path(@order)
         else
           invoke_callbacks(:create, :fails)
-          flash[:error] = Spree.t(:payment_could_not_be_created)
+          flash[:error] = t(:payment_could_not_be_created)
           render :new
         end
       rescue Core::GatewayError => e
@@ -55,11 +55,11 @@ module Admin
       # Because we have a transition method also called void, we do this to avoid conflicts.
       event = "void_transaction" if event == "void"
       if @payment.send("#{event}!")
-        flash[:success] = Spree.t(:payment_updated)
+        flash[:success] = t(:payment_updated)
       else
-        flash[:error] = Spree.t(:cannot_perform_operation)
+        flash[:error] = t(:cannot_perform_operation)
       end
-    rescue Core::GatewayError => ge
+    rescue Exception => ge
       flash[:error] = "#{ge.message}"
     ensure
       redirect_to admin_order_payments_path(@order)

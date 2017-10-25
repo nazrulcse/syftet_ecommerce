@@ -36,7 +36,7 @@
 //= require backend/promotions
 //= require backend/returns/expedited_exchanges_warning
 //= require backend/returns/return_item_selection
-// require backend/shipments
+//= require backend/shipments
 //= require backend/states
 //= require backend/stock_management
 //= require backend/stock_movement
@@ -59,7 +59,7 @@
 //Spree.routes.orders_api = Spree.pathFor('api/v1/orders')
 //Spree.routes.products_api = Spree.pathFor('api/v1/products')
 product_search = ''; //adminPathFor('search/products');
-//Spree.routes.shipments_api = Spree.pathFor('api/v1/shipments')
+Syftet.routes.shipments_api = Syftet.pathFor('api/v1/shipments');
 //Spree.routes.checkouts_api = Spree.pathFor('api/v1/checkouts')
 //Spree.routes.stock_locations_api = Spree.pathFor('api/v1/stock_locations')
 //Spree.routes.taxon_products_api = Spree.pathFor('api/v1/taxons/products')

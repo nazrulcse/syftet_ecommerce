@@ -379,18 +379,19 @@ class Order < Base
   end
 
   def outstanding_balance
-    if canceled?
-      -1 * payment_total
-    elsif reimbursements.includes(:refunds).size > 0
-      reimbursed = reimbursements.includes(:refunds).inject(0) do |sum, reimbursement|
-        sum + reimbursement.refunds.sum(:amount)
-      end
-      # If reimbursement has happened add it back to total to prevent balance_due payment state
-      # See: https://github.com/spree/spree/issues/6229
-      total - (payment_total + reimbursed)
-    else
-      total - payment_total
-    end
+    # if canceled?
+    #   -1 * payment_total
+    # elsif reimbursements.includes(:refunds).size > 0
+    #   reimbursed = reimbursements.includes(:refunds).inject(0) do |sum, reimbursement|
+    #     sum + reimbursement.refunds.sum(:amount)
+    #   end
+    #   # If reimbursement has happened add it back to total to prevent balance_due payment state
+    #   # See: https://github.com/spree/spree/issues/6229
+    #   total - (payment_total + reimbursed)
+    # else
+    #   total - payment_total
+    # end
+    0 # TODO: Check if this realy required
   end
 
   def outstanding_balance?
@@ -450,7 +451,7 @@ class Order < Base
   end
 
   def deliver_order_confirmation_email
-    OrderMailer.confirm_email(id).deliver_now # will send email after getting smtp credential
+    # OrderMailer.confirm_email(id).deliver_now # TODO: will send email after getting smtp credential
     update_column(:confirmation_delivered, true)
     update_column(:shipment_state, nil)
   end

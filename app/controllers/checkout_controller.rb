@@ -47,9 +47,7 @@ class CheckoutController < StoreController
     else
       message = []
       @order.errors.each do |key, msg|
-        unless @order.state == 'address' && key.to_s == "bill_address.zipcode"
-          message.push("#{key.to_s.gsub('.', ' ').humanize} #{msg}")
-        end
+        message.push("#{key.to_s.gsub('.', ' ').humanize} #{msg}")
       end
       flash[:error] = message.join("\n")
       render :edit

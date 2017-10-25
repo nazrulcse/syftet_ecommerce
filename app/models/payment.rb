@@ -107,7 +107,7 @@ class Payment < Base
   end
 
   def money
-    Money.new(amount, {currency: currency})
+    Money.new(amount, currency)
   end
 
   alias display_amount money

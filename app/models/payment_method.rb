@@ -12,7 +12,7 @@ class PaymentMethod < Base
   validates :name, presence: true
 
   has_many :payments, class_name: "Payment", inverse_of: :payment_method
-  has_many :credit_cards, class_name: "CreditCard"
+  # has_many :credit_cards, class_name: "CreditCard"
 
   def self.providers
     Rails.application.config.spree.payment_methods
@@ -52,7 +52,7 @@ class PaymentMethod < Base
   end
 
   def auto_capture?
-    self.auto_capture.nil? ? Config[:auto_capture] : self.auto_capture
+    self.auto_capture.nil? ? Syftet.config.auto_capture : self.auto_capture
   end
 
   def supports?(source)

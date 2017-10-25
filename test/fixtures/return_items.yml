@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  return_authorization_id: 1
+  inventory_unit_id: 1
+  exchange_variant_id: 1
+  pre_tax_amount: 
+  included_tax_total: 
+  additional_tax_total: 
+  reception_status: MyString
+  acceptance_status: MyString
+  customer_return_id: 1
+  reimbursement_id: 1
+  exchange_inventory_unit_id: 1
+  acceptance_status_errors: MyText
+  preferred_reimbursement_type_id: 1
+  override_reimbursement_type_id: 1
+  resellable: false
+
+two:
+  return_authorization_id: 1
+  inventory_unit_id: 1
+  exchange_variant_id: 1
+  pre_tax_amount: 
+  included_tax_total: 
+  additional_tax_total: 
+  reception_status: MyString
+  acceptance_status: MyString
+  customer_return_id: 1
+  reimbursement_id: 1
+  exchange_inventory_unit_id: 1
+  acceptance_status_errors: MyText
+  preferred_reimbursement_type_id: 1
+  override_reimbursement_type_id: 1
+  resellable: false

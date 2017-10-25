@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023094151) do
+ActiveRecord::Schema.define(version: 20171025133651) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(version: 20171023094151) do
     t.string "order_number"
     t.string "inquiry_type"
     t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customer_returns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "number"
+    t.integer "stock_location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -190,6 +197,13 @@ ActiveRecord::Schema.define(version: 20171023094151) do
     t.text "special_instructions"
   end
 
+  create_table "payment_capture_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.decimal "amount", precision: 10
+    t.integer "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_methods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "type"
     t.string "name"
@@ -217,6 +231,7 @@ ActiveRecord::Schema.define(version: 20171023094151) do
     t.string "cvv_response_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "number"
   end
 
   create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -304,6 +319,63 @@ ActiveRecord::Schema.define(version: 20171023094151) do
   create_table "properties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "presentation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "refund_reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.boolean "active"
+    t.boolean "mutable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "refunds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "payment_id"
+    t.decimal "amount", precision: 10
+    t.string "transaction_id"
+    t.integer "refund_reason_id"
+    t.integer "reimbursement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "return_authorization_reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.boolean "active"
+    t.boolean "mutable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "return_authorizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "number"
+    t.string "state"
+    t.integer "order_id"
+    t.text "memo"
+    t.integer "stock_location_id"
+    t.integer "return_authorization_reason_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "return_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "return_authorization_id"
+    t.integer "inventory_unit_id"
+    t.integer "exchange_variant_id"
+    t.decimal "pre_tax_amount", precision: 10
+    t.decimal "included_tax_total", precision: 10
+    t.decimal "additional_tax_total", precision: 10
+    t.string "reception_status"
+    t.string "acceptance_status"
+    t.integer "customer_return_id"
+    t.integer "reimbursement_id"
+    t.integer "exchange_inventory_unit_id"
+    t.text "acceptance_status_errors"
+    t.integer "preferred_reimbursement_type_id"
+    t.integer "override_reimbursement_type_id"
+    t.boolean "resellable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
