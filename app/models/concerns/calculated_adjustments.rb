@@ -18,7 +18,7 @@ module CalculatedAdjustments
 
     def calculator_type=(calculator_type)
       klass = calculator_type.constantize if calculator_type
-      self.calculator = klass.new(calculator_type: calculator_type) if klass && !self.calculator.is_a?(klass)
+      self.calculator = klass.new if klass && !self.calculator.is_a?(klass)
     end
 
     private
