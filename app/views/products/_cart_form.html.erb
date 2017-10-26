@@ -36,7 +36,7 @@
       </div>
 
       <div data-hook="product_price">
-        <% if @product.can_supply? %>
+        <% if @product.total_on_hand %>
             <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
                 ADD TO CART
             <% end %>
@@ -50,7 +50,6 @@
       </div>
     </div>
 <% end %>
-<%#= render 'spree/shared/service_unavailable_modal' %>
 
 <script type="text/javascript">
     var quantity_field = $('#quantity');

@@ -22,11 +22,11 @@ class Order < Base
   }
 
   ORDER_SMTP = {
-      address: '149.56.46.183',
+      address: '162.221.186.242',
       port: 587,
-      domain: 'brandcruz.com',
-      user_name: 'order@brandcruz.com',
-      password: '4z7Q3zYdTe',
+      domain: 'bequent.com',
+      user_name: 'info@bequent.com',
+      password: 'cLQGdN6rIJG7',
       authentication: 'login',
       enable_starttls_auto: true,
       openssl_verify_mode: 'none'
@@ -451,7 +451,7 @@ class Order < Base
   end
 
   def deliver_order_confirmation_email
-    # OrderMailer.confirm_email(id).deliver_now # TODO: will send email after getting smtp credential
+    OrderMailer.confirm_email(id).deliver_now # TODO: will send email after getting smtp credential
     update_column(:confirmation_delivered, true)
     update_column(:shipment_state, nil)
   end

@@ -12,13 +12,16 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  default_url_options[:host] = 'http://localhost:3000'
+  config.action_mailer.asset_host = "http://tangailenterprise.com"
+
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+        'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -26,8 +29,23 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: '162.221.186.242',
+      port: 587,
+      domain: 'bequent.com',
+      user_name: 'info@bequent.com',
+      password: 'cLQGdN6rIJG7',
+      :authentication => :login,
+      :enable_starttls_auto => true,
+      :openssl_verify_mode => 'none'
+
+      # authentication: 'plain',
+      # enable_starttls_auto: true
+  }
+
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
