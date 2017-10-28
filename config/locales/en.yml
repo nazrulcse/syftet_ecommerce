@@ -139,8 +139,8 @@ en:
       properties: Properties
       prototypes: Prototypes
       reports: Reports
-      taxonomies: Taxonomies
-      taxons: Taxons
+      taxonomies: Top Category
+      taxons: Category
       users: Users
     order:
       events:
@@ -574,8 +574,9 @@ en:
   new_store_credit_category: New Store Credit Category
   new_tax_category: New Tax Category
   new_tax_rate: New Tax Rate
-  new_taxon: New Taxon
-  new_taxonomy: New Taxonomy
+  new_taxon: New Category
+  actions: Actions
+  new_taxonomy: New Category
   new_tracker: New Tracker
   new_user: New User
   new_variant: New Variant
@@ -1067,7 +1068,7 @@ en:
   tax_code: Tax Code
   tax_rate_amount_explanation: Tax rates are a decimal amount to aid in calculations, (i.e. if the tax rate is 5% then enter 0.05)
   tax_rates: Tax Rates
-  taxon: Taxon
+  taxon: Category
   taxon_edit: Edit Taxon
   taxon_placeholder: Add a Taxon
   tags: Tags
@@ -1077,9 +1078,9 @@ en:
     label: Order must contain x amount of these taxons
     match_all: all
     match_any: at least one
-  taxonomies: Taxonomies
-  taxonomy: Taxonomy
-  taxonomy_edit: Edit taxonomy
+  taxonomies: Top Categories
+  taxonomy: Top Category
+  taxonomy_edit: Edit Top Category
   taxonomy_tree_error: The requested change has not been accepted and the tree has been returned to its previous state, please try again.
   taxonomy_tree_instruction: ! '* Right click a child in the tree to access the menu for adding, deleting or sorting a child.'
   taxons: Taxons

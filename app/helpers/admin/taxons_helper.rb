@@ -19,8 +19,8 @@ module Admin
     end
 
     def taxon_actions(taxon)
-      html = link_to raw("<i class='icon icon-plus'></i>"), new_admin_taxonomy_taxon_path(taxon.taxonomy_id, parent_id: taxon.id), title: 'Add child taxon', class: 'add'
-      html += link_to raw("<i class='icon icon-edit'></i>"), edit_admin_taxonomy_taxon_path(taxon.taxonomy_id, taxon.id), title: 'Edit taxon', class: 'edit'
+      html = link_to raw("<i class='icon icon-plus'></i>"), new_admin_taxonomy_taxon_path(taxon.taxonomy_id, parent_id: taxon.id), title: 'Add child category', class: 'add'
+      html += link_to raw("<i class='icon icon-edit'></i>"), edit_admin_taxonomy_taxon_path(taxon.taxonomy_id, taxon.id), title: 'Edit category', class: 'edit'
       html += (link_to raw("<i class='icon icon-delete'></i>"), admin_taxonomy_taxon_path(taxon.taxonomy_id, taxon.id), confirm: 'Are you sure?', class: 'delete', method: :delete, remote: true)
       "<span class='taxon-actions'> #{html} </span>"
     end

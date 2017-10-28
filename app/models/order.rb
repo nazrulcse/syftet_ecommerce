@@ -94,6 +94,7 @@ class Order < Base
   belongs_to :created_by, class_name: 'User'
   belongs_to :approver, class_name: 'User'
   belongs_to :canceler, class_name: 'User'
+  has_one :rewards_point
   # end
 
   belongs_to :bill_address, foreign_key: :bill_address_id, class_name: 'Address'
@@ -148,6 +149,7 @@ class Order < Base
   before_create :create_token
   before_create :link_by_email
   before_update :homogenize_line_item_currencies, if: :currency_changed?
+  after_save :collect_rewards_point
 
   with_options presence: true do
     validates :number, length: {maximum: 32, allow_blank: true}, uniqueness: {allow_blank: true}
@@ -741,5 +743,13 @@ class Order < Base
 
   def create_token
     self.guest_token ||= generate_guest_token
+  end
+
+  def collect_rewards_point
+    if self.user.present? && self.approved_at.present?
+      reward_point = self.user.rewards_points.find_or_initialize_by(order_id: self.id, user_id: self.user_id, reason: 'Checkout')
+      reward_point.points = self.line_items.sum(&:credit_point)
+      reward_point.save
+    end
   end
 end
