@@ -28,7 +28,7 @@ class PublicController < BaseController
     begin
       Mail::Address.new(email)
       newsletter = NewsletterSubscription.find_or_initialize_by(email: email)
-      unless newsletter.save
+      unless newsletter.save!
         @message = newsletter.errors.first
       end
     rescue => ex
