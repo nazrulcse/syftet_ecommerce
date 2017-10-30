@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025133651) do
+ActiveRecord::Schema.define(version: 20171027142813) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -388,6 +388,15 @@ ActiveRecord::Schema.define(version: 20171025133651) do
     t.integer "user_id"
     t.string "email"
     t.boolean "is_approved", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rewards_points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "order_id"
+    t.float "points", limit: 24, default: 0.0
+    t.string "reason"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

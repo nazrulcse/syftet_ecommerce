@@ -66,6 +66,10 @@ class LineItem < Base
     price * quantity
   end
 
+  def credit_point
+    variant.credit_point
+  end
+
   alias subtotal amount
 
   def taxable_amount

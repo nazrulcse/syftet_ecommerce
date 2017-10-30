@@ -51,6 +51,9 @@
     <th>
       <%= t(:type) %>
     </th>
+    <th>
+      Purchased
+    </th>
     <th data-hook="admin_users_index_header_actions" class="actions"></th>
   </tr>
   </thead>
@@ -60,6 +63,9 @@
         <td class='user_email'><%= link_to user.email, edit_admin_user_url(user) %></td>
         <td>
           <%= user.user_type.camelize if user.user_type %>
+        </td>
+        <td>
+          <%= user.display_average_order_value.format %>
         </td>
         <td data-hook="admin_users_index_row_actions" class="actions actions-2 text-right">
           <%= link_to_edit user, :no_text => true %>

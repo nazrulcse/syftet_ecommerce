@@ -1,6 +1,6 @@
 <% if @message.present? %>
-alert("<%= @message %>");
+popupMessage("<%= @message %>", 'alert alert-error');
 <%else%>
-alert('Successfully added to our email list');
+popupMessage('Successfully added to our email list', 'alert alert-success');
 $('#newsletter_subscription_email').val('');
 <%end%>
