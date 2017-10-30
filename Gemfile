@@ -52,6 +52,8 @@ gem "cancan"
 gem 'monetize'
 
 gem 'devise'
+gem 'social-share-button'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
