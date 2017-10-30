@@ -20,6 +20,7 @@
 //= require rating
 //= require jquery.elevatezoom.min
 //= require query-object
+//= require social-share-button
 
 $(document).on('turbolinks:load', function () {
     $(function () {

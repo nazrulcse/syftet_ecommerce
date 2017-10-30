@@ -34,6 +34,8 @@
  *= require cart_checkout
  *= require public
  *= require scaffold
+ *= require feedback
+ *= require social-share-button
  */
 
 #notification {

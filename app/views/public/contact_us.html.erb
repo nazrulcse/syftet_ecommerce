@@ -19,6 +19,11 @@
             </p>
 
             <div class="vspace10px"></div>
+
+
+
+
+
             <div class="contact-form">
               <%= form_for @contact_us, class: 'form-horizontal clearfix' do |f| %>
                   <div class="col-sm-x12">
@@ -54,7 +59,7 @@
                     </div>
 
                     <div class="form-group">
-                      <%= f.select :inquiry_type, ['x', 'y'], {}, {class: 'form-control reset-border-radius'} %>
+                      <%= f.select :inquiry_type, ['Shiftment Support', 'Customer Support', 'Others'], {include_blank: "Select Support Type..."}, {class: 'form-control reset-border-radius'} %>
                     </div>
 
                     <div class="clear"></div>
@@ -76,6 +81,10 @@
                 <%= link_to 'Go to the Homepage', root_path, class: 'text-red' %>
               </div>
             </div>
+
+
+
+
           </div>
 
           <div class="col-sm-4">

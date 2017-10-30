@@ -102,6 +102,10 @@
                             <li>
                               <a href="<%= promotion_products_path('discount') %>"><%= t(:special) %></a>
                             </li>
+                            <li>
+                              <%#= link_to t(:feedback), feedback_path %>
+                              <%= render 'home/feedback' %>
+                            </li>
                           </ul>
                         </div>
                       </div>
