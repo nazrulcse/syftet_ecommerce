@@ -216,7 +216,7 @@ class Order < Base
   end
 
   def currency
-    self[:currency] || 'USD' #Config[:currency]
+    self[:currency] || Syftet.config.currency
   end
 
   def shipping_discount
@@ -496,7 +496,7 @@ class Order < Base
 
   def empty!
     if completed?
-      raise Spree.t(:cannot_empty_completed_order)
+      raise t(:cannot_empty_completed_order)
     else
       line_items.destroy_all
       updater.update_item_count

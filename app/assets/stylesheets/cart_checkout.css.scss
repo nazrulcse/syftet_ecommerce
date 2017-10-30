@@ -2,12 +2,15 @@
   padding: 15px 15px 0 15px;
   a {
     color: #ffffff;
+    margin-right: 10px;
     &.btn-view-cart {
       background: #333333;
-      margin-right: 25px;
       &:hover {
         color: #fdfdfd;
       }
+    }
+    &:last-child {
+      margin-right: 0;
     }
   }
 }

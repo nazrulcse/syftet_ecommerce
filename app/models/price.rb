@@ -21,7 +21,7 @@ class Price < Base
   self.whitelisted_ransackable_attributes = ['amount']
 
   def money
-    Money.new(amount || 0, {currency: currency})
+    Money.new(amount || 0, currency)
   end
 
   def amount=(amount)
@@ -48,6 +48,6 @@ class Price < Base
   private
 
   def ensure_currency
-    self.currency ||= Config[:currency]
+    self.currency ||= Syftet.config.currency
   end
 end

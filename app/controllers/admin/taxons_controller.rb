@@ -79,8 +79,11 @@ module Admin
 
     def search
       taxons = Taxon.all
+      if params[:ids]
+        taxons = taxons.where(id: params[:ids])
+      end
       respond_to do |format|
-        format.json { render json: {taxons: taxons.collect { |taxon| {label: taxon.name, id: taxon.id} }} }
+        format.json { render json: {taxons: taxons.collect { |taxon| {text: taxon.name, id: taxon.id} }} }
       end
     end
 

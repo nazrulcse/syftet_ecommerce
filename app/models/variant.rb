@@ -264,7 +264,7 @@ class Variant < Base
 
   def ensure_no_line_items
     if line_items.any?
-      errors.add(:base, t(:cannot_destroy_if_attached_to_line_items))
+      errors.add(:base, I18n.t(:cannot_destroy_if_attached_to_line_items))
       return false
     end
   end

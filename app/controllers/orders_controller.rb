@@ -56,6 +56,12 @@ class OrdersController < StoreController
     @description = "Shop for shopping cart cover at Brandcruz.com. Free Shipping. Free Returns. All the time."
   end
 
+  def reset
+    current_order.empty!
+    current_order.destroy
+    redirect_to products_path
+  end
+
   # Adds a new item to the order (creating a new order if none already exists)
   def populate
     @error = nil

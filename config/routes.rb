@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
   resources :orders, except: [:index, :new, :create, :destroy] do
     post :populate, on: :collection
+    get :reset, on: :collection
     get :shipped_track
   end
 

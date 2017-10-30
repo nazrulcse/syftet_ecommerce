@@ -30,10 +30,10 @@ class Product < Base
   # https://github.com/rails/rails/issues/3458
   before_destroy :ensure_no_line_items
 
-  has_many :product_option_types, dependent: :destroy, inverse_of: :product
-  has_many :option_types, through: :product_option_types
-  has_many :product_properties, dependent: :destroy, inverse_of: :product
-  has_many :properties, through: :product_properties
+  # has_many :product_option_types, dependent: :destroy, inverse_of: :product
+  # has_many :option_types, through: :product_option_types
+  # has_many :product_properties, dependent: :destroy, inverse_of: :product
+  # has_many :properties, through: :product_properties
 
   has_many :classifications, dependent: :delete_all, inverse_of: :product
   has_many :taxons, through: :classifications, before_remove: :remove_taxon
@@ -113,9 +113,9 @@ class Product < Base
 
   attr_accessor :option_values_hash
 
-  accepts_nested_attributes_for :product_properties, allow_destroy: true, reject_if: lambda { |pp| pp[:property_name].blank? }
+  # accepts_nested_attributes_for :product_properties, allow_destroy: true, reject_if: lambda { |pp| pp[:property_name].blank? }
 
-  alias :options :product_option_types
+  # alias :options :product_option_types
 
   self.whitelisted_ransackable_associations = %w[stores variants_including_master master variants]
   self.whitelisted_ransackable_attributes = %w[description name slug discontinue_on]
@@ -383,7 +383,7 @@ class Product < Base
 
   def ensure_no_line_items
     if line_items.any?
-      errors.add(:base, Spree.t(:cannot_destroy_if_attached_to_line_items))
+      errors.add(:base, I18n.t(:cannot_destroy_if_attached_to_line_items))
       return false
     end
   end

@@ -39,7 +39,7 @@ module ApplicationHelper
   end
 
   def current_currency
-    'usd'
+    'bdt'
   end
 
   def get_all_variant(product)
@@ -56,7 +56,7 @@ module ApplicationHelper
   end
 
   def map_currency
-    'USD'
+    'BDT'
   end
 
   def variant_color_image_option(image_link)
@@ -177,7 +177,7 @@ module ApplicationHelper
     current_order.present? ? current_order.line_items.count : 0
   end
 
-  def amount_with_currency(amount, currency='$')
+  def amount_with_currency(amount, currency='৳')
     "#{currency}#{amount}"
   end
 

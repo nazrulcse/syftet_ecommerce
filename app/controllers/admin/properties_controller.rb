@@ -15,7 +15,7 @@ module Admin
       @search = @collection.ransack(params[:q])
       @collection = @search.result.
           page(params[:page]).
-          per(Config[:properties_per_page])
+          per(Syftet.config.properties_per_page)
     end
   end
 end
