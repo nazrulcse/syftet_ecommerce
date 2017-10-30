@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :products, only: [:index]
+    end
+  end
+
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
                        registrations: 'users/registrations',
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
+  post '/feedback', to: 'home#feedback'
 
   get '/c/*id', to: 'taxons#show', as: :categories
   get '/promo/:q/products', to: 'products#index', as: :promotion_products

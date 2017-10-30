@@ -19,6 +19,11 @@
             </p>
 
             <div class="vspace10px"></div>
+
+
+
+
+
             <div class="contact-form">
               <%= form_for @contact_us, class: 'form-horizontal clearfix' do |f| %>
                   <div class="col-sm-x12">
@@ -54,7 +59,7 @@
                     </div>
 
                     <div class="form-group">
-                      <%= f.select :inquiry_type, ['x', 'y'], {}, {class: 'form-control reset-border-radius'} %>
+                      <%= f.select :inquiry_type, ['Shiftment Support', 'Customer Support', 'Others'], {include_blank: "Select Support Type..."}, {class: 'form-control reset-border-radius'} %>
                     </div>
 
                     <div class="clear"></div>
@@ -76,48 +81,38 @@
                 <%= link_to 'Go to the Homepage', root_path, class: 'text-red' %>
               </div>
             </div>
+
+
+
+
           </div>
 
           <div class="col-sm-4">
             <div class="warehouse-locations">
-              <h3 class="gothamNarrowBlack small margin-top-0"><i class="fa fa-home fa-2x va-sub"></i>Our Warehouse
-                location</h3>
+              <h3 class="gothamNarrowBlack small margin-top-0">
+                <i class="fa fa-home fa-2x va-sub"></i>
+                Our Warehouse location
+              </h3>
 
               <div class="vspace10px"></div>
 
               <div class="address-wrapper">
-                <div class="address-first-title">Head Quarter</div>
-                <div class="address">#120, Las Vegas, NV 89148, USA</div>
-                <div class="phone"><i class="fa fa-phone"></i> (+1) 855 642 1165 </div>
+                <div class="address-first-title">Head office</div>
+                <div class="address">83 stewart road, London E15 2BA, uk.</div>
+                <div class="phone"><i class="fa fa-phone"></i> (+1) 000 000 0000 </div>
               </div>
+
               <div class="address-wrapper">
-                <div class="address-title">Sub Location(s)</div>
-                <div class="address">1705 Oak Street, New Jersey, 08701</div>
-                <div class="address">9733 Richmond Ave #106, Houston, TX 77042</div>
-                <div class="address">904 21st Ave, Honolulu, HI 96816</div>
+                <div class="address-title">Bangladesh Outlet</div>
+                <div class="address">
+                  Ground floor, New market city complex, dhaka new market- 1205.
+                </div>
+                <div class="phone">
+                  <i class="fa fa-phone"></i>
+                  (+88) 01706478728
+                </div>
               </div>
-              <div class="address-wrapper">
-                <div class="address-title">UK/EU Location(s)</div>
-                <div class="address">1 Liliput Road, Northhampton, NN4 7DT, <b>UK</b></div>
-                <div class="address">Giesebrechtstraße 19, 13629 Berlin, <b>Germany</b></div>
-                <div class="address">La Pineliere, 59800 Saint-Martin-le-Bouillant, <b>France</b></div>
-                <div class="address">Via Pievano Rolando, 5, 33053 Empoli FI, <b>Italy</b></div>
-                <div class="address">Calle Altos de la Marquesa XI, 32, 03170 Rojales, Alicante, <b>Spain</b></div>
-                <div class="phone"><i class="fa fa-phone"></i> (+44) 5603 676483 </div>
-              </div>
-              <div class="address-wrapper">
-                <div class="address-title">Australia Location(s)</div>
-                <div class="address">3a Rosulyn Street, Dubbo, NSW 2830</div>
-                <div class="phone"><i class="fa fa-phone"></i> (+61) 2 8310 4859 </div>
-              </div>
-              <div class="address-wrapper">
-                <div class="address-title">Canada Location(s)</div>
-                <div class="address">103 Atlantic Ave #300, Toronto, ON M6K 1Y2, Canada</div>
-              </div>
-              <div class="address-wrapper">
-                <div class="address-title">Dubai Location(s)</div>
-                <div class="address">Oxford Tower - <b>Dubai - United Arab Emirates</b></div>
-              </div>
+
             </div>
           </div>
         </div>
