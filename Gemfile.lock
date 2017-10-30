@@ -172,6 +172,7 @@ GEM
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
+    rack-cors (0.4.1)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -297,6 +298,7 @@ DEPENDENCIES
   paperclip
   paranoia
   puma (~> 3.7)
+  rack-cors
   rails (~> 5.1.4)
   ransack
   responders
@@ -312,9 +314,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-
-RUBY VERSION
-   ruby 2.3.1p112
 
 BUNDLED WITH
    1.15.3
