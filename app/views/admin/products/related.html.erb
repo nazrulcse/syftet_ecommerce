@@ -1,0 +1,66 @@
+<% content_for :page_actions do %>
+    <% if can?(:create, Product) %>
+        <%= button_link_to t(:new_product), new_object_url, {class: "btn-success", icon: 'add', id: 'admin_new_product'} %>
+    <% end %>
+<% end %>
+
+<%= render partial: 'admin/shared/product_tabs', locals: {current: :related_products} %>
+<%= render partial: 'admin/shared/error_messages', locals: {target: @product} %>
+
+<%= form_for [:admin, @product], method: :put, url: related_admin_product_path(@product), html: {multipart: true} do |f| %>
+    <fieldset>
+      <div data-hook="admin_product_form_taxons">
+        <%= f.field_container :related_products, class: ['form-group'] do %>
+            <%= f.label :related_product_ids, t(:related_product) %>
+
+            <% if can? :modify, RelatedProduct %>
+                <%= f.hidden_field :related_product_ids, value: '' %>
+            <% elsif @product.related_products.any? %>
+                <ul class="text_list">
+                  <% @product.related_products.each do |related| %>
+                      <li><%= related.product.name %></li>
+                  <% end %>
+                </ul>
+            <% else %>
+                <div class="alert alert-info"><%= t(:no_resource_found, resource: :taxons) %></div>
+            <% end %>
+
+        <% end %>
+      </div>
+      <%= render partial: 'admin/shared/edit_resource_links' %>
+    </fieldset>
+<% end %>
+<%= render 'admin/products/related_products' %>
+<script type="text/javascript">
+    $(function () {
+        $('#product_related_product_ids').select2({
+            dropdownCssClass: "taxon_select_box",
+            placeholder: 'Search related products',
+            multiple: true,
+            ajax: {
+                url: '<%= search_related_admin_product_path(@product) %>',
+                datatype: 'json',
+                data: function (term, page) {
+                    return {
+                        per_page: 50,
+                        page: page,
+                        without_children: true,
+                        token: api_key,
+                        q: {
+                            name_cont: term
+                        }
+                    }
+                },
+                results: function (data, page) {
+                    more = page < data.pages;
+                    return {
+                        results: data['products'],
+                        more: more
+                    }
+                }
+            }
+//            formatResult: formatTaxon,
+//            formatSelection: formatTaxon
+        });
+    });
+</script>

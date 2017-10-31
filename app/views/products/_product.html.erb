@@ -26,9 +26,9 @@
           </div>
 
           <div class="yith-compare">
-            <a title="Add to compare" href="#" class="compare">
-              <i class="fa fa-refresh"></i>
-            </a>
+            <%= link_to product_compare_path(product), title: 'Add to compare', class: 'compare', remote: true do %>
+                <i class="fa fa-refresh"></i>
+            <% end %>
           </div>
         </div>
       </div>
@@ -48,8 +48,7 @@
       </div>
         <span class="price">
             <span class="amount">
-              <span>$</span>
-              <%= product.price %>
+              <%= product.display_price.to_display %>
             </span>
         </span>
     </div>

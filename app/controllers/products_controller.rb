@@ -42,6 +42,26 @@ class ProductsController < StoreController
     end
   end
 
+  def compare
+    product = Product.friendly.find(params[:product_id])
+    if cookies[:compare_products]
+      ids = cookies[:compare_products].to_s.split(',').push(product.id)
+      cookies[:compare_products] = ids.uniq.join(',')
+    else
+      cookies[:compare_products] = product.id
+    end
+    @products = Product.where(id: cookies[:compare_products].to_s.split(','))
+  end
+
+  def remove_compare
+    @product = Product.friendly.find(params[:product_id])
+    if cookies[:compare_products]
+      ids = cookies[:compare_products].split(',')
+      ids.delete_at(ids.find_index(@product.id.to_s))
+      cookies[:compare_products] = ids.join(',')
+    end
+  end
+
   def keyword_search
     term = params[:keyword]
     search = Product.solr_search do |s|

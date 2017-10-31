@@ -373,3 +373,17 @@
 .product-out-stock {
   color: #E43E4E;
 }
+
+// Style Product compare
+
+.compare-label {
+  font-weight: bold;
+  background: #fafafa;
+}
+
+.remove-compare-btn {
+  position: absolute;
+  top: -9px;
+  left: 25%;
+  padding: 0 5px;
+}

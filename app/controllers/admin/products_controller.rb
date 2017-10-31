@@ -41,6 +41,30 @@ module Admin
       end
     end
 
+    def related
+      @product = Product.friendly.find(params[:id])
+      if request.put?
+        if params[:product][:related_product_ids].present?
+          params[:product][:related_product_ids].split(',').each do |id|
+            @product.related_products.find_or_create_by(relative_id: id)
+          end
+        end
+        redirect_to related_admin_product_url(@product)
+      end
+    end
+
+    def remove_related
+      rp = RelatedProduct.find_by_id(params[:id])
+      rp.destroy
+    end
+
+    def search_related
+      products = Product.all
+      respond_to do |format|
+        format.json { render json: {products: products.collect { |product| {text: product.name, id: product.id} }} }
+      end
+    end
+
     def destroy
       @product = Product.friendly.find(params[:id])
 

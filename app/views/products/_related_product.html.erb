@@ -6,9 +6,9 @@
     </h3>
 
     <div class="row clearfix">
-      <% 4.times.each do |i| %>
+      <% @product.related_products.each do |rp| %>
           <div class=col-md-3>
-            <%= render 'home/product' %>
+            <%= render 'products/product', product: rp.relative_product %>
           </div>
       <% end %>
     </div>

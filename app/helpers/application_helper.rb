@@ -81,11 +81,11 @@ module ApplicationHelper
   end
 
   def get_image_link(product, image)
-    image.present? && image.attachment.present? ? image.attachment.url(:product) : small_image(product)
+    image.present? && image.attachment.present? ? image.attachment.url(:product) : no_image
   end
 
   def get_zoom_image_link(image)
-    image.present? && image.attachment.present? ? image.attachment.url(:large) : "#{image.attachment.url}"
+    image.present? && image.attachment.present? ? image.attachment.url(:large) : no_image
   end
 
   def get_active_class(action, menu_action)
@@ -95,9 +95,13 @@ module ApplicationHelper
   def mini_image(variant, size = 50)
     image_url = 'assets/not_available.png'
     if variant.present?
-      image_url = variant.images.present? ? variant.images.order(:id).first.attachment.url(:small) : ''
+      image_url = variant.images.present? ? variant.images.order(:id).first.attachment.url(:small) : no_image
     end
     image_tag(image_url, style: "width: #{50}px")
+  end
+
+  def no_image
+    asset_url('logo.jpg')
   end
 
   def product_preview_image(product)
@@ -105,7 +109,7 @@ module ApplicationHelper
       image = product.master_images.last
       image_tag(image.attachment.url(:product), class: 'image-hover product-image')
     else
-      ''
+      image_tag(no_image, class: 'image-hover product-image')
     end
   end
 

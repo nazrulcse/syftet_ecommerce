@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     post :review
     resources :wishlists, only: [:create]
     get :quickview
+    get :compare
+    get :remove_compare
   end
 
   resources :orders, except: [:index, :new, :create, :destroy] do
@@ -62,8 +64,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/search/users', to: "search#users", as: :search_users
-    get '/search/products', to: "search#products", as: :search_products
+    get '/search/users', to: 'search#users', as: :search_users
+    get '/search/products', to: 'search#products', as: :search_products
 
     resources :promotions do
       resources :promotion_rules
@@ -94,6 +96,9 @@ Rails.application.routes.draw do
       member do
         post :clone
         get :stock
+        match 'related', via: [:get, :put]
+        get :remove_related
+        get :search_related
       end
       resources :variants do
         collection do
