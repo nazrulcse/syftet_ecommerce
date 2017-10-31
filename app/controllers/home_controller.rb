@@ -5,17 +5,17 @@ class HomeController < BaseController
     # OrderMailer.confirm_email(8).deliver_now
   end
 
-  def feedback
-    feedback = Feedback.new(feedback_params)
-    @status = feedback.save
-    respond_to do |format|
-      format.js
-      format.html {
-        flash[:success] = 'Thanks! for your kind feedback.'
-        redirect_to root_path
-      }
-    end
-  end
+  # def feedback
+  #   feedback = Feedback.new(feedback_params)
+  #   @status = feedback.save
+  #   respond_to do |format|
+  #     format.js
+  #     format.html {
+  #       flash[:success] = 'Thanks! for your kind feedback.'
+  #       redirect_to root_path
+  #     }
+  #   end
+  # end
 
 end
 
