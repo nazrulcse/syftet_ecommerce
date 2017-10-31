@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
-  resources :feedbacks, only: [:new, :create]
+  resources :feedbacks, only: [:new, :create, :show]
 
   get '/c/*id', to: 'taxons#show', as: :categories
   get '/promo/:q/products', to: 'products#index', as: :promotion_products

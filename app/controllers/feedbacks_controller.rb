@@ -2,6 +2,7 @@ class FeedbacksController < BaseController
   def new
 
   end
+
   def create
     feedback = Feedback.new(feedback_params)
     @status = feedback.save

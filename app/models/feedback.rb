@@ -7,9 +7,9 @@
 #  email      :string(255)
 #  type    :string
 #  message    :text
-#  delivery_report   :string
+#  product_quality   :string
 #  product_price    :string
-#  others    :text(65535)
+#  cutomer_service    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
