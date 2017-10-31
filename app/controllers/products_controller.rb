@@ -45,12 +45,12 @@ class ProductsController < StoreController
   def compare
     product = Product.friendly.find(params[:product_id])
     if cookies[:compare_products]
-      ids = cookies[:compare_products].split(',').push(product.id)
+      ids = cookies[:compare_products].to_s.split(',').push(product.id)
       cookies[:compare_products] = ids.uniq.join(',')
     else
       cookies[:compare_products] = product.id
     end
-    @products = Product.where(id: cookies[:compare_products].split(','))
+    @products = Product.where(id: cookies[:compare_products].to_s.split(','))
   end
 
   def remove_compare
