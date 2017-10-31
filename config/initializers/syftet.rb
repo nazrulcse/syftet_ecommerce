@@ -1,5 +1,5 @@
 require 'syftet/syftet'
 
 Syftet.configure do |config|
-  config.currency = 'USD'
+  config.currency = 'BDT'
 end
