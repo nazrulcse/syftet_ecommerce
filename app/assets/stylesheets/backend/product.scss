@@ -1,0 +1,23 @@
+.related-product-item {
+  list-style: none;
+  text-align: center;
+  .item-wrapper {
+    position: relative;
+    background: #f9f9f9;
+    padding: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    min-height: 100px;
+  }
+  a.remove-btn {
+    position: absolute;
+    right: -4px;
+    top: -7px;
+    color: #c6000e;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 0 5px;
+  }
+}

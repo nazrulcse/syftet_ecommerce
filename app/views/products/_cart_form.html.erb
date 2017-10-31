@@ -36,13 +36,13 @@
       </div>
 
       <div data-hook="product_price">
-        <% if @product.total_on_hand %>
+        <% if @product.total_on_hand > 0 %>
             <%= button_tag class: 'btn btn-warning btn-large', id: 'add-to-cart-button', type: :submit do %>
                 ADD TO CART
             <% end %>
             <span class="ml10">
                   <%= raw wishlist_link(@product.id) %>
-                </span>
+            </span>
             <a href="#" class="btn">
               <i class="fa fa-refresh"></i>
             </a>

@@ -1,0 +1,27 @@
+<h1> Related Product List </h1>
+<div class="row">
+  <ul style="margin: 0; padding: 0;" class="clearfix">
+    <% @product.related_products.each do |rp| %>
+        <li class="col-sm-6 col-md-4 related-product-item rp-item-<%= rp.id %>">
+          <div class="item-wrapper">
+            <%= link_to 'x', remove_related_admin_product_path(rp), class: 'remove-btn', remote: true %>
+            <div>
+              <p>
+                <%= link_to rp.relative_product.name, admin_product_path(rp.relative_product) %>
+              </p>
+            </div>
+            <div>
+              <p>
+                <% if rp.relative_product.images.present? %>
+                    <%= mini_image(rp.relative_product) %>
+                <% else %>
+                    <%= image_tag(no_image, width: 50) %>
+                <% end %>
+              </p>
+            </div>
+            <%= rp.relative_product.display_price.to_display %>
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>

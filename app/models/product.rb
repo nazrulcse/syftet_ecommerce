@@ -75,6 +75,7 @@ class Product < Base
 
   has_many :line_items, through: :variants_including_master
   has_many :orders, through: :line_items
+  has_many :related_products, inverse_of: :product
 
   delegate_belongs_to :master, :sku, :price, :currency, :display_amount, :display_price, :weight, :height, :width, :depth,
                       :is_master, :has_default_price?, :cost_currency, :price_in, :amount_in, :cost_price, :images, :original_price, :agent_price,
