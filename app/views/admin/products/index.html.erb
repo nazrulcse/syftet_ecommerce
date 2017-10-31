@@ -74,7 +74,7 @@
             <td class="image"><%= mini_image product %></td>
             <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
             <td class="text-center">
-              <%= product.display_price.format %>
+              <%= product.display_price.to_display %>
             </td>
             <td class="actions actions-3 text-right" data-hook="admin_products_index_row_actions">
               <%= link_to_edit product, no_text: true, class: 'edit' if can?(:edit, product) && !product.deleted? %>

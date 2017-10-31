@@ -102,7 +102,7 @@ module BaseHelper
           if product.is_a?(Variant) && !product.product.variant_images.empty?
             create_product_image_tag(product.product.variant_images.first, product, options, style)
           else
-            image_tag "noimage/#{style}.png", options
+            #image_tag "noimage/#{style}.png", options TODO: Need to add no image found image
           end
         end
       else
