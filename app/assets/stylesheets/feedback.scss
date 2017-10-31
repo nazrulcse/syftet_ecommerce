@@ -1,30 +1,22 @@
-//.feedback-button {
-//  border: solid 2px #CCCCCC;
-//  background: #074E66;
-//  font-weight: 600;
-//  color: white;
-//  text-align: center;
-//  font-size: 17px;
-//  position: fixed;
-//  right: -4px;
-//  bottom: 40px;
-//  font-family: "Roboto", helvetica, arial, sans-serif;
-//  -webkit-border-radius: 50%;
-//  -moz-border-radius: 50%;
-//  padding: 7px 15px;
-//  border-radius: 6px;
-//  -webkit-box-shadow: 0 0 16px #cccccc;
-//  -moz-box-shadow: 0 0 16px #cccccc;
-//  box-shadow: 0 0 16px #cccccc;
-//  z-index: 100;
-//}
+
 
 .feedback-header {
-  padding-left: 20px;
   font-size: 26px;
   font-weight: bold;
   font-family: 'Josefin Slab', serif;
-  color: #074E66 !important;
+  color: #ffcd56 !important;
+}
+
+.feedback-wrap {
+  .feedback-column {
+    width: 550px;
+    margin: auto;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+  }
+
 }
 
 #feedback-form {
