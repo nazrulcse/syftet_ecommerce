@@ -11,7 +11,7 @@
             <!-- Wrapper for slides -->
 
             <% @feedbacks.each do |feedback| %>
-            <%# feedback = @feedbacks.last %>
+                <%# feedback = @feedbacks.last %>
                 <div class="owl-item active first">
                   <div class="item">
                     <div class="testimonials">
@@ -27,15 +27,16 @@
                           <h5 class="testimonials-name">
                             <%= feedback.name %>
                           </h5>
+
                           <p>
                             <label> Ratings: </label>
                             <%= feedback.rate %>
                           </p>
 
                           <!--<p class="text-muted testimonials-position">-->
-                            <!--<a href="#">-->
-                              <!--<%#= feedback.email %>-->
-                            <!--</a>-->
+                          <!--<a href="#">-->
+                          <!--<%#= feedback.email %>-->
+                          <!--</a>-->
                           <!--</p>-->
                         </div>
                         <p class="testimonials-description">
@@ -84,7 +85,7 @@
           </div>
           <div class="">
             <p>
-             <strong>Instagram</strong>:&nbsp;<a href="https://www.instagram.com/p/BK-LKGej-fD/">#Pibags</a>,<a href="https://www.instagram.com/p/BK-LLa3j6YN/">#minimal</a>,<a href="https://www.instagram.com/p/BK-LI0vjBI3/">#bags</a>
+              <strong>Instagram</strong>:&nbsp;<a href="https://www.instagram.com/p/BK-LKGej-fD/">#Pibags</a>,<a href="https://www.instagram.com/p/BK-LLa3j6YN/">#minimal</a>,<a href="https://www.instagram.com/p/BK-LI0vjBI3/">#bags</a>
             </p>
 
             <div id="SL_balloon_obj" style="display: block;">
@@ -168,10 +169,5 @@
             autoplay: true,
             dot: true
         });
-
-        $('.zoomimg').bigic();
     });
-
-
-
 </script>
