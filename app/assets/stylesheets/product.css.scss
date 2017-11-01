@@ -310,6 +310,18 @@
   }
 }
 
+.size-filter-option,
+.color-filter-option {
+  position: relative;
+  .clear-size-filter,
+  .clear-color-filter {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    color: #c6000e;
+  }
+}
+
 .product-gallery-wrapper {
   width: 70px;
   float: left;

@@ -36,6 +36,7 @@
  *= require scaffold
  *= require feedback
  *= require social-share-button
+ *= require lightgallery
  */
 
 #notification {

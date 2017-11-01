@@ -10,8 +10,11 @@
           <input class="range-slider hidden" value=''>
         </div>
 
-        <div class="container-inner-filter">
+        <div class="container-inner-filter color-filter-option">
           <h4>Color</h4>
+          <a href="javascript:void(0);" style="display: none;" class="clear-color-filter" data-filter="color">
+            <i class="fa fa-times-circle"></i>
+          </a>
 
           <div class="widget-block-html-items color-section clearfix">
             <ul class="color-section-ul-style">
@@ -21,35 +24,32 @@
                     <label for="color_<%= color %>">
                       <span style="background:#<%= color %>"></span>
                     </label>
-                    <a href="javascript:void(0);" style="display: none;" class="clear-color-filter">
-                      <i class="fa fa-times-circle"></i>
-                    </a>
                   </li>
               <% end %>
             </ul>
           </div>
         </div>
 
-        <div data-css-class="woof_container_pa_size" class="woof_container woof_container_checkbox woof_container_pa_size woof_container_2 woof_container_size">
-          <div class="woof_container_overlay_item"></div>
-          <div class="woof_container_inner woof_container_inner_size">
-            <h4>Size</h4>
+        <div class="size-filter-option">
+          <h4>
+            Size
+          </h4>
+          <a href="javascript:void(0);" style="display: none;" class="clear-size-filter" title="Clear size filter" data-filter="size">
+            <i class="fa fa-times-circle"></i>
+          </a>
 
-            <div class="widget-block-html-items">
-              <ul class="widget-list-checkbox">
-                <% size_filters(@taxon).each do |size| %>
-                    <li>
-                      <%= check_box_tag 'size[]', size, false, {id: "size-#{size}"} %>
-                      <label for="size-<%= size %>"> <%= size %> </label>
-                    </li>
-                <% end %>
-              </ul>
-            </div>
-
-            <input type="hidden" name="woof_t_pa_size" value="Product Size"><!-- for red button search nav panel -->
-
+          <div class="widget-block-html-items">
+            <ul class="widget-list-checkbox">
+              <% size_filters(@taxon).each do |size| %>
+                  <li>
+                    <%= radio_button_tag 'size', size, false, {id: "size-#{size}"} %>
+                    <label for="size-<%= size %>"> <%= size %> </label>
+                  </li>
+              <% end %>
+            </ul>
           </div>
         </div>
+
         <div class="woof_submit_search_form_container">
           <a style="float: right;" href="<%= @taxon.present? ? categories_path(@taxon) : products_path %>" class="btn btn-warning reset-border-radius" data-link="">Reset</a>
         </div>
@@ -61,6 +61,12 @@
 <script type="text/javascript">
     $(function () {
         data_query = $.query;
+        if (data_query.get('color') != '') {
+            $('.clear-color-filter').show();
+        }
+        if (data_query.get('size') != '') {
+            $('.clear-size-filter').show();
+        }
         $(".range-slider").ionRangeSlider({
             type: "double",
             grid: true,
@@ -80,19 +86,23 @@
             if (typeof color != undefined) {
                 new_url = data_query.SET('color', color);
                 loadProducts(new_url);
+                $('.clear-color-filter').show();
             }
         });
 
-        $('.clear-color-filter').click(function () {
-            $('.color-section-ul-style').find("input[type='radio']").prop('checked', false);
-            new_url = data_query.REMOVE('color');
+        $('.clear-color-filter, .clear-size-filter').click(function () {
+            $(this).parent().find("input[type='radio']:checked").prop('checked', false);
+            filter = $(this).attr('data-filter');
+            new_url = data_query.REMOVE(filter);
             loadProducts(new_url);
+            $(this).hide();
         });
 
-        $("input[name='size[]']").click(function () {
-            sizes = $("input[name='size[]']:checked").val();
-            new_url = data_query.SET('size', sizes);
+        $("input[name='size']").click(function () {
+            size = $("input[name='size']:checked").val();
+            new_url = data_query.SET('size', size);
             loadProducts(new_url);
+            $('.clear-size-filter').show();
         });
     });
 
