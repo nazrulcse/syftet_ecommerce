@@ -46,46 +46,43 @@
             <% end %>
 
           </div>
-
         </div>
       </div>
 
       <div class="col-sm-5">
-        <div class="kc-col-container">
-          <div class=" kc_ins_col_3">
-            <ul>
-              <li class="el-start loaded">
-                <a href="" class="zoom-img">
-                  <img class="zoomimg" src="https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14487425_599839940222639_2169011080649506816_n.jpg">
-                </a>
-              </li>
-              <li class=" loaded">
-                <a href="" target="_blank">
-                  <img src="https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14547700_1078505402269165_7299002542493532160_n.jpg">
-                </a>
-              </li>
-              <li class="el-end loaded">
-                <a href="" target="_blank">
-                  <img src="https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14448338_190048458086402_2638088682661216256_n.jpg">
-                </a>
-              </li>
-              <li class="el-start loaded">
-                <a href="" target="_blank" class="zoom-img"><img src="https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14540628_298862940494930_209775376786784256_n.jpg"></a>
-              </li>
-              <li class=" loaded">
-                <a href="" target="_blank"><img src="https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14488275_603033969865155_4489113900976963584_n.jpg"></a>
-              </li>
-              <li class="el-end loaded">
-                <a href="" target="_blank"><img src="https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14533548_709490632538083_2315626691310911488_n.jpg"></a>
-              </li>
-            </ul>
-          </div>
-          <div class="">
-            <p class="mb0">
-              <strong>Instagram</strong>:&nbsp;<a href="https://www.instagram.com/p/BK-LKGej-fD/">#Pibags</a>,<a href="https://www.instagram.com/p/BK-LLa3j6YN/">#minimal</a>,<a href="https://www.instagram.com/p/BK-LI0vjBI3/">#bags</a>
-            </p>
-          </div>
-        </div>
+        <ul id="lightgallery" class="clearfix">
+          <li class="loaded">
+            <%= link_to asset_path('galary/img1.jpg'), class: 'btn-more' do %>
+                <%= image_tag 'galary/img1.jpg' %>
+            <% end %>
+          </li>
+          <li class="loaded">
+            <%= link_to asset_path('galary/img2.jpg'), class: 'btn-more' do %>
+                <%= image_tag 'galary/img2.jpg' %>
+            <% end %>
+          </li>
+          <li class="loaded">
+            <%= link_to asset_path('galary/img3.jpg'), class: 'btn-more' do %>
+                <%= image_tag 'galary/img3.jpg' %>
+            <% end %>
+          </li>
+          <li class="loaded">
+            <%= link_to asset_path('galary/img4.jpg'), class: 'btn-more' do %>
+                <%= image_tag 'galary/img4.jpg' %>
+            <% end %>
+          </li>
+          <li class="loaded">
+            <%= link_to asset_path('galary/img5.jpg'), class: 'btn-more' do %>
+                <%= image_tag 'galary/img5.jpg' %>
+            <% end %>
+          </li>
+          <li class="loaded">
+            <%= link_to asset_path('galary/img2.jpg'), class: 'btn-more' do %>
+                <%= image_tag 'galary/img2.jpg' %>
+            <% end %>
+          </li>
+        </ul>
+
       </div>
     </div>
   </div>
@@ -100,5 +97,7 @@
             autoplay: true,
             dot: true
         });
+
+        $("#lightgallery li").lightGallery();
     });
 </script>
