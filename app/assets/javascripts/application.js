@@ -21,6 +21,7 @@
 //= require jquery.elevatezoom.min
 //= require query-object
 //= require social-share-button
+//= require lightgallery.min
 
 $(document).on('turbolinks:load', function () {
     $(function () {
