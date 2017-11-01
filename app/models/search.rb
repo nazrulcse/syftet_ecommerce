@@ -30,6 +30,10 @@ class Search
       result_object = result_object.where("prices.amount between #{terms[:min]} and #{terms[:max]}")
     end
 
+    if terms[:size]
+      result_object = result_object.where("variants.size = '#{terms[:size]}'")
+    end
+
     if terms[:color]
       result_object = result_object.where('variants.color_image = ?', terms[:color])
     end

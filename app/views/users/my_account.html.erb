@@ -7,6 +7,23 @@
     <dt>Email</dt>
     <dd><%= current_user.email %> (<a href="/account/edit">Edit</a>)</dd>
   </dl>
+  <dl id="user-info">
+    <dt>Total Rewards Points</dt>
+    <dd>
+      <i class="fa fa-certificate">
+        <%= current_user.total_rewards %>
+      </i>
+    </dd>
+  </dl>
+
+  <dl id="user-info">
+    <dt>Available Rewards Point</dt>
+    <dd>
+      <i class="fa fa-certificate">
+        <%= current_user.available_rewards %>
+      </i>
+    </dd>
+  </dl>
 </div>
 
 <div data-hook="account_my_orders" class="account-my-orders">
