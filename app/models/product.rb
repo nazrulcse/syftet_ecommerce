@@ -203,6 +203,22 @@ class Product < Base
     where conditions.inject(:or)
   end
 
+  def avg_rating
+    self.reviews.average(:rating) || 0.0
+  end
+
+  def preview_image_url
+    master_images.present? ? master_images.last.attachment.url(:product) : ''
+  end
+
+  def discount_price
+    promotionable? ? original_price : nil
+  end
+
+  def is_favourite?(user_id)
+    user_id.present? && wishlists.where(user_id: user_id).present?
+  end
+
   # Suitable for displaying only variants that has at least one option value.
   # There may be scenarios where an option type is removed and along with it
   # all option values. At that point all variants associated with only those
