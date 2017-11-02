@@ -1,9 +1,10 @@
 class Search
-  attr_accessor :taxon, :terms, :page
+  attr_accessor :taxon, :terms, :page, :is_api
 
-  def initialize(params, taxon = nil)
+  def initialize(params, taxon = nil, is_api = false)
     self.terms = params
     self.taxon = taxon
+    self.is_api = is_api
     self.page = params[:page] || 1
   end
 
@@ -37,43 +38,8 @@ class Search
     if terms[:color]
       result_object = result_object.where('variants.color_image = ?', terms[:color])
     end
-    result_object.order(:created_at).distinct.page(page).per(Syftet.config.product_per_page)
+
+    result_object.order(:created_at).distinct.page(page).per(is_api ? Syftet.config.product_per_page_mobile_api : Syftet.config.product_per_page)
   end
 
-  def find_products
-    Product.joins(:variants, :prices).includes(:taxons, :reviews).where(conditions).order(:created_at).distinct.page(page).per(Syftet.config.product_per_page_mobile_api)
-  end
-
-  private
-
-  def taxon_conditions
-    ['products.taxon_id = ?', taxon.id] unless taxon.blank?
-  end
-  def new_conditions
-    ['products.created_at >= ?', 15.days.ago] if terms['q'] == 'new'
-  end
-  def discount_conditions
-    ['products.promotionable = ?', true] if terms['q'] == 'discount'
-  end
-  def name_conditions
-    ['products.name LIKE ?', "%#{terms[:name]}%"] unless terms[:name].blank?
-  end
-  def price_conditions
-    ['prices.amount between', "#{terms[:min]} and #{terms[:max]}"] if terms[:min] && terms[:max]
-  end
-  def color_condition
-    ['variants.color_image = ?', terms[:color]] unless terms[:color].blank?
-  end
-  def conditions
-    [conditions_clauses.join(' AND '), *conditions_options]
-  end
-  def conditions_clauses
-    conditions_parts.map { |condition| condition.first }
-  end
-  def conditions_options
-    conditions_parts.map { |condition| condition[1..-1] }.flatten
-  end
-  def conditions_parts
-    private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
-  end
 end
