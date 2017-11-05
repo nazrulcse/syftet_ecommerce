@@ -14,8 +14,8 @@
       <% end %>
 
       <%= f.field_container :body, :class => ['form-group'] do %>
-          <%= f.label :title, t(:body) %> <span class="required">*</span>
-          <%= f.text_area :body, :class => 'form-control title' %>
+          <%= f.label :body, t(:body) %> <span class="required">*</span>
+          <%= f.cktext_area :body, :class => 'form-control title' %>
           <%= f.error_message_on :body %>
       <% end %>
 
