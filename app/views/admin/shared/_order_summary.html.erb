@@ -20,7 +20,7 @@
           <strong><%= t(:subtotal) %>:</strong>
         </td>
         <td id='item_total'>
-          <%= @order.item_total %>
+          <%= amount_with_currency(@order.amount) %>
         </td>
       </tr>
 
@@ -30,7 +30,7 @@
             <strong><%= t(:ship_total) %>:</strong>
           </td>
           <td id='ship_total'>
-            <%= @order.display_ship_total.format %>
+            <%= @order.display_ship_total.to_display %>
           </td>
         </tr>
       <% end %>
@@ -61,7 +61,7 @@
         <td data-hook='admin_order_tab_total_title'>
           <strong><%= t(:total) %>:</strong>
         </td>
-        <td id='order_total'><%= @order.total %></td>
+        <td id='order_total'><%= @order.display_total.to_display %></td>
       </tr>
 
       <% if @order.completed? %>

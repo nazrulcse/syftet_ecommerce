@@ -2,7 +2,7 @@
   <thead>
     <tr data-hook="payments_header">
       <th><%= Payment.human_attribute_name(:number) %></th>
-      <th><%= "#{t('date')}/#{t('time')}" %></th>
+      <th><%= raw "#{t(:date_time)}" %></th>
       <th class="text-center"><%= t(:amount) %></th>
       <th class="text-center"><%= t(:payment_method) %></th>
       <th class="text-center"><%= t(:transaction_id) %></th>
@@ -15,7 +15,7 @@
       <tr id="<%= dom_id(payment) %>" data-hook="payments_row">
         <td><%= link_to payment.number, admin_order_payment_path(@order, payment) %></td>
         <td><%= pretty_time(payment.created_at) %></td>
-        <td class="amount text-center"><%= payment.display_amount %></td>
+        <td class="amount text-center"><%= payment.display_amount.to_display %></td>
         <td class="text-center"><%= payment_method_name(payment) %></td>
         <td class="text-center"><%= payment.transaction_id %></td>
         <td class="text-center">

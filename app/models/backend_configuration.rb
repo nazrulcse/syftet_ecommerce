@@ -16,4 +16,5 @@ class BackendConfiguration < Preferences::Configuration
                           :reimbursement_types, :return_authorization_reasons]
   PROMOTION_TABS ||= [:promotions, :promotion_categories]
   USER_TABS ||= [:users]
+  BLOG_TABS ||= [:blogs]
 end

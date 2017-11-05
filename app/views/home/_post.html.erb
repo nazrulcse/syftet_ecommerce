@@ -5,31 +5,28 @@
         <div class="image-thumnail">
 
           <div class="post-thumbnail">
-            <img src="http://venusdemo.com/wordpress/pi/wp-content/uploads/2015/08/img_blog-480x272.jpg" class="single-image-fluid" alt="">
+            <%= image_tag(blog.cover_photo_url(:thumb), class: 'single-image-fluid') %>
           </div>
 
         </div>
 
         <div class="bottom-blog">
           <h3 class="title-post">
-            <a href="http://venusdemo.com/wordpress/pi/lorem-ipsum-is-simply-dummy/" rel="bookmark">Lorem
-              Ipsum is simply dummy</a></h3>
+            <%= link_to blog.title, blog_path(blog) %>
+          </h3>
 
           <div class="blog-meta">
             <div class="entry-date">
               <i class="fa fa-calendar"></i>
-              Aug<span> - 06			   	</span>
+              <%= blog.created_at.strftime('%b - %d') %>
             </div>
             <div class="entry-comments">
               <i class="fa fa-comments"></i>
-              <a href="http://venusdemo.com/wordpress/pi/lorem-ipsum-is-simply-dummy/#comments">
-                1 Comment
-              </a>
+              <%= link_to pluralize(blog.comments.count, 'Comment'), "#{blog_path(blog)}#comments" %>
             </div>
           </div>
           <div class="entry-content">
-            Candida is a term that refers to a large family of yeasts (one celled fungi) that
-            under normal circumstances, ...
+            <%= raw truncate(raw(blog.body), length: 200).html_safe %>
           </div>
           <!-- .entry-content -->
         </div>

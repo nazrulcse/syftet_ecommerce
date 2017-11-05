@@ -17,6 +17,9 @@
       <%= content_tag :li, class: ('active' if current == :related_products) do %>
           <%= link_to_with_icon 'list-alt', t(:related_product), related_admin_product_url(@product) %>
       <% end if can?(:admin, RelatedProduct) %>
+      <%= content_tag :li, class: ('active' if current == :review) do %>
+          <%= link_to_with_icon 'star', t(:review_rating), admin_product_reviews_path(@product) %>
+      <% end if can?(:admin, Review) %>
       <%= content_tag :li, class: ('active' if current == :stock) do %>
           <%= link_to_with_icon 'home', t(:stock), stock_admin_product_url(@product) %>
           <%# end if can?(:admin, Stock) %> <!-- TODO: need to active this line -->

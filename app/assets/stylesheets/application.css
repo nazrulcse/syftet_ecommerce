@@ -37,6 +37,7 @@
  *= require feedback
  *= require social-share-button
  *= require lightgallery
+ *= require backend/blog
  */
 
 #notification {

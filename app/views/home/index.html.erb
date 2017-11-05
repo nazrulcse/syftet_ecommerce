@@ -84,8 +84,8 @@
         </div>
 
         <div class="blog-post" id="post-lists">
-          <% 3.times.each do |i| %>
-              <%= render 'post' %>
+          <% @blogs.each do |blog| %>
+              <%= render 'post', blog: blog %>
           <% end %>
         </div>
       </div>

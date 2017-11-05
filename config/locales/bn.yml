@@ -41,3 +41,6 @@ bn:
   categories: 'বিভাগ'
   customer: 'ক্রেতা'
   retailer: 'খুচরা বিক্রেতা'
+  time:
+    formats:
+      short: '%H:%M'

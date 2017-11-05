@@ -18,11 +18,11 @@
             html = '';
             html += '<div class="rate">';
             for (i = 1; i <= rate; i++) {
-                html += '<div class="rate-item active"> <i class="fa fa-star"></i> </div>';
+                html += '<div class="rate-item active"> <i class="fa fa-star icon icon-star"></i> </div>';
             }
 
             for (i = (rate + 1); i <= 5; i++) {
-                html += '<div class="rate-item"><i class="fa fa-star-o"></i></div>';
+                html += '<div class="rate-item"><i class="fa fa-star-o icon icon-star"></i></div>';
             }
             html += '</div>';
             return html;

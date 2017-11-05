@@ -12,6 +12,8 @@
 //= require underscore-min.js
 //= require velocity
 
+//= require ckeditor/init
+
 //= require syftet.js.coffee.erb
 //= require backend/spree-select2
 //= require backend/address_states
@@ -50,6 +52,7 @@
 //= require backend/variant_management
 //= require backend/zone
 //= require backend/jscolor.min
+//= require rating
 
 //Spree.routes.clear_cache = Spree.adminPathFor('general_settings/clear_cache')
 //Spree.routes.checkouts_api = Spree.pathFor('api/v1/checkouts')
@@ -80,3 +83,7 @@ Syftet.routes.taxons_search = '/admin/taxons/search';
 //Spree.routes.stock_items_api = function(stock_location_id) {
 //  return Spree.pathFor('api/v1/stock_locations/' + stock_location_id + '/stock_items')
 //}
+
+$(function () {
+    $('.star-rating').rateit();
+})
