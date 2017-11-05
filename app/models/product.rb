@@ -212,7 +212,7 @@ class Product < Base
   end
 
   def discount_price
-    promotionable? ? original_price : nil
+    promotionable? ? original_price : 0.0
   end
 
   def is_favourite?(user_id)
