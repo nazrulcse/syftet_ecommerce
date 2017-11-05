@@ -210,7 +210,7 @@
                   <span class="icon icon-filter filterable js-add-filter" data-ransack-field="q_email_cont" data-ransack-value="<%= order.email %>"></span>
               <% end %>
             </td>
-            <td><%= order.display_total.format %>
+            <td><%= order.display_total.to_display %>
             </td>
             <td class='actions actions-1' data-hook="admin_orders_index_row_actions">
               <%= link_to_edit_url edit_admin_order_path(order), :title => "admin_edit_#{dom_id(order)}", :no_text => true %>

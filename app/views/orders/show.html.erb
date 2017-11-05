@@ -7,7 +7,7 @@
     <div class="thanks-order-wrap">
       <div class="thanks-order-container">
         <% if order_just_completed?(@order) %>
-            <h3> THANKS FOR YOUR ORDER, <%= @order.ship_address.name %>! </h3>
+            <h3> THANKS FOR YOUR ORDER, <%= @order.ship_address.full_name %>! </h3>
             <h4> Your Order ID is <%= @order.number %> </h4>
         <% end %>
       </div>

@@ -14,7 +14,10 @@ class PaymentMethod::CreditPoint < PaymentMethod
   end
 
   def capture(*)
-    simulated_successful_billing_response
+    response = simulated_successful_billing_response
+    if response.success?
+
+    end
   end
 
   def cancel(*)

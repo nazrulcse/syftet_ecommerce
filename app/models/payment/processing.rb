@@ -127,7 +127,7 @@ class Payment < Base
       if response.success?
         unless response.authorization.nil?
           self.response_code = response.authorization
-          self.avs_response = response.avs_result['code']
+          self.avs_response = response.avs_result['code'] if response.avs_result
 
           if response.cvv_result
             self.cvv_response_code = response.cvv_result['code']
@@ -156,8 +156,8 @@ class Payment < Base
     def gateway_error(error)
       if error.is_a? ActiveMerchant::Billing::Response
         text = error.params['message'] || error.params['response_reason_text'] || error.message
-      elsif error.is_a? ActiveMerchant::ConnectionError
-        text = Spree.t(:unable_to_connect_to_gateway)
+        # elsif error.is_a? ActiveMerchant::ConnectionError
+        #   text = Spree.t(:unable_to_connect_to_gateway)
       else
         text = error.to_s
       end

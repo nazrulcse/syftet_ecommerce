@@ -53,7 +53,7 @@
                         <label>
                           <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
                           <span class="rate-name"><%= rate.name %></span>
-                          <span class="badge rate-cost"><%= amount_with_currency(rate.display_cost) %></span>
+                          <span class="badge rate-cost"><%= rate.display_cost.to_money(Syftet.config.currency).to_display %></span>
                         </label>
                       </li>
                   <% end %>
