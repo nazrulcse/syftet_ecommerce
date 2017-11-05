@@ -7,6 +7,12 @@
 
 <%= form_for [:admin, @blog], :html => {:multipart => true} do |f| %>
     <fieldset data-hook="new_product">
+      <%= f.field_container :cover_photo, :class => ['form-group'] do %>
+          <%= f.label :cover_photo, t(:cover_photo) %> <span class="required">*</span>
+          <%= f.file_field :cover_photo, :class => 'form-control title' %>
+          <%= f.error_message_on :cover_photo %>
+      <% end %>
+
       <%= f.field_container :title, :class => ['form-group'] do %>
           <%= f.label :title, t(:title) %> <span class="required">*</span>
           <%= f.text_field :title, :class => 'form-control title' %>
