@@ -1,0 +1,32 @@
+<% content_for :page_actions do %>
+    <% if can?(:create, Product) %>
+        <%= button_link_to t(:new_product), new_admin_product_path, {class: "btn-success", icon: 'add', id: 'admin_new_product'} %>
+    <% end %>
+<% end %>
+
+<%= render partial: 'admin/shared/product_tabs', locals: {current: :review} %>
+<%= render partial: 'admin/shared/error_messages', locals: {target: @product} %>
+
+<%= form_for [:admin, @product, @review] do |f| %>
+    <fieldset>
+      <%= f.field_container :user_review, :class => ['form-group'] do %>
+          <%= f.label :rating, t(:rating) %>
+          <div class="rating" style="margin-bottom: 10px">
+            <div class="star-rating" data-rating="<%= @review.rating %>">
+              ******
+            </div>
+          </div>
+      <% end %>
+      <%= f.field_container :user_review, :class => ['form-group'] do %>
+          <%= f.label :text, t(:user_review) %> <span class="required">*</span>
+          <%= f.text_area :text, :class => 'form-control title' %>
+          <%= f.error_message_on :text %>
+      <% end %>
+
+      <div class="form-actions" data-hook="buttons">
+        <%= button t('actions.update_and_approved'), 'ok', 'submit', {class: 'btn-success'} %>
+        <span class="or"><%= t(:or) %></span>
+        <%= button_link_to t('actions.cancel'), admin_blogs_path, :icon => 'remove' %>
+      </div>
+    </fieldset>
+<% end %>

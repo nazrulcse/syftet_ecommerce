@@ -33,6 +33,13 @@
       <%= tab *BackendConfiguration::USER_TABS, url: admin_users_path, icon: 'user' %>
     </ul>
 <% end %>
+
+<% if can?(:admin, Blog) %>
+    <ul class="nav nav-sidebar">
+      <%= tab *BackendConfiguration::BLOG_TABS, url: admin_blogs_path, icon: 'blog' %>
+    </ul>
+<% end %>
+
 <!--current_store-->
 <% if can? :admin, nil %>
     <ul class="nav nav-sidebar">

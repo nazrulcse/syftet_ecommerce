@@ -1,0 +1,60 @@
+<% content_for :page_actions do %>
+    <% if can?(:create, Product) %>
+        <%= button_link_to t(:new_product), new_admin_product_path, {class: "btn-success", icon: 'add', id: 'admin_new_product'} %>
+    <% end %>
+<% end %>
+
+<%= render partial: 'admin/shared/product_tabs', locals: {current: :review} %>
+<%= render partial: 'admin/shared/error_messages', locals: {target: @product} %>
+
+<div id="reviews">
+  <div id="comments" class="comments" style="border: none">
+    <h5> <%= pluralize(@product.reviews.count, 'review') %> for <%= @product.name %></h5>
+
+
+    <ul class="commentlist list-unstyled">
+      <% @reviews.each do |review| %>
+          <% if review.id %>
+              <li class="comment comment-author-admin">
+                <div id="comment-149" class="comment_container media">
+                  <div class="badge-wrapper">
+                    <div class="status-badge top-right <%= review.is_approved ? 'approved' : 'pending' %>">
+                      <%= review.is_approved ? 'Approved' : 'Pending' %>
+                    </div>
+                  </div>
+
+                  <div class="avatar pull-left">
+                    <div class="opal-image">
+                      <img src="http://0.gravatar.com/avatar/64e1b8d34f425d19e1ee2ea7236d3028" height="60" width="60">
+                    </div>
+                    <div class="avatar-author clear"> <%= review.name %> </div>
+                  </div>
+                  <div class="comment-text media-body">
+                    <p class="meta">
+                      <time>
+                        <%= review.created_at.strftime('%B %d, %Y') %>
+                      </time>
+                      <%= link_to_edit_url edit_admin_product_review_path(review.product_id, review), :title => "admin_edit_#{dom_id(review)}", :no_text => true %>
+                      <%= link_to_delete review, url: admin_product_review_path(review.product_id, review), :title => "admin_delete_#{dom_id(review)}", :no_text => true %>
+                    </p>
+
+                    <div class="rating" style="margin-bottom: 10px">
+                      <div class="star-rating" data-rating="<%= review.rating %>">
+                        ******
+                      </div>
+                    </div>
+
+                    <div itemprop="description" class="description clear">
+                      <p>
+                        <%= raw review.text %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+          <% end %>
+      <% end %>
+      <!-- #comment-## -->
+    </ul>
+  </div>
+</div>

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   belongs_to :ship_address, class_name: 'Address', optional: true
   belongs_to :bill_address, class_name: 'Address', optional: true
   has_many :rewards_points
+  has_many :comments
 
   has_many :wishlists
 

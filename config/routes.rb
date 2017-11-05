@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+  resources :blogs, only: [:show, :index] do
+    resources :comments, only: [:create]
+  end
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :products, only: [:index]
@@ -72,6 +76,10 @@ Rails.application.routes.draw do
       resources :promotion_actions
     end
 
+    resources :blogs do
+      resources :comments, only: [:destroy, :edit, :update]
+    end
+
     resources :promotion_categories, except: [:show]
 
     resources :zones
@@ -83,6 +91,7 @@ Rails.application.routes.draw do
     resources :tax_categories
 
     resources :products do
+      resources :reviews, only: [:index, :edit, :destroy, :update]
       resources :product_properties do
         collection do
           post :update_positions
@@ -99,6 +108,7 @@ Rails.application.routes.draw do
         match 'related', via: [:get, :put]
         get :remove_related
         get :search_related
+        get :review
       end
       resources :variants do
         collection do

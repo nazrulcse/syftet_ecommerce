@@ -1165,3 +1165,6 @@ en:
   zipcode: Zip Code
   zone: Zone
   zones: Zones
+  time:
+    formats:
+      short: '%H:%M'
