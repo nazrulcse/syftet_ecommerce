@@ -1,9 +1,10 @@
 class Search
-  attr_accessor :taxon, :terms, :page
+  attr_accessor :taxon, :terms, :page, :is_api
 
-  def initialize(params, taxon = nil)
+  def initialize(params, taxon = nil, is_api = false)
     self.terms = params
     self.taxon = taxon
+    self.is_api = is_api
     self.page = params[:page] || 1
   end
 
@@ -37,6 +38,8 @@ class Search
     if terms[:color]
       result_object = result_object.where('variants.color_image = ?', terms[:color])
     end
-    result_object.order(:created_at).page(page).per(Syftet.config.product_per_page)
+
+    result_object.order(:created_at).distinct.page(page).per(is_api ? Syftet.config.product_per_page_mobile_api : Syftet.config.product_per_page)
   end
+
 end
