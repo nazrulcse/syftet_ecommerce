@@ -196,7 +196,7 @@ class Variant < Base
     options.keys.map { |key|
       m = "#{key}_price_modifier_amount_in".to_sym
       if self.respond_to? m
-        self.send(m, currency, options[key])
+        self.send(m, currency, options[key]) || 0
       else
         0
       end
