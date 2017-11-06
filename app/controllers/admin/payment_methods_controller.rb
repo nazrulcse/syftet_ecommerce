@@ -31,8 +31,8 @@ module Admin
         @payment_method = PaymentMethod.find(params[:id])
       end
 
-      update_params = params[ActiveModel::Naming.param_key(@payment_method)] || {}
-      attributes = payment_method_params.merge(update_params.permit!)
+      update_params = params[ActiveModel::Naming.param_key(@payment_method)].permit! || {}
+      attributes = payment_method_params.merge(update_params)
       attributes.each do |k, v|
         if k.include?("password") && attributes[k].blank?
           attributes.delete(k)
