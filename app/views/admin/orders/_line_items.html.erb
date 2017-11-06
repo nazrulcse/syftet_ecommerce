@@ -22,14 +22,14 @@
             <td class="line-item-name text-center">
               <%= item.variant.product.name %><br><%= "(" + variant_options(item.variant) + ")" unless item.variant.option_values.empty? %>
             </td>
-            <td class="line-item-price text-center"><%= item.single_money.format %></td>
+            <td class="line-item-price text-center"><%= item.single_money.to_display %></td>
             <td class="line-item-qty-show text-center">
               <%= item.quantity %>
             </td>
             <td class="line-item-qty-edit is-hidden">
               <%= number_field_tag :quantity, item.quantity, min: 0, class: "line_item_quantity form-control", size: 5 %>
             </td>
-            <td class="line-item-total text-center"><%= line_item_shipment_price(item, item.quantity) %></td>
+            <td class="line-item-total text-center"><%= line_item_shipment_price(item, item.quantity).to_display %></td>
             <td class="cart-line-item-delete actions actions-4 text-center" data-hook="cart_line_item_delete">
               <% if can? :update, item %>
                 <%= link_to_with_icon 'arrow-left', t('actions.cancel'), "#", class: 'cancel-line-item btn btn-default btn-sm', data: {action: 'cancel'}, title: t('actions.cancel'), style: 'display: none', no_text: true %>
