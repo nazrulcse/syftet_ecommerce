@@ -6,7 +6,7 @@ module Syftet
     def initialize
       @currency = 'BDT'
       @orders_per_page = 20
-      @show_only_complete_orders_by_default = false
+      @show_only_complete_orders_by_default = true
       @admin_product_per_page = 20
       @max_level_in_taxons_menu = 2
       @admin_products_per_page = 20

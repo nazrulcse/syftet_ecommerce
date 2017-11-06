@@ -119,7 +119,7 @@ class LineItem < Base
   def update_price_from_modifier(currency, opts)
     if currency
       self.currency = currency
-      self.price = variant.price_in(currency).amount +
+      self.price = variant.price_in(currency).amount || 0 +
           variant.price_modifier_amount_in(currency, opts) || 0
     else
       self.price = variant.price +
