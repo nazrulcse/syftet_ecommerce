@@ -161,11 +161,11 @@ ActiveRecord::Schema.define(version: 20171105103608) do
     t.integer "variant_id"
     t.integer "order_id"
     t.integer "quantity"
-    t.float "price", limit: 24, default: 0.0
-    t.float "cost_price", limit: 24, default: 0.0
+    t.float "price", limit: 24
+    t.float "cost_price", limit: 24
     t.string "currency"
-    t.decimal "adjustment_total", precision: 10, default: "0"
-    t.decimal "promo_total", precision: 10, default: "0"
+    t.decimal "adjustment_total", precision: 10
+    t.decimal "promo_total", precision: 10
     t.string "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -206,23 +206,23 @@ ActiveRecord::Schema.define(version: 20171105103608) do
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "number"
-    t.decimal "item_total", precision: 10, default: "0"
-    t.decimal "total", precision: 10, default: "0"
+    t.decimal "item_total", precision: 10
+    t.decimal "total", precision: 10
     t.string "state"
-    t.decimal "adjustment_total", precision: 10, default: "0"
+    t.decimal "adjustment_total", precision: 10
     t.integer "user_id"
     t.datetime "completed_at"
     t.integer "bill_address_id"
     t.integer "ship_address_id"
-    t.decimal "payment_total", precision: 10, default: "0"
+    t.decimal "payment_total", precision: 10
     t.string "shipment_state"
     t.string "payment_state"
     t.string "email"
     t.string "currency"
     t.string "last_ip_address"
     t.string "created_by_id"
-    t.decimal "shipment_total", precision: 10, default: "0"
-    t.decimal "promo_total", precision: 10, default: "0"
+    t.decimal "shipment_total", precision: 10
+    t.decimal "promo_total", precision: 10
     t.string "chanel"
     t.integer "item_count"
     t.integer "approver_id"
@@ -235,7 +235,7 @@ ActiveRecord::Schema.define(version: 20171105103608) do
     t.integer "store_id"
     t.integer "state_lock_version"
     t.date "shipment_date"
-    t.integer "shipment_progress", default: 0
+    t.integer "shipment_progress"
     t.datetime "shipped_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
