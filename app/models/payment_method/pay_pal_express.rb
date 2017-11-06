@@ -19,9 +19,9 @@ class PaymentMethod::PayPalExpress < PaymentMethod
   def provider
     ::PayPal::SDK.configure(
         :mode => preferred_server.present? ? preferred_server : "sandbox",
-        :username => preferred_login,
-        :password => preferred_password,
-        :signature => preferred_signature)
+        :username => self.preferred_login,
+        :password => self.preferred_password,
+        :signature => self.preferred_signature)
     provider_class.new
   end
 

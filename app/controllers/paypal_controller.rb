@@ -19,12 +19,11 @@ class PaypalController < StoreController
           Name: adjustment.label,
           Quantity: 1,
           Amount: {
-              currencyID: order.currency,
-              value: adjustment.amount
+              currencyID: Syftet.config.paypal_currency,
+              value: Money.new(adjustment.amount, Syftet.config.currency).exchange_to(Syftet.config.paypal_currency)
           }
       }
     end
-
     pp_request = provider.build_set_express_checkout(express_checkout_request_details(order, items))
 
     begin
@@ -45,10 +44,11 @@ class PaypalController < StoreController
   def confirm
     order = current_order || raise(ActiveRecord::RecordNotFound)
     order.payments.create!({
-                               source: Spree::PaypalExpressCheckout.create({
-                                                                               token: params[:token],
-                                                                               payer_id: params[:PayerID]
-                                                                           }),
+                               source: PaypalExpressCheckout.create({
+                                                                        token: params[:token],
+                                                                        payer_id: params[:PayerID]
+                                                                    }),
+                               state: 'completed',
                                amount: order.total,
                                payment_method: payment_method
                            })
@@ -77,8 +77,8 @@ class PaypalController < StoreController
         Number: item.variant.sku,
         Quantity: item.quantity,
         Amount: {
-            currencyID: item.order.currency,
-            value: item.price
+            currencyID: Syftet.config.paypal_currency,
+            value: item.price.to_money.exchange_to(Syftet.config.paypal_currency).cents
         },
         ItemCategory: "Physical"
     }
@@ -103,8 +103,7 @@ class PaypalController < StoreController
   end
 
   def provider
-    # payment_method.provider
-    PaymentMethod::PayPalExpress.new.provider
+    payment_method.provider
   end
 
   def payment_details items
@@ -122,30 +121,26 @@ class PaypalController < StoreController
       # This results in the order summary being simply "Current purchase"
       {
           OrderTotal: {
-              currencyID: current_order.currency,
-              value: current_order.total
+              currencyID: Syftet.config.paypal_currency,
+              value: current_order.display_total.exchange_to(Syftet.config.paypal_currency)
           }
       }
     else
       {
           OrderTotal: {
-              currencyID: current_order.currency,
-              value: current_order.total
+              currencyID: Syftet.config.paypal_currency,
+              value: current_order.display_total.exchange_to(Syftet.config.paypal_currency).cents
           },
           ItemTotal: {
-              currencyID: current_order.currency,
-              value: item_sum
+              currencyID: Syftet.config.paypal_currency,
+              value: Money.new(item_sum, Syftet.config.currency).exchange_to(Syftet.config.paypal_currency).cents
           },
           ShippingTotal: {
-              currencyID: current_order.currency,
-              value: shipment_sum,
-          },
-          TaxTotal: {
-              currencyID: current_order.currency,
-              value: current_order.additional_tax_total
+              currencyID: Syftet.config.paypal_currency,
+              value: Money.new(shipment_sum, Syftet.config.currency).exchange_to(Syftet.config.paypal_currency).cents
           },
           ShipToAddress: address_options,
-          PaymentDetailsItem: items,
+          # PaymentDetailsItem: items,
           ShippingMethod: "Shipping Method Name Goes Here",
           PaymentAction: "Sale"
       }

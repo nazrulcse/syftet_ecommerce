@@ -1,0 +1,2 @@
+class PaypalExpressCheckout < ApplicationRecord
+end

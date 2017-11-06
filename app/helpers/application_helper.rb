@@ -176,6 +176,15 @@ module ApplicationHelper
     shipping_method.name + "(#{amount_with_currency(shipping_rate.cost)})"
   end
 
+  def payment_method(type)
+    payment_method = PaymentMethod.find_by_type(type)
+    if payment_method.present?
+      payment_method.id
+    else
+      0
+    end
+  end
+
   # Order
 
   def line_item_count

@@ -18,7 +18,7 @@
                 <a data-toggle="tab" href="#card">
                   <label for="payment-ssl">
                     <i class="fa fa-credit-card"></i> SSL Commerz
-                    <%= radio_button_tag "[order][payments_attributes][0][payment_method_id]", 1, true, id: 'payment-ssl' %>
+                    <%= radio_button_tag "[order][payments_attributes][0][payment_method_id]", payment_method('PaymentMethod::CreditPoint'), true, id: 'payment-ssl' %>
                   </label>
                 </a>
               </li>
@@ -44,10 +44,10 @@
               <div id="paypal" class="tab-pane fade">
                 <h3>Checkout With Paypal</h3>
 
-                <%= link_to(image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_express_url(:payment_method_id => PaymentMethod.last.id), :method => :post, :id => "paypal_button") %>
+                <%= link_to(image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_express_url(:payment_method_id => payment_method('PaymentMethod::PayPalExpress')), :method => :post, :id => "paypal_button") %>
 
                 <script>
-                    SpreePaypalExpress.paymentMethodID = "<%= PaymentMethod.last.id %>"
+                    SpreePaypalExpress.paymentMethodID = "<%= payment_method('PaymentMethod::PayPalExpress') %>"
                 </script>
               </div>
 
