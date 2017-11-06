@@ -1,0 +1,16 @@
+<%= I18n.t('shipment_mailer.shipped_email.dear_customer') %>
+
+<%= I18n.t('shipment_mailer.shipped_email.instructions', number: @shipment.order.number) %>
+
+============================================================
+<%= I18n.t('shipment_mailer.shipped_email.shipment_summary') %>
+============================================================
+<% @shipment.manifest.each do |item| %>
+  <%= item.variant.sku %> <%= item.variant.product.name %> <%= item.variant.options_text %>
+<% end %>
+============================================================
+
+<%= I18n.t('shipment_mailer.shipped_email.track_information', tracking: @shipment.tracking) if @shipment.tracking %>
+<%= I18n.t('shipment_mailer.shipped_email.track_link', url: @shipment.tracking_url) if @shipment.tracking_url %>
+
+<%= I18n.t('shipment_mailer.shipped_email.thanks') %>

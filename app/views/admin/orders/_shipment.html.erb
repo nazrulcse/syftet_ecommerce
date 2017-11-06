@@ -53,7 +53,7 @@
             <strong><%= rate.name %></strong>
           </td>
           <td class="total text-center">
-            <%= shipment.display_cost %>
+            <%= shipment.display_cost.to_display %>
           </td>
       <% else %>
           <td colspan='5'><%= t(:no_shipping_method_selected) %></td>

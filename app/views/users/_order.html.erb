@@ -5,8 +5,8 @@
   <td class="order-date">
     <%= order.created_at.strftime('%B %d, %Y') %>
   </td>
-  <td class="order-status">
-    Approved
+  <td class="order-status state-<%= order.state %>">
+    <%= order.state.camelize %>
   </td>
   <td class="text-primary order-total">
     <span class="mark-text">

@@ -20,7 +20,8 @@ class Payment < Base
 
     # Captures the entire amount of a payment.
     def purchase!
-      handle_payment_preconditions { process_purchase }
+      # handle_payment_preconditions { process_purchase }
+      process_purchase
     end
 
     # Takes the amount in cents to capture.
@@ -68,7 +69,7 @@ class Payment < Base
     end
 
     def cancel!
-      response = payment_method.cancel(response_code)
+      response = payment_method.cancel(money.cents, source, order, response_code)
       handle_response(response, :void, :failure)
     end
 
@@ -114,7 +115,7 @@ class Payment < Base
 
     def gateway_action(source, action, success_state)
       protect_from_connection_error do
-        response = payment_method.send(action, money.money.cents,
+        response = payment_method.send(action, money.cents,
                                        source,
                                        gateway_options)
         handle_response(response, success_state, :failure)
@@ -161,9 +162,9 @@ class Payment < Base
       else
         text = error.to_s
       end
-      logger.error(Spree.t(:gateway_error))
+      logger.error(I18n.t(:gateway_error))
       logger.error("  #{error.to_yaml}")
-      raise Core::GatewayError.new(text)
+      raise
     end
 
     def token_based?

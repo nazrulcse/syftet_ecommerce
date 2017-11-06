@@ -11,7 +11,7 @@
       <% end %>
     </td>
 
-    <td class="item-price text-center"><%= item.line_item.single_money.format %></td>
+    <td class="item-price text-center"><%= item.line_item.single_money.to_display %></td>
 
     <td class="item-qty-show text-center">
       <% item.states.each do |state,count| %>
@@ -26,7 +26,7 @@
     <% end %>
 
     <td class="item-total text-center">
-      <%= line_item_shipment_price(item.line_item, item.quantity) %>
+      <%= line_item_shipment_price(item.line_item, item.quantity).to_display %>
     </td>
 
     <td class="cart-item-delete actions actions-3 text-center" data-hook="cart_item_delete">

@@ -622,6 +622,11 @@ class Order < Base
     !!self.approved_at
   end
 
+  def credit_rewards_point
+    points = line_items.collect { |item| item.variant.credit_point }.sum
+    RewardsPoint.create(order_id: self.id, user_id: self.user_id, points: points, reason: 'Order Checkout Credit Points')
+  end
+
   def can_approve?
     !approved?
   end
@@ -714,7 +719,7 @@ class Order < Base
     payments.completed.each { |payment| payment.cancel! }
 
     # Free up authorized store credits
-    payments.store_credits.pending.each(&:void!)
+    # payments.store_credits.pending.each(&:void!)
 
     send_cancel_email
     self.update_with_updater!

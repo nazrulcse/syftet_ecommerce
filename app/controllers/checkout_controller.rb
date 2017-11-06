@@ -35,7 +35,6 @@ class CheckoutController < StoreController
         @current_order = nil
         flash.notice = t(:order_processed_successfully)
         flash['order_completed'] = true
-        #OrderMailer.confirm_email(@order.id, true).deliver_now
         redirect_to completion_route
       else
         if params[:failed_id].present?

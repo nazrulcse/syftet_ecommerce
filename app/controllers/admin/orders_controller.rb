@@ -85,9 +85,9 @@ module Admin
     end
 
     def cancel
-      @order.canceled_by(try_spree_current_user)
+      @order.canceled_by(current_user)
       flash[:success] = t(:order_canceled)
-      redirect_to :back
+      redirect_back fallback_location: admin_order_path(@order)
     end
 
     def resume
@@ -97,9 +97,12 @@ module Admin
     end
 
     def approve
-      @order.approved_by(current_user)
+      if @order.update_attributes({shipment_date: params[:order][:shipment_date], shipment_progress: params[:order][:shipment_progress]})
+        @order.approved_by(current_user)
+        @order.credit_rewards_point
+      end
       flash[:success] = t(:order_approved)
-      redirect_to admin_orders_path(params[:id])
+      redirect_to edit_admin_order_path(params[:id])
     end
 
     def resend

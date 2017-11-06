@@ -35,6 +35,8 @@ gem 'rmagick'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave', '~> 1.0'
 
+gem 'paypal-sdk-merchant'
+
 gem 'ransack'
 gem 'kaminari'
 gem 'responders'

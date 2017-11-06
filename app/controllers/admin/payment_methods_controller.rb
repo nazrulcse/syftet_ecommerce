@@ -32,7 +32,7 @@ module Admin
       end
 
       update_params = params[ActiveModel::Naming.param_key(@payment_method)] || {}
-      attributes = payment_method_params.merge(update_params)
+      attributes = payment_method_params.merge(update_params.permit!)
       attributes.each do |k, v|
         if k.include?("password") && attributes[k].blank?
           attributes.delete(k)
@@ -54,13 +54,15 @@ module Admin
     def load_data
       @providers = [PaymentMethod::Check,
                     PaymentMethod::StoreCredit,
-                    PaymentMethod::CreditPoint] #Gateway.providers.sort { |p1, p2| p1.name <=> p2.name }
+                    PaymentMethod::CreditPoint,
+                    PaymentMethod::PayPalExpress] #Gateway.providers.sort { |p1, p2| p1.name <=> p2.name }
     end
 
     def validate_payment_method_provider
       valid_payment_methods = ['PaymentMethod::Check',
                                'PaymentMethod::StoreCredit',
-                               'PaymentMethod::CreditPoint']
+                               'PaymentMethod::CreditPoint',
+                               'PaymentMethod::PayPalExpress']
       if !valid_payment_methods.include?(params[:payment_method][:type])
         flash[:error] = t(:invalid_payment_provider)
         redirect_to new_admin_payment_method_path

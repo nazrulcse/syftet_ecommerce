@@ -188,7 +188,7 @@ class Payment < Base
     if source && !source.valid?
       source.errors.each do |field, error|
         field_name = I18n.t("activerecord.attributes.#{source.class.to_s.underscore}.#{field}")
-        self.errors.add(Spree.t(source.class.to_s.demodulize.underscore), "#{field_name} #{error}")
+        self.errors.add(I18n.t(source.class.to_s.demodulize.underscore), "#{field_name} #{error}")
       end
     end
     return !errors.present?

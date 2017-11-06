@@ -62,7 +62,7 @@
 //Spree.routes.orders_api = Spree.pathFor('api/v1/orders')
 //Spree.routes.products_api = Spree.pathFor('api/v1/products')
 product_search = ''; //adminPathFor('search/products');
-Syftet.routes.shipments_api = Syftet.pathFor('api/v1/shipments');
+Syftet.routes.shipments_api = '/api/v1/shipments';
 //Spree.routes.checkouts_api = Spree.pathFor('api/v1/checkouts')
 //Spree.routes.stock_locations_api = Spree.pathFor('api/v1/stock_locations')
 //Spree.routes.taxon_products_api = Spree.pathFor('api/v1/taxons/products')

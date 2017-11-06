@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :show]
       resources :wishlists, only: [:index, :create, :destroy]
       resources :orders, only: [:index, :show]
+      resources :shipments, only: [:create, :update] do
+        member do
+          put :ship
+        end
+      end
     end
   end
 
@@ -68,6 +73,15 @@ Rails.application.routes.draw do
     get :reset, on: :collection
     get :shipped_track
   end
+
+  # Payment Gateway
+
+  post '/paypal', :to => "paypal#express", :as => :paypal_express
+  get '/paypal/confirm', :to => "paypal#confirm", :as => :confirm_paypal
+  get '/paypal/cancel', :to => "paypal#cancel", :as => :cancel_paypal
+  get '/paypal/notify', :to => "paypal#notify", :as => :notify_paypal
+
+  # END PAYMENT #
 
   namespace :admin do
     get '/search/users', to: 'search#users', as: :search_users

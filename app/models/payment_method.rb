@@ -42,7 +42,7 @@ class PaymentMethod < Base
   end
 
   def source_required?
-    true
+    false
   end
 
   # Custom gateways should redefine this method. See Gateway implementation

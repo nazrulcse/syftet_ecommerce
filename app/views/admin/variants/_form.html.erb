@@ -16,24 +16,24 @@
 
       <div class="form-group" data-hook="price">
         <%= f.label :price, t(:price) %>
-        <%= f.text_field :price, :value => number_to_currency(@variant.price, :unit => ''), :class => 'form-control' %>
+        <%= f.text_field :price, :value => @variant.price, :class => 'form-control' %>
       </div>
 
       <div class="form-group" data-hook="price">
         <%= f.label :agent_price, t(:agent_price) %>
-        <%= f.text_field :agent_price, :value => number_to_currency(@variant.agent_price, :unit => ''), :class => 'form-control' %>
+        <%= f.text_field :agent_price, :value => @variant.agent_price, :class => 'form-control' %>
       </div>
 
       <% if @product.promotionable %>
           <div class="form-group" data-hook="price">
             <%= f.label :original_price, t(:original_price) %>
-            <%= f.text_field :original_price, :value => number_to_currency(@variant.original_price, :unit => ''), :class => 'form-control' %>
+            <%= f.text_field :original_price, :value => @variant.original_price, :class => 'form-control' %>
           </div>
       <% end %>
 
       <div class="form-group" data-hook="cost_price">
         <%= f.label :cost_price, t(:cost_price) %>
-        <%= f.text_field :cost_price, :value => number_to_currency(@variant.cost_price, :unit => ''), :class => 'form-control' %>
+        <%= f.text_field :cost_price, :value => @variant.cost_price, :class => 'form-control' %>
       </div>
 
       <!--<div class="form-group" data-hook="tax_category">-->

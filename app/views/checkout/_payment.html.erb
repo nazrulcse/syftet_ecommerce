@@ -16,8 +16,10 @@
             <ul class="nav nav-tabs">
               <li class="active">
                 <a data-toggle="tab" href="#card">
-                  <i class="fa fa-credit-card"></i> SSL Commerz
-                  <%= radio_button_tag "[order][payments_attributes][0][payment_method_id]", 1, true %>
+                  <label for="payment-ssl">
+                    <i class="fa fa-credit-card"></i> SSL Commerz
+                    <%= radio_button_tag "[order][payments_attributes][0][payment_method_id]", 1, true, id: 'payment-ssl' %>
+                  </label>
                 </a>
               </li>
               <li>
@@ -40,25 +42,34 @@
               </div>
 
               <div id="paypal" class="tab-pane fade">
-                <h3>Menu 1</h3>
+                <h3>Checkout With Paypal</h3>
 
-                <p>Some content in menu 1.</p>
+                <%= link_to(image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_express_url(:payment_method_id => PaymentMethod.last.id), :method => :post, :id => "paypal_button") %>
+
+                <script>
+                    SpreePaypalExpress.paymentMethodID = "<%= PaymentMethod.last.id %>"
+                </script>
               </div>
 
               <div id="points" class="tab-pane fade">
-                <h3>Your available credit points <b> # <%= current_user.available_rewards %> </b> </h3>
+                <h3>Your available credit points <b> # <%= current_user.available_rewards %> </b></h3>
 
                 <p>
-                  Required credit points <b>  # <%= @order.total %> </b>
+                  Required credit points <b> # <%= @order.total %> </b>
                 </p>
 
                 <p>
-                  Remaining points <b>  # <%= current_user.available_rewards - @order.total %> </b>
+                  Remaining points <b> # <%= current_user.available_rewards - @order.total %> </b>
                 </p>
-
-                <div class="continue-btn clearfix">
-                  <input type="submit" class="btn btn-success pull-right" value="Confirm & Place Order">
-                </div>
+                <% if (current_user.available_rewards - @order.total) > 0 %>
+                    <div class="continue-btn clearfix">
+                      <input type="submit" class="btn btn-success pull-right" value="Confirm & Place Order">
+                    </div>
+                <% else %>
+                    <div class="alert alert-danger">
+                      Not enough rewards point to checkout this order.
+                    </div>
+                <% end %>
               </div>
             </div>
           </div>

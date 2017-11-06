@@ -227,25 +227,6 @@ class Order < Base
             update_params_payment_source
             attributes = @updating_params[:order] ? @updating_params[:order].permit(permitted_params).delete_if { |_k, v| v.nil? } : {}
 
-            # if existing_card_id.present?
-            #   credit_card = CreditCard.find existing_card_id
-            #   if credit_card.user_id != user_id || credit_card.user_id.blank?
-            #     raise Core::GatewayError.new t(:invalid_credit_card)
-            #   end
-            #
-            #   credit_card.verification_value = params[:cvc_confirm] if params[:cvc_confirm].present?
-            #
-            #   attributes[:payments_attributes].first[:source] = credit_card
-            #   attributes[:payments_attributes].first[:payment_method_id] = credit_card.payment_method_id
-            #   attributes[:payments_attributes].first.delete :source_attributes
-            # end
-
-            # if attributes[:payments_attributes]
-            #   attributes[:payments_attributes].first[:request_env] = request_env
-            # end
-
-            p attributes
-
             success = update_attributes(attributes)
             set_shipments_cost if shipments.any?
           end
@@ -314,9 +295,7 @@ class Order < Base
         #   }
         #
         def update_params_payment_source
-          p @updating_params
           if @updating_params[:order] && (@updating_params[:order][:payments_attributes])
-            p "Here"
             @updating_params[:order][:payments_attributes] ||= [{}]
 
             @updating_params[:order][:payments_attributes]['0'][:amount] = total
