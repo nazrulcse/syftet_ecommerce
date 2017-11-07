@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       get 'home', to: 'home#index'
-      resources :products, only: [:index, :show]
+      resources :products, only: [:index, :show] do
+        get 'filters', on: :collection
+      end
       resources :wishlists, only: [:index, :create, :destroy]
       resources :orders, only: [:index, :show]
       resources :shipments, only: [:create, :update] do
