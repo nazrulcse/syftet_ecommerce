@@ -1,6 +1,6 @@
 class OrderMailer < ApplicationMailer
-  default "Message-ID" => "#{Digest::SHA2.hexdigest(Time.now.to_i.to_s)}@bequent.com"
-  default from: "Bequent.com <info@bequent.com>"
+  default "Message-ID" => "#{Digest::SHA2.hexdigest(Time.now.to_i.to_s)}@lienesbeauty.com"
+  default from: "lienesbeauty.com <sales@lienesbeauty.com>"
   helper ApplicationHelper
 
   def confirm_email(order, resend = false)

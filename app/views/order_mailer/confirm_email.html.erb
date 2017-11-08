@@ -79,7 +79,7 @@
             <tr>
               <td style="width: 50%; border-bottom: solid 1px #cccccc;">Order Subtotal</td>
               <td style="width: 50%; border-bottom: solid 1px #cccccc; text-align: right">
-                <%= amount_with_currency(@order.total) %>
+                <%= amount_with_currency(@order.amount) %>
               </td>
             </tr>
             <% if @order.promotions.present? %>
@@ -90,12 +90,12 @@
             <% end %>
             <tr>
               <td style="width: 50%; padding: 15px 0; border-bottom: solid 1px #cccccc;">Estimated Shipping</td>
-              <td style="color: #c6000e !important; padding: 15px 0; text-align: right; border-bottom: solid 1px #cccccc;">Free</td>
+              <td style="color: #c6000e !important; padding: 15px 0; text-align: right; border-bottom: solid 1px #cccccc;"><%= @order.display_ship_total.to_display %></td>
             </tr>
 
             <tr>
-              <td style="width: 50%; padding: 15px 0; border-bottom: solid 1px #cccccc;">Estimated Sales Tax</td>
-              <td style="text-align: right; padding: 15px 0; width: 50%; border-bottom: solid 1px #cccccc;">Tax included
+              <td style="width: 50%; padding: 15px 0;">Estimated Sales Tax</td>
+              <td style="text-align: right; padding: 15px 0; width: 50%;">Tax included
                 in price
               </td>
             </tr>
@@ -104,13 +104,6 @@
               <td style="width: 50%; padding: 15px 0; border-bottom: solid 1px #cccccc;">Order Total</td>
               <td style="text-align: right; width: 50%; padding: 15px 0; border-bottom: solid 1px #cccccc;">
                 <%= amount_with_currency(@order.total) %>
-              </td>
-            </tr>
-
-            <tr>
-              <td style="color: #c6000e !important; padding: 15px 0; width: 50%; border: none;">You Saved</td>
-              <td style="text-align: right; padding: 15px 0; color: #c6000e !important; width: 50%; border: none;">
-                <%#= you_saved(@order) %>
               </td>
             </tr>
             </tbody>
