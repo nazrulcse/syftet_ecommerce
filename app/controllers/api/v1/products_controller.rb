@@ -67,4 +67,11 @@ class Api::V1::ProductsController < Api::ApiBase
 
     render json: response
   end
+
+  def filters
+    render json: {
+      categories: Taxon.all.as_json(only: [:id, :name]),
+      varients: Variant.all.where.not(color_image: nil).as_json(only: [:color_image])
+    }
+  end
 end
