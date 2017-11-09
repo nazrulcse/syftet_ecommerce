@@ -1,33 +1,33 @@
 class Api::V1::HomeController < Api::ApiBase
+
   def index
     featured_products = Product.featured_products.order(id: :desc).limit(5)
     new_arrivals = Product.new_arrivals.order(id: :desc).limit(5)
+    discount_products = Product.where(promotionable: true).order(id: :desc).limit(5)
 
     response = {
-      featured_products: [],
-      new_arrivals: []
+      featured_products: parse_data(featured_products),
+      new_arrivals: parse_data(new_arrivals),
+      discounts: parse_data(discount_products)
     }
 
-    featured_products.each do |product|
-      response[:featured_products] << {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        avg_rating: product.avg_rating,
-        preview_image: product.preview_image_url
-      }
-    end
-
-    new_arrivals.each do |product|
-      response[:new_arrivals] << {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        avg_rating: product.avg_rating,
-        preview_image: product.preview_image_url
-      }
-    end
-
     render json: response
+  end
+
+  private
+
+  def parse_data(product_objects)
+    result = []
+    product_objects.each do |product|
+      result << {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        discount_price: product.discount_price,
+        avg_rating: product.avg_rating,
+        preview_image: product.preview_image_url
+      }
+    end
+    result
   end
 end
