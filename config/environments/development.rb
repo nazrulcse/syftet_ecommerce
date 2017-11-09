@@ -30,18 +30,16 @@ Rails.application.configure do
   end
 
   config.action_mailer.delivery_method = :smtp
+  config.mailer_sender = 'info@lienesbeauty.com'
   config.action_mailer.smtp_settings = {
-      address: '162.221.186.242',
-      port: 587,
-      domain: 'bequent.com',
-      user_name: 'info@bequent.com',
-      password: 'cLQGdN6rIJG7',
-      :authentication => :login,
-      :enable_starttls_auto => true,
-      :openssl_verify_mode => 'none'
-
-      # authentication: 'plain',
-      # enable_starttls_auto: true
+      address: 'smtp.zoho.com',
+      port: 465,
+      domain: 'lienesbeauty.com',
+      user_name: 'sales@lienesbeauty.com',
+      password: 'Shop2017',
+      authentication: :plain,
+      ssl: true,
+      enable_starttls_auto: true
   }
 
   # Don't care if the mailer can't send.

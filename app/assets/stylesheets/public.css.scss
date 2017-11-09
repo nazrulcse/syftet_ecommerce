@@ -285,3 +285,19 @@ a {
 .color-success {
   color: #52D16F;
 }
+
+.sicon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  background-size: cover;
+}
+
+.sicon-viber {
+  background-image: image_url('viber.png');
+}
+
+.sicon-imo {
+  background-image: image_url('imo.png');
+}

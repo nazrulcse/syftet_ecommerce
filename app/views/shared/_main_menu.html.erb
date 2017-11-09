@@ -83,7 +83,7 @@
 
                       <li class="dropdown custom-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                          <%= t(:page) %>
+                          <i class="fa fa-question-circle"></i> <%= t(:page) %>
                           <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu custom-drp-content">
@@ -184,19 +184,19 @@
           </li>
 
           <li class="menu-item">
-            <a href="#">
+            <a href="<%= promotion_products_path('discount') %>">
               <%= t(:discount) %>
             </a>
           </li>
 
           <li class="menu-item">
-            <a href="#">
+            <a href="<%= products_path %>">
               <%= t(:products) %>
             </a>
           </li>
 
           <li class="menu-item">
-            <a href="#">
+            <a href="<%= promotion_products_path('new') %>">
               <%= t(:new_arrival) %>
             </a>
           </li>
@@ -206,18 +206,20 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="#" class="dropdown-toggle">
-                  <%= t(:about_us) %>
-                </a>
+                <%= link_to t(:about_us), about_us_path, class: 'dropdown-toggle' %>
               </li>
               <li>
-                <a href="<%= new_contact_path %>" class="dropdown-toggle">
-                  <%= t(:contact_us) %>
-                </a>
+                <%= link_to 'Customer Support', contact_us_path, class: 'dropdown-toggle' %>
               </li>
               <li>
-                <a href="#">
-                  <%= t(:blog) %>
+                <%= link_to 'Frequent Ask Question', faq_path, class: 'dropdown-toggle' %>
+              </li>
+              <li>
+                <%= link_to 'Secure Shopping', secure_shopping_path, class: 'dropdown-toggle' %>
+              </li>
+              <li>
+                <a href="/blogs">
+                  Our <%= t(:blog) %>
                 </a>
               </li>
             </ul>
