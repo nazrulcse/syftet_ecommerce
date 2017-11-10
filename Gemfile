@@ -56,6 +56,7 @@ gem "cancan"
 gem 'monetize'
 
 gem 'devise'
+gem 'devise_token_auth'
 gem 'social-share-button'
 gem 'mini_magick'
 
