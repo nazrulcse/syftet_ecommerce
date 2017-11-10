@@ -1,6 +1,8 @@
 class Api::V1::WishlistsController < Api::ApiBase
+  before_action :authenticate_user!
+
   def index
-    wishlists = Wishlist.where(user_id: params[:user_id]).page(params[:page]).per(Syftet.config.product_per_page_mobile_api)
+    wishlists = current_user.wishlists.page(params[:page]).per(Syftet.config.product_per_page_mobile_api)
 
     response = {
       total_item: wishlists.total_count,
