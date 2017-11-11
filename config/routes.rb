@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :show] do
         get 'filters', on: :collection
       end
-      resources :wishlists, only: [:index, :create, :destroy]
+      resources :wishlists, only: [:index, :create]
       resources :orders, only: [:index, :show]
       resources :shipments, only: [:create, :update] do
         member do
