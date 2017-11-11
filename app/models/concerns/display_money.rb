@@ -21,7 +21,7 @@ module DisplayMoney
       money_method = {money_method => {}} unless money_method.is_a? Hash
       money_method.each do |method_name, opts|
         define_method("display_#{method_name}") do
-          opt_currency = respond_to?(:currency) ? currency : nil
+          opt_currency = respond_to?(:currency) ? currency : Syftet.config.currency
           Money.new(send(method_name), opt_currency)
         end
       end

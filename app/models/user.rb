@@ -10,8 +10,8 @@ class User < ApplicationRecord
   belongs_to :bill_address, class_name: 'Address', optional: true
   has_many :rewards_points
   has_many :comments
-
   has_many :wishlists
+  after_create :send_welcome_email
 
   users_table_name = User.table_name
   roles_table_name = Role.table_name

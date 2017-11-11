@@ -65,7 +65,7 @@
           <%= user.user_type.camelize if user.user_type %>
         </td>
         <td>
-          <%= user.display_average_order_value.format %>
+          <%= user.display_average_order_value.to_display %>
         </td>
         <td data-hook="admin_users_index_row_actions" class="actions actions-2 text-right">
           <%= link_to_edit user, :no_text => true %>

@@ -323,7 +323,15 @@ en:
       site_id: Site ID
       token: Token
     jirafe_settings_updated: Jirafe Settings have been updated.
-  date: Date
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
   date_completed: Date Completed
   date_picker:
     first_day: 0

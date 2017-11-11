@@ -8,7 +8,7 @@
   <table class="table" id="user-lifetime-stats" data-hook>
     <tr>
       <td width="30%"><%= t(:total_sales) %>:</td>
-      <td><%= @user.display_lifetime_value.format %></td>
+      <td><%= @user.display_lifetime_value.to_display %></td>
     </tr>
     <tr>
       <td><%= t(:num_orders) %>:</td>
@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <td><%= t(:average_order_value) %>:</td>
-      <td><%= @user.display_average_order_value.format %></td>
+      <td><%= @user.display_average_order_value.to_display %></td>
     </tr>
     <tr>
       <td><%= t('admin.user.store_credits') %>:</td>
