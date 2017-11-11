@@ -1,10 +1,9 @@
 class Search
-  attr_accessor :taxon, :terms, :page, :is_api
+  attr_accessor :taxon, :terms, :page
 
-  def initialize(params, taxon = nil, is_api = false)
+  def initialize(params, taxon = nil)
     self.terms = params
     self.taxon = taxon
-    self.is_api = is_api
     self.page = params[:page] || 1
   end
 
@@ -39,7 +38,48 @@ class Search
       result_object = result_object.where('variants.color_image = ?', terms[:color])
     end
 
-    result_object.order(:created_at).distinct.page(page).per(is_api ? Syftet.config.product_per_page_mobile_api : Syftet.config.product_per_page)
+    result_object.order(:created_at).distinct.page(page).per(Syftet.config.product_per_page)
+  end
+
+
+  def api_result
+
+    if terms[:taxon].present?
+      category = Taxon.find_by_id(terms[:taxon])
+      result_object = category.present? ? category.products.joins(:variants).joins(:prices) : Product.joins(:variants).joins(:prices).where(id: 0)
+    else
+      result_object = Product.joins(:variants).joins(:prices)
+    end
+
+    if terms['q'] == 'featured'
+      result_object = result_object.where('products.is_featured = ?', true)
+    end
+
+    if terms['q'] == 'new'
+      result_object = result_object.where('products.created_at >= ?', 15.days.ago)
+    end
+
+    if terms['q'] == 'discount'
+      result_object = result_object.where('products.promotionable = true')
+    end
+
+    if terms[:name].present?
+      result_object = result_object.where("lower(name) like '%#{terms[:name]}%'")
+    end
+
+    if terms[:min].present? && terms[:max].present?
+      result_object = result_object.where("prices.amount between #{terms[:min]} and #{terms[:max]}")
+    end
+
+    if terms[:size].present?
+      result_object = result_object.where("variants.size = '#{terms[:size]}'")
+    end
+
+    if terms[:color].present?
+      result_object = result_object.where('variants.color_image IN (?)', terms[:color].split(/,/))
+    end
+
+    result_object.order(:created_at).distinct.page(page).per(Syftet.config.product_per_page_mobile_api)
   end
 
 end

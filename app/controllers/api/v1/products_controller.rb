@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < Api::ApiBase
   def index
-    products = Search.new(params, nil, true).result
+    products = Search.new(params).api_result
 
     response = {
       total_item: products.total_count,
