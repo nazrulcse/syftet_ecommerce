@@ -24,8 +24,8 @@ module Core
       end
 
       def set_guest_token
-        if cookies.signed[:guest_token].blank?
-          cookies.permanent.signed[:guest_token] = generate_guest_token
+        if cookies[:guest_token].blank?
+          cookies[:guest_token] = generate_guest_token
         end
       end
 

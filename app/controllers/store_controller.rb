@@ -1,6 +1,6 @@
 class StoreController < BaseController
 
-  skip_before_action :set_current_order, only: :cart_link # Need to activate this
+  skip_before_action :set_current_order, only: :cart_link
 
   def forbidden
     render 'shared/forbidden', layout: Config[:layout], status: 403
