@@ -2,7 +2,7 @@
 # require_dependency 'spree/core/controller_helpers/strong_parameters'
 # TODO: Need to activate all
 class BaseController < ApplicationController
-  # include Core::ControllerHelpers::Auth
+  include Core::ControllerHelpers::Auth
   include Core::ControllerHelpers::RespondWith
   # include Core::ControllerHelpers::Common
   # include Core::ControllerHelpers::Search

@@ -79,17 +79,16 @@ ul.product-categories {
   margin: 0;
   background: #fff;
   padding: 0 0 30px 0;
+  .top-active {
+    ul {
+      display: block;
+    }
+  }
   li {
     position: relative;
-    &.active {
-      a {
-        color: #E43E4E;
-        font-weight: bold;
-      }
-    }
     a {
-      padding-bottom: 8px;
-      padding-top: 8px;
+      padding-bottom: 5px;
+      padding-top: 5px;
       padding-left: 25px;
       display: inline-block;
       color: #707070;
@@ -98,6 +97,10 @@ ul.product-categories {
       font-family: Poppins, sans-serif;
       font-weight: 400;
       position: relative;
+      &.active {
+        color: #E43E4E;
+        font-weight: bold;
+      }
       &:hover {
         color: #fcc030;
       }
@@ -108,9 +111,20 @@ ul.product-categories {
         position: absolute;
         width: 6px;
         height: 6px;
-        top: 14px;
+        top: 10px;
         background-color: #c1c5c8;
       }
+    }
+    .collapse-ref {
+      font-size: 12px;
+      color: #707070;
+      padding: 5px 3px 3px 3px;
+      line-height: 0;
+      cursor: pointer;
+    }
+    ul {
+      padding-left: 10px;
+      display: none;
     }
   }
 }

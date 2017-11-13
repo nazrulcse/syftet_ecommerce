@@ -3,10 +3,23 @@
     <%= t(:categories) %>
   </h3>
   <ul class="product-categories">
-    <% Taxon.all.each do |taxon| %>
-        <li class="cat-item cat-item-<%= taxon.id %> <%= @taxon.name == taxon.name ? 'active' : '' if @taxon.present? %>">
-          <%= link_to taxon.name, categories_path(taxon.permalink) %>
-        </li>
+    <% Taxon.where('parent_id IS NULL').each do |taxon| %>
+        <%= raw draw_category_tree(taxon, (@taxon.present? ? @taxon.id : '')) %>
     <% end %>
   </ul>
 </aside>
+
+<script type="text/javascript">
+    $(function () {
+        $.each($('.product-categories > li'), function (index, element) {
+            if ($(element).has('a.active').length > 0) {
+                $(element).addClass('top-active').find('i').toggleClass('fa-plus fa-minus');
+            }
+        });
+        $('.collapse-ref').click(function () {
+            ref = $(this).attr('data-ref');
+            $(this).find('i').toggleClass('fa-plus fa-minus');
+            $('#' + ref).toggle();
+        });
+    });
+</script>
