@@ -1,5 +1,5 @@
 <% content_for :breadcrumb do %>
-    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb(@taxon.name, '', '', {products: products_path}) %>
+    <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb(@taxon.name, @taxon) %>
 <% end %>
 
 <%= render 'products/shared/display_filter' %>
