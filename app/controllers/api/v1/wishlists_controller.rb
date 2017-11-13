@@ -1,6 +1,8 @@
 class Api::V1::WishlistsController < Api::ApiBase
+  before_action :authenticate_user!
+
   def index
-    wishlists = Wishlist.where(user_id: params[:user_id]).page(params[:page]).per(Syftet.config.product_per_page_mobile_api)
+    wishlists = current_user.wishlists.page(params[:page]).per(Syftet.config.product_per_page_mobile_api)
 
     response = {
       total_item: wishlists.total_count,
@@ -26,16 +28,11 @@ class Api::V1::WishlistsController < Api::ApiBase
   end
 
   def create
-    user = User.find_by_id(params[:user_id])
-    wishlist = user.wishlists.find_or_initialize_by(product_id: params[:product_id])
-    status = wishlist.save
+    wishlist = current_user.wishlists.find_or_initialize_by(product_id: params[:product_id])
+
+    status = wishlist.new_record? ? wishlist.save : (wishlist.destroy ? true : false)
+
     render json: {status: status}
   end
 
-  def destroy
-    user = User.find_by_id(params[:user_id])
-    wishlist = user.wishlists.find_by_id(params[:id])
-    wishlist.destroy
-    render json: {status: true}
-  end
 end

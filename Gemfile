@@ -57,6 +57,7 @@ gem 'monetize'
 
 gem 'devise'
 gem 'devise_token_auth'
+gem 'omniauth'
 gem 'social-share-button'
 gem 'mini_magick'
 

@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   end
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'users'
       get 'home', to: 'home#index'
       resources :products, only: [:index, :show] do
         get 'filters', on: :collection
       end
-      resources :wishlists, only: [:index, :create, :destroy]
+      resources :wishlists, only: [:index, :create]
       resources :orders, only: [:index, :show]
       resources :shipments, only: [:create, :update] do
         member do

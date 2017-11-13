@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106130145) do
+ActiveRecord::Schema.define(version: 20171110090741) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -648,8 +648,14 @@ ActiveRecord::Schema.define(version: 20171106130145) do
     t.integer "ship_address_id"
     t.integer "bill_address_id"
     t.string "user_type"
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.string "name"
+    t.string "nickname"
+    t.text "tokens"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider"
   end
 
   create_table "variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
