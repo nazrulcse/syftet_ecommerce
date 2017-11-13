@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :rewards_points
   has_many :comments
   has_many :wishlists
+  has_many :reviews
   after_create :send_welcome_email
 
   users_table_name = User.table_name

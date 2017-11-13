@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       end
       resources :wishlists, only: [:index, :create]
       resources :orders, only: [:index, :show]
+      resources :reviews, only: [:index, :create, :update]
       resources :shipments, only: [:create, :update] do
         member do
           put :ship
