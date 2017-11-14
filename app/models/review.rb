@@ -7,6 +7,7 @@ class Review < ApplicationRecord
       5 => 'Excellent!',
   }
   belongs_to :product
+  belongs_to :user
   validates_presence_of :name, :email, :rating
 
   before_save :set_review
