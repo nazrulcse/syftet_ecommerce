@@ -10,8 +10,8 @@
         <span class="fa fa-search"></span>
 
         <div class="active-content">
-          <form method="get" class="input-group search-category">
-            <input name="s" maxlength="60" class="form-control search-category-input" type="text" size="20" placeholder="Search Products">
+          <form action="<%= products_path %>" method="get" class="input-group search-category">
+            <input name="name" maxlength="60" class="form-control search-category-input" type="text" size="20" placeholder="Search Products">
 
             <div class="input-group-btn">
               <label class="btn btn-link btn-search">
@@ -25,18 +25,17 @@
       </div>
 
       <div class="active-mobile setting-popup pull-left">
-        <span class="fa fa-user"></span>
+        <%= link_to current_user.present? ? my_account_path : account_registration_path, style: 'padding: 0; color: #ffffff' do %>
+            <span class="fa fa-user"></span>
+        <% end %>
       </div>
 
-      <div class="active-mobile pull-left cart-popup">
+      <div class="active-mobile pull-left cart-popup custom-cart">
         <span class="fa fa-shopping-cart"></span>
+        <span class="mini-cart-items mobile-mini-cart-count"><%= line_item_count %></span>
 
-        <div class="active-content">
-          <div class="widget_shopping_cart_content">
-            <div class="cart_list ">
-              <div class="empty"><%= t(:no_product_on_cart) %></div>
-            </div>
-          </div>
+        <div class="active-content custom-dropdown-content">
+          <%= render 'shared/cart_items' %>
         </div>
       </div>
 
@@ -67,12 +66,20 @@
                           <span class="bubble-text-label label-hot"><%= t(:hot) %></span>
                         </a>
                       </li>
-
-                      <li class="menu-item">
-                        <a href="<%= products_path %>">
-                          <%= t(:products) %>
-                        </a>
-                      </li>
+                      <% Taxonomy.all.each do |taxm| %>
+                          <li class="menu-item">
+                            <%= link_to '#nof' do %>
+                                <%= taxm.name %> <span class="caret"></span>
+                            <% end %>
+                            <ul class="top-sub-menu">
+                              <% taxm.taxons.each do |taxon| %>
+                                  <li>
+                                    <%= link_to taxon.name, categories_path(taxon.permalink) %>
+                                  </li>
+                              <% end %>
+                            </ul>
+                          </li>
+                      <% end %>
 
                       <li class="menu-item">
                         <a href="<%= promotion_products_path('new') %>">
@@ -189,11 +196,20 @@
             </a>
           </li>
 
-          <li class="menu-item">
-            <a href="<%= products_path %>">
-              <%= t(:products) %>
-            </a>
-          </li>
+          <% Taxonomy.all.each do |taxm| %>
+              <li class="dropdown">
+                <%= link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
+                    <%= taxm.name %> <b class="caret"></b>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <% taxm.taxons.each do |taxon| %>
+                      <li>
+                        <%= link_to taxon.name, categories_path(taxon.permalink), class: 'dropdown-toggle' %>
+                      </li>
+                  <% end %>
+                </ul>
+              </li>
+          <% end %>
 
           <li class="menu-item">
             <a href="<%= promotion_products_path('new') %>">

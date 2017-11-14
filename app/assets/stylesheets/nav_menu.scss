@@ -166,6 +166,31 @@
         }
       }
     }
+    .menu-item {
+      position: relative;
+      &:hover {
+        .top-sub-menu {
+          display: block;
+        }
+      }
+      .top-sub-menu {
+        display: none;
+        position: absolute;
+        padding: 0 0 0 15px;
+        top: 97px;
+        z-index: 1;
+        background: #ffffff;
+        -webkit-box-shadow: 0 3px 2px #333;
+        -moz-box-shadow: 0 3px 2px #333;
+        box-shadow: 0 3px 2px #333;
+        li {
+          a {
+            padding: 5px 40px 5px 0 !important;
+            display: inline-block;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -232,6 +257,15 @@
       min-width: 300px;
     }
   }
+}
+
+.mobile-mini-cart-count {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: #A30000;
+  padding: 3px 8px;
+  color: #ffffff;
 }
 
 // Mobile Menu Top

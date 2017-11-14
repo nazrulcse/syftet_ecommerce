@@ -45,6 +45,10 @@ $(document).on('turbolinks:load', function () {
             $('#notification').hide();
             return false;
         });
+        $("a[href='#nof']").click(function (e) {
+            e.preventDefault();
+            return false
+        });
     });
 });
 
