@@ -219,6 +219,15 @@ class Product < Base
     user_id.present? && wishlists.where(user_id: user_id).present?
   end
 
+  def user_review(user_id)
+    if user_id.present?
+      rvws = reviews.where(user_id: user_id)
+      rvws.present? ? rvws.first : ''
+    else
+      ''
+    end
+  end
+
   # Suitable for displaying only variants that has at least one option value.
   # There may be scenarios where an option type is removed and along with it
   # all option values. At that point all variants associated with only those
