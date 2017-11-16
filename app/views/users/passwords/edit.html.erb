@@ -1,25 +1,26 @@
-<h2>Change your password</h2>
+<div class="mt20">
+  <div class="signin-wrapper sign-in-wrap row" style="max-width: 500px; margin: 0 auto 20px auto !important;">
+    <p class="lead">Change your password</p>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put}) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+        <div class="form-group">
+          <%= f.label :password, raw("New password(<i>6 characters minimum</i>)") %><br/>
+          <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'required custom-form-control form-control reset-border-radius' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, "Confirm new password" %><br/>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'required custom-form-control form-control reset-border-radius' %>
+        </div>
+
+        <div class="actions text-right">
+          <%= f.submit "Change my password", class: 'btn-yellow' %>
+        </div>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<%#= render "users/shared/links" %>

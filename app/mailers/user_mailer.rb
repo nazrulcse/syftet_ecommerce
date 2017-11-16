@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
   def reset_password_instructions(user, token, *args)
     @edit_password_reset_url = edit_user_password_url(:reset_password_token => token)
     @user = user
-    mail to: user.email, from: 'sales@lienesbeauty.com', subject: 'Lienesbeuty ' + I18n.t(:subject, :scope => [:devise, :mailer, :reset_password_instructions])
+    mail to: user.email, from: 'sales@lienesbeauty.com', subject: 'Lienesbeauty ' + I18n.t(:subject, :scope => [:devise, :mailer, :reset_password_instructions])
   end
 
 end

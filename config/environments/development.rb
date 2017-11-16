@@ -30,7 +30,6 @@ Rails.application.configure do
   end
 
   config.action_mailer.delivery_method = :smtp
-  config.mailer_sender = 'info@lienesbeauty.com'
   config.action_mailer.smtp_settings = {
       address: 'smtp.zoho.com',
       port: 465,

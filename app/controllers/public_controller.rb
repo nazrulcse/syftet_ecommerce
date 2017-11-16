@@ -24,7 +24,7 @@ class PublicController < BaseController
   end
 
   def subscribe
-    email = params[:email]
+    email = params[:newsletter_subscription][:email]
     begin
       Mail::Address.new(email)
       newsletter = NewsletterSubscription.find_or_initialize_by(email: email)

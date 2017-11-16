@@ -71,10 +71,10 @@
             type: "double",
             grid: true,
             min: 0,
-            max: 1000,
+            max: 5000,
             from: <%= params[:min] || 0 %>,
-            to: <%= params[:max] || 1000 %>,
-            prefix: "$",
+            to: <%= params[:max] || 5000 %>,
+            prefix: "৳",
             onFinish: function (data) {
                 new_url = data_query.SET('min', data.from).SET('max', data.to);
                 loadProducts(new_url);

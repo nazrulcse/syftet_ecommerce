@@ -70,8 +70,8 @@
     background: #ffffff;
     &.active-content {
       min-width: 300px !important;
-      left: -100px !important;
-      right: inherit !important;
+      left: inherit !important;
+      right: -85px !important;
       p {
         margin: 0 !important;
       }
