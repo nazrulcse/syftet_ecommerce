@@ -168,6 +168,18 @@
         width: 100%;
       }
     }
+    .promo-badge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #F03045;
+      color: #ffffff;
+      padding: 5px 10px;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 12px;
+    }
   }
 }
 
@@ -398,4 +410,13 @@
   top: -9px;
   left: 25%;
   padding: 0 5px;
+}
+
+.rewards-point-wrapper {
+  img {
+    margin-top: -5px;
+  }
+  .btn {
+    padding: 6px !important;
+  }
 }

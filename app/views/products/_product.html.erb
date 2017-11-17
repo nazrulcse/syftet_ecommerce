@@ -34,7 +34,9 @@
       </div>
     </div>
   </figure>
-
+  <% if product.promotionable %>
+      <div class="promo-badge">Sale!</div>
+  <% end %>
   <div class="meta">
     <h3 class="name">
       <%= link_to product.name, product_path(product) %>
@@ -46,7 +48,13 @@
           ******
         </div>
       </div>
-        <span class="price">
+      <% if product.credit_point > 0 %>
+          <div class="rewards-point-wrapper" title="You will get <%= product.credit_point %> rewards point, If you purchased this product.">
+            <%= image_tag('trophy.png') %> <%= product.credit_point %>
+            <i class="fa fa-info-circle btn" data-container="body" data-toggle="popover" data-placement="top" data-content="You will get <%= product.credit_point %> rewards point, If you purchased this product."></i>
+          </div>
+      <% end %>
+      <span class="price">
             <span class="amount">
               <%= product.display_price.to_display %>
             </span>
@@ -54,3 +62,9 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    });
+</script>
