@@ -1079,7 +1079,7 @@ en:
   tax_rates: Tax Rates
   taxon: Category
   taxon_edit: Edit Taxon
-  taxon_placeholder: Add a Taxon
+  taxon_placeholder: Add a Category
   tags: Tags
   tags_placeholder: Add Tags
   taxon_rule:
@@ -1092,7 +1092,7 @@ en:
   taxonomy_edit: Edit Top Category
   taxonomy_tree_error: The requested change has not been accepted and the tree has been returned to its previous state, please try again.
   taxonomy_tree_instruction: ! '* Right click a child in the tree to access the menu for adding, deleting or sorting a child.'
-  taxons: Taxons
+  taxons: Catogories
   test: Test
   test_mailer:
     test_email:

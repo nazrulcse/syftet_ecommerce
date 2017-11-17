@@ -78,9 +78,9 @@ module Admin
     end
 
     def search
-      taxons = Taxon.all
+      taxons = Taxon.joins(:taxonomy)
       if params[:ids]
-        taxons = taxons.where(id: params[:ids])
+        taxons = taxons.where(id: params[:ids].split(','))
       end
       respond_to do |format|
         format.json { render json: {taxons: taxons.collect { |taxon| {text: taxon.name, id: taxon.id} }} }
