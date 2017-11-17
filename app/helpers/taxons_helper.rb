@@ -36,6 +36,6 @@ module TaxonsHelper
   end
 
   def active_taxons
-    Taxon.joins(:taxonomy).where('taxons.parent_id IS NULL')
+    Taxon.joins(:taxonomy).where('taxons.parent_id IS NULL && taxonomies.deleted_at IS NULL')
   end
 end
