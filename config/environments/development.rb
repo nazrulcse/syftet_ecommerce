@@ -37,7 +37,8 @@ Rails.application.configure do
       user_name: 'sales@lienesbeauty.com',
       password: 'Shop2017',
       authentication: :plain,
-      ssl: true,
+      ssl:            true,
+      tls:            true,
       enable_starttls_auto: true
   }
 
