@@ -12,7 +12,7 @@ default: &default
 development:
   <<: *default
   username: root
-  password: password
+  password: time
   database: syftet_ecommerce_dev
 
 # Warning: The database defined as "test" will be erased and
@@ -21,11 +21,11 @@ development:
 test:
   <<: *default
   username: root
-  password: password
+  password: time
   database: syftet_ecommerce_test
 
 production:
   <<: *default
   username: root
-  password: password
-  database: syftet_ecommerce_dev
+  password: time
+  database: syftet_ecommerce_production

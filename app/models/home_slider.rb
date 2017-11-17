@@ -1,0 +1,2 @@
+class HomeSlider < ApplicationRecord
+end
