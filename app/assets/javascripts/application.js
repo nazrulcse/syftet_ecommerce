@@ -64,5 +64,5 @@ function popupMessage(message, klass) {
         $('#notification').hide().animate({
             top: "-60"
         }, 500);
-    }, 4000);
+    }, 15000);
 }

@@ -34,4 +34,8 @@ module TaxonsHelper
     end
     html + '</li>'
   end
+
+  def active_taxons
+    Taxon.joins(:taxonomy).where('taxons.parent_id IS NULL')
+  end
 end

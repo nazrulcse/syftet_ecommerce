@@ -3,7 +3,7 @@
     <%= t(:categories) %>
   </h3>
   <ul class="product-categories">
-    <% Taxon.where('parent_id IS NULL').each do |taxon| %>
+    <% active_taxons.each do |taxon| %>
         <%= raw draw_category_tree(taxon, (@taxon.present? ? @taxon.id : '')) %>
     <% end %>
   </ul>
