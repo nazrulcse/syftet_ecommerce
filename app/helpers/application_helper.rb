@@ -72,6 +72,10 @@ module ApplicationHelper
     'BDT'
   end
 
+  def currency_symbol
+    Syftet.config.currency_symbol
+  end
+
   def variant_color_image_option(image_link)
     if image_link.present?
       if image_link.length == 6

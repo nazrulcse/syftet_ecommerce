@@ -6,17 +6,17 @@ class CartsController < BaseController
   end
 
   def update
-    order = Order.find_by_id(params[:order_id])
+    @order = Order.find_by_id(params[:order_id])
     @error = ''
-    if order
-      @line_item = order.line_items.find_by_id(params[:id])
+    if @order
+      @line_item = @order.line_items.find_by_id(params[:id])
       if @line_item && params[:quantity]
         add_or_remove_quantity = params[:quantity].to_i
         existing_quantity = @line_item.quantity + add_or_remove_quantity
         if add_or_remove_quantity > 0
-          @line_item = order.contents.add(@line_item.variant, add_or_remove_quantity, {})
+          @line_item = @order.contents.add(@line_item.variant, add_or_remove_quantity, {})
         elsif add_or_remove_quantity < 0 && existing_quantity > 0
-          @line_item = order.contents.remove(@line_item.variant, add_or_remove_quantity.abs, {})
+          @line_item = @order.contents.remove(@line_item.variant, add_or_remove_quantity.abs, {})
         else
           @error = "Line item quantity can't be 0"
         end

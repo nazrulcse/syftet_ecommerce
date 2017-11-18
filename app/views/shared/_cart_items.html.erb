@@ -10,7 +10,7 @@
                 <%= link_to line_item.product.name, product_path(line_item.product) %>
               </p>
                 <span>
-                  $<%= line_item.price %> * <%= line_item.quantity %>
+                  <%= currency_symbol %><%= line_item.price %> * <%= line_item.quantity %>
                 </span>
             </li>
           </ul>
@@ -18,7 +18,7 @@
       <div class="cart-subtotal-wrapper">
         <strong>Subtotal:</strong>
           <span class="price-amount amount">
-            $<%= current_order.amount %>
+            <%= currency_symbol %><%= current_order.amount %>
           </span>
       </div>
       <div class="cart-checkout-wrapper clearfix text-center">
