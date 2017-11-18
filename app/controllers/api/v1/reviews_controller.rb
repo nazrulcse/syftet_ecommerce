@@ -2,14 +2,15 @@ class Api::V1::ReviewsController < Api::ApiBase
   before_action :authenticate_user!, only: [:create, :update, :destroy]
 
   def index
-    reviews = Review.where(product_id: params[:product_id])#.page(params[:page]).per(Syftet.config.product_per_page_mobile_api)
+    product = Product.includes(:reviews).find_by_id(params[:product_id])
+    reviews = product.reviews.order(created_at: :desc) # .page(params[:page]).per(Syftet.config.product_per_page_mobile_api)
 
-    render json: reviews, include:
-        [
-          {
-            user: { only: [:id, :name, :email] }
-          }
-        ]
+    render json: {
+      avg_rating: product.avg_rating,
+      total_review: reviews.count,
+      rating_detail: reviews.group(:rating).count,
+      reviews: reviews
+    }
   end
 
   def create
@@ -21,20 +22,20 @@ class Api::V1::ReviewsController < Api::ApiBase
       status = review.save
     end
 
-    render json: {status: status}
+    render json: { status: status }
   end
 
   def update
     review = Review.find_by_id(params[:id])
     status = review.update_attributes(name: 'Tanvir', rating: params[:rating], text: params[:text], product_id: params[:product_id], user_id: current_user.id, email: current_user.email)
 
-    render json: {status: status}
+    render json: { status: status }
   end
 
   def destroy
     review = Review.find_by_id(params[:id])
     status = review.destroy ? true : false
 
-    render json: {status: status}
+    render json: { status: status }
   end
 end
