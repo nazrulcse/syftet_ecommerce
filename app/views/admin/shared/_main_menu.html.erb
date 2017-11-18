@@ -34,6 +34,12 @@
     </ul>
 <% end %>
 
+<% if can?(:admin, User) %>
+    <ul class="nav nav-sidebar">
+      <%= tab *BackendConfiguration::HOME_SLIDER_TABS, url: admin_home_sliders_path, icon: 'picture' %>
+    </ul>
+<% end %>
+
 <% if can?(:admin, Blog) %>
     <ul class="nav nav-sidebar">
       <%= tab *BackendConfiguration::BLOG_TABS, url: admin_blogs_path, icon: 'pencil' %>

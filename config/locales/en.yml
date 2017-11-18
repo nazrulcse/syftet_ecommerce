@@ -588,6 +588,13 @@ en:
   new_taxonomy: New Category
   new_tracker: New Tracker
   new_user: New User
+  sliders: Home Sliders
+  edit_slider: Edit slider
+  new_slider: New Slider
+  slider_image: Image
+  slider_image_title: Title
+  slider_image_sub_title: Sub Title
+  slider_image_link: Link
   new_variant: New Variant
   new_zone: New Zone
   next: Next
@@ -619,6 +626,8 @@ en:
     product_not_deleted: Product could not be deleted
     variant_deleted: Variant has been deleted
     variant_not_deleted: Variant could not be deleted
+    slider_image_not_created: Slider image could not be created
+    slider_image_not_deleted: Slider image could not be deleted
   num_orders: "# Orders"
   number: Number
   on_hand: On Hand

@@ -17,4 +17,5 @@ class BackendConfiguration < Preferences::Configuration
   PROMOTION_TABS ||= [:promotions, :promotion_categories]
   USER_TABS ||= [:users]
   BLOG_TABS ||= [:blogs]
+  HOME_SLIDER_TABS ||= [:home_sliders]
 end
