@@ -274,6 +274,7 @@ Rails.application.routes.draw do
         put :generate_api_key
         get :items
         get :orders
+        get :login
       end
       resources :store_credits
     end

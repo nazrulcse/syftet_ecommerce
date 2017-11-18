@@ -70,6 +70,9 @@
         <td data-hook="admin_users_index_row_actions" class="actions actions-2 text-right">
           <%= link_to_edit user, :no_text => true %>
           <%= link_to_delete user, :no_text => true %>
+          <%= link_to login_admin_user_path(user), class: 'btn btn-default btn-sm' do %>
+              <span class="icon icon-log-in"></span>
+          <% end %>
         </td>
       </tr>
   <% end %>

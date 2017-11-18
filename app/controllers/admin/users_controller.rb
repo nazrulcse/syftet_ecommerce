@@ -41,6 +41,12 @@ module Admin
       render :edit
     end
 
+    def login
+      user = User.find_by_id(params[:id])
+      sign_in user
+      redirect_to root_path
+    end
+
     def addresses
       if request.put?
         if @user.update_attributes(user_params)
