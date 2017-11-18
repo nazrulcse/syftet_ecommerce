@@ -52,6 +52,7 @@
 //= require backend/variant_management
 //= require backend/zone
 //= require backend/jscolor.min
+//= require backend/jquery.uploadPreview
 //= require rating
 
 //Spree.routes.clear_cache = Spree.adminPathFor('general_settings/clear_cache')

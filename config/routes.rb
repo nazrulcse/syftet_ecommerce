@@ -264,6 +264,9 @@ Rails.application.routes.draw do
         post :update_positions
       end
     end
+
+    # Home slider route#
+    resources :home_sliders
     resources :roles
 
     resources :users do
