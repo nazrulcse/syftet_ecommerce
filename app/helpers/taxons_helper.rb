@@ -23,10 +23,29 @@ module TaxonsHelper
       html += "<ul id='top-#{node.id}'>"
       node.children.each do |child|
         if child.children.any?
-          html += "#{draw_category_tree(child, selected)}"
+          html += "#{draw_menu_tree(child, selected)}"
         else
           html += "<li> #{link_to child.name, categories_path(child.permalink), class: (selected == child.id ? 'active' : '')}"
           html += "<span data-ref='top-#{child.id}' class='pull-right collapse-ref'> <i class='fa fa-plus'></i> </span>" if child.children.any?
+          html += '</li>'
+        end
+      end
+      html += '</ul>'
+    end
+    html + '</li>'
+  end
+
+  def draw_nav_menu_tree(node)
+    html = "<li> #{link_to node.name, categories_path(node.permalink)}"
+    html += "<span data-ref='top-#{node.id}' class='pull-right tri-label-collapse'> <i class='fa fa-angle-right'></i> </span>" if node.children.any?
+    if node.children.any?
+      html += "<ul id='top-#{node.id}'>"
+      node.children.each do |child|
+        if child.children.any?
+          html += "#{draw_nav_menu_tree(child)}"
+        else
+          html += "<li> #{link_to child.name, categories_path(child.permalink)}"
+          html += "<span data-ref='top-#{child.id}' class='pull-right collapse-ref'> <i class='fa fa-angle-right'></i> </span>" if child.children.any?
           html += '</li>'
         end
       end

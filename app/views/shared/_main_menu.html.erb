@@ -47,7 +47,7 @@
     <div class="container-fuild">
       <div class="row">
         <section class="respon-menu main-menu no-sticky">
-          <div class="col-lg-6 col-md-8 col-xs-12">
+          <div class="col-lg-9 col-md-8 col-xs-12">
             <div id="syftet-mainmenu" class="syftet-mainmenu">
               <div class="inner navbar-mega-simple">
                 <nav data-duration="400" class="hidden-xs hidden-sm slide animate navbar navbar-mega reset-margin" role="navigation">
@@ -55,8 +55,8 @@
                   <div class="collapse navbar-collapse navbar-mega-collapse nopadding">
                     <ul id="primary-menu" class="nav navbar-nav megamenu">
                       <li class="menu-item">
-                        <%= link_to root_path do %>
-                            <i class="fa fa-home"></i> <%= t(:home) %>
+                        <%= link_to root_path, style: 'padding: 18px 15px 19px 0;' do %>
+                            <%= image_tag('top_logo.png') %>
                         <% end %>
                       </li>
 
@@ -68,14 +68,13 @@
                       </li>
                       <% Taxonomy.all.each do |taxm| %>
                           <li class="menu-item">
-                            <%= link_to  do %>
+                            <%= link_to do %>
                                 <%= taxm.name %> <span class="caret"></span>
                             <% end %>
                             <ul class="top-sub-menu">
-                              <% taxm.taxons.each do |taxon| %>
-                                  <li>
-                                    <%= link_to taxon.name, categories_path(taxon.permalink) %>
-                                  </li>
+                              <% taxm.taxons.where('parent_id IS NULL').each do |taxon| %>
+                                  <!--<li><%#= taxon.name %></li>-->
+                                  <%= raw draw_nav_menu_tree(taxon) %>
                               <% end %>
                             </ul>
                           </li>
@@ -121,19 +120,18 @@
           </div>
 
 
-          <div class="respon-logo col-md-1 col-lg-1 col-xs-12">
-            <div id="site-logo" class="logo-theme">
-              <a href="<%= root_path %>">
-                <%= image_tag('logo.png') %>
-              </a>
-            </div>
-          </div>
+          <!--<div class="respon-logo col-md-1 col-lg-1 col-xs-12">-->
+          <!--<div id="site-logo" class="logo-theme">-->
+          <!--<a href="<%#= root_path %>">-->
+          <%#= image_tag('logo.png') %>
+          <!--</a>-->
+          <!--</div>-->
+          <!--</div>-->
 
-          <div class="respon-link col-lg-5 col-md-3 col-xs-12 hidden-xs hidden-sm">
+          <div class="respon-link col-lg-3 col-md-3 col-xs-12 hidden-xs hidden-sm">
             <div class="header-right clearfix">
               <div class="opal-topcart pull-right">
                 <div id="cart" class="custom-cart dropdown version-1 box-top">
-
                   <%= link_to '#', class: 'dropdown-toggle mini-cart box-wrap', 'data-toggle' => 'dropdown', 'aria-expandedx' => 'true' do %>
                       <span class="icon-basket icons">
                       <i class="fa fa-shopping-cart"></i>
