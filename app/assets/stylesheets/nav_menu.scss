@@ -197,7 +197,9 @@
             position: absolute;
             top: 20%;
             right: 5px;
-            font-weight: bold;
+            i {
+              font-weight: bold;
+            }
           }
           ul {
             background: #fdfdfd;
@@ -467,4 +469,14 @@
       }
     }
   }
+}
+
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.5s ease;
+  z-index: 1000;
 }

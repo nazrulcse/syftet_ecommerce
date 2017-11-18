@@ -66,3 +66,24 @@ function popupMessage(message, klass) {
         }, 500);
     }, 15000);
 }
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+    scrollFunction()
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 145 || document.documentElement.scrollTop > 145) {
+        document.getElementById("btn-scroll-top").style.display = "block";
+        $('.main-menu').addClass('sticky-nav');
+    } else {
+        document.getElementById("btn-scroll-top").style.display = "none";
+        $('.main-menu').removeClass('sticky-nav');
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Chrome, Safari and Opera
+    document.documentElement.scrollTop = 0; // For IE and Firefox
+}
