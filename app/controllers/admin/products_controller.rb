@@ -2,7 +2,8 @@ module Admin
   class ProductsController < ResourceController
     helper 'products'
 
-    before_action :load_data, except: :index
+    before_action :load_data, except: [:index, :remove_related]
+    skip_before_action :load_resource, only: :remove_related
     create.before :create_before
     update.before :update_before
     helper_method :clone_object_url
@@ -60,6 +61,9 @@ module Admin
 
     def search_related
       products = Product.all
+      if params[:q].present? && params[:q][:name_cont].present?
+        products = products.where("lower(name) like '%#{params[:q][:name_cont].downcase}%'")
+      end
       respond_to do |format|
         format.json { render json: {products: products.collect { |product| {text: product.name, id: product.id} }} }
       end

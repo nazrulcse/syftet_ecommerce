@@ -38,6 +38,7 @@
  *= require social-share-button
  *= require lightgallery
  *= require backend/blog
+ *= require landing
  */
 
 #notification {

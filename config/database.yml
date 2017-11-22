@@ -12,7 +12,7 @@ default: &default
 development:
   <<: *default
   username: root
-  password: time
+  password: password
   database: syftet_ecommerce_dev
 
 # Warning: The database defined as "test" will be erased and

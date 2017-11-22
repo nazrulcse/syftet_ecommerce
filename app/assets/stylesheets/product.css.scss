@@ -9,6 +9,7 @@
     -webkit-transition: all .5s ease 0s;
     -o-transition: all .5s ease 0s;
     transition: all .5s ease 0s;
+    min-height: 410px;
     a {
       color: #dfdfdf;
       &:hover {
@@ -94,8 +95,7 @@
       }
     }
     .meta {
-      padding-top: 25px;
-      padding-bottom: 26px;
+      padding: 25px 5px 26px 5px;
     }
 
     .name {
@@ -163,9 +163,11 @@
     figure {
       position: relative;
       overflow: hidden;
+      text-align: center;
       img {
         height: auto;
-        width: 100%;
+        width: auto;
+        max-height: 225px;
       }
     }
     .promo-badge {

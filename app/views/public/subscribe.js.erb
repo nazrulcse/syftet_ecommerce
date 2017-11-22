@@ -3,4 +3,5 @@ popupMessage("<%= @message %>", 'alert alert-error');
 <%else%>
 popupMessage('Successfully added to our email list', 'alert alert-success');
 $('#newsletter_subscription_email').val('');
+$('#subsciption-offer').modal('hide');
 <%end%>

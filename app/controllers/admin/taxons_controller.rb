@@ -82,6 +82,9 @@ module Admin
       if params[:ids]
         taxons = taxons.where(id: params[:ids].split(','))
       end
+      if params[:q].present? && params[:q][:name_cont].present?
+        taxons = taxons.where("lower(taxons.name) like '%#{params[:q][:name_cont].downcase}%'")
+      end
       respond_to do |format|
         format.json { render json: {taxons: taxons.collect { |taxon| {text: taxon.name, id: taxon.id} }} }
       end
