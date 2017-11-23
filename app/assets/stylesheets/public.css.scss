@@ -331,3 +331,26 @@ a {
     background-color: #555;
   }
 }
+
+#btn-contact-top {
+  position: fixed;
+  top: 48%;
+  right: 0;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #ec971f;
+  color: white;
+  cursor: pointer;
+  padding: 6px 8px;
+  -webkit-border-radius: 5px 0 0 5px;
+  -moz-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+  font-size: 20px;
+  i {
+    font-weight: bold;
+  }
+  &:hover {
+    background-color: #555;
+  }
+}

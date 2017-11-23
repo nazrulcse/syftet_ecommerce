@@ -43,7 +43,7 @@
 
 #notification {
     position: absolute;
-    width: 450px;
+    max-width: 450px;
     left: 35%;
     top: -60px;
     border-radius: 5px;

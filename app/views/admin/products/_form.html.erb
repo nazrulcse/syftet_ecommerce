@@ -60,7 +60,7 @@
     <div class="col-md-4" data-hook="admin_product_form_right">
       <div data-hook="admin_product_form_price">
         <%= f.field_container :price, class: ['form-group'] do %>
-            <%= f.label :price, raw(t(:master_price) + content_tag(:span, ' *', class: "required")) %>
+            <%= f.label :price, raw(t(:sales_price) + content_tag(:span, ' *', class: "required")) %>
             <%= f.text_field :price, value: @product.price, class: 'form-control', disabled: (cannot? :update, @product.price) %>
             <%= f.error_message_on :price %>
         <% end %>
