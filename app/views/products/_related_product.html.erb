@@ -5,11 +5,13 @@
       <span>Related Products</span>
     </h3>
 
-    <div class="row clearfix">
+    <div class="row clearfix list-of-recomanded-product">
       <% @product.related_products.each do |rp| %>
-          <div class=col-md-3>
-            <%= render 'products/product', product: rp.relative_product if rp.relative_product %>
-          </div>
+          <% if rp.relative_product %>
+              <div class=col-md-3>
+                <%= render 'products/product', product: rp.relative_product %>
+              </div>
+          <% end %>
       <% end %>
     </div>
   </div>

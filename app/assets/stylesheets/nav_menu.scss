@@ -28,14 +28,49 @@
     float: left;
   }
   .topmenu {
-    padding-top: 11px;
-    padding-bottom: 11px;
+    //padding-top: 11px;
+    //padding-bottom: 11px;
     ul {
       list-style: none;
       margin: 0;
       li {
-        padding-left: 31px;
+        padding-left: 20px;
         display: inline-block;
+        a {
+          padding-top: 11px;
+          padding-bottom: 11px;
+          display: inline-block;
+        }
+        .custom-drp-content {
+          li {
+            padding: 0;
+            display: block;
+            a {
+              display: block;
+              position: relative;
+              color: #363a42;
+              padding: 7px;
+              line-height: 20px;
+              margin: 0;
+              text-transform: uppercase;
+              font-weight: 700;
+              font-size: 13px;
+              border-radius: 0;
+              -webkit-border-radius: 0;
+              -moz-border-radius: 0;
+              -ms-border-radius: 0;
+              -o-border-radius: 0;
+              -webkit-transition: all .35s;
+              -o-transition: all .35s;
+              transition: all .35s;
+              letter-spacing: -.01em;
+              &:hover {
+                background: transparent;
+                color: #fcc030;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -80,12 +115,12 @@
       a {
         position: relative;
         color: #363a42;
-        padding: 39px 35px 38px 0;
+        padding: 30px 20px 25px 0;
         line-height: 20px;
         margin: 0;
         text-transform: uppercase;
         font-weight: 700;
-        font-size: 13px;
+        font-size: 12px;
         border-radius: 0;
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
@@ -115,7 +150,7 @@
 
     .bubble-text-label {
       position: absolute;
-      top: 13px;
+      top: 6px;
       left: 50%;
       padding: 1px 7px;
       font-size: 11px;
@@ -166,6 +201,11 @@
         }
       }
     }
+    .site-logo-link {
+      img {
+        max-width: 112px;
+      }
+    }
     .menu-item {
       position: relative;
       &:hover {
@@ -177,7 +217,7 @@
         display: none;
         position: absolute;
         padding: 0 0 0 15px;
-        top: 97px;
+        top: 76px;
         z-index: 1;
         background: #ffffff;
         -webkit-box-shadow: 3px 2px 7px #dfdfdf;
@@ -225,7 +265,7 @@
 
 .header-main .logo,
 .header-main .header-right {
-  padding: 21px 0;
+  padding: 12px 15px 12px 0;
   .search-focus {
     padding: 12px 0;
     margin-right: 18px;
@@ -476,7 +516,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: #dfdfdf;
   transition: all 0.5s ease;
   z-index: 1000;
 }
