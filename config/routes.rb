@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :blogs, only: [:show, :index] do
     resources :comments, only: [:create]
   end
+
+
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'users'
@@ -11,7 +13,10 @@ Rails.application.routes.draw do
         get 'filters', on: :collection
       end
       resources :wishlists, only: [:index, :create]
-      resources :orders, only: [:index, :show]
+      resources :orders, only: [:index, :show] do
+        post :populate, on: :collection
+        post :current_cart, on: :collection
+      end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
         member do
@@ -20,6 +25,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
 
   devise_for :users, controllers: {
                        sessions: 'users/sessions',
