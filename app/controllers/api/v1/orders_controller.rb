@@ -41,6 +41,7 @@ class Api::V1::OrdersController < Api::ApiBase
         variant = line_item.variant
         result[:line_items] << {
           id: line_item.id,
+          quantity: line_item.quantity,
           product_id: product.id,
           name: product.name,
           price: product.price,
