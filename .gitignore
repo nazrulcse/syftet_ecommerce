@@ -27,3 +27,4 @@ tmp/cache/*
 public/assets/
 public/spree/
 /public/uploads
+/config/database.yml

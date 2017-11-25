@@ -21,7 +21,7 @@ development:
 test:
   <<: *default
   username: root
-  password: time
+  password: password
   database: syftet_ecommerce_test
 
 production:
