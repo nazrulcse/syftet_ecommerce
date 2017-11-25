@@ -13,9 +13,10 @@ Rails.application.routes.draw do
         get 'filters', on: :collection
       end
       resources :wishlists, only: [:index, :create]
-      resources :orders, only: [:index, :show] do
+      resources :orders, only: [:index, :update] do
         post :populate, on: :collection
         post :current_cart, on: :collection
+        post :detail, on: :collection
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
           put :ship
         end
       end
+      resources :line_items, only: [:destroy]
     end
   end
 
