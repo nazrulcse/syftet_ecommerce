@@ -49,6 +49,15 @@ class PublicController < BaseController
 
   end
 
+  def unauthorized
+    respond_to do |format|
+      format.html {
+        redirect_to root_path
+      }
+      format.js {}
+    end
+  end
+
   def safe_shopping_guarantee
     @title = "Brandcruz.com – Shop securely for Shoes, clothing, accessories and more on sale!"
     @keywords = "Women's Clothing, Sandals, Jackets & Coats, Women's Shoes"

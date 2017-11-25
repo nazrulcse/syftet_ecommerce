@@ -8,7 +8,7 @@
     <div class="row clearfix list-of-recomanded-product">
       <% @product.related_products.each do |rp| %>
           <% if rp.relative_product %>
-              <div class=col-md-3>
+              <div class='col-md-3 col-sm-2'>
                 <%= render 'products/product', product: rp.relative_product %>
               </div>
           <% end %>

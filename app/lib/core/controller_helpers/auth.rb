@@ -64,16 +64,12 @@ module Core
       # Override this method in your controllers if you want to have special behavior in case the user is not authorized
       # to access the requested action.  For example, a popup window might simply close itself.
       def redirect_unauthorized_access
-        if try_spree_current_user
-          flash[:error] = Spree.t(:authorization_failure)
-          redirect_to spree.forbidden_path
+        if current_user
+          flash[:error] = t(:authorization_failure)
+          redirect_to unauthorized_path
         else
           store_location
-          if respond_to?(:spree_login_path)
-            redirect_to spree_login_path
-          else
-            redirect_to spree.respond_to?(:root_path) ? spree.root_path : main_app.root_path
-          end
+          redirect_to unauthorized_path
         end
       end
 

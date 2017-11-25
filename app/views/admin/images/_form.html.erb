@@ -3,6 +3,9 @@
     <div data-hook="file" class="form-group">
       <%= f.label :attachment, t(:filename) %>
       <%= f.file_field :attachment %>
+      <span style="color: #00aced;">
+        (<i>Recommended image size 600x600, minimum size 400x400 with 1:1.25 ratio if possible</i>)
+      </span>
     </div>
     <div data-hook="variant" class="form-group">
       <%= f.label :viewable_id, Variant.model_name.human %>

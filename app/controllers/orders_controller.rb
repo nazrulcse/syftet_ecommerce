@@ -1,5 +1,5 @@
 class OrdersController < StoreController
-  before_action :check_authorization
+  before_action :check_authorization, except: [:reset]
   before_action :apply_coupon_code, only: :update
   rescue_from ActiveRecord::RecordNotFound, :with => :page_not_found
   helper 'products', 'orders'
@@ -123,7 +123,6 @@ class OrdersController < StoreController
 
   def check_authorization
     order = Order.find_by_number(params[:id]) || current_order
-    p cookies[:guest_token]
     if order
       authorize! :edit, order, cookies[:guest_token]
     else
