@@ -3,6 +3,9 @@
     <div data-hook="file" class="form-group">
       <%= f.label :attachment, t(:filename) %>
       <%= f.file_field :attachment %>
+      <span style="color: #00aced;">
+        (<i>Recommended image size 600x600, minimum size 400x400 with 1:1.25 ratio if possible</i>)
+      </span>
     </div>
     <div data-hook="variant" class="form-group">
       <%= f.label :viewable_id, Variant.model_name.human %>
@@ -16,3 +19,23 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#image_attachment").change(function () {
+            readURL(this);
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image-upload-preview').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

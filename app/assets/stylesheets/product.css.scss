@@ -9,6 +9,7 @@
     -webkit-transition: all .5s ease 0s;
     -o-transition: all .5s ease 0s;
     transition: all .5s ease 0s;
+    min-height: 410px;
     a {
       color: #dfdfdf;
       &:hover {
@@ -94,8 +95,7 @@
       }
     }
     .meta {
-      padding-top: 25px;
-      padding-bottom: 26px;
+      padding: 25px 5px 26px 5px;
     }
 
     .name {
@@ -163,9 +163,12 @@
     figure {
       position: relative;
       overflow: hidden;
+      text-align: center;
       img {
         height: auto;
-        width: 100%;
+        width: auto;
+        max-height: 225px;
+        margin: auto;
       }
     }
     .promo-badge {
@@ -291,12 +294,18 @@
       }
       input[type='radio']:checked + label {
         &:after {
-          content: "\f00c";
+          content: '';
+          border: solid 1px #e65758;
           position: absolute;
-          top: 20%;
-          left: 25%;
-          color: #ffffff;
-          font-family: FontAwesome;
+          width: 100%;
+          height: 100%;
+          -webkit-box-shadow: 0 0 3px #e65758;
+          -moz-box-shadow: 0 0 3px #e65758;
+          box-shadow: 0 0 3px #e65758;
+          top: 0;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
         }
       }
       input[type='radio']:checked + label + a {
@@ -317,6 +326,9 @@
         text-align: center;
         color: #000000;
         text-shadow: 0 0 2px #ffffff;
+        -webkit-box-shadow: 0 0 3px #cccccc;
+        -moz-box-shadow: 0 0 3px #cccccc;
+        box-shadow: inset 0 0 3px #cccccc;
       }
     }
   }

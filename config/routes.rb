@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   patch '/checkout/update/:state', to: 'checkout#update', as: :update_checkout
   get '/checkout/:state', to: 'checkout#edit', as: :checkout_state
   get '/checkout', to: 'checkout#edit', as: :cart_checkout
+  get :unauthorized, to: 'public#unauthorized'
 
   resources :contacts, only: [:new, :create]
 

@@ -23,7 +23,7 @@
           <div id="product-gallery" class="product-thumb-wrapper">
             <% get_additional_images(@product).each do |image| %>
                 <div class="selection">
-                  <a href="#" class="addtional-image" data-image="<%= image.attachment.url(:small) %>" data-zoom-image="<%= image.attachment.url(:big) %>">
+                  <a href="#" class="addtional-image" data-image="<%= image.attachment.url(:product) %>" data-zoom-image="<%= image.attachment.url(:large) %>">
                     <%= image_tag image.attachment.url(:small) || no_image, class: "img-fluid" %>
                   </a>
                   <!--<img class='hidden' src="<%#= image.zoomable_image_link.present? ? image.zoomable_image_link : "#{image.image_link}?op_sharpen=1&fit=fit,1&$filterlrg$&wid=1200&hei=1467" %>" onerror="zoom_image_load_failed(this);"/>-->
@@ -48,6 +48,9 @@
   </div>
 
   <div class="col-sm-6 col-md-6">
+    <%= link_to :back do %>
+        <i class="fa fa-angle-double-left"></i> Back
+    <% end %>
     <%= render 'products/details' %>
   </div>
 </div>
@@ -61,41 +64,39 @@
 </div>
 
 <script type="text/javascript">
-    $(document).on('ready', function () {
+    $(document).on('turbolinks:load', function() {
         $('.product-thumb-wrapper').children(":first").find('a').addClass('product-active');
         $(".list-of-recomanded-product").slick({
             infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 5,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             dots: false,
             responsive: [
                 {
-                    breakpoint: 767,
+                    breakpoint: 991,
                     settings: {
                         slidesToShow: 3,
                         slidesToScroll: 3,
                         infinite: true,
                         dots: false
                     }
-                }
-            ]
-        });
-
-        $(".list-of-recomanded-product-hor").slick({
-            infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            dots: false,
-            vertical: true,
-            responsive: [
+                },
                 {
-                    breakpoint: 767,
+                    breakpoint: 765,
                     settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
                         infinite: true,
-                        dots: false,
-                        vertical: false
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false
                     }
                 }
             ]
@@ -128,11 +129,6 @@
 
 <script type="text/javascript">
     $(function (e) {
-//        $('#product-thumb-image').stick_in_parent({
-//            parent: '.data-parent',
-//            offset_top: 20
-//        });
-
         setTimeout(function () {
             $("#product-gallery").slick({
                 infinite: false,

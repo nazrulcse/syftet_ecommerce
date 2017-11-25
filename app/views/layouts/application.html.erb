@@ -15,6 +15,7 @@
 <div id="page">
   <%= render 'shared/notification' %>
   <%= render 'shared/custom_flash' %>
+  <%= render 'shared/subscription_popup' %>
   <div class="syftet-page-inner row-offcanvas row-offcanvas-left">
     <div class="top-nav">
       <div class="container">
@@ -33,5 +34,11 @@
     </footer>
   </div>
 </div>
+<a onclick="topFunction()" id="btn-scroll-top" title="Go to top">
+  <i class="fa fa-angle-up fa-2x"></i>
+</a>
+<a id="btn-contact-top" href="<%= contact_us_path %>" title="Contact us">
+  <i class="fa fa-envelope"></i>
+</a>
 </body>
 </html>

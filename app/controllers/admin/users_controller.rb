@@ -43,7 +43,10 @@ module Admin
 
     def login
       user = User.find_by_id(params[:id])
-      sign_in user
+      current_user = user
+      current_user.reload
+      sign_in :user, current_user
+      current_user.reload
       redirect_to root_path
     end
 
