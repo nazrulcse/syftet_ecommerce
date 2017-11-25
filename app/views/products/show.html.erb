@@ -64,7 +64,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).on('ready', function () {
+    $(document).on('turbolinks:load', function() {
         $('.product-thumb-wrapper').children(":first").find('a').addClass('product-active');
         $(".list-of-recomanded-product").slick({
             infinite: true,
