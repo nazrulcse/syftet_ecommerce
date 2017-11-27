@@ -13,10 +13,7 @@
     <div class="button-action clearfix">
       <div class="button-groups">
         <div class="add-cart">
-          <a title="Add to cart" href="<%= product_path(product) %>" class="button add_to_cart_button">
-            <i class="fa fa-bag"></i>
-            <span class="title-cart">Select options</span>
-          </a>
+          <%= render 'products/shared/add_to_cart_form', product: product %>
         </div>
         <div class="wrap-acction-group">
           <div class="quick-view hidden-xs hidden-sm">

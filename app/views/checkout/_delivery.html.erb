@@ -55,8 +55,8 @@
                           <span class="rate-name"><%= rate.name %></span>
                           <span class="badge rate-cost"><%= rate.display_cost.to_money(Syftet.config.currency).to_display %></span>
                         </label>
-                        <% if rate.name.include?('collection Point') %>
-                            <div class="collection-points" style="display: none">
+                        <% if rate.name.downcase.include?('collection point') %>
+                            <div class="collection-points" style="display:<%= rate.selected ? 'block' : 'none' %>">
                               <p>Collected From:</p>
                               <%= form.select :collection_point, options_for_select(['New Market', 'Mitford', 'Chittagong', 'Tangail', 'Maymenshing']), {prompt: 'Select Collection Point'}, {class: 'form-control'} %>
                             </div>

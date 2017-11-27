@@ -54,6 +54,25 @@ module TaxonsHelper
     html + '</li>'
   end
 
+  def draw_mobile_menu_tree(node)
+    html = "<li class='dropdown-submenu'> #{link_to raw("#{node.name} #{node.children.any? ? "<b class='caret'> </b>" : '' }"), categories_path(node.permalink)}"
+    # html += "<span data-ref='top-#{node.id}' class='pull-right tri-label-collapse'> <i class='fa fa-angle-right'></i> </span>" if node.children.any?
+    if node.children.any?
+      html += "<ul class='dropdown-menu'>"
+      node.children.each do |child|
+        if child.children.any?
+          html += "#{draw_mobile_menu_tree(child)}"
+        else
+          html += "<li class='dropdown-submenu'> #{link_to raw("#{child.name} #{child.children.any? ? "<b class='caret'> </b>" : '' }"), categories_path(child.permalink)}"
+          # html += "<span data-ref='top-#{child.id}' class='pull-right collapse-ref'> <i class='fa fa-angle-right'></i> </span>" if child.children.any?
+          html += '</li>'
+        end
+      end
+      html += '</ul>'
+    end
+    html + '</li>'
+  end
+
   def active_taxons
     Taxon.joins(:taxonomy).where('taxons.parent_id IS NULL')
   end
