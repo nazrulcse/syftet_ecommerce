@@ -8,50 +8,55 @@
 
     <div class="col-md-6 clearfix">
 
-      <form action="" role="form" method="post">
-        <div class="chose-payment-method border-bottom">
-          <h3 class="public-title text-left mb0"> CHOOSE PAYMENT OPTIONS </h3>
 
-          <div class="tabs-wrapper">
-            <ul class="nav nav-tabs">
-              <li class="active">
-                <a data-toggle="tab" href="#card">
-                  <label for="payment-ssl">
-                    <i class="fa fa-credit-card"></i> SSL Commerz
-                    <%= radio_button_tag "[order][payments_attributes][0][payment_method_id]", payment_method('PaymentMethod::CreditPoint'), true, id: 'payment-ssl' %>
-                  </label>
-                </a>
-              </li>
-              <li>
-                <a data-toggle="tab" href="#paypal">
-                  <i class="fa fa-paypal"></i> Paypal
-                </a>
-              </li>
-              <li>
-                <a data-toggle="tab" href="#points">
-                  <i class="fa fa-bullseye"></i> Earning Points
-                </a>
-              </li>
-            </ul>
+      <div class="chose-payment-method border-bottom">
+        <h3 class="public-title text-left mb0"> CHOOSE PAYMENT OPTIONS </h3>
 
-            <div class="tab-content">
-              <div id="card" class="tab-pane fade in active">
-                <h3>HOME</h3>
+        <div class="tabs-wrapper">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a data-toggle="tab" href="#card">
+                <label for="payment-ssl">
+                  <i class="fa fa-credit-card"></i> SSL Commerz
+                </label>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#paypal">
+                <i class="fa fa-paypal"></i> Paypal
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#points">
+                <i class="fa fa-bullseye"></i> Earning Points
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#cash">
+                <i class="fa fa-bullseye"></i> Cash On Delivery
+              </a>
+            </li>
+          </ul>
 
-                <p>Some content.</p>
-              </div>
+          <div class="tab-content">
+            <div id="card" class="tab-pane fade in active">
+              <h3>HOME</h3>
 
-              <div id="paypal" class="tab-pane fade">
-                <h3>Checkout With Paypal</h3>
+              <p>Some content.</p>
+            </div>
 
-                <%= link_to(image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_express_url(:payment_method_id => payment_method('PaymentMethod::PayPalExpress')), :method => :post, :id => "paypal_button") %>
+            <div id="paypal" class="tab-pane fade">
+              <h3>Checkout With Paypal</h3>
 
-                <script>
-                    SpreePaypalExpress.paymentMethodID = "<%= payment_method('PaymentMethod::PayPalExpress') %>"
-                </script>
-              </div>
+              <%= link_to(image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_express_url(:payment_method_id => payment_method('PaymentMethod::PayPalExpress')), :method => :post, :id => "paypal_button") %>
 
-              <div id="points" class="tab-pane fade">
+              <script>
+                  SpreePaypalExpress.paymentMethodID = "<%= payment_method('PaymentMethod::PayPalExpress') %>"
+              </script>
+            </div>
+
+            <div id="points" class="tab-pane fade">
+              <form action="/checkout/update/payment" role="form" method="patch">
                 <h3>Your available credit points <b> # <%= current_user.available_rewards %> </b></h3>
 
                 <p>
@@ -62,84 +67,34 @@
                   Remaining points <b> # <%= current_user.available_rewards - @order.total %> </b>
                 </p>
                 <% if (current_user.available_rewards - @order.total) > 0 %>
+                    <%= radio_button_tag "[order][payments_attributes][0][payment_method_id]", payment_method('PaymentMethod::CreditPoint'), true, id: 'rewards-points', class: 'hidden' %>
                     <div class="continue-btn clearfix">
-                      <input type="submit" class="btn btn-success pull-right" value="Confirm & Place Order">
+                      <input type="submit" class="place-order-btn pull-right" value="Confirm & Place Order">
                     </div>
                 <% else %>
                     <div class="alert alert-danger">
                       Not enough rewards point to checkout this order.
                     </div>
                 <% end %>
-              </div>
+              </form>
+            </div>
+            <div id="cash" class="tab-pane fade in">
+              <%= form_for @order, url: update_checkout_path(@order.state) do |f| %>
+                  <%= radio_button_tag "[order][payments_attributes][0][payment_method_id]", payment_method('PaymentMethod::Cash'), true, id: 'payment-cash', class: 'hidden' %>
+                  <h3>Cash On Delivery</h3>
+
+                  <p>
+                    Please pay <b> <%= @order.display_total.to_display %> </b> when received delivery.
+                  </p>
+
+                  <p>
+                    <input type="submit" class="place-order-btn pull-right" value="Confirm & Place Order">
+                  </p>
+              <% end %>
             </div>
           </div>
-
-          <!--<div class="payment-method-form">-->
-          <!--<div class="payment-method-form-container">-->
-          <!--<div class="form-group input-wrap">-->
-          <!--<%#= hidden_field_tag "[order][payments_attributes][amount]", @order.total, class: 'required form-control' %>-->
-          <!--</div>-->
-          <!--<div class="form-group input-wrap">-->
-          <!--<label for="card-no">-->
-          <!--Card number <span class="card-type-supported"> </span>-->
-          <!--</label>-->
-          <!--&lt;!&ndash;<%#= image_tag('ssl_cert.png', class: 'pull-right', width: '36px') %>&ndash;&gt;-->
-          <!--<%#= text_field_tag "[order][payments_attributes][number]", populate_payment_data(params[:order], 'number'), class: 'required form-control mt10' %>-->
-          <!--<span class="form-error"></span>-->
-          <!--</div>-->
-
-          <!--<div class="form-group input-wrap">-->
-          <!--<label for="card-no">-->
-          <!--Name on Card-->
-          <!--</label>-->
-          <!--<%#= text_field_tag "[order][payments_attributes][name]", populate_payment_data(params[:order], 'name'), class: 'form-control required' %>-->
-          <!--<span class="form-error"></span>-->
-          <!--</div>-->
-
-          <!--<div class="form-group input-wrap">-->
-          <!--<label for="expiration-date"> Expiration date </label>-->
-          <!--<%#= text_field_tag '[order][payments_attributes][expire]', populate_payment_data(params[:order], 'expire'), id: "expiration-date", class: "form-control required", placeholder: 'MM/YY' %>-->
-          <!--<span class="form-error"></span>-->
-          <!--</div>-->
-          <!--<%#= hidden_field_tag :failed_id, params[:failed_id] %>-->
-          <!--<div class="form-group input-wrap">-->
-          <!--<label for="security-code"> CVV </label>-->
-          <!--<%#= text_field_tag "[order][payments_attributes][cvv_response_code]", populate_payment_data(params[:order], 'cvv_response_code'), class: 'required form-control' %>-->
-          <!--<span class="form-error"></span>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</div>-->
         </div>
-        <!--<div class="billing-address">-->
-        <!--<div class="billing-address">-->
-        <!--<h3> BILLING ADDRESS </h3>-->
-
-        <!--<div class="radio-btn-shipping-address">-->
-        <!--<div class="checkbox">-->
-        <!--<label>-->
-        <!--<%#= form.check_box :use_shipping, value: true, checked: true, id: "same-billing-address" %>-->
-        <!--<span> Use my shipping address </span>-->
-        <!--<%#= form.fields_for :ship_address do |ship_form| %>-->
-        <!--<p>-->
-        <!--<%#= ship_form.object.active_merchant_hash[:name] %>-->
-        <!--<%#= ship_form.object.active_merchant_hash[:address1] %>-->
-        <!--<%#= ship_form.object.active_merchant_hash[:city] + ', ' + ship_form.object.active_merchant_hash[:zip] %>-->
-        <!--</p>-->
-        <!--<%# end %>-->
-        <!--</label>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="billing-address-form">-->
-        <!--<%#= form.fields_for :bill_address do |ship_form| %>-->
-        <!--<div id="custom-billing-address" class="billing-address-form-container collapse">-->
-        <!--<%#= render 'checkout/address_fields', form_builder: ship_form, address_type: 'Billing' %>-->
-        <!--</div>-->
-        <!--<%# end %>-->
-        <!--</div>-->
-      </form>
+      </div>
     </div>
 
     <div class="col-md-6 clearfix">

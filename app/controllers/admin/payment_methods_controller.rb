@@ -52,14 +52,14 @@ module Admin
     private
 
     def load_data
-      @providers = [PaymentMethod::Check,
+      @providers = [PaymentMethod::Cash,
                     PaymentMethod::StoreCredit,
                     PaymentMethod::CreditPoint,
                     PaymentMethod::PayPalExpress] #Gateway.providers.sort { |p1, p2| p1.name <=> p2.name }
     end
 
     def validate_payment_method_provider
-      valid_payment_methods = ['PaymentMethod::Check',
+      valid_payment_methods = ['PaymentMethod::Cash',
                                'PaymentMethod::StoreCredit',
                                'PaymentMethod::CreditPoint',
                                'PaymentMethod::PayPalExpress']
