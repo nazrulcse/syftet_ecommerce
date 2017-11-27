@@ -30,6 +30,7 @@ class Api::V1::OrdersController < Api::ApiBase
       result = {
         id: cart.id,
         number: cart.number,
+        state: cart.state,
         guest_token: cart.guest_token,
         total: cart.total,
         total_item: cart.item_count,
@@ -146,7 +147,37 @@ class Api::V1::OrdersController < Api::ApiBase
     }
   end
 
+  def current_state
+    cart = find_cart_by_token_or_user
+
+    if cart.present? && cart.state == 'cart'
+      cart.update_attributes(state:  'address')
+    end
+
+    render json: {
+        status: cart.present?,
+        state: cart.present? ? cart.state : ''
+    }
+  end
+
+
+  def update_address
+    order = Order.find_by_number(params[:number])
+
+    if order.present?
+      order.update(order_params_with_ship_address)
+    end
+
+    render json: {
+        status: true
+    }
+  end
+
   private
+
+  def order_params_with_ship_address
+    {ship_address_attributes: params[:ship_address]}
+  end
 
   def last_incomplete_order
     @last_incomplete_order ||= current_user.last_incomplete_spree_order

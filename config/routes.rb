@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         post :populate, on: :collection
         post :current_cart, on: :collection
         post :detail, on: :collection
+        get :current_state, on: :collection
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
