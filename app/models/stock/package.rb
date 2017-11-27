@@ -65,7 +65,7 @@ module Stock
     end
 
     def shipping_methods
-      shipping_categories.map(&:shipping_methods).reduce(:&).to_a
+      ShippingMethod.all #shipping_categories.map(&:shipping_methods).reduce(:&).to_a
     end
 
     def inspect

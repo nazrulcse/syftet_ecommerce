@@ -76,7 +76,6 @@
                           <% end %>
                           <ul class="top-sub-menu">
                             <% taxm.taxons.where('parent_id IS NULL').each do |taxon| %>
-                                <!--<li><%#= taxon.name %></li>-->
                                 <%= raw draw_nav_menu_tree(taxon) %>
                             <% end %>
                           </ul>
@@ -155,18 +154,27 @@
           </li>
 
           <% Taxonomy.all.each do |taxm| %>
+
               <li class="dropdown">
                 <%= link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
                     <%= taxm.name %> <b class="caret"></b>
                 <% end %>
                 <ul class="dropdown-menu">
-                  <% taxm.taxons.each do |taxon| %>
-                      <li>
-                        <%= link_to taxon.name, categories_path(taxon.permalink), class: 'dropdown-toggle' %>
-                      </li>
+                  <% taxm.taxons.where('parent_id IS NULL').each do |taxon| %>
+                      <%= raw draw_mobile_menu_tree(taxon) %>
                   <% end %>
                 </ul>
               </li>
+
+              <!--<li class="dropdown">-->
+              <!--<ul class="dropdown-menu">-->
+              <!--<%# taxm.taxons.each do |taxon| %>-->
+              <!--<li>-->
+              <!--<%#= link_to taxon.name, categories_path(taxon.permalink), class: 'dropdown-toggle' %>-->
+              <!--</li>-->
+              <!--<%# end %>-->
+              <!--</ul>-->
+              <!--</li>-->
           <% end %>
 
           <li class="menu-item">
@@ -212,6 +220,11 @@
             $('#page').find('.syftet-page-inner').toggleClass('active');
         });
 
+        $('.dropdown-submenu b.caret').on("click", function(e){
+            $(this).parent().next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
         //Cart Dropdown
 //        $(".dropdown-toggle").dropdown();
     });

@@ -187,7 +187,7 @@ module ApplicationHelper
 
   def shipping_method(shipments)
     shipment = shipments.last
-    shipping_rate = shipment.shipping_rates.last
+    shipping_rate = shipment.shipping_rates.where(selected: true).last
     return 'No Shipping Method Found' unless shipping_rate.present?
     shipping_method = shipping_rate.shipping_method
     shipping_method.name + "(#{amount_with_currency(shipping_rate.cost)})"

@@ -27,7 +27,6 @@ module CalculatedAdjustments
     end
 
     def self.spree_calculators
-      # Rails.application.config.spree.calculators
       {
           shipping_methods: [
               Calculator::Shipping::FlatPercentItemTotal,

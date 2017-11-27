@@ -324,6 +324,13 @@
   }
 }
 
+.dropdown-menu {
+  .dropdown-submenu {
+    padding-left: 15px;
+    border-bottom: none !important;
+  }
+}
+
 .mobile-mini-cart-count {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;

@@ -70,13 +70,13 @@ Rails.application.configure do
   config.action_mailer.asset_host = "http://tangailenterprise.com"
 
   config.action_mailer.delivery_method = :smtp
-  config.mailer_sender = 'info@lienesbeauty.com'
+  config.mailer_sender = 'shop@lienesbeauty.com'
   config.action_mailer.smtp_settings = {
       address: 'smtp.zoho.com',
       port: 465,
       domain: 'lienesbeauty.com',
-      user_name: 'sales@lienesbeauty.com',
-      password: 'Shop2017',
+      user_name: 'shop@lienesbeauty.com',
+      password: 'Lbeauty2017',
       authentication: :plain,
       ssl: true,
       enable_starttls_auto: true

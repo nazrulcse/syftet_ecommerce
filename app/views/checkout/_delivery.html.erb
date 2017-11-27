@@ -55,6 +55,12 @@
                           <span class="rate-name"><%= rate.name %></span>
                           <span class="badge rate-cost"><%= rate.display_cost.to_money(Syftet.config.currency).to_display %></span>
                         </label>
+                        <% if rate.name.downcase.include?('collection point') %>
+                            <div class="collection-points" style="display:<%= rate.selected ? 'block' : 'none' %>">
+                              <p>Collected From:</p>
+                              <%= form.select :collection_point, options_for_select(['New Market', 'Mitford', 'Chittagong', 'Tangail', 'Maymenshing']), {prompt: 'Select Collection Point'}, {class: 'form-control'} %>
+                            </div>
+                        <% end %>
                       </li>
                   <% end %>
                 </ul>
@@ -103,8 +109,17 @@
         <%= render 'orders/summary' %>
         <h4 class="public-title text-left mb10"> Shipping address </h4>
         <%= render 'checkout/shipping_address' %>
-        <%= submit_tag t(:save_and_continue), :class => 'btn btn-lg btn-success' %>
+        <%= submit_tag t(:save_and_continue), :class => 'place-order-btn' %>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $('.shipping-method label').click(function () {
+            $('.collection-points').hide();
+            $('#order_collection_point').val('');
+            $(this).parent().find('.collection-points').show();
+        });
+    });
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118090136) do
+ActiveRecord::Schema.define(version: 20171127074437) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "firstname"
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(version: 20171118090136) do
     t.decimal "included_tax_total", precision: 10, default: "0"
     t.decimal "additional_tax_total", precision: 10, default: "0"
     t.text "special_instructions"
+    t.string "collection_point"
   end
 
   create_table "payment_capture_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
