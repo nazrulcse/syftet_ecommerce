@@ -5,7 +5,8 @@
               <span class="icon icon-approve"></span>Approve
             </button>
         <% else %>
-            <%= event_links(order, events.delete('approve')) %>
+            <% events.delete('approve') %>
+            <%= event_links(order, events) %>
         <% end %>
     <% end %>
     <% if can?(:resend, order) %>
