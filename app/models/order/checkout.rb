@@ -295,6 +295,8 @@ class Order < Base
         #   }
         #
         def update_params_payment_source
+          p @updating_params[:order]
+          p @updating_params[:order][:payments_attributes]
           if @updating_params[:order] && (@updating_params[:order][:payments_attributes])
             @updating_params[:order][:payments_attributes] ||= [{}]
 

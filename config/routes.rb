@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         post :current_cart, on: :collection
         post :detail, on: :collection
         get :current_state, on: :collection
+        put :update_address, on: :member
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
         end
       end
       resources :line_items, only: [:destroy]
+
+      patch '/checkout/update/:state', to: 'checkout#update', as: :update_checkout
     end
   end
 
