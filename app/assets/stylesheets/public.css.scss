@@ -362,3 +362,10 @@ a {
     background-color: #555;
   }
 }
+
+#shopping-cart-doopdown {
+  .cart-item {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+  }
+}

@@ -15,7 +15,11 @@
     <%= render 'shared/breadscrumb', breadscrumb: generate_breadscrumb(@product.name, '', '', {products: products_path}) %>
 <% end %>
 
-<div class="mt20 clearfix">
+<%= link_to :back, class: 'btn btn-default', style: 'margin-top: -10px;' do %>
+    <i class="fa fa-angle-double-left"></i> Back
+<% end %>
+
+<div class="mt10 clearfix">
   <div class="col-sm-6 col-md-6 clearfix data-parent">
     <div class="clearfix">
       <div class="clearfix" id="product-thumb-image">
@@ -26,7 +30,6 @@
                   <a href="#" class="addtional-image" data-image="<%= image.attachment.url(:product) %>" data-zoom-image="<%= image.attachment.url(:large) %>">
                     <%= image_tag image.attachment.url(:small) || no_image, class: "img-fluid" %>
                   </a>
-                  <!--<img class='hidden' src="<%#= image.zoomable_image_link.present? ? image.zoomable_image_link : "#{image.image_link}?op_sharpen=1&fit=fit,1&$filterlrg$&wid=1200&hei=1467" %>" onerror="zoom_image_load_failed(this);"/>-->
                 </div>
             <% end %>
           </div>
@@ -41,16 +44,12 @@
       </div>
       <div class="social-share-btn">
         <label> Share "<%= @product.name %>" </label>
-        <%#= social_share_button_tag %>
         <%= render 'shared/social_share' %>
       </div>
     </div>
   </div>
 
   <div class="col-sm-6 col-md-6">
-    <%= link_to :back do %>
-        <i class="fa fa-angle-double-left"></i> Back
-    <% end %>
     <%= render 'products/details' %>
   </div>
 </div>
@@ -64,7 +63,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).on('turbolinks:load', function() {
+    $(document).on('turbolinks:load', function () {
         $('.product-thumb-wrapper').children(":first").find('a').addClass('product-active');
         $(".list-of-recomanded-product").slick({
             infinite: true,
