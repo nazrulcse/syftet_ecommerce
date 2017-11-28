@@ -38,7 +38,7 @@ class Search
       result_object = result_object.where('variants.color_image = ?', terms[:color])
     end
 
-    result_object.order(:created_at).distinct.page(page).per(Syftet.config.product_per_page)
+    result_object.order(:created_at).distinct.page(page).per(terms['per_page'] || Syftet.config.product_per_page)
   end
 
 
