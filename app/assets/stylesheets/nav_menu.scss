@@ -527,3 +527,10 @@
   transition: all 0.5s ease;
   z-index: 1000;
 }
+
+.search-category-container {
+  width: 100% !important;
+  select {
+    width: 100%;
+  }
+}
