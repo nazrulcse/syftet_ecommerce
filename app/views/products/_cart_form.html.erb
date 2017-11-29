@@ -12,7 +12,7 @@
               <ul class="color-section-ul-style clearfix">
                 <% all_variant.each do |v| %>
                     <li>
-                      <input type="radio" class="select_varient" id="radio_<%= v.id %>" data-color-name="<%= v.color %>" data-variant-price="<%= get_varient_price(v) %>" name="variant_id" value="<%= v.id %>"/>
+                      <input type="radio" class="select_varient" id="radio_<%= v.id %>" data-color-name="<%= v.color %>" data-variant-offer="<%= get_varient_offer(v) %>" data-variant-price="<%= get_varient_price(v) %>" name="variant_id" value="<%= v.id %>"/>
                       <label for="radio_<%= v.id %>">
                         <span class="color_image" style="<%= variant_color_image_option(v.color_image) %>">
                           <%= v.size %>
@@ -79,8 +79,10 @@
             id = $(this).val();
             var color_name = $(this).attr('data-color-name');
             var product_price = $(this).attr('data-variant-price');
+            var offer_price = $(this).attr('data-variant-offer');
             $('.color-name').html("Color:    " + color_name);
             $('.product-amount').html(product_price);
+            $('.discount-amount').html(offer_price);
             $("#product-gallery").html('').removeClass("slick-initialized slick-slider slick-vertical");
             $('.zoomContainer').remove();
             $.each(assets[id], function (indx, img) {

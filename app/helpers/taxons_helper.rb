@@ -73,7 +73,12 @@ module TaxonsHelper
     html + '</li>'
   end
 
-  def active_taxons
-    Taxon.joins(:taxonomy).where('taxons.parent_id IS NULL')
+  def active_taxons(taxonomy = nil)
+    if taxonomy
+      top_taxons = taxonomy.taxons
+    else
+      top_taxons = Taxon.joins(:taxonomy)
+    end
+    top_taxons.where('taxons.parent_id IS NULL')
   end
 end

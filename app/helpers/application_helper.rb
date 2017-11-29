@@ -64,6 +64,11 @@ module ApplicationHelper
     amount_with_currency(amount)
   end
 
+  def get_varient_offer(variant)
+    amount = variant.prices.first.original_price # Price.where(variant_id: variant_id).first.amount
+    amount_with_currency(amount)
+  end
+
   def money_conversion_rate
     1
   end
