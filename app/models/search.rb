@@ -38,7 +38,9 @@ class Search
       result_object = result_object.where('variants.color_image = ?', terms[:color])
     end
 
-    result_object.order(:created_at).distinct.page(page).per(terms['per_page'] || Syftet.config.product_per_page)
+    result_object = result_object.distinct
+    result_object = sort_by(result_object)
+    result_object.page(page).per(terms['per_page'] || Syftet.config.product_per_page)
   end
 
 
@@ -80,6 +82,20 @@ class Search
     end
 
     result_object.order(:created_at).distinct.page(page).per(Syftet.config.product_per_page_mobile_api)
+  end
+
+  def sort_by(result_object)
+    sort_result = result_object
+    case terms[:sort]
+      when 'price_low'
+        sort_result = result_object.reorder('prices.amount')
+      when 'price_high'
+        sort_result = result_object.reorder('prices.amount desc')
+      when 'rating'
+      else
+        sort_result = result_object.reorder('products.created_at desc')
+    end
+    sort_result
   end
 
 end
