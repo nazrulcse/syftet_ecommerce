@@ -14,12 +14,23 @@ class Search
       result_object = Product.joins(:variants).joins(:prices)
     end
 
-    if terms['q'] == 'new'
+    if terms['product_type'] == 'recent'
       result_object = result_object.where("products.created_at >= ?", 15.days.ago)
     end
 
-    if terms['q'] == 'discount'
+    if terms['product_type'] == 'sale'
       result_object = result_object.where('products.promotionable = true')
+    end
+
+    if terms['product_type'] == 'sale'
+      result_object = result_object.where('products.promotionable = true')
+    end
+
+    if terms['product_type'] == 'featured'
+      result_object = result_object.where('products.is_featured = true')
+    end
+    if terms['product_type'] == 'top_rate'
+      result_object = result_object.joins(:reviews).order("reviews.rating DESC")
     end
 
     if terms[:name]
@@ -54,7 +65,10 @@ class Search
     end
 
     if terms['q'] == 'featured'
-      result_object = result_object.where('products.is_featured = ?', true)
+      result_object = result_object.where('products.is_featured = true')
+      end
+    if terms['q'] == 'top_rate'
+      result_object = result_object.joins(:reviews).order("reviews.rating DESC")
     end
 
     if terms['q'] == 'new'
@@ -62,6 +76,9 @@ class Search
     end
 
     if terms['q'] == 'discount'
+      result_object = result_object.where('products.promotionable = true')
+      end
+    if terms['q'] == 'sale'
       result_object = result_object.where('products.promotionable = true')
     end
 
