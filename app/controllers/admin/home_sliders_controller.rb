@@ -11,6 +11,7 @@ module Admin
     end
 
     def new
+      @slider = HomeSlider.new
       respond_to do |format|
         format.html
       end

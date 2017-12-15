@@ -4,6 +4,7 @@ class HomeController < BaseController
     @new_arrivals = Product.new_arrivals
     @feedbacks = Feedback.order(id: :desc).limit(5)
     @blogs = Blog.all.order(:created_at).limit(3)
+    @sliders = HomeSlider.all
     # OrderMailer.confirm_email(8).deliver_now
   end
 
