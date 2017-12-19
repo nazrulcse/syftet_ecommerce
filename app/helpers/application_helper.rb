@@ -52,7 +52,7 @@ module ApplicationHelper
   end
 
   def current_currency
-    'bdt'
+    'gbp'
   end
 
   def get_all_variant(product)
@@ -74,7 +74,7 @@ module ApplicationHelper
   end
 
   def map_currency
-    'BDT'
+    'GBP'
   end
 
   def currency_symbol
@@ -213,8 +213,8 @@ module ApplicationHelper
     current_order.present? ? current_order.line_items.count : 0
   end
 
-  def amount_with_currency(amount, currency='৳')
-    "#{currency}#{amount}"
+  def amount_with_currency(amount, currency='£')
+    "#{currency}#{amount / 100.0}" if amount.present?
   end
 
   def discount_price(object)

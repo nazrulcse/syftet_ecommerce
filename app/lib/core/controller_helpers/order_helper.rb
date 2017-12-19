@@ -78,7 +78,7 @@ module Core
       end
 
       def current_currency
-        'bdt'
+        'gbp'
       end
 
       def find_order_by_token_or_user(options={}, with_adjustments = false)

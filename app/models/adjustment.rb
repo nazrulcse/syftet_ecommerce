@@ -73,7 +73,7 @@ class Adjustment < Base
   money_methods :amount
 
   def currency
-    adjustable ? adjustable.currency : Config[:currency]
+    'GBP'#adjustable ? adjustable.currency : Config[:currency]
   end
 
   def promotion?

@@ -21,7 +21,7 @@ class Price < Base
   self.whitelisted_ransackable_attributes = ['amount']
 
   def money
-    Money.new(amount || 0, currency)
+    Money.new(amount || 0, 'GBP')
   end
 
   def amount=(amount)
@@ -37,7 +37,7 @@ class Price < Base
 
   def display_price_including_vat_for(price_options)
     # Money.new(price_including_vat_for(price_options), currency: currency) TODO: Not consider tax this time
-    Money.new(price, currency)
+    Money.new(price, 'GBP')
   end
 
 # Remove variant default_scope `deleted_at: nil`
@@ -48,6 +48,6 @@ class Price < Base
   private
 
   def ensure_currency
-    self.currency ||= Syftet.config.currency
+    'GBP'#self.currency ||= Syftet.config.currency
   end
 end

@@ -4,7 +4,7 @@ module Syftet
                   :auto_capture, :properties_per_page, :require_master_price, :product_per_page_mobile_api, :paypal_currency, :currency_symbol
 
     def initialize
-      @currency = 'BDT'
+      @currency = 'GBP'
       @orders_per_page = 20
       @show_only_complete_orders_by_default = true
       @admin_product_per_page = 20
@@ -16,7 +16,7 @@ module Syftet
       @auto_capture = true
       @require_master_price = true
       @paypal_currency = 'USD'
-      @currency_symbol = '৳'
+      @currency_symbol = '£'
     end
   end
 end

@@ -63,7 +63,7 @@ class Api::V1::CheckoutController < Api::ApiBase
   end
 
   def current_currency
-    'bdt'
+    'gbp'
   end
 
   def find_cart_by_token_or_user

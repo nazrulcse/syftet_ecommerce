@@ -4,7 +4,6 @@ module DefaultPrice
 
   included do
     has_one :default_price,
-            -> { where currency: Syftet.config.currency },
             class_name: 'Price',
             dependent: :destroy
 
