@@ -1,22 +1,17 @@
 class Api::V1::UsersController < Api::ApiBase
+  before_action :load_user
 
-  # api :POST, '/v1/users/sign_in', 'Sign In'
-  def sign_in
+  def my_account
+    render json: {success: true, account_data: account_data}
   end
 
-  # api :POST, '/v1/users', 'Sign Up'
-  def sign_up
-  end
+  private
 
-  # api :PUT, '/v1/users', 'Update account'
-  def update
-  end
-
-  # api :DELETE, '/v1/users/sign_out', 'Sign Out'
-  def sign_out
-  end
-
-  # api :GET, '/v1/users/validate_token', 'Validate token'
-  def validate_token
+  def account_data
+    data = {
+        user: {email: @user.email, total_rewards: @user.total_rewards, available_rewards: @user.available_rewards},
+        rewards_points: @user.rewards_points,
+        orders: @user.orders.collect { |order| {number: order.number, id: order.id, status: order.state, amount: order.amount, date: order.created_at} }
+    }
   end
 end

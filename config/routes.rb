@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      mount_devise_token_auth_for 'User', at: 'users'
+      # mount_devise_token_auth_for 'User', at: 'users'
+      devise_for :users
       get 'home', to: 'home#index'
+      get 'my_account', to: 'users#my_account'
       resources :products, only: [:index, :show] do
         get 'filters', on: :collection
       end

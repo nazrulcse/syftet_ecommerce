@@ -20,4 +20,14 @@ class Api::ApiBase < ActionController::Base
       render :text => '', :content_type => 'text/plain'
     end
   end
+
+  def load_user
+    @user = User.find_by_tokens(params[:token])
+    if @user.present?
+      sign_in @user, bypass: true
+      warden.set_user @user
+    else
+      render json: {success: false, error: 'Invalid user'}
+    end
+  end
 end

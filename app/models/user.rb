@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  include DeviseTokenAuth::Concerns::User
+  # include DeviseTokenAuth::Concerns::User
 
   belongs_to :ship_address, class_name: 'Address', optional: true
   belongs_to :bill_address, class_name: 'Address', optional: true
@@ -40,6 +40,13 @@ class User < ApplicationRecord
 
   def total_rewards
     rewards_points.collect { |rp| rp.points > 0 ? rp.points : 0 }.sum
+  end
+
+  def authentication_token
+    token = SecureRandom.hex(32)
+    self.tokens = token
+    self.save
+    token
   end
 
   def available_rewards

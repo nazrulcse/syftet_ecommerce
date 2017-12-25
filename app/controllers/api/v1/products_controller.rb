@@ -14,6 +14,8 @@ class Api::V1::ProductsController < Api::ApiBase
         avg_rating: product.avg_rating,
         preview_image: product.preview_image_url,
         price: product.price,
+        point: product.credit_point,
+        promotion: product.promotionable,
         discount_price: product.discount_price,
         is_favourited: product.is_favourite?(params[:user_id]),
         total_on_hand: product.total_on_hand,
