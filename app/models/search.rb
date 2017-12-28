@@ -33,7 +33,7 @@ class Search
       result_object = result_object.joins(:reviews).order("reviews.rating DESC")
     end
 
-    if terms[:name]
+    if terms[:name].present?
       result_object = result_object.where("lower(name) like '%#{terms[:name]}%'")
     end
 
@@ -41,11 +41,11 @@ class Search
       result_object = result_object.where("prices.amount between #{terms[:min]} and #{terms[:max]}")
     end
 
-    if terms[:size]
+    if terms[:size].present?
       result_object = result_object.where("variants.size = '#{terms[:size]}'")
     end
 
-    if terms[:color]
+    if terms[:color].present?
       result_object = result_object.where('variants.color_image = ?', terms[:color])
     end
 
