@@ -78,7 +78,8 @@ class Api::V1::ProductsController < Api::ApiBase
     details = reviews.group(:rating).count
     (1..5).each do |i|
       if details[i].present?
-        details[i] = (details[i] / total) * 100
+        per = (details[i] / total.to_f) * 100
+        details[i] = per
       else
         details[i] = 0
       end
