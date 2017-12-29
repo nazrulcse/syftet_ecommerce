@@ -56,7 +56,7 @@ class Api::V1::ProductsController < Api::ApiBase
 
     product.variants.each do |varient|
       response[:varients] << {
-          info: varient.as_json(only: [:id, :sku, :product_id, :color, :color_image]),
+          info: varient.as_json(only: [:id, :sku, :product_id, :color, :color_image, :size]),
           images: []
       }
       varient.images.order(:id).each do |image|

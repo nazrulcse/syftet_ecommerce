@@ -28,7 +28,9 @@ Rails.application.routes.draw do
           put :ship
         end
       end
-      resources :line_items, only: [:destroy]
+      resources :line_items do
+        post :remove_item, on: :collection
+      end
 
       patch '/checkout/update/:state', to: 'checkout#update', as: :update_checkout
     end
