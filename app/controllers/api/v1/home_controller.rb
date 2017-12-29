@@ -23,6 +23,7 @@ class Api::V1::HomeController < Api::ApiBase
     product_objects.each do |product|
       result << {
           id: product.id,
+          master_id: product.master.id,
           name: product.name,
           price: product.price,
           discount_price: product.discount_price,
@@ -30,6 +31,7 @@ class Api::V1::HomeController < Api::ApiBase
           preview_image: product.preview_image_url,
           promotion: product.promotionable,
           point: product.credit_point,
+          is_favourited: product.is_favourite?(params[:user_id]),
       }
     end
     result
