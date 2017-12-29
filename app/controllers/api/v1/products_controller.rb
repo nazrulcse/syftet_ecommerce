@@ -10,6 +10,7 @@ class Api::V1::ProductsController < Api::ApiBase
     products.each do |product|
       response[:products] << {
           id: product.id,
+          master_id: product.master.id,
           name: product.name,
           avg_rating: product.avg_rating,
           preview_image: product.preview_image_url,
@@ -32,6 +33,7 @@ class Api::V1::ProductsController < Api::ApiBase
 
     response = {
         id: product.id,
+        master_id: product.master.id,
         name: product.name,
         description: product.description,
         avg_rating: product.avg_rating,
