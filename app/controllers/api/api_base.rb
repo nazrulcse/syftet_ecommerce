@@ -24,8 +24,9 @@ class Api::ApiBase < ActionController::Base
   def load_user
     @user = User.find_by_tokens(params[:token])
     if @user.present?
-      sign_in @user, bypass: true
+      bypass_sign_in(@user)
       warden.set_user @user
+      @current_user = @user
     else
       render json: {success: false, error: 'Invalid user'}
     end

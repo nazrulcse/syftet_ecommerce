@@ -29,6 +29,7 @@ class Search
     if terms['product_type'] == 'featured'
       result_object = result_object.where('products.is_featured = true')
     end
+
     if terms['product_type'] == 'top_rate'
       result_object = result_object.joins(:reviews).order("reviews.rating DESC")
     end
