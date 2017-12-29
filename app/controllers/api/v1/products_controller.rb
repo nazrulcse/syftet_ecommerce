@@ -36,13 +36,14 @@ class Api::V1::ProductsController < Api::ApiBase
         description: product.description,
         avg_rating: product.avg_rating,
         price: product.price,
+        point: product.credit_point,
         discount_price: product.discount_price,
         is_favourited: product.is_favourite?(params[:user_id]),
         total_on_hand: product.total_on_hand,
         total_review: reviews.count,
         user_review: product.user_review(params[:user_id]),
         images: [],
-        rating_detail: reviews.group(:rating).count,
+        rating_detail: rating_per(reviews),
         categories: product.taxons.as_json(only: [:id, :name]),
         varients: []
     }
@@ -68,6 +69,19 @@ class Api::V1::ProductsController < Api::ApiBase
     end
 
     render json: response
+  end
+
+  def rating_per(reviews)
+    total = reviews.count || 1
+    details = reviews.group(:rating).count
+    (1..5).each do |i|
+      if details[i].present?
+        details[i] = (details[i] / total) * 100
+      else
+        details[i] = 0
+      end
+    end
+    details
   end
 
   def filters
