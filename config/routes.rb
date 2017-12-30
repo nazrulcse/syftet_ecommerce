@@ -14,9 +14,11 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :show] do
         get 'filters', on: :collection
       end
-      resources :wishlists, only: [:index, :create]
+      resources :wishlists, only: [:index, :create] do
+        get :remove
+      end
       resources :contacts, only: [:create]
-      resources :orders, only: [:index, :update] do
+      resources :orders, only: [:index, :update, :show] do
         post :populate, on: :collection
         post :current_cart, on: :collection
         post :detail, on: :collection

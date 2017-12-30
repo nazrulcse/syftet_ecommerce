@@ -1,5 +1,5 @@
 class OrdersController < StoreController
-  before_action :check_authorization, except: [:reset]
+  before_action :check_authorization, except: [:reset, :show]
   before_action :apply_coupon_code, only: :update
   rescue_from ActiveRecord::RecordNotFound, :with => :page_not_found
   helper 'products', 'orders'

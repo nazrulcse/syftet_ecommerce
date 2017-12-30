@@ -15,6 +15,7 @@ class Api::V1::WishlistsController < Api::ApiBase
       if product.present?
         response[:products] << {
             id: product.id,
+            wish_id: wishlist.id,
             name: product.name,
             avg_rating: product.avg_rating,
             preview_image: product.preview_image_url,
@@ -37,8 +38,16 @@ class Api::V1::WishlistsController < Api::ApiBase
     render json: {status: status}
   end
 
-  def destroy
-    wishlist = @user.wishlists.find_or_initialize_by(product_id: params[:product_id])
+  def remove
+    wishlist = @user.wishlists.find_by_id(params[:wishlist_id])
+    if wishlist
+      status = wishlist.destroy ? true : false
+      message = status ? 'Wishlist removed' : 'Unable to remove from wishlist'
+    else
+      status = false
+      message = 'Wishlist not found'
+    end
+    render json: {success: status, message: message}
   end
 
 end
