@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         post :detail, on: :collection
         get :current_state, on: :collection
         put :update_address, on: :member
+        post :update_order, on: :collection
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
