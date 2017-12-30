@@ -16,12 +16,13 @@ Rails.application.routes.draw do
       end
       resources :wishlists, only: [:index, :create]
       resources :contacts, only: [:create]
-      resources :orders, only: [:index, :update] do
+      resources :orders, only: [:index] do
         post :populate, on: :collection
         post :current_cart, on: :collection
         post :detail, on: :collection
         get :current_state, on: :collection
         put :update_address, on: :member
+        post :update_order, on: :collection
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do

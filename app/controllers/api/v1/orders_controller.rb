@@ -59,15 +59,15 @@ class Api::V1::OrdersController < Api::ApiBase
     }
   end
 
-  def update
-    order = Order.find_by_id(params[:id])
+  def update_order
+    order = Order.find_by_id(params[:order_id])
     error = ''
     total = line_item_total = 0.0
     item_count = line_item_count = 0
     if order.present?
       line_item = order.line_items.find_by_id(params[:line_item_id])
-      if line_item && params[:quantity]
-        add_or_remove_quantity = params[:quantity].to_i
+      if line_item && params[:quantity].present? && line_item.quantity.present?
+        add_or_remove_quantity = params[:quantity].to_i - line_item.quantity.to_i
         existing_quantity = line_item.quantity + add_or_remove_quantity
         if add_or_remove_quantity > 0
           line_item = order.contents.add(line_item.variant, add_or_remove_quantity, {})
