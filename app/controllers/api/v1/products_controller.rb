@@ -43,7 +43,7 @@ class Api::V1::ProductsController < Api::ApiBase
         is_favourited: product.is_favourite?(params[:user_id]),
         total_on_hand: product.total_on_hand,
         total_review: reviews.count,
-        user_review: product.user_review(params[:user_id]),
+        user_reviews: reviews,
         images: [],
         rating_detail: rating_per(reviews),
         categories: product.taxons.as_json(only: [:id, :name]),
