@@ -22,9 +22,10 @@ Rails.application.routes.draw do
         post :populate, on: :collection
         post :current_cart, on: :collection
         post :detail, on: :collection
-        get :current_state, on: :collection
-        put :update_address, on: :member
+        post :current_state, on: :collection
+        post :update_address, on: :collection
         post :update_order, on: :collection
+        post :get_ship_address, on: :collection
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
