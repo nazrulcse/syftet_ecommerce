@@ -1,26 +1,27 @@
 class Api::V1::CheckoutController < Api::ApiBase
 
-  include Core::ControllerHelpers::StrongParameters
+  #include Core::ControllerHelpers::StrongParameters
 
-  before_action :set_user, only: :update
-  before_action :load_order, only: :update
+  before_action :set_user, only: :update_order
+  before_action :load_order, only: :update_order
   before_action :set_state_if_present
   before_action :ensure_order_not_completed
   before_action :ensure_checkout_allowed
   before_action :ensure_valid_state
   before_action :associate_user
   before_action :setup_for_current_state
-  before_action :add_store_credit_payments, only: [:update]
+  before_action :add_store_credit_payments, only: [:update_order]
 
   def update_order
     if !@error.present? && @order.present?
+      p 'jasdasdahs'
       cur_order = @order
-      if @order.update_from_params(order_update_params, permitted_checkout_attributes, request.headers.env)
+      if @order.update_from_params(params, nil, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
         if @order.next
           cur_order = nil if @order.completed? && !@order.payment_failed?
         else
-          error = @order.errors.full_messages.join("\n")
+          @error = @order.errors.full_messages.join("\n")
           ######@order.state
         end
       else
@@ -28,13 +29,13 @@ class Api::V1::CheckoutController < Api::ApiBase
         @order.errors.each do |key, msg|
           message.push("#{key.to_s.gsub('.', ' ').humanize} #{msg}")
         end
-        error = message.join("\n")
+        @error = message.join("\n")
       end
     end
 
     render json: {
-        status: !error.present?,
-        error: error,
+        status: !@error.present?,
+        error: @error,
         state: @order.present? ? @order.state : '',
         has_order: cur_order.present?,
         has_failed: params[:failed_id].present?,
@@ -237,6 +238,7 @@ class Api::V1::CheckoutController < Api::ApiBase
   end
 
   def set_user
+    p 'set user'
     @user = User.find_by_tokens(params[:token])
     if @user.present?
       bypass_sign_in(@user)
