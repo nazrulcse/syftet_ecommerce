@@ -37,7 +37,7 @@ Rails.application.routes.draw do
         post :remove_item, on: :collection
       end
 
-      patch '/checkout/update/:state', to: 'checkout#update', as: :update_checkout
+      post '/checkout/update_order/:state', to: 'checkout#update_order', as: :update_checkout
     end
   end
 
