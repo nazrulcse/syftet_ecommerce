@@ -216,8 +216,8 @@ class Api::V1::CheckoutController < Api::ApiBase
       end
     end
 
-    if current_user && current_user.respond_to?(:payment_sources)
-      @payment_sources = current_user.payment_sources
+    if @current_user && @current_user.respond_to?(:payment_sources)
+      @payment_sources = @current_user.payment_sources
     end
   end
 
