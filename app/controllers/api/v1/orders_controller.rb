@@ -21,6 +21,61 @@ class Api::V1::OrdersController < Api::ApiBase
     render json: response
   end
 
+  def show
+    @order = Order.includes(:bill_address, :ship_address, line_items: [variant: [:option_values, :images, :product]]).find_by_number!(params[:id])
+    shipment_address = @order.ship_address
+    bill_address = @order.bill_address
+    line_items = []
+    @order.line_items.each do |line_item|
+      product = line_item.product
+      variant = line_item.variant
+      line_items << {
+          id: line_item.id,
+          quantity: line_item.quantity,
+          product_id: product.id,
+          variant_id: variant.id,
+          name: product.name,
+          price: product.price,
+          preview_image: product.preview_image_url,
+          color_image: variant.color_image,
+          size: variant.size,
+          total: line_item.total
+      }
+    end
+    render json: {
+        just_completed: false,
+        bill_address: {
+            name: bill_address.full_name,
+            address: bill_address.address1,
+            city: bill_address.city,
+            state: bill_address.state,
+            zipcode: bill_address.zipcode,
+            country: bill_address.country,
+            phone: bill_address.phone
+        },
+        ship_address: {
+            name: shipment_address.full_name,
+            address: shipment_address.address1,
+            city: shipment_address.city,
+            state: shipment_address.state,
+            zipcode: shipment_address.zipcode,
+            country: shipment_address.country,
+            phone: shipment_address.phone
+        },
+        line_items: line_items,
+        amount: @order.amount,
+        is_promotional: @order.promotions.present?,
+        adjustment_total: @order.adjustment_total,
+        shipment: @order.shipments.present? ? shipping_method(@order.shipments) : '',
+        total: @order.total,
+        id: @order.id,
+        number: @order.number,
+        email: @order.email,
+        collection_point: @order.collection_point,
+        special_instructions: @order.special_instructions
+    }
+  end
+
   def detail
     cart = find_cart_by_token_or_user
 
