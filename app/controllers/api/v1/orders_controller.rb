@@ -72,7 +72,8 @@ class Api::V1::OrdersController < Api::ApiBase
         number: @order.number,
         email: @order.email,
         collection_point: @order.collection_point,
-        special_instructions: @order.special_instructions
+        special_instructions: @order.special_instructions,
+        state: @order.state
     }
   end
 
