@@ -44,24 +44,8 @@ class Api::V1::OrdersController < Api::ApiBase
     end
     render json: {
         just_completed: false,
-        bill_address: {
-            name: bill_address.full_name,
-            address: bill_address.address1,
-            city: bill_address.city,
-            state: bill_address.state,
-            zipcode: bill_address.zipcode,
-            country: bill_address.country,
-            phone: bill_address.phone
-        },
-        ship_address: {
-            name: shipment_address.full_name,
-            address: shipment_address.address1,
-            city: shipment_address.city,
-            state: shipment_address.state,
-            zipcode: shipment_address.zipcode,
-            country: shipment_address.country,
-            phone: shipment_address.phone
-        },
+        bill_address: address_hash(bill_address),
+        ship_address: address_hash(shipment_address),
         line_items: line_items,
         amount: @order.amount,
         is_promotional: @order.promotions.present?,
@@ -379,15 +363,7 @@ class Api::V1::OrdersController < Api::ApiBase
 
       shipment_address = order.ship_address
 
-      ship_address = {
-          name: shipment_address.full_name,
-          address: shipment_address.address1,
-          city: shipment_address.city,
-          state: shipment_address.state,
-          zipcode: shipment_address.zipcode,
-          country: shipment_address.country,
-          phone: shipment_address.phone
-      }
+      ship_address = address_hash(shipment_address)
 
       collection_point = order.collection_point
     else
@@ -412,7 +388,48 @@ class Api::V1::OrdersController < Api::ApiBase
     }
   end
 
+  def get_payment_info
+    @order = find_cart_by_token_or_user
+    shipment_address = @order.ship_address
+    bill_address = @order.bill_address
+
+    render json: {
+        bill_address: address_hash(bill_address),
+        ship_address: address_hash(shipment_address),
+        amount: @order.amount,
+        is_promotional: @order.promotions.present?,
+        adjustment_total: @order.adjustment_total,
+        shipment: @order.shipments.present? ? shipping_method(@order.shipments) : '',
+        total: @order.total,
+        id: @order.id,
+        number: @order.number,
+        email: @order.email,
+        collection_point: @order.collection_point,
+        special_instructions: @order.special_instructions,
+        state: @order.state,
+        paypal_amount: @order.display_total.exchange_to(Syftet.config.paypal_currency).cents,
+        payment_methods: {
+            credit_point: payment_method('PaymentMethod::CreditPoint'),
+            paypal_express: payment_method('PaymentMethod::PayPalExpress'),
+            cash: payment_method('PaymentMethod::Cash')
+        }
+    }
+  end
+
+
   private
+
+  def address_hash(address)
+    {
+        name: address.full_name,
+        address: address.address1,
+        city: address.city,
+        state: address.state,
+        zipcode: address.zipcode,
+        country: address.country,
+        phone: address.phone
+    }
+  end
 
   def ship_address_params
     { firstname: params[:ship_address][:firstname], last_name: params[:ship_address][:lastname], address1: params[:ship_address][:address1], city: params[:ship_address][:city], zipcode: params[:ship_address][:zipcode], phone: params[:ship_address][:phone], state: params[:ship_address][:state], country: params[:ship_address][:country] }
@@ -494,5 +511,10 @@ class Api::V1::OrdersController < Api::ApiBase
     return '' unless shipping_rate.present?
     shipping_method = shipping_rate.shipping_method
     shipping_method.name + "(৳#{shipping_rate.cost})"
+  end
+
+  def payment_method(type)
+    payment_method = PaymentMethod.find_by_type(type)
+    payment_method.present? ? payment_method.id : 0
   end
 end

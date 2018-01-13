@@ -45,7 +45,7 @@
                 <tr>
                   <td style="border-bottom: none; padding: 15px 0;">
                     <% if item.variant.present? %>
-                        <img src="<%= item.variant.images.present? ? item.variant.images.first.image_link : 'assets/not_available.png' %>" alt="product image"/>
+                        <img src="<%= item.variant.images.present? ? item.variant.images.first.mini_url : 'assets/not_available.png' %>" alt="product image"/>
                     <% end %>
                   </td>
                   <td style="border-bottom: none; padding-left: 10px;">

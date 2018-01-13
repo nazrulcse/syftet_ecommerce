@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         post :update_order, on: :collection
         post :get_ship_address, on: :collection
         post :get_shipments, on: :collection
+        post :get_payment_info, on: :collection
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
