@@ -390,6 +390,7 @@ class Api::V1::OrdersController < Api::ApiBase
 
   def get_payment_info
     @order = find_cart_by_token_or_user
+    user = User.find_by_id(params[:user_id])
     shipment_address = @order.ship_address
     bill_address = @order.bill_address
 
@@ -408,6 +409,7 @@ class Api::V1::OrdersController < Api::ApiBase
         special_instructions: @order.special_instructions,
         state: @order.state,
         paypal_amount: @order.display_total.exchange_to(Syftet.config.paypal_currency).cents,
+        available_rewards: user.present? ? user.available_rewards : 0,
         payment_methods: {
             credit_point: payment_method('PaymentMethod::CreditPoint'),
             paypal_express: payment_method('PaymentMethod::PayPalExpress'),

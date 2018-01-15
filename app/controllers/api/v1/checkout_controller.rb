@@ -18,8 +18,10 @@ class Api::V1::CheckoutController < Api::ApiBase
       cur_order = @order
       if @order.update_from_params(params, nil, request.headers.env)
         @order.temporary_address = !params[:save_user_address]
+        express_payment if params[:payer_id].present?
         if @order.next
           cur_order = nil if @order.completed? && !@order.payment_failed?
+          # express_payment if params[:payer_id].present?
         else
           @error = @order.errors.full_messages.join("\n")
           ######@order.state
@@ -44,6 +46,15 @@ class Api::V1::CheckoutController < Api::ApiBase
   end
 
   private
+
+  def express_payment
+    @order.payments.create!({
+                                source: PaypalExpressCheckout.create({payer_id: params[:payer_id]}),
+                                state: 'completed',
+                                amount: @order.total,
+                                payment_method: payment_method('PaymentMethod::PayPalExpress')
+                            })
+  end
 
   def ensure_valid_state
     if @order.present?
@@ -246,4 +257,8 @@ class Api::V1::CheckoutController < Api::ApiBase
       @current_user = @user
     end
   end
+  def payment_method(type)
+    PaymentMethod.find_by_type(type)
+  end
+
 end
