@@ -2,13 +2,18 @@ class Search
   attr_accessor :taxon, :terms, :page
 
   def initialize(params, taxon = nil)
+    p taxon
     self.terms = params
     self.taxon = taxon
     self.page = params[:page] || 1
   end
 
   def result
-    if @taxon.present?
+    p '********************************'
+    p taxon
+    if taxon.present?
+      p 'taxon present'
+      p taxon
       result_object = taxon.products.joins(:variants).joins(:prices)
     else
       result_object = Product.joins(:variants).joins(:prices)

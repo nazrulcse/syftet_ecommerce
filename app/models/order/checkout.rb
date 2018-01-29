@@ -225,7 +225,7 @@ class Order < Base
             # rails would slice parameters containg ruby objects, apparently
             # existing_card_id = @updating_params[:order] ? @updating_params[:order].delete(:existing_card) : nil
             update_params_payment_source
-            attributes = @updating_params[:order] ? @updating_params[:order].permit(permitted_params).delete_if { |_k, v| v.nil? } : {}
+            attributes = @updating_params[:order] ? @updating_params[:order].permit!.delete_if { |_k, v| v.nil? } : {}
 
             success = update_attributes(attributes)
             set_shipments_cost if shipments.any?

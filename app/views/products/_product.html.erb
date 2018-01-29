@@ -13,7 +13,9 @@
     <div class="button-action clearfix">
       <div class="button-groups">
         <div class="add-cart">
-          <%= render 'products/shared/add_to_cart_form', product: product %>
+          <% if product.total_on_hand > 0 %>
+            <%= render 'products/shared/add_to_cart_form', product: product %>
+          <% end %>
         </div>
         <div class="wrap-acction-group">
           <div class="quick-view hidden-xs hidden-sm">
@@ -24,7 +26,7 @@
 
           <div class="yith-compare">
             <%= link_to product_compare_path(product), title: 'Add to compare', class: 'compare', remote: true do %>
-                <i class="fa fa-refresh"></i>
+              <i class="fa fa-refresh"></i>
             <% end %>
           </div>
         </div>
@@ -32,7 +34,7 @@
     </div>
   </figure>
   <% if product.promotionable %>
-      <div class="promo-badge">Sale!</div>
+    <div class="promo-badge">Sale!</div>
   <% end %>
   <div class="meta">
     <h3 class="name">
@@ -46,10 +48,10 @@
         </div>
       </div>
       <% if product.credit_point > 0 %>
-          <div class="rewards-point-wrapper" title="You will get <%= product.credit_point %> rewards point, If you purchased this product.">
-            <%= image_tag('trophy.png') %> <%= product.credit_point %>
-            <i class="fa fa-info-circle btn" data-container="body" data-toggle="popover" data-placement="top" data-content="You will get <%= product.credit_point %> rewards point, If you purchased this product."></i>
-          </div>
+        <div class="rewards-point-wrapper" title="You will get <%= product.credit_point %> rewards point, If you purchased this product.">
+          <%= image_tag('trophy.png') %> <%= product.credit_point %>
+          <i class="fa fa-info-circle btn" data-container="body" data-toggle="popover" data-placement="top" data-content="You will get <%= product.credit_point %> rewards point, If you purchased this product."></i>
+        </div>
       <% end %>
       <span class="price">
             <span class="amount">

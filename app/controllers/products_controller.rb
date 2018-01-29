@@ -85,7 +85,7 @@ class ProductsController < StoreController
     review = product.reviews.build(review_params)
     review.user_id = current_user.id if current_user.present?
     if review.save
-      flash[:success] = 'Review successfully submitted for admin approval'
+      flash[:success] = 'Review successfull.'
     else
       flash[:error] = review.errors.first
     end

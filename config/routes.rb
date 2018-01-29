@@ -26,6 +26,8 @@ Rails.application.routes.draw do
         post :update_address, on: :collection
         post :update_order, on: :collection
         post :get_ship_address, on: :collection
+        post :get_shipments, on: :collection
+        post :get_payment_info, on: :collection
       end
       resources :reviews, only: [:index, :create, :update, :destroy]
       resources :shipments, only: [:create, :update] do
@@ -37,7 +39,7 @@ Rails.application.routes.draw do
         post :remove_item, on: :collection
       end
 
-      patch '/checkout/update/:state', to: 'checkout#update', as: :update_checkout
+      post '/checkout/update_order/:state', to: 'checkout#update_order', as: :update_checkout
     end
   end
 

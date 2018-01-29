@@ -10,7 +10,7 @@
         </div>
       </div>
       <span>
-        <a data-toggle="tab" href="#tab-reviews"> - <%= pluralize(@product.reviews.count, 'review') %> </a>
+        <a id="product-review-count" style="cursor: pointer;"> - <%= pluralize(@product.reviews.count, 'review') %> </a>
       </span>
     </div>
 
@@ -50,6 +50,12 @@
 
 <script type="text/javascript">
     $(function () {
-        $('[data-toggle="popover"]').popover()
+        $('[data-toggle="popover"]').popover();
+        $('#product-review-count').click(function () {
+            $('#description-rating-tabs a[href="#tab-reviews"]').tab('show');
+            $('html, body').animate({
+                scrollTop: $("#description-rating-tabs").offset().top - 150
+            }, 500);
+        });
     });
 </script>

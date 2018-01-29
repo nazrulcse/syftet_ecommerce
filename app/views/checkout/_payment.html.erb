@@ -14,14 +14,14 @@
 
         <div class="tabs-wrapper">
           <ul class="nav nav-tabs">
+            <!--<li class="active">-->
+              <!--<a data-toggle="tab" href="#card">-->
+                <!--<label for="payment-ssl">-->
+                  <!--<i class="fa fa-credit-card"></i> SSL Commerz-->
+                <!--</label>-->
+              <!--</a>-->
+            <!--</li>-->
             <li class="active">
-              <a data-toggle="tab" href="#card">
-                <label for="payment-ssl">
-                  <i class="fa fa-credit-card"></i> SSL Commerz
-                </label>
-              </a>
-            </li>
-            <li>
               <a data-toggle="tab" href="#paypal">
                 <i class="fa fa-paypal"></i> Paypal
               </a>
@@ -39,13 +39,13 @@
           </ul>
 
           <div class="tab-content">
-            <div id="card" class="tab-pane fade in active">
-              <h3>HOME</h3>
+            <!--<div id="card" class="tab-pane fade in active">-->
+              <!--<h3>HOME</h3>-->
 
-              <p>Some content.</p>
-            </div>
+              <!--<p>Some content.</p>-->
+            <!--</div>-->
 
-            <div id="paypal" class="tab-pane fade">
+            <div id="paypal" class="tab-pane fade in active">
               <h3>Checkout With Paypal</h3>
 
               <%= link_to(image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_express_url(:payment_method_id => payment_method('PaymentMethod::PayPalExpress')), :method => :post, :id => "paypal_button") %>

@@ -55,7 +55,23 @@ class PaymentMethod::CreditPoint < PaymentMethod
   end
 
   def update_rewards_points(amount, reason, order)
-    RewardsPoint.create(order_id: order.id, points: amount, reason: reason, user_id: order.user_id)
+    p '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+    p order
+    p order[:order_id]
+    p order[:order_id].slice(0..(order[:order_id].rindex('-')))
+
+    order_id = 0
+    user_id = 0
+
+    reward_order = Order.find_by_number(order[:order_id].slice(0..(order[:order_id].rindex('-') - 1)))
+
+    p reward_order.inspect
+    if reward_order.present?
+      order_id = reward_order.id
+      user_id = reward_order.user_id
+    end
+
+    RewardsPoint.create(order_id: order_id, points: amount, reason: reason, user_id: user_id)
   end
 
 end
