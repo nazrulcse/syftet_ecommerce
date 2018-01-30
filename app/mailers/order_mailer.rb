@@ -7,6 +7,9 @@ class OrderMailer < ApplicationMailer
     @order = order.respond_to?(:id) ? order : Order.find(order)
     subject = "Your Liene's Beauty Order Confirmation"
     mail(to: @order.email, subject: subject, delivery_method_options: Order::ORDER_SMTP)
+    unless resend
+      mail(to: 'shop@lienesbeauty.com', subject: "New order received from www.lienesbeauty.com", delivery_method_options: Order::ORDER_SMTP)
+    end
   end
 
   def update_order(order)
