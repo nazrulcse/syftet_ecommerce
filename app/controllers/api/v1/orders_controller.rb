@@ -1,24 +1,40 @@
 class Api::V1::OrdersController < Api::ApiBase
   include Core::TokenGenerator
 
+  before_action :load_user, only: [:index]
+
   def index
-    user = User.find_by_id(params[:user_id])
     response = []
 
-    user.orders.each do |order|
+    @user.orders.each do |order|
+      item_count = order.line_items.count
+      if item_count > 0
+        product = order.line_items.first.product
+        image = product.preview_image_url
+        name = product.name
+      else
+        image = ''
+        name = ''
+      end
       response << {
           id: order.id,
           number: order.number,
-          amount: order.amount,
-          items: order.line_items.count,
+          items: item_count,
+          image: image,
+          name: name,
           order_state: order.state,
           payment_state: order.payment_state,
           shipment_state: order.shipment_state,
-          created_at: order.created_at
+          completed_at: order.completed_at,
+          shipment_date: order.shipment_date,
+          shipped_at: order.shipped_at
       }
     end
 
-    render json: response
+    render json: {
+        success: true,
+        orders: response
+    }
   end
 
   def show

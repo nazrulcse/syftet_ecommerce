@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'my_account', to: 'users#my_account'
       resources :products, only: [:index, :show] do
         get 'filters', on: :collection
+        get 'get_names', on: :collection
       end
       resources :wishlists, only: [:index, :create] do
         get :remove

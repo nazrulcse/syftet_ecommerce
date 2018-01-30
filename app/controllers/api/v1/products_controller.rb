@@ -30,6 +30,11 @@ class Api::V1::ProductsController < Api::ApiBase
     render json: response
   end
 
+  def get_names
+    products = Product.where("lower(name) like '%#{params[:name]}%'")
+    render json: products.as_json(only: :name)
+  end
+
   def show
     product = Product.includes(:reviews, :taxons, :wishlists).find_by_id(params[:id])
     reviews = product.reviews
@@ -91,11 +96,11 @@ class Api::V1::ProductsController < Api::ApiBase
   end
 
   def filters
-    variants = Variant.all
+    #variants = Variant.all
     render json: {
         categories: Taxon.where('parent_id IS NULL').as_json(only: [:id, :name]),
-        colors: variants.where.not(color_image: nil).pluck(:color_image).uniq.as_json,
-        sizes: variants.where.not(size: '').pluck(:size).uniq.as_json
+        colors: [],#variants.where.not(color_image: nil).pluck(:color_image).uniq.as_json,
+        sizes: []#variants.where.not(size: '').pluck(:size).uniq.as_json
     }
   end
 
