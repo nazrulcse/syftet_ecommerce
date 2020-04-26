@@ -4,7 +4,9 @@
       <div class="col-sm-3">
         <div class="kc-col-container">
           <div class="kc_shortcode kc_single_image effect-default">
-            <a href="#" title="" target="_self"><img src="http://venusdemo.com/wordpress/pi/wp-content/uploads/2017/06/banner6.jpg" class="" alt="banner"></a>
+            <a href="#" title="" target="_self">
+              <%= image_tag('small_new.jpg', style: 'width: 100%;') %>
+            </a>
           </div>
         </div>
       </div>
@@ -24,9 +26,9 @@
 
           <div class="product-slider product-lists clearfix">
             <% @new_arrivals.each do |product| %>
-                <div class="col-sm-3">
-                  <%= render 'products/product', product: product %>
-                </div>
+              <div class="col-sm-3">
+                <%= render 'products/product', product: product %>
+              </div>
             <% end %>
           </div>
         </div>
