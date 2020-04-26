@@ -637,8 +637,8 @@ ActiveRecord::Schema.define(version: 20171127074437) do
     t.string "meta_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "lft"
-    t.integer "rgt"
+    t.integer "lft", default: 0
+    t.integer "rgt", default: 0
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

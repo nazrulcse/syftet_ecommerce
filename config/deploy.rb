@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.9.0'
 
-set :application, 'syftet_ecommerce'
+set :application, 'hebary'
 set :repo_url, 'git@github.com:nazrulcse/syftet_ecommerce.git'
 
 # Default branch is :master
@@ -24,7 +24,7 @@ set :rvm_ruby, '2.3.1'
 
 # Default value for :pty is false
 # set :pty, true
-server '128.199.207.10',
+server '144.91.124.138',
        :user => 'deployer',
        :roles => %w{web app db}
 

@@ -1,5 +1,5 @@
 <% content_for :slider do %>
-    <%= render 'shared/top_slider' %>
+  <%= render 'shared/top_slider' %>
 <% end %>
 <%= render 'top_category_promo' %>
 
@@ -10,14 +10,14 @@
 
   <div class="product-lists clearfix">
     <% @featured_products.each do |product| %>
-        <div class="product-wrapper product col-sm-6 col-md-3">
-          <%= render 'products/product', product: product %>
-        </div>
+      <div class="product-wrapper product col-sm-6 col-md-3">
+        <%= render 'products/product', product: product %>
+      </div>
     <% end %>
   </div>
   <div class="view-more-products">
     <%= link_to products_path, class: 'btn-more' do %>
-        <%= t(:view_more) %> <i class="fa fa-plus"></i>
+      <%= t(:view_more) %> <i class="fa fa-plus"></i>
     <% end %>
   </div>
 </section>
@@ -27,9 +27,9 @@
   <div class="hidden-xs">
     <div class="col-sm-12">
       <div class="col-sm-12">
-        <div class="effect-v3">
-          <a href="#" title="">
-            <img src="http://venusdemo.com/wordpress/pi/wp-content/uploads/2017/02/banner4.jpg" class="slider-image-fluid" alt="banner">
+        <div class="effect-v3x" style="text-align: center">
+          <a href="/producst">
+            <%= image_tag('kitchen_appliance_trends.jpg', style: "max-width: 100%") %>
           </a>
         </div>
       </div>
@@ -44,7 +44,7 @@
         <div class="col-inner-container row">
           <div class="call-to-action">
             <div class="cta-desc">
-              <h2>we love bags</h2>
+              <h2>we love kitchen appliance</h2>
 
               <div class="cta-text">A professional-looking tote for your everyday needs! This Wilsons Leather
                 tote has a canvas look with genuine leather trim and a structured silhouette. Its shiny gold-tone
@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="cta-button">
-              <a href="#">
+              <a href="/products">
                 discover <i class="fa fa-plus"></i>
               </a>
             </div>
@@ -64,7 +64,7 @@
         <div class="row">
           <div class="single-image-fluid effect-v1">
             <a href="#" title="" target="_self">
-              <img src="http://venusdemo.com/wordpress/pi/wp-content/uploads/2017/06/banner5.jpg" class="single-image-fluid" alt="banner">
+              <%= image_tag('best_kitchen_appliances.jpg', style: 'max-width: 100%; min-height: 390px') %>
             </a>
           </div>
         </div>
@@ -87,7 +87,7 @@
 
         <div class="blog-post" id="post-lists">
           <% @blogs.each do |blog| %>
-              <%= render 'post', blog: blog %>
+            <%= render 'post', blog: blog %>
           <% end %>
         </div>
       </div>
